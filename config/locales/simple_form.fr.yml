@@ -1,0 +1,11 @@
+fr:
+  simple_form:
+    error_notification:
+      default_message: "Merci de corriger les erreurs suivantes :"
+    required:
+      mark: "*"
+    yes: "Oui"
+    no: "Non"
+    buttons:
+      submit: "Envoyer"
+      cancel: "Annuler"
