@@ -17,12 +17,11 @@
   }
   & .card-client-horizontal-text {
     margin: 0.5em;
+    overflow: hidden;
   }
-  & .message-card-horizontal {
+  & .phone-message-card-horizontal {
     color: $l-yellow-sp;
-  }
-  & .phone-card-horizontal {
-    color: $l-yellow-sp;
+    font-size: 1.1em;
   }
 
 }

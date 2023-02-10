@@ -1,24 +1,33 @@
   <div class="container">
-      <h1>Hello Clients</h1>
-      <% @clients.each do |client| %>
-          <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client" do %>
+    <div class="mx-3 d-flex justify-content-between align-items-center">
+      <h2 class="mb-0">Mes clients</h2>
+      <div class="ajouter-client d-flex align-items-center">
+        <p>Ajouter contact</p>
+        <i class="fa-solid fa-plus"></i>
+      </div>
+    </div>
+    <% @clients.each do |client| %>
+        <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client justify-content-between" do %>
+            <div class="d-flex">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
               <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
-                  <h4 class="card-fullname"> <%= client.full_name %></h4>
-                  <p class="card-location"> <%= client.billing_city %></p>
+                <h4 class="card-fullname"> <%= client.full_name %></h4>
+                <p class="card-location"> <%= client.billing_city %></p>
               </div>
-              <div class="phone-card-horizontal">
-                <i class="fa-solid fa-phone"></i>
-              </div>
-              <div class="message-card-horizontal">
-                <i class="fa-solid fa-envelope"></i>
-              </div>
-              <% end %>
-          <% end %>
-      <% if @clients.empty? %>
-        <h3>Aucun client enregistré.</h3>
-      <% end %>
+            </div>
+            <div class="phone-message-card-horizontal">
+              <i class="fa-solid fa-phone p-3"></i>
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <% end %>
+        <% end %>
+    <% if @clients.empty? %>
+      <h4 class= "ms-3">Aucun client enregistré.</h4>
+    <% end %>
 
-    </div>
+
+
+
+  </div>
 
 </div>

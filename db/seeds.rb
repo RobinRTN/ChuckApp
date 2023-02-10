@@ -39,6 +39,14 @@ Client.create!([
 
   { user_id: User.first.id, full_name: "Mélanie Guichard", email: 'melanieguichard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" },
 
+  { user_id: User.first.id, full_name: "Pierre Largeron", email: 'pierrelargeron@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" },
+
+  { user_id: User.first.id, full_name: "Eugénie Perdreau", email: 'eugenieperdreau@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" },
+
+  { user_id: User.first.id, full_name: "Gautier Roselli", email: 'gautierroselli@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" },
+
+  { user_id: User.first.id, full_name: "Dominique Girard", email: 'dominiquegirard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" },
+
   { user_id: User.second.id, full_name: "Vanille Fremaux", email: 'vanillefremaux@test.com', payment_BIC: "FFBKPSS3", payment_IBAN: "FR3992202025500000157841866", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" },
 
   { user_id: User.second.id, full_name: "Victor Launay", email: 'victorlaunay@test.com', payment_BIC: "FFBKAZS3", payment_IBAN: "FR3992202025500000157842366", billing_address_line1: "15 avenue de la trace", billing_zip_code: 75018, billing_city: "Paris" },

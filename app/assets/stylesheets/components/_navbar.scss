@@ -10,8 +10,23 @@
   background-color: $blue-sp;
   font-size: 1.1em;
   padding: 2em;
+  p {
+    font-size: 0.7em;
+    margin-bottom: 0px;
+  }
 }
 
 .bottom-navbar, a {
  color: $ll-blue-sp;
+}
+
+.top-navbar {
+  padding-left: 1em;
+  padding-right: 2em;
+  background-color: white;
+  margin-bottom: 1em;
+  .notification-bell {
+    color: $blue-sp;
+    font-size: 1.4em;
+  }
 }
