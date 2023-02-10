@@ -1,0 +1,28 @@
+.card-horizontal-client {
+  color: $dd-blue-sp;
+  text-decoration: none;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  margin: 0.9em;
+  & h4 {
+    font-size: 1em;
+    margin-bottom: 0;
+  }
+  & p {
+    font-size: 0.9em;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+  & .card-client-horizontal-text {
+    margin: 0.5em;
+  }
+  & .message-card-horizontal {
+    color: $l-yellow-sp;
+  }
+  & .phone-card-horizontal {
+    color: $l-yellow-sp;
+  }
+
+}

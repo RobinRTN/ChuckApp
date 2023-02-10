@@ -1,13 +1,19 @@
-<div class="main-content-padding mt-2">
   <div class="container">
-    <div class="row">
       <h1>Hello Clients</h1>
       <% @clients.each do |client| %>
-          <%= link_to client_path(client) do %>
-            <div class="card-client-vertical">
-                <h4 class="card-fullname"> <%= client.full_name %></h4>
+          <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client" do %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+              <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
+                  <h4 class="card-fullname"> <%= client.full_name %></h4>
+                  <p class="card-location"> <%= client.billing_city %></p>
               </div>
-            <% end %>
+              <div class="phone-card-horizontal">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="message-card-horizontal">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <% end %>
           <% end %>
       <% if @clients.empty? %>
         <h3>Aucun client enregistré.</h3>
@@ -15,5 +21,4 @@
 
     </div>
 
-  </div>
 </div>
