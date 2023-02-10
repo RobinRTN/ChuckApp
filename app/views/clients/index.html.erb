@@ -1,0 +1,19 @@
+<div class="main-content-padding mt-2">
+  <div class="container">
+    <div class="row">
+      <h1>Hello Clients</h1>
+      <% @clients.each do |client| %>
+          <%= link_to client_path(client) do %>
+            <div class="card-client-vertical">
+                <h4 class="card-fullname"> <%= client.full_name %></h4>
+              </div>
+            <% end %>
+          <% end %>
+      <% if @clients.empty? %>
+        <h3>Aucun client enregistré.</h3>
+      <% end %>
+
+    </div>
+
+  </div>
+</div>
