@@ -18,10 +18,74 @@
   color: $ll-blue-sp;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   font-weight: 400;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 .btn-basic-bleu:hover {
   background: $d-blue-sp;
   color: $ll-blue-sp;
+}
+
+.btn-basic-bleu-large {
+  text-decoration: none;
+  padding: 0.5em 0;
+  width: 100%;
+  border-radius: 0.4em;
+  transition-duration: 0.8s;
+  background: $blue-sp;
+  color: $ll-blue-sp;
+  font-weight: 400;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: none;
+}
+
+.btn-basic-bleu-large:hover {
+  background: $d-blue-sp;
+  color: $ll-blue-sp;
+}
+
+.ajouter-client-btn {
+  p {
+    margin-bottom: 0px;
+    margin-right: 0.6em;
+  }
+  padding: 0.2em 0.55em 0.2em 0.85em;
+  background-color: $white;
+  border-radius: 3em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  color: $dd-blue-sp;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.back-btn {
+
+  color: $blue-sp;
+  font-size: 1.2em;
+}
+
+.reservation-block {
+  .nav-item .nav-link.active {
+    text-decoration: none;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    transition: none !important;
+    background: $blue-sp;
+    color: $ll-blue-sp;
+    font-size: 1.1em;
+    font-weight: 400;
+    box-shadow: 0 0 4px $blue-sp;
+    border: none;
+  }
+
+  .nav-item .nav-link {
+    text-decoration: none;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    transition: none !important;
+    background: none;
+    color: $blue-sp;
+    font-size: 1.1em;
+    font-weight: 400;
+    border: none;
+  }
 }

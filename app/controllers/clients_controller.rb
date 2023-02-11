@@ -2,10 +2,11 @@ class ClientsController < ApplicationController
 
   before_action :set_client, only: :update
 
-
+  def new
+    @client = Client.new
+  end
 
   def index
-    @client = Client.new
     @clients = Client.where(user_id: current_user.id)
   end
 

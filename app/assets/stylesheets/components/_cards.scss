@@ -5,7 +5,7 @@
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 1em;
-  margin: 0.9em;
+  margin: 0.6em;
   & h4 {
     font-size: 1em;
     margin-bottom: 0;
@@ -23,5 +23,48 @@
     color: $l-yellow-sp;
     font-size: 1.1em;
   }
+
+  .fa-phone {
+    padding-right: 1em;
+  }
+
+}
+
+.card-horizontal-booking {
+  color: $dd-blue-sp;
+  text-decoration: none;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  margin: 0.6em;
+  & h4 {
+    font-size: 1em;
+    margin-bottom: 0;
+  }
+  & p {
+    margin-bottom: 0;
+    text-decoration: none !important;
+  }
+  & li {
+    font-size: 0.9em;
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+  & .card-infos {
+    padding: 0.5em;
+    border-right: solid 1.5px $light-gray;
+  }
+
+  & .price-tag {
+    background-color: $l-yellow-sp;
+    color: $dd-blue-sp;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 0 3px $l-yellow-sp;
+  }
+
 
 }

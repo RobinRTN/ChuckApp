@@ -10,6 +10,7 @@
   background-color: $blue-sp;
   font-size: 1.1em;
   padding: 2em;
+  box-shadow: 0 0 5px $blue-sp;
   p {
     font-size: 0.7em;
     margin-bottom: 0px;
@@ -24,9 +25,14 @@
   padding-left: 1em;
   padding-right: 2em;
   background-color: white;
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
   .notification-bell {
     color: $blue-sp;
     font-size: 1.4em;
+  }
+  .menu-bars {
+    color: $medium-gray ;
+    font-size: 1.4em;
+    padding-right: 1em;
   }
 }

@@ -1,7 +1,9 @@
 class BookingsController < ApplicationController
 
   def index
-    @bookings = Booking.where(user_id: current_user.id)
+    user_bookings = current_user.bookings
+    @upcoming_bookings = user_bookings.select { |booking| booking.start_time > Date.today }
+    @past_bookings = user_bookings.select { |booking| booking.start_time < Date.today }
   end
 
 end
