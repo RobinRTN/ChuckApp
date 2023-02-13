@@ -1,0 +1,27 @@
+<%= link_to booking_path(booking), class: "text-decoration-none" do %>
+  <div class="card-horizontal-booking">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+        <div class="card-infos d-flex align-items-start flex-column">
+            <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
+            <p class="date-card"><%= l(booking.start_time, format: '%-d %B %Y') %></p>
+            <p class="time-card"><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
+            <%if booking.booking_type == "collectif"  %>
+              <p><i class="fa-solid fa-people-group"></i> <%= booking.booking_type %> </p>
+            <%else%>
+              <p><i class="fa-solid fa-user"></i> <%= booking.booking_type %> </p>
+            <%end %>
+        </div>
+      </div>
+      <div class="price-infos d-flex align-items-center flex-column justify-content-center">
+        <%if booking.payment_status == "Réglé"%>
+          <p class="price-tag-paid"><%= booking.price.to_i %>€</p>
+        <%else%>
+          <p class="price-tag-none-paid"><%= booking.price.to_i %>€</p>
+        <%end%>
+        <em class="booking-status"><%= booking.payment_status %></em>
+      </div>
+    </div>
+  </div>
+<% end %>

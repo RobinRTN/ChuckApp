@@ -36,11 +36,23 @@
   background-color: $white;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  padding: 1em;
+  padding: 0.5em 1em;
   margin: 0.6em;
   & h4 {
     font-size: 1em;
     margin-bottom: 0;
+  }
+  .avatar-large {
+    margin-bottom: 2em;
+  }
+  & .time-card {
+    background-color: $light-gray;
+    padding: 0.1em;
+    border-radius: 2px;
+    margin-bottom: 0.4em
+  }
+  & .date-card {
+    color: $blue-sp;
   }
   & p {
     margin-bottom: 0;
@@ -53,10 +65,16 @@
   }
   & .card-infos {
     padding: 0.5em;
+    width: 11em;
     border-right: solid 1.5px $light-gray;
+    overflow: hidden;
   }
 
-  & .price-tag {
+  & .price-infos {
+    width: 3.5em;
+  }
+
+  & .price-tag-none-paid {
     background-color: $l-yellow-sp;
     color: $dd-blue-sp;
     padding: 0.2em 0.55em;
@@ -64,6 +82,19 @@
     text-decoration: none;
     font-size: 14px;
     box-shadow: 0 0 3px $l-yellow-sp;
+  }
+  & .price-tag-paid {
+    background-color: $blue-sp;
+    color: $ll-blue-sp;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 0 3px $blue-sp;
+  }
+
+  & .booking-status {
+    font-size: 0.8em;
   }
 
 

@@ -61,23 +61,23 @@ Client.create!([
 puts "Just created the 10 clients successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 10:00:00"), end_time: Time.parse("2023-02-13 12:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-13 10:00:00"), end_time: Time.parse("2023-02-13 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 16:00:00"), end_time: Time.parse("2023-02-14 18:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-14 16:00:00"), end_time: Time.parse("2023-02-14 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 8:00:00"), end_time: Time.parse("2023-02-15 10:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-15 8:00:00"), end_time: Time.parse("2023-02-15 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-16 14:00:00"), end_time: Time.parse("2023-02-16 16:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-16 14:00:00"), end_time: Time.parse("2023-02-16 16:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-17 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-17 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
@@ -86,23 +86,23 @@ booking.save
 puts "Just created 5 bookings for first client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 8:00:00"), end_time: Time.parse("2023-02-13 10:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-13 8:00:00"), end_time: Time.parse("2023-02-13 10:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 14:00:00"), end_time: Time.parse("2023-02-14 16:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-14 14:00:00"), end_time: Time.parse("2023-02-14 16:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 18:00:00"), end_time: Time.parse("2023-02-15 20:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-15 18:00:00"), end_time: Time.parse("2023-02-15 20:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-16 12:00:00"), end_time: Time.parse("2023-02-16 14:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-16 12:00:00"), end_time: Time.parse("2023-02-16 14:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-17 8:00:00"), end_time: Time.parse("2023-02-16 10:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-17 8:00:00"), end_time: Time.parse("2023-02-16 10:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
@@ -110,23 +110,23 @@ booking.save
 puts "Just created 5 bookings for second client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 18:00:00"), end_time: Time.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-13 18:00:00"), end_time: Time.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 12:00:00"), end_time: Time.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-14 12:00:00"), end_time: Time.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 16:00:00"), end_time: Time.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-15 16:00:00"), end_time: Time.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-16 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-16 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-17 18:00:00"), end_time: Time.parse("2023-02-16 20:00:00"), price: 100.00, payment_status: 'paid')
+booking = Booking.new(start_time: Time.parse("2023-02-17 18:00:00"), end_time: Time.parse("2023-02-16 20:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save

@@ -19,24 +19,48 @@
     </ul>
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-      <% @upcoming_bookings.each do |booking| %>
-        <%= link_to booking_path(booking), class: "text-decoration-none" do %>
-          <div class="card-horizontal-booking">
-              <div class="d-flex align-items-center">
-                <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-                <div class="card-infos d-flex align-items-start flex-column">
-                    <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
-                    <p><%= l(booking.start_time, format: '%-d %B %Y') %></p>
-                    <p><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
-                </div>
-                <p class="price-tag"><%= booking.price.to_i %>€</p>
-              </div>
-          </div>
+      <% unless @today_bookings.empty? %>
+        <em>Aujourd'hui</em>
+        <% @today_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
         <% end %>
-      <% end %>
+      <%end%>
+
+      <% unless @tomorrow_bookings.empty? %>
+        <em>Demain</em>
+        <% @tomorrow_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
+        <% end %>
+      <%end%>
+
+      <% unless @this_week_bookings.empty? %>
+        <em>Cette semaine</em>
+        <% @this_week_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
+        <% end %>
+      <%end%>
+
+      <% unless @next_week_bookings.empty? %>
+        <em>Semaine prochaine</em>
+        <% @next_week_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
+        <% end %>
+      <%end%>
+
+      <% unless @next_month_bookings.empty? %>
+        <em>Ce mois-ci</em>
+        <% @next_month_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
+        <% end %>
+      <%end%>
+
 
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <% @next_month_bookings.each do |booking| %>
+          <%= render partial: 'cards', locals: { booking: booking } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
