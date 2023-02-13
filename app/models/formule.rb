@@ -1,0 +1,2 @@
+class Formule < ApplicationRecord
+end

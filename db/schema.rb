@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_13_144137) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_214543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_144137) do
     t.bigint "user_id"
     t.bigint "client_id"
     t.string "booking_type", default: "Individuel"
+    t.string "status", default: "Pending"
     t.index ["client_id"], name: "index_bookings_on_client_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -46,6 +47,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_144137) do
     t.datetime "updated_at", null: false
     t.integer "phone_number"
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "formules", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "field"
+    t.integer "duration"
+    t.float "price"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_formules_on_user_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "field"
+    t.integer "number_sessions"
+    t.float "discount"
+    t.bigint "user_id", null: false
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "price"
+    t.float "frequence"
+    t.index ["booking_id"], name: "index_packages_on_booking_id"
+    t.index ["user_id"], name: "index_packages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,4 +107,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_144137) do
   add_foreign_key "bookings", "clients"
   add_foreign_key "bookings", "users"
   add_foreign_key "clients", "users"
+  add_foreign_key "formules", "users"
+  add_foreign_key "packages", "users"
 end
