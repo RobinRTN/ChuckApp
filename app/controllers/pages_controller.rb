@@ -7,9 +7,4 @@ class PagesController < ApplicationController
   def profile
   end
 
-  def cours
-  end
-
-  def packages
-  end
 end

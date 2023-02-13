@@ -1,5 +1,5 @@
 <%= link_to booking_path(booking), class: "text-decoration-none" do %>
-  <div class="card-horizontal-booking">
+  <div class="card-horizontal-booking-pending">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
@@ -14,13 +14,13 @@
             <%end %>
         </div>
       </div>
-      <div class="price-infos d-flex align-items-center flex-column justify-content-center">
-        <%if booking.payment_status == "Réglé"%>
-          <p class="price-tag-paid"><%= booking.price.to_i %>€</p>
-        <%else%>
-          <p class="price-tag-none-paid"><%= booking.price.to_i %>€</p>
-        <%end%>
-        <em class="booking-status"><%= booking.payment_status %></em>
+      <div class="confirmation d-flex align-items-center flex-column justify-content-between">
+        <%= link_to confirm_booking_path(booking), data: { "turbo-method": :put } do %>
+          <p><i class="fa-sharp fa-solid fa-circle-check accept mb-2"></i></p>
+        <% end %>
+        <%= link_to refuse_booking_path(booking), data: { "turbo-method": :put } do %>
+          <p><i class="fa-sharp fa-solid fa-circle-xmark refuse"></i></p>
+        <% end %>
       </div>
     </div>
   </div>

@@ -7,10 +7,16 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get 'profile', to: 'pages#profile'
-  get 'cours', to: 'pages#cours'
-  get 'packages', to: 'pages#cours'
-  resources :bookings  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :clients  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+    member do
+      put :confirm
+      put :refuse
+    end
+  end
+  resources :clients
+  resources :formules
+  resources :packages
+
   # Defines the root path route ("/")
   # root "articles#index"
 end

@@ -1,0 +1,34 @@
+<div class="bg-white">
+  <div class="container">
+    <div class="px-3 pb-4 d-flex align-items-center">
+      <%= link_to profile_path, class: "text-decoration-none" do %>
+        <div class="back-btn me-3">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <h2 class="m-0">Mes cours</h2>
+    </div>
+
+    <div class="form-new-client mx-3">
+      <%= simple_form_for(@formule) do |f| %>
+        <%= f.input :name,
+                    label: false,
+                    input_html: { autocomplete: "Nom", placeholder: "Nom" } %>
+        <%= f.input :price,
+                    label: false,
+                    input_html: { autocomplete: "Prix", placeholder: "Prix" } %>
+        <%= f.input :duration,
+                    label: false,
+                    input_html: { autocomplete: "Durée", placeholder: "Durée" } %>
+        <%= f.input :field,
+                    label: false,
+                    input_html: { autocomplete: "Domaine ou sport", placeholder: "Domaine ou sport" } %>
+        <%= f.input :description,
+                    label: false,
+                    input_html: { autocomplete: "Description", placeholder: "Description" } %>
+        <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
