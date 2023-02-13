@@ -22,13 +22,12 @@
       <% @upcoming_bookings.each do |booking| %>
         <%= link_to booking_path(booking), class: "text-decoration-none" do %>
           <div class="card-horizontal-booking">
-
               <div class="d-flex align-items-center">
                 <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
                 <div class="card-infos d-flex align-items-start flex-column">
                     <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
-                    <p><strong><%= l(booking.start_time, format: '%-d %B %Y') %></strong> </p>
-                    <p><strong><%= l(booking.start_time, format: '%H') %></strong>:<strong><%= l(booking.start_time, format: '%M') %></strong> à <strong><%= l(booking.end_time, format: '%H') %></strong>:<strong><%= l(booking.end_time, format: '%M') %></strong> </p>
+                    <p><%= l(booking.start_time, format: '%-d %B %Y') %></p>
+                    <p><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
                 </div>
                 <p class="price-tag"><%= booking.price.to_i %>€</p>
               </div>
