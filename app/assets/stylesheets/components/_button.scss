@@ -89,3 +89,51 @@
     border: none;
   }
 }
+
+.profile-box-btn {
+  background-color: $white;
+  color: $l-blue-sp;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 0em 0.5em;
+  margin-top: 1em;
+  border-bottom: 1px solid $l-blue-sp;
+  & .profile-box-text {
+    color: $dd-blue-sp;
+  }
+}
+
+.signout-box-btn {
+  background-color: $white;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 0em 0.5em;
+  margin-top: 2em;
+  & .signout-box-text {
+    color: $red;
+  }
+}
+
+.btn-modifier-dropdown {
+  text-decoration: none;
+  padding: 0.5em 0.8em;
+  border-radius: 0.4em;
+  transition-duration: 0.8s;
+  background: lightgrey;
+  color: $dd-blue-sp;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  font-weight: 400;
+  width: 100%;
+}
+
+.btn-modifier-confirmer {
+  text-decoration: none;
+  padding: 0.5em 0.8em;
+  border-radius: 0.4em;
+  transition-duration: 0.8s;
+  background: $blue-sp;
+  color: $ll-blue-sp;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  font-weight: 400;
+  width: 100%;
+}

@@ -15,5 +15,8 @@ class User < ApplicationRecord
 
   has_many :clients
   has_many :bookings
+  has_many :formules
+  has_many :packages
+  has_one_attached :photo
 
 end

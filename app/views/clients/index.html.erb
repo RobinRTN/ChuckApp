@@ -11,7 +11,11 @@
     <% @clients.each do |client| %>
         <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client justify-content-between" do %>
             <div class="d-flex">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+              <% if client.photo.attached? %>
+                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
+              <% else %>
+                <%= image_tag "user.png", class: 'avatar-large' %>
+               <% end%>
               <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
                 <h4 class="card-fullname"> <%= client.full_name %></h4>
                 <p class="card-location"> <%= client.billing_city %></p>

@@ -2,7 +2,11 @@
   <div class="card-horizontal-booking-pending">
     <div class="d-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+        <% if booking.client.photo.attached? %>
+          <%= cl_image_tag booking.client.photo.key, crop: :fill, class: "avatar-large" %>
+        <% else %>
+          <%= image_tag "user.png", class: 'avatar-large' %>
+        <% end%>
         <div class="card-infos d-flex align-items-start flex-column">
             <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
             <p class="date-card"><%= l(booking.start_time, format: '%-d %B %Y') %></p>

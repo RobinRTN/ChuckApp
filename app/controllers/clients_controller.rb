@@ -7,7 +7,8 @@ class ClientsController < ApplicationController
   end
 
   def index
-    @clients = Client.where(user_id: current_user.id)
+    clients = current_user.clients
+    @clients = clients.order(:full_name)
   end
 
   def show
@@ -32,7 +33,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:first_name, :last_name, :email)
+    params.require(:client).permit(:first_name, :last_name, :email, :photo)
   end
 
   def set_client
