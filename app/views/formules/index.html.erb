@@ -9,26 +9,34 @@
       <h2 class="m-0">Mes cours et tarifs</h2>
     </div>
 
-    <div class="form-new-client mx-3">
-      <%= simple_form_for(@formule) do |f| %>
-        <%= f.input :name,
-                    label: false,
-                    input_html: { autocomplete: "Nom", placeholder: "Nom" } %>
-        <%= f.input :price,
-                    label: false,
-                    input_html: { autocomplete: "Prix", placeholder: "Prix" } %>
-        <%= f.input :duration,
-                    label: false,
-                    input_html: { autocomplete: "Durée", placeholder: "Durée" } %>
-        <%= f.input :field,
-                    label: false,
-                    input_html: { autocomplete: "Domaine ou sport", placeholder: "Domaine ou sport" } %>
-        <%= f.input :description,
-                    label: false,
-                    input_html: { autocomplete: "Description", placeholder: "Description" } %>
-        <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
-      <% end %>
+    <div class="ajouter-formule px-3">
+      <div class="d-flex justify-content-center mb-3">
+        <button class="navbar-toggler btn-modifier-dropdown d-flex justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          Ajouter des cours et tarifs 👇
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="form-new-client">
+          <%= simple_form_for(@formule) do |f| %>
+            <%= f.input :name,
+                        label: false,
+                        input_html: { autocomplete: "Nom", placeholder: "Nom" } %>
+            <%= f.input :price,
+                        label: false,
+                        input_html: { autocomplete: "Prix", placeholder: "Prix" } %>
+            <%= f.input :duration,
+                        label: false,
+                        input_html: { autocomplete: "Durée", placeholder: "Durée" } %>
+            <%= f.input :field,
+                        label: false,
+                        input_html: { autocomplete: "Domaine ou sport", placeholder: "Domaine ou sport" } %>
+            <%= f.input :description,
+                        label: false,
+                        input_html: { autocomplete: "Description", placeholder: "Description" } %>
+            <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
