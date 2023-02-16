@@ -5,9 +5,11 @@
       <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
         <% if current_user.photo.attached? %>
           <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-profile" %>
+        <% elsif current_user.avatar_url.present? %>
+          <%= image_tag current_user.avatar_url, class: 'avatar-profile' %>
         <% else %>
           <%= image_tag "user.png", class: 'avatar-profile' %>
-        <% end%>
+        <% end %>
       </div>
       <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
@@ -24,7 +26,7 @@
           <p class="profile-box-text">Mes cours et tarifs</p>
           <p><i class="fa-solid fa-pencil"></i></p>
         </div>
-      <%end%>
+      <% end %>
 
       <%= link_to packages_path, class: "text-decoration-none" do %>
         <div class= "profile-box-btn d-flex justify-content-between">

@@ -222,3 +222,37 @@
     font-size: 0.8em;
   }
 }
+
+.daily-dispo-card {
+
+  color: $dd-blue-sp;
+  text-decoration: none;
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 0.5em 1em;
+  width: 100%;
+  height: auto;
+  & .dispo-slots {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.1em;
+  }
+  & .dispo-slots-drop {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0.1em;
+  }
+  & .disponibilites-btn {
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 0.4em;
+    transition-duration: 0.8s;
+    background: $blue-sp;
+    color: $ll-blue-sp;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-weight: 400;
+  }
+
+
+}
