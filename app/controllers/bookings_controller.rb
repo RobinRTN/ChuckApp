@@ -11,20 +11,9 @@ class BookingsController < ApplicationController
     end_time = Time.zone.parse('21:00pm') - interval.minutes
     days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
-    user_bookings = current_user.bookings.upcoming
+    @user_bookings = current_user.bookings.upcoming
     # Generate the available datetimes using the generate_datetimes function
     full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks)
-    full_datetimes.each do |weekly_datetimes|
-      weekly_datetimes.each do |daily_datetimes|
-        daily_datetimes.each do |datetime|
-          user_bookings.each do |booking|
-            if booking.start_time <= datetime && booking.end_time >= datetime
-              puts "deleted"
-            end
-          end
-        end
-      end
-    end
     @full_datetimes = full_datetimes
   end
 
@@ -146,6 +135,7 @@ class BookingsController < ApplicationController
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
+
     # Loop through each day of the current week
     (0..num_weeks - 1).each do |week_num|
       given_days_of_week.each do |day|
@@ -154,10 +144,11 @@ class BookingsController < ApplicationController
         slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
         while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
           if slot.strftime("%H:%M:%S") >= start_time.strftime("%H:%M:%S") && slot.strftime("%H:%M:%S") <= end_time.strftime("%H:%M:%S")
-            daily_datetimes << slot if slot > current_time
+            daily_datetimes << slot unless slot < current_time
           end
           slot += interval.minutes
         end
+        sort_existing_bookings(daily_datetimes)
         weekly_datetimes << daily_datetimes unless daily_datetimes.empty?
         daily_datetimes = []
       end
@@ -165,5 +156,21 @@ class BookingsController < ApplicationController
       weekly_datetimes = []
     end
     return full_datetimes
+  end
+
+  def sort_existing_bookings(daily_datetimes)
+    overlapping_slots = []
+    daily_datetimes.each do |slot|
+      slot_string = slot.strftime("%Y-%m-%d %H:%M:%S %z")
+      @user_bookings.each do |booking|
+        booking_start = booking.start_time.strftime("%Y-%m-%d %H:%M:%S %z")
+        booking_end = booking.end_time.strftime("%Y-%m-%d %H:%M:%S %z")
+        if slot_string >= booking_start && slot_string < booking_end
+          overlapping_slots << slot
+          break # Exit the inner loop early
+        end
+      end
+    end
+    daily_datetimes.reject! { |slot| overlapping_slots.include?(slot) }
   end
 end
