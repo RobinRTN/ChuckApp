@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="mx-3 mb-3 d-flex justify-content-between align-items-center">
+    <h2 class="mb-0">Mes disponibilités</h2>
+  </div>
+  <% pattern = "%H:%M"  %>
+  <div class="mx-3 available">
+    <% @full_datetimes.each do |weekly_datetimes| %>
+      <% weekly_datetimes.each do |daily_datetimes| %>
+        <div class="daily-dispo-card mb-2">
+          <% unless daily_datetimes.empty?  %>
+          <p><%= l(daily_datetimes.first, format: "%-d %B %Y")%></p>
+          <%end %>
+
+          <div class="available-block">
+            <%array_size = daily_datetimes.size %>
+            <%if array_size > 4 %>
+              <div class="dispo-slots">
+                <% daily_datetimes.first(4).each do |datetime| %>
+                  <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                <%end%>
+              </div>
+              <div class="collapse navbar-collapse dispo-slots-drop" id="navbarSupportedContent">
+                <% daily_datetimes.each_with_index do |datetime, index| %>
+                  <%if index >= 4 %>
+                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                  <% end %>
+                <%end%>
+              </div>
+              <button class="navbar-toggler btn-modifier-dropdown d-flex justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                Voir plus
+              </button>
+
+            <%else%>
+              <div class="dispo-slots">
+                <% daily_datetimes.each do |datetime| %>
+                  <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                <%end%>
+              </div>
+            <%end %>
+          </div>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+</div>

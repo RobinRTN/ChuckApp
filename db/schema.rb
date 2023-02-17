@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_14_130205) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_105227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_130205) do
     t.bigint "client_id"
     t.string "booking_type", default: "Individuel"
     t.string "status", default: "Pending"
+    t.string "event"
     t.index ["client_id"], name: "index_bookings_on_client_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -128,6 +129,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_130205) do
     t.string "first_name"
     t.string "last_name"
     t.float "hourly_rate"
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

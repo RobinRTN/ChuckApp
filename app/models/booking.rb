@@ -9,6 +9,7 @@ class Booking < ApplicationRecord
   scope :next_month, -> { where("start_time >= ? AND start_time < ? AND status = 'Accepted'", Date.today.end_of_month, Date.today.end_of_month + 1.month).order(:start_time) }
   scope :after, -> { where("start_time >= ?", Date.today.end_of_month + 1.month).order(:start_time) }
   scope :passed, -> { where("start_time < ?", Date.today.beginning_of_day).order(:start_time) }
+  scope :upcoming, -> { where("start_time >= ?", Date.today.beginning_of_day).order(:start_time) }
 
   # scope to print out incoming pending bookings
   scope :today_pending, -> { where("start_time >= ? AND start_time < ? AND status = 'Pending'", Date.today.beginning_of_day, Date.today.end_of_day).order(:start_time) }

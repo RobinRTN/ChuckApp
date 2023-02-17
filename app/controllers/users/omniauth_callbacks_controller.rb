@@ -7,18 +7,37 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should also create an action method in this controller like this:
   # def twitter
   # end
+  # def google_oauth2
+  #   user = User.from_omniauth(auth)
+  #   if user.present?
+  #     sign_out_all_scopes
+  #     flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
+  #     sign_in_and_redirect user, event: :authentication
+  #   else
+  #     flash[:alert] =
+  #       t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+  #     redirect_to new_user_session_path
+  #   end
+  # end
+
   def google_oauth2
-    user = User.from_omniauth(auth)
-    if user.present?
-      sign_out_all_scopes
-      flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
-      sign_in_and_redirect user, event: :authentication
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
+      auth = request.env["omniauth.auth"]
+      @user.access_token = auth.credentials.token
+      @user.expires_at = auth.credentials.expires_at
+      @user.refresh_token = auth.credentials.refresh_token
+      @user.save!
+      sign_in(@user)
+      redirect_to bookings_path
     else
-      flash[:alert] =
-        t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-      redirect_to new_user_session_path
+      session["devise.google_data"] = request.env["omniauth.auth"].except!(:extra)
+      redirect_to new_user_registration_url
     end
   end
+
+
 
   protected
 
@@ -32,9 +51,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def auth
-    @auth ||= request.env['omniauth.auth']
-  end
+  # def auth
+  #   @auth ||= request.env['omniauth.auth']
+  # end
 
   # More info at:
   # https://github.com/heartcombo/devise#omniauth

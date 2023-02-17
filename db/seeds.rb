@@ -3,6 +3,9 @@
 #
 # Examples:
 require 'open-uri'
+require 'active_support/time'
+Time.zone = 'Europe/Paris'
+
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Deleting Bookings"
@@ -137,23 +140,23 @@ c13.photo.attach(
 )
 c13.save!
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 10:00:00"), end_time: Time.parse("2023-02-13 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
+booking = Booking.new(start_time: Time.zone.parse("2023-02-18 10:00:00"), end_time: Time.zone.parse("2023-02-18 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 16:00:00"), end_time: Time.parse("2023-02-14 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-18 16:00:00"), end_time: Time.zone.parse("2023-02-18 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 8:00:00"), end_time: Time.parse("2023-02-15 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-20 8:00:00"), end_time: Time.zone.parse("2023-02-20 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-16 14:00:00"), end_time: Time.parse("2023-02-16 16:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-21 20:00:00"), end_time: Time.zone.parse("2023-02-21 21:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-17 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-17 10:00:00"), end_time: Time.zone.parse("2023-02-17 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.first.id
 booking.save
@@ -162,23 +165,23 @@ booking.save
 puts "Just created 5 bookings for first client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 8:00:00"), end_time: Time.parse("2023-02-13 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-22 8:00:00"), end_time: Time.zone.parse("2023-02-22 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 14:00:00"), end_time: Time.parse("2023-02-14 16:00:00"), price: 100.00, payment_status: 'Réglé')
+booking = Booking.new(start_time: Time.zone.parse("2023-02-22 14:00:00"), end_time: Time.zone.parse("2023-02-22 16:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 18:00:00"), end_time: Time.parse("2023-02-15 20:00:00"), price: 100.00, payment_status: 'Réglé')
+booking = Booking.new(start_time: Time.zone.parse("2023-02-23 18:00:00"), end_time: Time.zone.parse("2023-02-23 20:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-11 12:00:00"), end_time: Time.parse("2023-02-11 14:00:00"), price: 100.00, payment_status: 'Réglé')
+booking = Booking.new(start_time: Time.zone.parse("2023-02-23 12:00:00"), end_time: Time.zone.parse("2023-02-23 14:00:00"), price: 100.00, payment_status: 'Réglé')
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-11 8:00:00"), end_time: Time.parse("2023-02-11 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-24 8:00:00"), end_time: Time.zone.parse("2023-02-24 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.second.id
 booking.save
@@ -186,23 +189,23 @@ booking.save
 puts "Just created 5 bookings for second client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.parse("2023-02-13 18:00:00"), end_time: Time.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-13 18:00:00"), end_time: Time.zone.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-14 12:00:00"), end_time: Time.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-14 12:00:00"), end_time: Time.zone.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-15 16:00:00"), end_time: Time.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-15 16:00:00"), end_time: Time.zone.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-16 10:00:00"), end_time: Time.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-16 10:00:00"), end_time: Time.zone.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
-booking = Booking.new(start_time: Time.parse("2023-02-17 18:00:00"), end_time: Time.parse("2023-02-16 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+booking = Booking.new(start_time: Time.zone.parse("2023-02-17 18:00:00"), end_time: Time.zone.parse("2023-02-17 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
 booking.user_id = User.first.id
 booking.client_id = Client.third.id
 booking.save
