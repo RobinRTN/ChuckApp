@@ -224,7 +224,6 @@
 }
 
 .daily-dispo-card {
-
   color: $dd-blue-sp;
   text-decoration: none;
   background-color: $white;
@@ -233,15 +232,21 @@
   padding: 0.5em 1em;
   width: 100%;
   height: auto;
+  & .date-text {
+    font-weight: 600;
+    font-size: 1em;
+    border-bottom: 2px solid $light-gray
+  }
   & .dispo-slots {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 0.1em;
   }
   & .dispo-slots-drop {
-    display: grid;
+    // display: none;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 0.1em;
+    overflow: hidden;
   }
   & .disponibilites-btn {
     text-decoration: none;
@@ -252,6 +257,18 @@
     color: $ll-blue-sp;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-weight: 400;
+  }
+  & .btn-disponibilites {
+    margin-top: 1em;
+    margin-left: 0.1em;
+    text-decoration: none;
+    padding: 0.2em 0.8em;
+    border-radius: 3em;
+    color: $blue-sp;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: none;
+
   }
 
 

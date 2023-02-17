@@ -9,7 +9,7 @@
         <% end%>
         <div class="card-infos d-flex align-items-start flex-column">
             <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
-            <p class="date-card"><%= l(booking.start_time, format: '%-d %B %Y') %></p>
+            <p class="date-card"><%= l(booking.start_time, format: '%A %d %B').capitalize %></p>
             <p class="time-card"><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
             <%if booking.booking_type == "Collectif"  %>
               <p><i class="fa-solid fa-people-group"></i> <%= booking.booking_type %> </p>
