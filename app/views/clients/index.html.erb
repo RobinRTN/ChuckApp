@@ -12,7 +12,7 @@
         <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client justify-content-between" do %>
             <div class="d-flex">
               <% if client.photo.attached? %>
-                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
+                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large", format: "jpg" %>
               <% else %>
                 <%= image_tag "user.png", class: 'avatar-large' %>
                <% end%>
@@ -35,4 +35,3 @@
 
 
   </div>
-
