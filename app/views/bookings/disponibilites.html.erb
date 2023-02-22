@@ -6,17 +6,17 @@
   <% pattern = "%H:%M"  %>
   <div class="mx-3 available">
     <% @full_datetimes.each do |weekly_datetimes| %>
-      <% date = weekly_datetimes.first.first %>
-      <% if date.between?(Date.today.beginning_of_week, Date.today.end_of_week) %>
-        <p><%= "Cette semaine" %></p>
-      <% elsif date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
-        <p><%= "Semaine prochaine" %></p>
-      <% elsif date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
-        <p><%= "Dans 2 semaines" %></p>
-      <% elsif date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
-        <p><%= "Dans 3 semaines" %></p>
-      <%else%>
-      <% end %>
+        <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
+        <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
+          <p><%= "Cette semaine" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
+          <p><%= "Semaine prochaine" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
+          <p><%= "Dans 2 semaines" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
+          <p><%= "Dans 3 semaines" %></p>
+        <%else%>
+        <% end %>
       <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
         <div class="daily-dispo-card mb-2">
           <% unless daily_datetimes.empty?  %>
