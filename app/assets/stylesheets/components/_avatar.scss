@@ -34,5 +34,8 @@
   width: 2em;
   border-radius: 50%;
   box-shadow: 0 0 2px $dd-blue-sp;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: top;
 
 }
