@@ -2,9 +2,26 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    user_bookings_passed = current_user.bookings.passed_current_month
+    user_bookings_projected = current_user.bookings.current_month_projected
+    @passed_month_revenues = user_bookings_passed.sum(&:price)
+    @projected_month_revenues = user_bookings_projected.sum(&:price)
+    @client_rankings = rank_clients_by_revenue()
   end
 
   def profile
+
+  end
+
+  private
+
+  def rank_clients_by_revenue
+    current_month_bookings = current_user.bookings.passed_current_month.includes(:client)
+    user_revenues = Hash.new(0)
+    current_month_bookings.each do |booking|
+      user_revenues[booking.client] += booking.price
+    end
+    sorted_user_revenues = user_revenues.sort_by { |user, revenue| revenue }.reverse
   end
 
 end

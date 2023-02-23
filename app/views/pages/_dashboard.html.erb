@@ -1,0 +1,11 @@
+<div class="bg-white">
+  <div class="container">
+    <div class="mx-3">
+      <h2>Tableau de Bord</h2>
+      <p> <%= @passed_month_revenues.to_i %> € </p>
+      <p> <%= @projected_month_revenues.to_i %> € </p>
+      <p> <%= @client_rankings.first[0].full_name %> </p>
+      <p> <%= @client_rankings.first[1].to_i %> €</p>
+    </div>
+  </div>
+</div>
