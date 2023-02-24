@@ -1,9 +1,24 @@
 <div class="bg-white">
   <div class="container">
     <div class="mx-3">
-      <h2>Tableau de Bord</h2>
-      <p> <%= @passed_month_revenues.to_i %> € </p>
-      <p> <%= @projected_month_revenues.to_i %> € </p>
+      <h2 class="mb-3">Tableau de Bord</h2>
+      <div class="d-flex align-items-center justify-content-between my-3">
+        <div class="revenue-card">
+          <p>Gains mensuels à date</p>
+          <div class="d-flex align-items-center justify-content-start">
+            <i class="fa-sharp fa-solid fa-coins me-2"></i>
+            <h4> <%= @passed_month_revenues.to_i %> € </h4>
+          </div>
+        </div>
+        <div class="revenue-card-projeté">
+          <p>Gains mensuels projetés</p>
+          <div class="d-flex align-items-center justify-content-start">
+            <i class="fa-sharp fa-solid fa-coins me-2"></i>
+            <h4> <%= @projected_month_revenues.to_i %> € </h4>
+          </div>
+        </div>
+      </div>
+      <p>Client du mois</p>
       <p> <%= @client_rankings.first[0].full_name %> </p>
       <p> <%= @client_rankings.first[1].to_i %> €</p>
     </div>

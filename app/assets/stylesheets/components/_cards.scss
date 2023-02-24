@@ -2,10 +2,11 @@
   color: $dd-blue-sp;
   text-decoration: none;
   background-color: $white;
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   padding: 1em;
   margin: 0.6em;
+  border-left: 3px solid $blue-sp;
   & h4 {
     font-size: 1em;
     margin-bottom: 0;
@@ -268,8 +269,35 @@
     font-size: 0.9em;
     font-weight: 400;
     border: none;
-
   }
+}
 
+.revenue-card {
+  background-color: $blue-sp;
+  box-shadow: 0 0 3px $blue-sp;
+  padding: 0.4em 0.7em;
+  border-radius: 4px;
+  color: $white;
 
+  p {
+    font-size: 0.9em;
+  }
+  h4 {
+    margin: 0;
+  }
+}
+
+.revenue-card-projeté {
+  background-color: $l-blue-sp;
+  box-shadow: 0 0 3px $l-blue-sp;
+  padding: 0.4em 0.7em;
+  border-radius: 4px;
+  color: $d-blue-sp;
+
+  p {
+    font-size: 0.9em;
+  }
+  h4 {
+    margin: 0;
+  }
 }
