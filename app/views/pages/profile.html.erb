@@ -1,57 +1,55 @@
-<div class="bg-white">
-  <div class="container">
-    <div class="mx-3">
-      <h2 class="mb-0">Mon compte</h2>
-      <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-profile" %>
-        <% elsif current_user.avatar_url.present? %>
-          <%= image_tag current_user.avatar_url, class: 'avatar-profile' %>
-        <% else %>
-          <%= image_tag "user.png", class: 'avatar-profile' %>
-        <% end %>
-      </div>
-      <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
-
-      <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
-        <div class= "profile-box-btn d-flex justify-content-between">
-          <p class= "profile-box-text">Mes informations personnelles</p>
-          <p><i class="fa-solid fa-pencil"></i></p>
-        </div>
-      <%end%>
-
-
-      <%= link_to formules_path, class: "text-decoration-none" do %>
-        <div class= "profile-box-btn d-flex justify-content-between">
-          <p class="profile-box-text">Mes cours et tarifs</p>
-          <p><i class="fa-solid fa-pencil"></i></p>
-        </div>
+<div class="container">
+  <div class="mx-3">
+    <h2 class="mb-0">Mon compte</h2>
+    <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-profile" %>
+      <% elsif current_user.avatar_url.present? %>
+        <%= image_tag current_user.avatar_url, class: 'avatar-profile' %>
+      <% else %>
+        <%= image_tag "user.png", class: 'avatar-profile' %>
       <% end %>
+    </div>
+    <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
-      <%= link_to packages_path, class: "text-decoration-none" do %>
-        <div class= "profile-box-btn d-flex justify-content-between">
-          <p class="profile-box-text">Mes packages</p>
-          <p><i class="fa-solid fa-pencil"></i></p>
-        </div>
-      <%end%>
-
-      <%= link_to packages_path, class: "text-decoration-none" do %>
-        <div class= "profile-box-btn d-flex justify-content-between">
-          <p class="profile-box-text">Mes disponiblités</p>
-          <p><i class="fa-solid fa-pencil"></i></p>
-        </div>
-      <%end%>
-
-      <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
-        <div class= "profile-box-btn d-flex justify-content-between">
-          <p class="profile-box-text">Email et mot de passe</p>
-          <p><i class="fa-solid fa-pencil"></i></p>
-        </div>
-      <%end%>
-
-
-      <div class= "signout-box-btn d-flex justify-content-center">
-        <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "signout-box-text text-decoration-none" %></p>
+    <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
+      <div class= "profile-box-btn d-flex justify-content-between">
+        <p class= "profile-box-text">Mes informations personnelles</p>
+        <p><i class="fa-solid fa-pencil"></i></p>
       </div>
-  </div>
+    <%end%>
+
+
+    <%= link_to formules_path, class: "text-decoration-none" do %>
+      <div class= "profile-box-btn d-flex justify-content-between">
+        <p class="profile-box-text">Mes cours et tarifs</p>
+        <p><i class="fa-solid fa-pencil"></i></p>
+      </div>
+    <% end %>
+
+    <%= link_to packages_path, class: "text-decoration-none" do %>
+      <div class= "profile-box-btn d-flex justify-content-between">
+        <p class="profile-box-text">Mes packages</p>
+        <p><i class="fa-solid fa-pencil"></i></p>
+      </div>
+    <%end%>
+
+    <%= link_to packages_path, class: "text-decoration-none" do %>
+      <div class= "profile-box-btn d-flex justify-content-between">
+        <p class="profile-box-text">Mes disponiblités</p>
+        <p><i class="fa-solid fa-pencil"></i></p>
+      </div>
+    <%end%>
+
+    <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
+      <div class= "profile-box-btn d-flex justify-content-between">
+        <p class="profile-box-text">Email et mot de passe</p>
+        <p><i class="fa-solid fa-pencil"></i></p>
+      </div>
+    <%end%>
+
+
+    <div class= "signout-box-btn d-flex justify-content-center">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "signout-box-text text-decoration-none" %></p>
+    </div>
 </div>

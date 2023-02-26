@@ -8,6 +8,10 @@
   margin-bottom: 200px;
 }
 
+body {
+  background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
+}
+
 .réservations-ligne {
   font-size: 1.1em;
   font-weight: 600;

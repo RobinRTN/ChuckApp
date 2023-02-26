@@ -1,34 +1,32 @@
-<div class="bg-white">
-  <div class="container">
-    <div class="px-3 pb-4 d-flex align-items-center">
-      <%= link_to profile_path, class: "text-decoration-none" do %>
-        <div class="back-btn me-3">
-          <i class="fa-solid fa-arrow-left"></i>
-        </div>
-      <% end %>
-      <h2 class="m-0">Mes packages</h2>
-    </div>
-
-    <div class="form-new-client mx-3">
-      <%= simple_form_for(@package) do |f| %>
-        <%= f.input :name,
-                    label: false,
-                    input_html: { autocomplete: "Nom", placeholder: "Nom" } %>
-        <%= f.input :number_sessions,
-                    label: false,
-                    input_html: { autocomplete: "Nombre de séances", placeholder: "Nombre de séances" } %>
-        <%= f.input :frequence,
-                    label: false,
-                    input_html: { autocomplete: "Fréquence par semaine", placeholder: "Fréquence par semaine" } %>
-        <%= f.input :price,
-                    label: false,
-                    input_html: { autocomplete: "Prix total", placeholder: "Prix total" } %>
-        <%= f.input :description,
-                    label: false,
-                    input_html: { autocomplete: "Description", placeholder: "Description" } %>
-        <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
-      <% end %>
-    </div>
-
+<div class="container">
+  <div class="px-3 pb-4 d-flex align-items-center">
+    <%= link_to profile_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+    <h2 class="m-0">Mes packages</h2>
   </div>
+
+  <div class="form-new-client mx-3">
+    <%= simple_form_for(@package) do |f| %>
+      <%= f.input :name,
+                  label: false,
+                  input_html: { autocomplete: "Nom", placeholder: "Nom" } %>
+      <%= f.input :number_sessions,
+                  label: false,
+                  input_html: { autocomplete: "Nombre de séances", placeholder: "Nombre de séances" } %>
+      <%= f.input :frequence,
+                  label: false,
+                  input_html: { autocomplete: "Fréquence par semaine", placeholder: "Fréquence par semaine" } %>
+      <%= f.input :price,
+                  label: false,
+                  input_html: { autocomplete: "Prix total", placeholder: "Prix total" } %>
+      <%= f.input :description,
+                  label: false,
+                  input_html: { autocomplete: "Description", placeholder: "Description" } %>
+      <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
+    <% end %>
+  </div>
+
 </div>

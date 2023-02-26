@@ -1,19 +1,17 @@
-<div class="bg-white">
-  <div class="container">
-    <div class="px-3 pb-4 d-flex align-items-center">
-      <%= link_to bookings_path, class: "text-decoration-none" do %>
-        <div class="back-btn me-3">
-          <i class="fa-solid fa-arrow-left"></i>
-        </div>
-      <% end %>
-      <h2 class="m-0">Nouvelle réservation</h2>
-    </div>
-
-    <div class="form-new-client mx-3">
-      <%= simple_form_for(@booking) do |f| %>
-        <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
-      <% end %>
-    </div>
-
+<div class="container">
+  <div class="px-3 pb-4 d-flex align-items-center">
+    <%= link_to bookings_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+    <h2 class="m-0">Nouvelle réservation</h2>
   </div>
+
+  <div class="form-new-client mx-3">
+    <%= simple_form_for(@booking) do |f| %>
+      <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
+    <% end %>
+  </div>
+
 </div>
