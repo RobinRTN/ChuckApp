@@ -5,6 +5,8 @@ class PagesController < ApplicationController
     if user_signed_in?
     user_bookings_passed = current_user.bookings.passed_current_month
     user_bookings_projected = current_user.bookings.current_month_projected
+    @user_bookings_number = user_bookings_passed.count
+    @user_bookings_number_proj = user_bookings_projected.count - user_bookings_passed.count
     @passed_month_revenues = user_bookings_passed.sum(&:price)
     @projected_month_revenues = user_bookings_projected.sum(&:price)
     @client_rankings = rank_clients_by_revenue()
