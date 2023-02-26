@@ -2,11 +2,14 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
+    if user_signed_in?
     user_bookings_passed = current_user.bookings.passed_current_month
     user_bookings_projected = current_user.bookings.current_month_projected
     @passed_month_revenues = user_bookings_passed.sum(&:price)
     @projected_month_revenues = user_bookings_projected.sum(&:price)
     @client_rankings = rank_clients_by_revenue()
+    @upcoming_bookings = current_user.bookings.upcoming
+    end
   end
 
   def profile

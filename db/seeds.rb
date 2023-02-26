@@ -140,75 +140,158 @@ c13.photo.attach(
 )
 c13.save!
 
-booking = Booking.new(start_time: Time.zone.parse("2023-02-18 10:00:00"), end_time: Time.zone.parse("2023-02-18 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
-booking.user_id = User.first.id
-booking.client_id = Client.first.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-18 16:00:00"), end_time: Time.zone.parse("2023-02-18 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.first.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-20 8:00:00"), end_time: Time.zone.parse("2023-02-20 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.first.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-21 20:00:00"), end_time: Time.zone.parse("2023-02-21 21:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.first.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-17 10:00:00"), end_time: Time.zone.parse("2023-02-17 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.first.id
-booking.save
+# set the current month as a range of dates
+current_month_range = Date.current.all_month
 
+# create bookings for the first client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.first.id
+  booking.client_id = Client.first.id
+  booking.save
+end
 
 puts "Just created 5 bookings for first client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.zone.parse("2023-02-22 8:00:00"), end_time: Time.zone.parse("2023-02-22 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.second.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-22 14:00:00"), end_time: Time.zone.parse("2023-02-22 16:00:00"), price: 100.00, payment_status: 'Réglé')
-booking.user_id = User.first.id
-booking.client_id = Client.second.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-23 18:00:00"), end_time: Time.zone.parse("2023-02-23 20:00:00"), price: 100.00, payment_status: 'Réglé')
-booking.user_id = User.first.id
-booking.client_id = Client.second.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-23 12:00:00"), end_time: Time.zone.parse("2023-02-23 14:00:00"), price: 100.00, payment_status: 'Réglé')
-booking.user_id = User.first.id
-booking.client_id = Client.second.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-24 8:00:00"), end_time: Time.zone.parse("2023-02-24 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.second.id
-booking.save
+# create bookings for the second client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
+  booking.user_id = User.first.id
+  booking.client_id = Client.second.id
+  booking.save
+end
 
 puts "Just created 5 bookings for second client successfully"
 puts "_________________"
 
-booking = Booking.new(start_time: Time.zone.parse("2023-02-13 18:00:00"), end_time: Time.zone.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.third.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-14 12:00:00"), end_time: Time.zone.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.third.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-15 16:00:00"), end_time: Time.zone.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.third.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-16 10:00:00"), end_time: Time.zone.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.third.id
-booking.save
-booking = Booking.new(start_time: Time.zone.parse("2023-02-17 18:00:00"), end_time: Time.zone.parse("2023-02-17 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-booking.user_id = User.first.id
-booking.client_id = Client.third.id
-booking.save
+# create bookings for the third client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
+  booking.user_id = User.first.id
+  booking.client_id = Client.third.id
+  booking.save
+end
 
 puts "Just created 5 bookings for third client successfully"
 puts "_________________"
+
+next_month_range = (Date.current + 1.month).all_month
+
+# create bookings for the fifth client
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.first.id
+  booking.client_id = Client.fifth.id
+  booking.save
+end
+
+# create bookings for the sixth client
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.first.id
+  booking.client_id = Client.last.id
+  booking.save
+end
+
+
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-18 10:00:00"), end_time: Time.zone.parse("2023-02-18 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
+# booking.user_id = User.first.id
+# booking.client_id = Client.first.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-18 16:00:00"), end_time: Time.zone.parse("2023-02-18 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.first.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-20 8:00:00"), end_time: Time.zone.parse("2023-02-20 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.first.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-21 20:00:00"), end_time: Time.zone.parse("2023-02-21 21:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.first.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-17 10:00:00"), end_time: Time.zone.parse("2023-02-17 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.first.id
+# booking.save
+
+
+# puts "Just created 5 bookings for first client successfully"
+# puts "_________________"
+
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-22 8:00:00"), end_time: Time.zone.parse("2023-02-22 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.second.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-22 14:00:00"), end_time: Time.zone.parse("2023-02-22 16:00:00"), price: 100.00, payment_status: 'Réglé')
+# booking.user_id = User.first.id
+# booking.client_id = Client.second.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-23 18:00:00"), end_time: Time.zone.parse("2023-02-23 20:00:00"), price: 100.00, payment_status: 'Réglé')
+# booking.user_id = User.first.id
+# booking.client_id = Client.second.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-23 12:00:00"), end_time: Time.zone.parse("2023-02-23 14:00:00"), price: 100.00, payment_status: 'Réglé')
+# booking.user_id = User.first.id
+# booking.client_id = Client.second.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-24 8:00:00"), end_time: Time.zone.parse("2023-02-24 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.second.id
+# booking.save
+
+# puts "Just created 5 bookings for second client successfully"
+# puts "_________________"
+
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-13 18:00:00"), end_time: Time.zone.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.third.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-14 12:00:00"), end_time: Time.zone.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.third.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-15 16:00:00"), end_time: Time.zone.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.third.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-16 10:00:00"), end_time: Time.zone.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.third.id
+# booking.save
+# booking = Booking.new(start_time: Time.zone.parse("2023-02-17 18:00:00"), end_time: Time.zone.parse("2023-02-17 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
+# booking.user_id = User.first.id
+# booking.client_id = Client.third.id
+# booking.save
+
+# puts "Just created 5 bookings for third client successfully"
+# puts "_________________"

@@ -19,7 +19,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     @client.user_id = current_user.id
     if @client.save
-      redirect_to "/users/sign_up"
+      redirect_to clients_path
     else
       flash.alert = "Tous les champs doivent être complétés 🛠️"
     end
