@@ -138,3 +138,15 @@
   width: 100%;
 }
 
+.round-button-blue {
+  text-decoration: none;
+  border-radius: 3em;
+  background: $light-gray;
+  color: $dd-blue-sp;
+  font-size: 1em;
+  font-weight: 400;
+  border: none;
+  text-align: center;
+  width: 55%;
+  margin: auto;
+}
