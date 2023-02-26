@@ -54,7 +54,7 @@
         <%end%>
 
         <% unless @next_month_bookings.empty? %>
-          <em>Ce mois-ci</em>
+          <em>Prochainement</em>
           <% @next_month_bookings.each do |booking| %>
             <%= render partial: 'cards', locals: { booking: booking } %>
           <% end %>
