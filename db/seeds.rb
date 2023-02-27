@@ -14,6 +14,8 @@ Booking.destroy_all
 puts "Deleting Clients"
 Client.destroy_all
 
+puts "Deleting Formules"
+Formule.destroy_all
 
 puts "Deleting Users"
 User.destroy_all
@@ -34,6 +36,9 @@ u1.photo.attach(
   filename: 'robin.jpg',
   content_type: 'image/jpg'
 )
+u1.save!
+
+u1.description = "Je suis un professeur de yoga indien avec plus de 10 ans d'expérience dans l'enseignement du yoga. J'ai aidé des étudiants du monde entier à découvrir les bienfaits du yoga pour la santé et la paix intérieure."
 u1.save!
 
 u2.photo.attach(

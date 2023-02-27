@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   before_validation :set_token
+  before_destroy :delete_formules
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
@@ -25,6 +27,10 @@ class User < ApplicationRecord
 
   def set_token
     self.token = SecureRandom.base64(10)
+  end
+
+  def delete_formules
+    self.formules.destroy_all
   end
 
 end

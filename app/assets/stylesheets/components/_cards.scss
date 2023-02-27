@@ -255,7 +255,7 @@
   & .disponibilites-btn {
     text-decoration: none;
     padding: 0.5em 0.8em;
-    border-radius: 0.4em;
+    border-radius: 4px;
     transition-duration: 0.8s;
     background: $blue-sp;
     color: $ll-blue-sp;
@@ -308,7 +308,7 @@
 .formule-block {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  .formule-card {
+  .formule-card button{
     background-color: white;
     color: $dd-blue-sp;
     text-decoration: none;
@@ -317,8 +317,23 @@
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
     padding: 0.55em 1em;
     margin: 0.4em 0.6em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
   }
   p {
     margin: 0;
   }
+  h4 {
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+}
+
+.formule-card button:focus {
+  background-color: $blue-sp;
+  box-shadow: 0 0 3px $blue-sp;
+  color: $ll-blue-sp;
+  outline: none;
+  transform: scale(1.05);
 }
