@@ -97,7 +97,7 @@
   }
 
   & .booking-status {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 }
 
@@ -222,7 +222,7 @@
   }
 
   & .booking-status {
-    font-size: 0.8em;
+    font-size: 0.7em;
   }
 }
 
@@ -230,6 +230,7 @@
   color: $dd-blue-sp;
   text-decoration: none;
   background-color: $white;
+  border-left: 3px solid $blue-sp;
   border-radius: 4px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   padding: 0.5em 1em;
