@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="mx-3">
+    <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, crop: :fill, class: "avatar-profile" %>
+      <% elsif @user.avatar_url.present? %>
+        <%= image_tag @user.avatar_url, class: 'avatar-profile' %>
+      <% else %>
+        <%= image_tag "user.png", class: 'avatar-profile' %>
+      <% end %>
+    </div>
+    <h4 class= "d-flex justify-content-center pb-3"><%= @user.full_name %></h4>
+
+    <% pattern = "%H:%M"  %>
+    <div class="available">
+      <% @full_datetimes.each do |weekly_datetimes| %>
+          <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
+          <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
+            <p><%= "Cette semaine" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
+            <p><%= "Semaine prochaine" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
+            <p><%= "Dans 2 semaines" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
+            <p><%= "Dans 3 semaines" %></p>
+          <%else%>
+          <% end %>
+        <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
+          <div class="daily-dispo-card mb-2">
+            <% unless daily_datetimes.empty?  %>
+            <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
+            <%end %>
+
+            <div class="available-block">
+              <%array_size = daily_datetimes.size %>
+              <%if array_size > 4 %>
+                <div class="dispo-slots">
+                  <% daily_datetimes.first(4).each do |datetime| %>
+                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                  <%end%>
+                </div>
+                <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
+                  <% daily_datetimes.each_with_index do |datetime, index| %>
+                    <%if index >= 4 %>
+                      <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                    <% end %>
+                  <%end%>
+                </div>
+                <button class="btn-disponibilites d-flex justify-content-center align-items-center">
+                  Voir plus</i>
+                </button>
+
+              <%else%>
+                <div class="dispo-slots">
+                  <% daily_datetimes.each do |datetime| %>
+                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                  <%end%>
+                </div>
+              <%end %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Get all the drop-down buttons
+  let dropDownButtons = document.querySelectorAll('.btn-disponibilites');
+
+  // Add click event listeners to all the drop-down buttons
+  dropDownButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      // Get the corresponding drop-down block
+      let dropDownBlock = button.previousElementSibling;
+      // Toggle the display of the drop-down block
+      if (dropDownBlock.style.display === 'none') {
+        dropDownBlock.style.display = 'grid';
+      } else {
+        dropDownBlock.style.display = 'none';
+      }
+    });
+  });
+
+</script>
