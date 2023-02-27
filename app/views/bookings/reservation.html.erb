@@ -12,12 +12,12 @@
     <h4 class= "d-flex justify-content-center pb-3"><%= @user.full_name %></h4>
 
 
-    <div class="formule-block d-flex align-items-center justify-content-between">
+    <div class="formule-block">
       <% @formules.each do |formule| %>
-        <div class="formule-card">
-          <%= formule.name %>
-          <%= formule.duration %>
-          <%= formule.price %>
+        <div class="formule-card d-flex flex-column align-items-center justify-content-between">
+          <p><%= formule.name %></p>
+          <p><%= formule.duration %> minutes</p>
+          <p><%= formule.price.to_i %> €</p>
         </div>
       <%end %>
 

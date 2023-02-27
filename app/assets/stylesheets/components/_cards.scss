@@ -304,3 +304,21 @@
     margin: 0;
   }
 }
+
+.formule-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .formule-card {
+    background-color: white;
+    color: $dd-blue-sp;
+    text-decoration: none;
+    background-color: $white;
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    padding: 0.55em 1em;
+    margin: 0.4em 0.6em;
+  }
+  p {
+    margin: 0;
+  }
+}
