@@ -11,6 +11,25 @@
     </div>
     <h4 class= "d-flex justify-content-center pb-3"><%= @user.full_name %></h4>
 
+
+    <div class="formule-block d-flex align-items-center justify-content-between">
+      <% @formules.each do |formule| %>
+        <div class="formule-card">
+          <%= formule.name %>
+          <%= formule.duration %>
+          <%= formule.price %>
+        </div>
+      <%end %>
+
+
+
+    </div>
+
+
+
+
+
+
     <% pattern = "%H:%M"  %>
     <div class="available">
       <% @full_datetimes.each do |weekly_datetimes| %>

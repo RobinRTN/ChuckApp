@@ -140,6 +140,13 @@ c13.photo.attach(
 )
 c13.save!
 
+f1 = Formule.create!({ user_id: User.first.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 60, price: 80, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
+f2 = Formule.create!({ user_id: User.first.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 120, price: 150, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
+f3 = Formule.create!({ user_id: User.first.id, name: "Yoga Pambolta", field: 'Yoga', duration: 60, price: 100, description: "Yoga des provinces Nord du Pakistan, parfait pour la flexibilité des ischiojambiers" })
+
+puts "Just created the 3 formula successfully"
+puts "_________________"
+
 # set the current month as a range of dates
 current_month_range = Date.current.all_month
 
@@ -208,6 +215,9 @@ next_month_range = (Date.current + 1.month).all_month
   booking.save
 end
 
+puts "Just created 5 bookings for fifth client successfully"
+puts "_________________"
+
 # create bookings for the sixth client
 5.times do |i|
   start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
@@ -222,76 +232,5 @@ end
   booking.save
 end
 
-
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-18 10:00:00"), end_time: Time.zone.parse("2023-02-18 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif')
-# booking.user_id = User.first.id
-# booking.client_id = Client.first.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-18 16:00:00"), end_time: Time.zone.parse("2023-02-18 18:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.first.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-20 8:00:00"), end_time: Time.zone.parse("2023-02-20 10:00:00"), price: 80.00, payment_status: 'Réglé', booking_type: 'Individuel', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.first.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-21 20:00:00"), end_time: Time.zone.parse("2023-02-21 21:00:00"), price: 80.00, payment_status: 'Non réglé', booking_type: 'Individuel', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.first.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-17 10:00:00"), end_time: Time.zone.parse("2023-02-17 12:00:00"), price: 100.00, payment_status: 'Réglé', booking_type: 'Collectif', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.first.id
-# booking.save
-
-
-# puts "Just created 5 bookings for first client successfully"
-# puts "_________________"
-
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-22 8:00:00"), end_time: Time.zone.parse("2023-02-22 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.second.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-22 14:00:00"), end_time: Time.zone.parse("2023-02-22 16:00:00"), price: 100.00, payment_status: 'Réglé')
-# booking.user_id = User.first.id
-# booking.client_id = Client.second.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-23 18:00:00"), end_time: Time.zone.parse("2023-02-23 20:00:00"), price: 100.00, payment_status: 'Réglé')
-# booking.user_id = User.first.id
-# booking.client_id = Client.second.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-23 12:00:00"), end_time: Time.zone.parse("2023-02-23 14:00:00"), price: 100.00, payment_status: 'Réglé')
-# booking.user_id = User.first.id
-# booking.client_id = Client.second.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-24 8:00:00"), end_time: Time.zone.parse("2023-02-24 10:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.second.id
-# booking.save
-
-# puts "Just created 5 bookings for second client successfully"
-# puts "_________________"
-
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-13 18:00:00"), end_time: Time.zone.parse("2023-02-13 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.third.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-14 12:00:00"), end_time: Time.zone.parse("2023-02-14 14:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.third.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-15 16:00:00"), end_time: Time.zone.parse("2023-02-15 18:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.third.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-16 10:00:00"), end_time: Time.zone.parse("2023-02-16 12:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.third.id
-# booking.save
-# booking = Booking.new(start_time: Time.zone.parse("2023-02-17 18:00:00"), end_time: Time.zone.parse("2023-02-17 20:00:00"), price: 100.00, payment_status: 'Réglé', status: "Accepted")
-# booking.user_id = User.first.id
-# booking.client_id = Client.third.id
-# booking.save
-
-# puts "Just created 5 bookings for third client successfully"
-# puts "_________________"
+puts "Just created 5 bookings for sixth client successfully"
+puts "_________________"

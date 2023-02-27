@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
 
   def reservation
     @user = User.find(params[:id])
+    @formules = @user.formules
     interval = 30
     slot_duration = 1.hour
     start_time = Time.zone.parse('9:00am')
