@@ -17,7 +17,7 @@
     <% end %>
       <%= render "shared/flashes" %>
     <%= yield %>
-    <% unless controller_name == 'bookings' && action_name == 'reservation' %>
+    <% unless (controller_name == 'bookings' && action_name == 'landing_reservation') || (controller_name == 'bookings' && action_name == 'choose_reservation') || (controller_name == 'bookings' && action_name == 'finish_reservation') %>
       <%= render "shared/footer" unless user_signed_in? %>
     <% end %>
   </body>
