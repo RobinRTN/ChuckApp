@@ -4,7 +4,6 @@ require 'active_support/time'
 
 class BookingsController < ApplicationController
   CALENDAR_ID = 'primary'
-  before_action :authenticate_user!, except: [:reservation]
 
 
   def disponibilites
