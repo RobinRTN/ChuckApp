@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  before_validation :set_token
+  before_validation :set_token_and_url
   before_destroy :delete_formules
 
 
@@ -21,12 +21,14 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :formules
   has_many :packages
-  has_one_attached :photo
+  has_one_attached :profile_picture
+  has_many_attached :gallery_pictures
 
   private
 
-  def set_token
+  def set_token_and_url
     self.token = SecureRandom.base64(10)
+    self.url = "/reservation/#{self.token}"
   end
 
   def delete_formules

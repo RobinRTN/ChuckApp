@@ -10,8 +10,8 @@
         <a href="#" class="notification-bell me-3"><i class="fa-solid fa-bell"></i></a>
         <%= link_to profile_path do %>
           <div class="profile-picture d-flex justify-content-center">
-            <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-small" %>
+            <% if current_user.profile_picture.attached? %>
+              <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small" %>
             <% elsif current_user.avatar_url.present? %>
               <%= image_tag current_user.avatar_url, class: 'avatar-small' %>
             <% else %>

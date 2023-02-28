@@ -1,0 +1,11 @@
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.1em;
+}
+.square-image {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}

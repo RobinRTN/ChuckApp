@@ -31,7 +31,7 @@ u2 = User.create!({ full_name: "Maxime Lavoine", hourly_rate: 90, email: 'maxime
 puts "Just created the two founders' accounts successfully"
 puts "_________________"
 
-u1.photo.attach(
+u1.profile_picture.attach(
   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/robin_xlupho.jpg'),
   filename: 'robin.jpg',
   content_type: 'image/jpg'
@@ -41,7 +41,16 @@ u1.save!
 u1.description = "Je suis un professeur de yoga indien avec plus de 10 ans d'expérience dans l'enseignement du yoga. J'ai aidé des étudiants du monde entier à découvrir les bienfaits du yoga pour la santé et la paix intérieure."
 u1.save!
 
-u2.photo.attach(
+u1.gallery_pictures.attach(
+  [
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554635/pexels-yan-krukau-8436691_b8mp8f.jpg'), filename: 'gallery_picture1.jpg', content_type: 'image/jpeg' },
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554632/pexels-cottonbro-studio-4327033_tavr6e.jpg'), filename: 'gallery_picture2.jpg', content_type: 'image/jpeg' },
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554629/pexels-yan-krukau-8436715_ioqvfy.jpg'), filename: 'gallery_picture3.jpg', content_type: 'image/jpeg' }
+  ]
+)
+u1.save!
+
+u2.profile_picture.attach(
   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Maxime_v3rukm.jpg'),
   filename: 'maxime.jpg',
   content_type: 'image/jpg'

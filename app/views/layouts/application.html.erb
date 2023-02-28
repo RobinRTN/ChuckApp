@@ -11,9 +11,13 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+    <% unless controller_name == 'bookings' && action_name == 'reservation' %>
+      <%= render "shared/navbar" %>
+    <% end %>
+      <%= render "shared/flashes" %>
     <%= yield %>
-    <%= render "shared/footer" unless user_signed_in? %>
+    <% unless controller_name == 'bookings' && action_name == 'reservation' %>
+      <%= render "shared/footer" unless user_signed_in? %>
+    <% end %>
   </body>
 </html>

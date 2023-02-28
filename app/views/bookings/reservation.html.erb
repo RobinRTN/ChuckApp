@@ -1,8 +1,8 @@
 <div class="container">
   <div class="mx-3">
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
-      <% if @user.photo.attached? %>
-        <%= cl_image_tag @user.photo.key, crop: :fill, class: "avatar-profile" %>
+      <% if @user.profile_picture.attached? %>
+        <%= cl_image_tag @user.profile_picture.key, crop: :fill, class: "avatar-profile" %>
       <% elsif @user.avatar_url.present? %>
         <%= image_tag @user.avatar_url, class: 'avatar-profile' %>
       <% else %>
@@ -11,32 +11,125 @@
     </div>
     <h4 class= "d-flex justify-content-center"><%= @user.full_name %></h4>
     <p class= "text-center"><%= @user.billing_city %></p>
+    <p class="mt-4 mb-3 round-button-blue">Courte présentation</p>
     <p class= "p-2"><%= @user.description %></p>
 
-    <p class= "p-2">Choisis ta formule 👇</p>
+    <!-- Image gallery -->
+    <div class="image-gallery mb-5">
+      <% @user.gallery_pictures.each do |image| %>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-<%= image.id %>">
+          <%= cl_image_tag(image.key, class: 'img-fluid square-image') %>
+        </a>
 
-    <div class="formule-block">
-      <% @formules.each do |formule| %>
-        <div class="formule-card d-flex flex-column align-items-center justify-content-between">
-          <button type="button" name="booking_option" value="<%= formule.id %>">
-            <h4><%= formule.name %></h4>
-            <p><%= formule.duration %> minutes</p>
-            <p><%= formule.price.to_i %> €</p>
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal-<%= image.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= image.id %>" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= cl_image_tag(image.key, class: 'img-fluid') %>
+              </div>
+            </div>
+          </div>
         </div>
-      <%end %>
-
+      <% end %>
     </div>
+
+    <p class= "p-2 text-center"><strong>Choisis ta formule 👇</strong></p>
+    <form action="/bookings" method="get">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="formule-block">
+        <% @formules.each do |formule| %>
+          <div class="formule-card d-flex flex-column align-items-center justify-content-between">
+            <button type="button" name="formule_id" value="<%= formule.id %>">
+              <h4><%= formule.name %></h4>
+              <p><%= formule.duration %> minutes</p>
+              <p class="btn-disponibilites"><%= formule.price.to_i %> €</p>
+            </button>
+          </div>
+        <%end %>
+      </div>
+
+      <p class= "p-2 mt-3 text-center"><strong>As-tu déjà réservé une séance avec <%= @user.first_name %> ?</strong></p>
+      <div class="d-flex align-items-center justify-content-center">
+        <button type="button" name="booking_option" value="yes" class="booking-option-button me-2">Oui</button>
+        <button type="button" name="booking_option" value="no" class="booking-option-button ms-2">Non</button>
+      </div>
+
+      <div class="option-buttons mb-4">
+        <input type="hidden" name="formule_id" value="">
+        <input type="hidden" name="booking_option" value="">
+      </div>
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large">
+      </div>
+    </form>
+
+
+
   </div>
 </div>
 
 
 <script>
   // Set the clicked button's value as the booking option
-  const formuleButtons = document.querySelectorAll('.formule-card button');
-  formuleButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const bookingOptionInput = document.querySelector('input[name="booking_option"]');
-      bookingOptionInput.value = button.value;
-    });
+  // const formuleButtons = document.querySelectorAll('.formule-card button');
+  // formuleButtons.forEach(button => {
+  //   button.addEventListener('click', () => {
+  //     const bookingOptionInput = document.querySelector('input[name="booking_option"]');
+  //     bookingOptionInput.value = button.value;
+  //   });
+  // });
+
+  // Get all formule buttons
+const formuleButtons = document.querySelectorAll('.formule-card button');
+
+// Add click event listeners to formule buttons
+formuleButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove "selected" class from all formule buttons
+    formuleButtons.forEach(btn => btn.classList.remove('selected'));
+    // Add "selected" class to clicked button
+    button.classList.add('selected');
+    // Set value of hidden input field for booking option
+    const formuleIdInput = document.querySelector('input[name="formule_id"]');
+    formuleIdInput.value = button.value;
   });
+});
+
+// Get all booking option buttons
+const bookingOptionButtons = document.querySelectorAll('button[name="booking_option"]');
+
+// Add click event listeners to booking option buttons
+bookingOptionButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove "selected" class from all booking option buttons
+    bookingOptionButtons.forEach(btn => btn.classList.remove('selected'));
+    // Add "selected" class to clicked button
+    button.classList.add('selected');
+    // Set value of hidden input field for booking option
+    const bookingOptionInput = document.querySelector('input[name="booking_option"]');
+    bookingOptionInput.value = button.value;
+  });
+});
+
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+  const formuleButton = document.querySelector('button[name="formule_id"].selected');
+  const bookingOptionButton = document.querySelector('button[name="booking_option"].selected');
+
+  if (!formuleButton) {
+    alert('Veuillez sélectionner une formule');
+    event.preventDefault();
+  }
+
+  if (!bookingOptionButton) {
+    alert('Veuillez sélectionner une option de réservation');
+    event.preventDefault();
+  }
+});
+
 </script>

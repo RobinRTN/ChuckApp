@@ -328,9 +328,22 @@
     font-size: 0.9em;
     font-weight: 600;
   }
+  & .btn-disponibilites {
+    margin-top: 1em;
+    margin-left: 0.1em;
+    text-decoration: none;
+    padding: 0.2em 0.8em;
+    border-radius: 3em;
+    background-color: $light-gray;
+    color: $d-blue-sp;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: none;
+  }
+
 }
 
-.formule-card button:focus {
+.formule-card button.selected {
   background-color: $blue-sp;
   box-shadow: 0 0 3px $blue-sp;
   color: $ll-blue-sp;

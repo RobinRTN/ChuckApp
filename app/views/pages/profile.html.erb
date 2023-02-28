@@ -2,8 +2,8 @@
   <div class="mx-3">
     <h2 class="mb-0">Mon compte</h2>
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
-      <% if current_user.photo.attached? %>
-        <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-profile" %>
+      <% if current_user.profile_picture.attached? %>
+        <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-profile" %>
       <% elsif current_user.avatar_url.present? %>
         <%= image_tag current_user.avatar_url, class: 'avatar-profile' %>
       <% else %>
@@ -48,8 +48,12 @@
       </div>
     <%end%>
 
+    <div class= "btn-basic-bleu-large d-flex justify-content-center mt-3">
+      <%= link_to "Lien de réservation", reservation_link(current_user.token), class: "text-decoration-none" %>
+    </div>
 
     <div class= "signout-box-btn d-flex justify-content-center">
       <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "signout-box-text text-decoration-none" %></p>
     </div>
+
 </div>
