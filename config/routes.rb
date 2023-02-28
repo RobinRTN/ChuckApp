@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'profile', to: 'pages#profile'
   get '/disponibilites', to: 'bookings#disponibilites'
-  get '/reservation/:token', to: 'bookings#reservation'
+  get '/landing_reservation/:token', to: 'bookings#landing_reservation', as: 'landing_reservation'
+  get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
+
 
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do

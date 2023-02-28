@@ -20,11 +20,25 @@ class BookingsController < ApplicationController
     @full_datetimes = full_datetimes
   end
 
-  def reservation
-    @user = User.find_by(token: params[:token])
+  def landing_reservation
+    @user = User.find_by(token: booking_params[:token])
     @formules = @user.formules
     interval = 30
     slot_duration = 1.hour
+    start_time = Time.zone.parse('9:00am')
+    end_time = Time.zone.parse('21:00pm') - slot_duration
+    days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
+    num_weeks = 4
+    @user_bookings = @user.bookings.upcoming
+    # Generate the available datetimes using the generate_datetimes function
+    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration)
+    @full_datetimes = full_datetimes
+  end
+
+  def choose_reservation
+    @user = User.find_by(token: booking_params[:token])
+    interval = 30
+    slot_duration = Formule.find(params[:formule_id]).duration
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('21:00pm') - slot_duration
     days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
@@ -109,6 +123,10 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def booking_params
+    params.permit(:formule_id, :booking_option, :token)
+  end
 
   def get_event booking
     # attendees = booking[:members].split(',').map{ |t| {email: t.strip} }
