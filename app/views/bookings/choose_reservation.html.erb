@@ -1,6 +1,12 @@
 
 <div class="container">
-  <div class="mx-3">
+    <div class="px-3 pb-4 d-flex align-items-center">
+      <%= link_to landing_reservation_path, class: "text-decoration-none" do %>
+        <div class="back-btn me-3">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <h4 class="m-0">Choisis ton créneau</h4>
+    </div>
     <%= render partial: 'dispo_slots' %>
-  </div>
 </div>
