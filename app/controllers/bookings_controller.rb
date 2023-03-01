@@ -20,14 +20,20 @@ class BookingsController < ApplicationController
   end
 
   def landing_reservation
-    @user = User.find_by(token: booking_params[:token])
+    @user = User.find_by(token: reservation_params[:token])
     @formules = @user.formules
   end
 
   def choose_reservation
-    @user = User.find_by(token: booking_params[:token])
+    @user = User.find_by(token: reservation_params[:token])
+    @formule = Formule.find(reservation_params[:formule_id])
+    if reservation_params[:booking_option] == "yes"
+      @existing_user = true
+    else
+      @existing_user = false
+    end
     interval = 30
-    slot_duration = Formule.find(params[:formule_id]).duration
+    slot_duration = @formule.duration
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('21:00pm') - slot_duration
     days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
@@ -36,6 +42,18 @@ class BookingsController < ApplicationController
     # Generate the available datetimes using the generate_datetimes function
     full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration)
     @full_datetimes = full_datetimes
+  end
+
+  def finish_reservation
+    @user = User.find_by(token: reservation_params[:token])
+    @formule = Formule.find_by(id: reservation_params[:formule].to_i)
+    if reservation_params[:existing_user] == "true"
+      @existing_user = true
+    else
+      @existing_user = false
+    end
+    @datetime = reservation_params[:datetime]
+    @booking = Booking.new
   end
 
   def new
@@ -73,12 +91,35 @@ class BookingsController < ApplicationController
   end
 
   def create
-    client = get_google_calendar_client current_user
-    booking = params[:booking]
-    event = get_event booking
-    client.insert_event('primary', event)
-    flash[:notice] = 'booking was successfully added.'
-    redirect_to bookings_path
+    if params[:booking][:client].present?
+      client_email = booking_params[:client][:email]
+      client = Client.find_by(email: client_email)
+      if client
+        @user = User.find(booking_params[:user_id])
+        @booking = Booking.new(booking_params.except(:client))
+        @booking.client_id = client.id
+        if @booking.save
+          # Handle successful booking creation
+          flash[:notice] = "Demande de réservation envoyée !"
+          redirect_to landing_reservation_path(@user.token)
+        else
+          # Handle errors if the booking can't be saved
+          flash[:alert] = "Error creating booking"
+          render :new
+        end
+      else
+        flash[:alert] = "Adresse email non répertoriée, veuillez effectuer l'inscription"
+        @existing_user = false
+        redirect_to request.referrer, params: { existing_user: @existing_user }
+      end
+    else
+      client = get_google_calendar_client current_user
+      booking = params[:booking]
+      event = get_event booking
+      client.insert_event('primary', event)
+      flash[:notice] = 'booking was successfully added.'
+      redirect_to bookings_path
+    end
   end
 
   def get_google_calendar_client current_user
@@ -113,8 +154,12 @@ class BookingsController < ApplicationController
 
   private
 
+  def reservation_params
+    params.permit(:formule_id, :formule, :booking_option, :token, :existing_user, :datetime)
+  end
+
   def booking_params
-    params.permit(:formule_id, :booking_option, :token)
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, client: [:email])
   end
 
   def get_event booking

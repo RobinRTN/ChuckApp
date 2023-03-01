@@ -1,12 +1,82 @@
 
 <div class="container">
     <div class="px-3 pb-4 d-flex align-items-center">
-      <%= link_to landing_reservation_path, class: "text-decoration-none" do %>
+      <%= link_to landing_reservation_path(@user.token), class: "text-decoration-none" do %>
         <div class="back-btn me-3">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
       <% end %>
       <h4 class="m-0">Choisis ton créneau</h4>
     </div>
-    <%= render partial: 'dispo_slots' %>
+    <% pattern = "%H:%M"  %>
+    <div class="mx-3 available">
+      <% @full_datetimes.each do |weekly_datetimes| %>
+          <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
+          <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
+            <p><%= "Cette semaine" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
+            <p><%= "Semaine prochaine" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
+            <p><%= "Dans 2 semaines" %></p>
+          <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
+            <p><%= "Dans 3 semaines" %></p>
+          <%else%>
+          <% end %>
+        <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
+          <div class="daily-dispo-card mb-2">
+            <% unless daily_datetimes.empty?  %>
+            <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
+            <%end %>
+
+            <div class="available-block">
+              <%array_size = daily_datetimes.size %>
+              <%if array_size > 4 %>
+                <div class="dispo-slots">
+                  <% daily_datetimes.first(4).each do |datetime| %>
+                    <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                  <%end%>
+                </div>
+                <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
+                  <% daily_datetimes.each_with_index do |datetime, index| %>
+                    <%if index >= 4 %>
+                      <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                    <% end %>
+                  <%end%>
+                </div>
+                <button class="btn-disponibilites d-flex justify-content-center align-items-center">
+                  Voir plus</i>
+                </button>
+
+              <%else%>
+                <div class="dispo-slots">
+                  <% daily_datetimes.each do |datetime| %>
+                    <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                  <%end%>
+                </div>
+              <%end %>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+
+<script>
+// Get all the drop-down buttons
+  let dropDownButtons = document.querySelectorAll('.btn-disponibilites');
+
+  // Add click event listeners to all the drop-down buttons
+  dropDownButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      // Get the corresponding drop-down block
+      let dropDownBlock = button.previousElementSibling;
+      // Toggle the display of the drop-down block
+      if (dropDownBlock.style.display === 'none') {
+        dropDownBlock.style.display = 'grid';
+      } else {
+        dropDownBlock.style.display = 'none';
+      }
+    });
+  });
+
+</script>
 </div>

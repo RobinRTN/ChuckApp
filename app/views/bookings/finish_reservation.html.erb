@@ -1,0 +1,33 @@
+<div class="container wrapper">
+  <div class="px-3 pb-4 d-flex align-items-center">
+    <%= link_to :back, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+    <h4 class="m-0">Nouvelle réservation</h4>
+  </div>
+    <% if @existing_user %>
+      <div class="form-new-client mx-3">
+        <%= form_for @booking do |f| %>
+          <% start_time = Date.parse(@datetime) %>
+          <% end_time = start_time + @formule.duration.minutes %>
+          <%= f.hidden_field :start_time, value: start_time %>
+          <%= f.hidden_field :end_time, value: end_time %>
+          <%= f.hidden_field :payment_status, value: "Non réglé" %>
+          <%= f.hidden_field :price, value: @formule.price %>
+          <%= f.hidden_field :user_id, value: @user.id %>
+          <%= f.hidden_field :booking_type, value: "Individuel" %>
+
+          <%= f.fields_for :client do |client_fields| %>
+            <div class="form-group">
+              <p>Renseigne ton adresse email 👇</p>
+              <%= client_fields.text_field :email, class: "form-control" %>
+            </div>
+          <% end %>
+          <%= button_tag "Envoyer la demande de réservation", type: :submit, class: "btn-basic-bleu-large mt-4" %>
+        <% end %>
+      </div>
+    <% else %>
+    <%end %>
+</div>

@@ -3,13 +3,18 @@
   padding-top: 1em;
 }
 
-.bg-white {
-  height: 100vh;
-  margin-bottom: 200px;
+html, body {
+  background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
 }
 
-body {
-  background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 0 auto;
 }
 
 .réservations-ligne {
