@@ -159,7 +159,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, client: [:email])
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email])
   end
 
   def get_event booking

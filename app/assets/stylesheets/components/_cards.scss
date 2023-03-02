@@ -319,7 +319,7 @@
     margin: 0.4em 0.6em;
     cursor: pointer;
     border: none;
-    transition: all 0.3s;
+    transition: all 0.15s;
   }
   p {
     margin: 0;
@@ -349,4 +349,51 @@
   color: $ll-blue-sp;
   outline: none;
   transform: scale(1.05);
+}
+
+.finish-card {
+  background-color: $light-gray;
+  border-radius: 50px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  h4 {
+    font-size: 1em;
+    margin-bottom: 0;
+    margin-left: 0.7em;
+  }
+  p {
+    margin-bottom: 0;
+    margin-left: 0.7em;
+  }
+}
+
+.formule-card-selected {
+  background-color: $blue-sp;
+  color: $ll-blue-sp;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 0 3px $blue-sp;
+  padding: 0.55em 1em;
+  margin: 0.4em 0.6em;
+  border: none;
+  width: 10em;
+  p {
+    margin: 0;
+  }
+  h4 {
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  & .btn-disponibilites {
+    margin-top: 1em;
+    margin-left: 0.1em;
+    text-decoration: none;
+    padding: 0.2em 0.8em;
+    border-radius: 3em;
+    background-color: $light-gray;
+    color: $d-blue-sp;
+    font-size: 0.9em;
+    font-weight: 400;
+    border: none;
+  }
 }
