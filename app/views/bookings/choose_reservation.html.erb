@@ -6,8 +6,9 @@
           <i class="fa-solid fa-arrow-left"></i>
         </div>
       <% end %>
-      <h4 class="m-0">Choisis ton créneau</h4>
+      <h4 class="m-0"></h4>
     </div>
+    <p class="mx-3 mb-4"><strong>Choisis ton créneau 👇</strong></p>
     <% pattern = "%H:%M"  %>
     <div class="mx-3 available">
       <% @full_datetimes.each do |weekly_datetimes| %>
@@ -33,13 +34,19 @@
               <%if array_size > 4 %>
                 <div class="dispo-slots">
                   <% daily_datetimes.first(4).each do |datetime| %>
-                    <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                    <%= link_to datetime.strftime(pattern),
+                      @existing_user ? finish_reservation_exist_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user) :
+                                      finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule, existing_user: @existing_user),
+                      class: "disponibilites-btn my-1 mx-1" %>
                   <%end%>
                 </div>
                 <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
                   <% daily_datetimes.each_with_index do |datetime, index| %>
                     <%if index >= 4 %>
-                      <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                      <%= link_to datetime.strftime(pattern),
+                        @existing_user ? finish_reservation_exist_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user) :
+                                        finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule, existing_user: @existing_user),
+                        class: "disponibilites-btn my-1 mx-1" %>
                     <% end %>
                   <%end%>
                 </div>
@@ -50,7 +57,10 @@
               <%else%>
                 <div class="dispo-slots">
                   <% daily_datetimes.each do |datetime| %>
-                    <%= link_to datetime.strftime(pattern), finish_reservation_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user), class: "disponibilites-btn my-1 mx-1" %>
+                    <%= link_to datetime.strftime(pattern),
+                      @existing_user ? finish_reservation_exist_path(@user.token, datetime: datetime, formule: @formule, existing_user: @existing_user) :
+                                      finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule, existing_user: @existing_user),
+                      class: "disponibilites-btn my-1 mx-1" %>
                   <%end%>
                 </div>
               <%end %>

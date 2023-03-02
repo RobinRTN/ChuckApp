@@ -23,37 +23,33 @@
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>
     </div>
 
-    <div class="client-block mb-4">
-      <em class="mb-3">Client du mois 👑</em>
-      <% if @client_rankings.empty? %>
-        <h4 class= "ms-3">Aucun à date</h4>
-      <% else %>
-        <div class="d-flex align-items-center card-horizontal-client justify-content-between">
-          <div class="d-flex">
-            <% if @client_rankings.first[0].photo.attached? %>
-              <%= cl_image_tag @client_rankings.first[0].photo.key, crop: :fill, class: "avatar-large", format: "png" %>
-            <% else %>
-              <%= image_tag "user.png", class: 'avatar-large' %>
-              <% end%>
-            <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
-              <h4 class="card-fullname"> <%= @client_rankings.first[0].full_name %></h4>
-              <p> <%= @client_rankings.first[1].to_i %> € dépensés</p>
+    <% unless @client_rankings.empty? %>
+      <div class="client-block mb-4">
+        <em class="mb-3">Client du mois 👑</em>
+          <div class="d-flex align-items-center card-horizontal-client justify-content-between">
+            <div class="d-flex">
+              <% if @client_rankings.first[0].photo.attached? %>
+                <%= cl_image_tag @client_rankings.first[0].photo.key, crop: :fill, class: "avatar-large", format: "png" %>
+              <% else %>
+                <%= image_tag "user.png", class: 'avatar-large' %>
+                <% end%>
+              <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
+                <h4 class="card-fullname"> <%= @client_rankings.first[0].full_name %></h4>
+                <p> <%= @client_rankings.first[1].to_i %> € dépensés</p>
+              </div>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
+    <% end %>
 
-    <div class="bookings-block">
-      <em class="mb-3">Tes prochaines réservations 👇</em>
-      <% if @upcoming_bookings.empty? %>
-        <h4 class= "ms-3">Aucun à date</h4>
-      <% else %>
-        <% @upcoming_bookings.take(2).each do |booking| %>
-          <%= render partial: 'bookings/cards', locals: { booking: booking } %>
-        <% end %>
-      <% end %>
-    </div>
+    <% unless @upcoming_bookings.empty? %>
+      <div class="bookings-block">
+        <em class="mb-3">Tes prochaines réservations 👇</em>
+          <% @upcoming_bookings.take(2).each do |booking| %>
+            <%= render partial: 'bookings/cards', locals: { booking: booking } %>
+          <% end %>
+      </div>
+    <% end %>
 
   </div>
 </div>

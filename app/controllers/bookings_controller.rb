@@ -44,16 +44,19 @@ class BookingsController < ApplicationController
     @full_datetimes = full_datetimes
   end
 
-  def finish_reservation
+  def finish_reservation_exist
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find_by(id: reservation_params[:formule].to_i)
-    if reservation_params[:existing_user] == "true"
-      @existing_user = true
-    else
-      @existing_user = false
-    end
     @datetime = reservation_params[:datetime]
     @booking = Booking.new
+  end
+
+  def finish_reservation_missing
+    @user = User.find_by(token: reservation_params[:token])
+    @formule = Formule.find_by(id: reservation_params[:formule].to_i)
+    @datetime = reservation_params[:datetime]
+    @booking = Booking.new
+    @booking.build_client
   end
 
   def new
@@ -159,7 +162,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email])
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email, :first_name, :last_name, :phone_number, :photos, :photo])
   end
 
   def get_event booking

@@ -1,0 +1,37 @@
+.form-box {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $dd-blue-sp;
+  background-color: #F4F4F4;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-box:focus {
+  width: 100%;
+  outline: none !important;
+  box-shadow: 0 0 4px $l-blue-sp;
+}
+
+.form-box-half {
+  width: 95%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $dd-blue-sp;
+  background-color: #F4F4F4;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-box-half:focus {
+  width: 95%;
+  outline: none !important;
+  box-shadow: 0 0 4px $l-blue-sp;
+}
