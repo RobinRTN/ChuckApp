@@ -45,6 +45,7 @@ class BookingsController < ApplicationController
   end
 
   def finish_reservation_exist
+    @existing_user = reservation_params[:existing_user]
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find_by(id: reservation_params[:formule].to_i)
     @datetime = reservation_params[:datetime]
@@ -52,11 +53,12 @@ class BookingsController < ApplicationController
   end
 
   def finish_reservation_missing
+    @existing_user = reservation_params[:existing_user]
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find_by(id: reservation_params[:formule].to_i)
     @datetime = reservation_params[:datetime]
     @booking = Booking.new
-    @booking.build_client
+    @client = Client.new
   end
 
   def new
@@ -94,12 +96,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    if params[:booking][:client].present?
+    if params[:booking][:client].present? && !params[:booking][:client].key?(:first_name)
       client_email = booking_params[:client][:email]
       client = Client.find_by(email: client_email)
+      @user = User.find(booking_params[:user_id])
       if client
-        @user = User.find(booking_params[:user_id])
-        @booking = Booking.new(booking_params.except(:client))
+        @booking = Booking.new(booking_params.except(:client, :back))
         @booking.client_id = client.id
         if @booking.save
           # Handle successful booking creation
@@ -107,13 +109,36 @@ class BookingsController < ApplicationController
           redirect_to landing_reservation_path(@user.token)
         else
           # Handle errors if the booking can't be saved
-          flash[:alert] = "Error creating booking"
-          render :new
+          flash[:alert] = "Erreur de création réservation"
+          redirect_to finish_reservation_exist_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule], existing_user: params[:booking][:back][:existing_user])
         end
       else
         flash[:alert] = "Adresse email non répertoriée, veuillez effectuer l'inscription"
         @existing_user = false
-        redirect_to request.referrer, params: { existing_user: @existing_user }
+        redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule], existing_user: params[:booking][:back][:existing_user])
+      end
+    elsif params[:booking][:client].present? && params[:booking][:client].key?(:first_name)
+      @user = User.find(booking_params[:user_id])
+      @booking = Booking.new(booking_params.except(:client, :back))
+      @client = Client.new(booking_params[:client])
+      @client.user_id = @user.id
+      if params[:booking][:client][:photo].present?
+        @client.photo.attach(params[:booking][:client][:photo])
+      end
+      if @client.save
+        @booking.client_id = @client.id
+        if @booking.save
+          # Handle successful booking creation
+          flash[:notice] = "Demande de réservation envoyée !"
+          redirect_to landing_reservation_path(@user.token)
+        else
+          # Handle errors if the booking can't be saved
+          flash[:alert] = "Erreur de création réservation"
+          redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule], existing_user: params[:booking][:back][:existing_user])
+        end
+      else
+        flash[:alert] = "Erreur de création contact client"
+        redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule], existing_user: params[:booking][:back][:existing_user])
       end
     else
       client = get_google_calendar_client current_user
@@ -162,7 +187,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email, :first_name, :last_name, :phone_number, :photos, :photo])
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email, :first_name, :last_name, :phone_number, :photo], back: [:datetime, :formule, :existing_user])
   end
 
   def get_event booking

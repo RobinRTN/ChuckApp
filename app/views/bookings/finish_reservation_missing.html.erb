@@ -1,6 +1,6 @@
 <div class="container wrapper">
   <div class="px-3 pb-4 d-flex align-items-center">
-    <% booking_option = @existing_user ? "yes" : "no" %>
+    <% booking_option = @existing_user == "true" ? "yes" : "no" %>
     <%= link_to choose_reservation_path(@user.token, formule_id: @formule.id, booking_option: booking_option), class: "text-decoration-none" do %>
       <div class="back-btn me-3">
         <i class="fa-solid fa-arrow-left"></i>
@@ -40,7 +40,7 @@
 
   <div class="form-new-client mx-3">
     <%= simple_form_for @booking do |f| %>
-      <% start_time = Date.parse(@datetime) %>
+      <% start_time = DateTime.parse(@datetime) %>
       <% end_time = start_time + @formule.duration.minutes %>
       <%= f.input :start_time, as: :hidden, input_html: { value: start_time } %>
       <%= f.input :end_time, as: :hidden, input_html: { value: end_time } %>
@@ -61,6 +61,12 @@
           <%= client_fields.input :photo, as: :file, input_html: { class: "form-box" }, label: false %>
         </div>
       <% end %>
+      <%= f.fields_for :back do |client_fields| %>
+          <%= client_fields.input :datetime, as: :hidden, input_html: { value: @datetime }  %>
+          <%= client_fields.input :formule, as: :hidden, input_html: { value: @formule.id }  %>
+          <%= client_fields.input :existing_user, as: :hidden, input_html: { value: @existing_user }  %>
+      <% end %>
+
       <p class="mt-4"><strong>Ajoute un message à ta demande 👇</strong></p>
       <%= f.input :message, label: false %>
       <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4" %>
