@@ -12,16 +12,18 @@
     <%= simple_form_for(@client) do |f| %>
       <%= f.input :first_name,
                   label: false,
-                  input_html: { autocomplete: "prénom", placeholder: "prénom" } %>
+                  input_html: { autocomplete: "prénom", placeholder: "Prénom" } %>
       <%= f.input :last_name,
                   label: false,
-                  input_html: { autocomplete: "nom", placeholder: "nom" } %>
+                  input_html: { autocomplete: "nom", placeholder: "Nom" } %>
       <%= f.input :email,
                   label: false,
-                  input_html: { autocomplete: "email", placeholder: "email" } %>
+                  input_html: { autocomplete: "email", placeholder: "Adresse email" } %>
       <%= f.input :phone_number,
                   label: false,
-                  input_html: { autocomplete: "numéro", placeholder: "numéro de téléphone" } %>
+                  input_html: { autocomplete: "numéro", placeholder: "Numéro de téléphone" } %>
+      <p>Photo de profil (facultatif)</p>
+      <%= f.input :photo, as: :file, input_html: { class: "form-box" }, label: false %>
       <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
     <% end %>
   </div>
