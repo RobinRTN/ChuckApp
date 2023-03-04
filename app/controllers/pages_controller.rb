@@ -11,6 +11,9 @@ class PagesController < ApplicationController
     @projected_month_revenues = user_bookings_projected.sum(&:price)
     @client_rankings = rank_clients_by_revenue()
     @upcoming_bookings = current_user.bookings.upcoming
+
+    @calendar_bookings = Booking.where(start_time: Date.today.beginning_of_month..Date.today.end_of_month)
+    @calendar_bookings_by_day = @calendar_bookings.group_by { |booking| booking.start_time.day }
     end
   end
 

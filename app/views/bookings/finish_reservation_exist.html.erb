@@ -12,10 +12,10 @@
   <div class="recap-card mx-3">
     <div class="d-flex align-items-center justify-content-start finish-card">
       <div class="d-flex justify-content-center">
-        <% if current_user.profile_picture.attached? %>
-          <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-bigger" %>
-        <% elsif current_user.avatar_url.present? %>
-          <%= image_tag current_user.avatar_url, class: 'avatar-bigger' %>
+        <% if @user.profile_picture.attached? %>
+          <%= cl_image_tag @user.profile_picture.key, crop: :fill, class: "avatar-bigger" %>
+        <% elsif @user.avatar_url.present? %>
+          <%= image_tag @user.avatar_url, class: 'avatar-bigger' %>
         <% else %>
           <%= image_tag "user.png", class: 'avatar-bigger' %>
         <% end %>

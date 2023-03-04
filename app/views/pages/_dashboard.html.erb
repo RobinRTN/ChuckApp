@@ -23,6 +23,10 @@
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>
     </div>
 
+    <%# <div class="calendar my-5"> %>
+      <%# <%= render partial: 'calendar' %>
+    <%# </div> %>
+
     <% unless @client_rankings.empty? %>
       <div class="client-block mb-4">
         <em class="mb-3">Client du mois 👑</em>

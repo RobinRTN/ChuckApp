@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Dim</th>
+      <th>Lun</th>
+      <th>Mar</th>
+      <th>Mer</th>
+      <th>Jeu</th>
+      <th>Ven</th>
+      <th>Sam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (1..Date.today.end_of_month.day).each_slice(7) do |week_days| %>
+      <tr>
+        <% week_days.each do |day| %>
+          <td>
+            <%= day %>
+            <% if @calendar_bookings_by_day[day] %>
+              <%= @calendar_bookings_by_day[day].count %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
