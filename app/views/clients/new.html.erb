@@ -1,31 +1,29 @@
-<div class="bg-white">
-  <div class="container">
-    <div class="px-3 pb-4 d-flex align-items-center">
-      <%= link_to clients_path, class: "text-decoration-none" do %>
-        <div class="back-btn me-3">
-          <i class="fa-solid fa-arrow-left"></i>
-        </div>
-      <% end %>
-      <h2 class="m-0">Nouveau client</h2>
-    </div>
-
-    <div class="form-new-client mx-3">
-      <%= simple_form_for(@client) do |f| %>
-        <%= f.input :first_name,
-                    label: false,
-                    input_html: { autocomplete: "prénom", placeholder: "prénom" } %>
-        <%= f.input :last_name,
-                    label: false,
-                    input_html: { autocomplete: "nom", placeholder: "nom" } %>
-        <%= f.input :email,
-                    label: false,
-                    input_html: { autocomplete: "email", placeholder: "email" } %>
-        <%= f.input :phone_number,
-                    label: false,
-                    input_html: { autocomplete: "numéro", placeholder: "numéro de téléphone" } %>
-        <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
-      <% end %>
-    </div>
-
+<div class="container wrapper">
+  <div class="px-3 pb-4 d-flex align-items-center">
+    <%= link_to clients_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+    <h2 class="m-0">Nouveau client</h2>
   </div>
+
+  <div class="form-new-client mx-3">
+    <%= simple_form_for(@client) do |f| %>
+      <%= f.input :first_name,
+                  label: false,
+                  input_html: { autocomplete: "prénom", placeholder: "prénom" } %>
+      <%= f.input :last_name,
+                  label: false,
+                  input_html: { autocomplete: "nom", placeholder: "nom" } %>
+      <%= f.input :email,
+                  label: false,
+                  input_html: { autocomplete: "email", placeholder: "email" } %>
+      <%= f.input :phone_number,
+                  label: false,
+                  input_html: { autocomplete: "numéro", placeholder: "numéro de téléphone" } %>
+      <%= f.submit 'Ajouter', class: "btn-basic-bleu-large", value: "Ajouter" %>
+    <% end %>
+  </div>
+
 </div>
