@@ -42,6 +42,7 @@
     <%= simple_form_for @booking do |f| %>
       <% start_time = DateTime.parse(@datetime) %>
       <% end_time = start_time + @formule.duration.minutes %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= f.input :start_time, as: :hidden, input_html: { value: start_time } %>
       <%= f.input :end_time, as: :hidden, input_html: { value: end_time } %>
       <%= f.input :payment_status, as: :hidden, input_html: { value: "Non réglé" } %>
