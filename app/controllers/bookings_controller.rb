@@ -4,7 +4,7 @@ require 'active_support/time'
 
 class BookingsController < ApplicationController
   CALENDAR_ID = 'primary'
-
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   def disponibilites
     interval = 30
