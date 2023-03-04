@@ -277,16 +277,11 @@ class BookingsController < ApplicationController
     overlapping_slots = []
     daily_datetimes.each do |slot|
       slot_added_minimal = slot + slot_duration
-      puts slot
-      puts slot_added_minimal
       @user_bookings.each do |booking|
         booking_start = booking.start_time.strftime("%Y-%m-%d %H:%M:%S %z")
         booking_end = booking.end_time.strftime("%Y-%m-%d %H:%M:%S %z")
         if slot_added_minimal >= booking_start && slot_added_minimal < booking_end
           overlapping_slots << slot_added_minimal
-          puts "found this one #{slot_added_minimal}"
-          puts "after the starting booking #{booking_start}"
-          puts "before the ending booking #{booking_end}"
           break # Exit the inner loop early
         end
       end

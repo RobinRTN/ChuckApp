@@ -1,15 +1,18 @@
 .avatar {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
 .avatar-bigger {
   width: 3.5em;
+  height: 3.5em;
   border-radius: 50%;
 }
 
 .avatar-large {
   width: 56px;
+  height: 56px;
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: cover;
@@ -18,23 +21,27 @@
 
 .avatar-profile {
   width: 10em;
+  height: 10em;
   border-radius: 50%;
 }
 
 
 .avatar-bordered {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: white 1px solid;
 }
 .avatar-square {
   width: 40px;
+  height: 40px;
   border-radius: 0px;
   border: white 1px solid;
 }
 
 .avatar-small {
   width: 2em;
+  height: 2em;
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: cover;
