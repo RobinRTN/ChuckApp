@@ -257,6 +257,8 @@ class BookingsController < ApplicationController
     return full_datetimes
   end
 
+
+  #Check if the slot start_time is between existing booking start and end time
   def sort_existing_bookings(daily_datetimes)
     overlapping_slots = []
     daily_datetimes.each do |slot|
@@ -273,6 +275,7 @@ class BookingsController < ApplicationController
     daily_datetimes.reject! { |slot| overlapping_slots.include?(slot) }
   end
 
+  #Check if the slot end_time is between existing booking start and end time
   def sort_future_bookings(daily_datetimes, slot_duration)
     overlapping_slots = []
     daily_datetimes.each do |slot|

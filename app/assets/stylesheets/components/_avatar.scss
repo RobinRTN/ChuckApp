@@ -48,3 +48,57 @@
   object-position: top;
 
 }
+
+.circle-green {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2EC4B6;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.circle-pink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #E296C0;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.circle-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #EF5B5B;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.circle-orange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ECC30B;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  text-transform: uppercase;
+}

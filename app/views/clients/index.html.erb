@@ -1,6 +1,6 @@
   <div class="container wrapper">
     <div class="mx-3 d-flex justify-content-between align-items-center">
-      <h2 class="mb-3">Mes clients</h2>
+      <h4 class="mb-3">Mes clients</h4>
       <%= link_to new_client_path, class: "text-decoration-none" do %>
         <div class="ajouter-client-btn d-flex align-items-center mb-3">
           <p>Ajouter</p>
@@ -14,7 +14,12 @@
               <% if client.photo.attached? %>
                 <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large", format: "png" %>
               <% else %>
-                <%= image_tag "user.png", class: 'avatar-large' %>
+                <% initials = "#{client.first_name[0]}#{client.last_name[0]}" %>
+                <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
+                <% circle_class = color_variations[client.id % color_variations.size] %>
+                <div class="avatar-large">
+                  <div class="<%= circle_class %>"><%= initials %></div>
+                </div>
                <% end%>
               <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
                 <h4 class="card-fullname"> <%= client.full_name %></h4>

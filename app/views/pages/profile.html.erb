@@ -1,6 +1,6 @@
 <div class="container wrapper">
   <div class="mx-3">
-    <h2 class="mb-0">Mon compte</h2>
+    <h4 class="mb-0">Mon compte</h4>
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
       <% if current_user.profile_picture.attached? %>
         <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-profile" %>
