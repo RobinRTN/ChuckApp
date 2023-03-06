@@ -72,64 +72,54 @@
   </div>
 </div>
 
-
 <script>
-  // Set the clicked button's value as the booking option
-  // const formuleButtons = document.querySelectorAll('.formule-card button');
-  // formuleButtons.forEach(button => {
-  //   button.addEventListener('click', () => {
-  //     const bookingOptionInput = document.querySelector('input[name="booking_option"]');
-  //     bookingOptionInput.value = button.value;
-  //   });
-  // });
 
   // Get all formule buttons
-const formuleButtons = document.querySelectorAll('.formule-card button');
+  const formuleButtons = document.querySelectorAll('.formule-card button');
 
-// Add click event listeners to formule buttons
-formuleButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Remove "selected" class from all formule buttons
-    formuleButtons.forEach(btn => btn.classList.remove('selected'));
-    // Add "selected" class to clicked button
-    button.classList.add('selected');
-    // Set value of hidden input field for booking option
-    const formuleIdInput = document.querySelector('input[name="formule_id"]');
-    formuleIdInput.value = button.value;
+  // Add click event listeners to formule buttons
+  formuleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove "selected" class from all formule buttons
+      formuleButtons.forEach(btn => btn.classList.remove('selected'));
+      // Add "selected" class to clicked button
+      button.classList.add('selected');
+      // Set value of hidden input field for booking option
+      const formuleIdInput = document.querySelector('input[name="formule_id"]');
+      formuleIdInput.value = button.value;
+    });
   });
-});
 
-// Get all booking option buttons
-const bookingOptionButtons = document.querySelectorAll('button[name="booking_option"]');
+  // Get all booking option buttons
+  const bookingOptionButtons = document.querySelectorAll('button[name="booking_option"]');
 
-// Add click event listeners to booking option buttons
-bookingOptionButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Remove "selected" class from all booking option buttons
-    bookingOptionButtons.forEach(btn => btn.classList.remove('selected'));
-    // Add "selected" class to clicked button
-    button.classList.add('selected');
-    // Set value of hidden input field for booking option
-    const bookingOptionInput = document.querySelector('input[name="booking_option"]');
-    bookingOptionInput.value = button.value;
+  // Add click event listeners to booking option buttons
+  bookingOptionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove "selected" class from all booking option buttons
+      bookingOptionButtons.forEach(btn => btn.classList.remove('selected'));
+      // Add "selected" class to clicked button
+      button.classList.add('selected');
+      // Set value of hidden input field for booking option
+      const bookingOptionInput = document.querySelector('input[name="booking_option"]');
+      bookingOptionInput.value = button.value;
+    });
   });
-});
 
-const form = document.querySelector('form');
+  const form = document.querySelector('form');
 
-form.addEventListener('submit', (event) => {
-  const formuleButton = document.querySelector('button[name="formule_id"].selected');
-  const bookingOptionButton = document.querySelector('button[name="booking_option"].selected');
+  form.addEventListener('submit', (event) => {
+    const formuleButton = document.querySelector('button[name="formule_id"].selected');
+    const bookingOptionButton = document.querySelector('button[name="booking_option"].selected');
 
-  if (!formuleButton) {
-    alert('Veuillez sélectionner une formule');
-    event.preventDefault();
-  }
+    if (!formuleButton) {
+      alert('Veuillez sélectionner une formule');
+      event.preventDefault();
+    }
 
-  if (!bookingOptionButton) {
-    alert('Veuillez sélectionner une option de réservation');
-    event.preventDefault();
-  }
-});
-
+    if (!bookingOptionButton) {
+      alert('Veuillez sélectionner une option de réservation');
+      event.preventDefault();
+    }
+  });
 </script>
