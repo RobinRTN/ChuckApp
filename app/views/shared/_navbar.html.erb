@@ -1,12 +1,13 @@
 <% if user_signed_in? %>
-    <div class="top-navbar d-flex justify-content-between align-items-center">
-    
+  <div class="top-navbar-background">
+    <nav id="top-navbar" class="d-flex justify-content-between align-items-center">
+
       <div class="logo">
         <%= link_to root_path, class: "home-logo" do %>
           <%= image_tag "chuck.png", class: "mt-2" %>
         <% end %>
-
       </div>
+
       <div class="d-flex align-items-center justify-content-between mt-1">
         <a href="#" class="notification-bell me-3"><i class="fa-solid fa-bell"></i></a>
         <%= link_to profile_path do %>
@@ -20,29 +21,31 @@
             <% end %>
           </div>
         <%end%>
-        <%# <a href="#" class="menu-bars"><i class="fa-solid fa-bars"></i></a> %>
       </div>
-    </div>
 
+    </nav>
+  </div>
 
-    <div id="bottom-navbar-custom" class="d-flex justify-content-between align-items-center">
-      <div class="nav-boutton-accueil d-flex flex-column align-items-center">
-        <a href="/" class="active"> <i class="fa-solid fa-house"></i></a>
-        <p>Dashboard</p>
-      </div>
-      <div class="nav-boutton-client d-flex flex-column align-items-center">
-        <a href="/clients" class=""><i class="fa-solid fa-address-book"></i></a>
-        <p>Contacts</p>
-      </div>
-      <div class="nav-boutton-bookings d-flex flex-column align-items-center">
-        <a href="/bookings" class=""><i class="fa-regular fa-calendar"></i></a>
-        <p>Réservations</p>
-      </div>
-      <div class="nav-boutton-profil d-flex flex-column align-items-center">
-        <a href="/disponibilites" class=""><i class="fa-regular fa-calendar-check"></i></a>
-        <p>Disponibilités</p>
-      </div>
-      <%# <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a> %>
+    <div class="bottom-navbar-background">
+      <nav id="bottom-navbar-custom" class="d-flex justify-content-between align-items-center">
+        <div class="nav-item-bottom active d-flex flex-column align-items-center">
+          <a href="/" class=""> <i class="fa-solid fa-house"></i></a>
+          <p>Dashboard</p>
+        </div>
+        <div class="nav-item-bottom d-flex flex-column align-items-center">
+          <a href="/clients" class=""><i class="fa-solid fa-address-book"></i></a>
+          <p>Contacts</p>
+        </div>
+        <div class="nav-item-bottom d-flex flex-column align-items-center">
+          <a href="/bookings" class=""><i class="fa-regular fa-calendar"></i></a>
+          <p>Réservations</p>
+        </div>
+        <div class="nav-item-bottom d-flex flex-column align-items-center">
+          <a href="/disponibilites" class=""><i class="fa-regular fa-calendar-check"></i></a>
+          <p>Disponibilités</p>
+        </div>
+        <%# <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a> %>
+      </nav>
     </div>
 
   <% else %>

@@ -2,50 +2,70 @@
   height: 40px;
 }
 
-#bottom-navbar-custom {
+
+.bottom-navbar-background {
   width: 100%;
-  height: 0.3em;
+  background-color: rgba(255, 255, 255, 0.9);
   position: fixed;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2em;
-  padding: 1.6em 2em;
-  z-index: 9999;
-  p {
-    font-size: 0.45em;
-    font-family: $headers-font;
-    margin-bottom: 0px;
+  z-index: 9998;
+  #bottom-navbar-custom {
+    padding: 1.6em 2em;
+    max-width: 500px;
+    margin: 0 auto;
+    .nav-item-bottom {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      i {
+        color: $l-blue-sp;
+        font-size: 1.2em;
+        margin-bottom: 0.25rem;
+        display: block;
+      }
+      p {
+        color: $l-blue-sp;
+        display: block;
+        font-size: 0.45em;
+        font-family: $headers-font;
+        margin-bottom: 0px;
+      }
+    }
+    .nav-item-bottom.active {
+      i {
+        color: $blue-sp;
+      }
+      p {
+        color: $blue-sp;
+      }
+    }
+
   }
 }
 
-#bottom-navbar-custom, a {
- color: $l-blue-sp;
- text-decoration: none;
-}
-
-#bottom-navbar-custom a.active {
-  color: $blue-sp;
-  text-decoration: none;
-}
-
-.top-navbar {
-  padding-left: 1em;
-  padding-right: 2em;
-  background-color: rgba(255, 255, 255, 1);
-  margin-bottom: 1.5em;
+.top-navbar-background {
   width: 100%;
   height: 60px;
+  background-color: rgba(255, 255, 255, 1);
   position: fixed;
   top: 0;
   left: 0;
-  margin-bottom: 1em;
-  .notification-bell {
-    color: $blue-sp;
-    font-size: 1.4em;
-  }
-  .menu-bars {
-    color: $medium-gray ;
-    font-size: 1.4em;
-    padding-right: 1em;
+  z-index: 9998;
+  #top-navbar {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 2em;
+    margin-bottom: 1.5em;
+    margin-bottom: 1em;
+    .notification-bell {
+      color: $blue-sp;
+      font-size: 1.4em;
+    }
+    .menu-bars {
+      color: $medium-gray ;
+      font-size: 1.4em;
+      padding-right: 1em;
+    }
   }
 }

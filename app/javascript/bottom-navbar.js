@@ -1,5 +1,5 @@
 const bottomNavbarElem = document.getElementById("bottom-navbar-custom");
-const links = bottomNavbarElem.querySelectorAll("a");
+const links = bottomNavbarElem.querySelectorAll(".nav-item-bottom");
 const activeIndex = parseInt(localStorage.getItem("activeIndex"));
 
 for (let i = 0; i < links.length; i++) {
