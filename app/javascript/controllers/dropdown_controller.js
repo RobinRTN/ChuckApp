@@ -12,5 +12,6 @@ export default class extends Controller {
     } else {
       dropDownBlock.style.display = 'none';
     }
+    buttonVoirPlus.classList.add('d-none');
   }
 }
