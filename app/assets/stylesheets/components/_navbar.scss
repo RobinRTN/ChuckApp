@@ -14,9 +14,20 @@
     max-width: 500px;
     margin: 0 auto;
     .nav-item-bottom {
+      position: relative;
       flex: 1;
       text-align: center;
       text-decoration: none;
+      .active-dot {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background-color: $l-blue-sp;
+        border-radius: 50%;
+      }
       i {
         color: $l-blue-sp;
         font-size: 1.2em;
