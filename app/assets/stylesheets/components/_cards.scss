@@ -77,6 +77,10 @@
     width: 3.5em;
   }
 
+  i {
+    color: $blue-sp;
+  }
+
   & .price-tag-none-paid {
     background-color: $l-yellow-sp;
     color: $dd-blue-sp;
@@ -130,6 +134,11 @@
     margin-bottom: 0;
     text-decoration: none !important;
   }
+
+  i {
+    color: $blue-sp;
+  }
+
   & li {
     font-size: 0.9em;
     font-weight: 300;
@@ -148,12 +157,21 @@
   }
 
   & .accept {
-    color: $blue-sp;
+    color: $l-blue-sp;
     font-size: 2em;
   }
   & .refuse {
     color: $l-yellow-sp;
     font-size: 2em;
+  }
+  & .price-tag-paid {
+    background-color: $blue-sp;
+    color: $ll-blue-sp;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 0 3px $blue-sp;
   }
 }
 
@@ -181,6 +199,11 @@
   & .date-card {
     color: $blue-sp;
   }
+
+  i {
+    color: $blue-sp;
+  }
+
   & p {
     margin-bottom: 0;
     text-decoration: none !important;

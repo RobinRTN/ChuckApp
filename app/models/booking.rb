@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :client
   belongs_to :user
+  belongs_to :formule
   # scope to print out incoming accepted bookings
   scope :today, -> { where("start_time >= ? AND start_time < ? AND status = 'Accepted'", Date.today.beginning_of_day, Date.today.end_of_day).order(:start_time) }
   scope :tomorrow, -> { where("start_time >= ? AND start_time < ? AND status = 'Accepted'", Date.tomorrow.beginning_of_day, Date.tomorrow.end_of_day).order(:start_time) }
