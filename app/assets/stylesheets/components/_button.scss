@@ -59,7 +59,7 @@
 }
 
 .reservation-block {
-  .nav-item .nav-link.active {
+  .btn-reservation.active {
     text-decoration: none;
     padding: 0.2em 0.55em;
     border-radius: 3em;
@@ -72,7 +72,7 @@
     border: none;
   }
 
-  .nav-item .nav-link {
+  .btn-reservation {
     text-decoration: none;
     padding: 0.2em 0.55em;
     border-radius: 3em;

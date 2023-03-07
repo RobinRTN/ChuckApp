@@ -8,23 +8,22 @@
         <i class="fa-solid fa-plus"></i>
       </div>
     <% end %>
-    </div>
+  </div>
 
-    <div class="reservation-block mx-3 mt-3">
-      <ul class="nav nav-pills mb-3 d-flex justify-content-center align-items-center" id="pills-tab" role="tablist">
-        <li class="nav-item me-1" role="presentation">
-          <button class="nav-link" id="pills-attente-tab" data-bs-toggle="pill" data-bs-target="#pills-attente" type="button" role="tab" aria-controls="pills-attente" aria-selected="true">En attente</button>
-        </li>
-        <li class="nav-item me-1" role="presentation">
-          <button class="nav-link active" id="pills-future-tab" data-bs-toggle="pill" data-bs-target="#pills-future" type="button" role="tab" aria-controls="pills-future" aria-selected="true">Futures</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-passe-tab" data-bs-toggle="pill" data-bs-target="#pills-passe" type="button" role="tab" aria-controls="pills-passe" aria-selected="false">Passées</button>
-        </li>
-      </ul>
+  <div class="reservation-block mx-3 mt-3" data-controller="reservation">
+    <ul class="nav nav-pills mb-3 d-flex justify-content-center align-items-center">
+      <li class="nav-item me-1">
+        <button class="btn-reservation" data-action="click->reservation#selectReservation" id="reservation-attente" data-reservation-target="buttonAttente" data-block="attente">En attente</button>
+      </li>
+      <li class="nav-item me-1">
+        <button class="btn-reservation active" data-action="click->reservation#selectReservation" id="reservation-future" data-reservation-target="buttonFuture" data-block="future">Futures</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn-reservation" data-action="click->reservation#selectReservation" id="reservation-passe" data-reservation-target="buttonPasse" data-block="passe">Passées</button>
+      </li>
+    </ul>
 
-    <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-future" role="tabpanel" aria-labelledby="pills-future-tab">
+      <div class="reservation-future" data-reservation-target="future" style="display: block;">
         <% unless @today_bookings.empty? %>
           <em>Aujourd'hui</em>
           <% @today_bookings.each do |booking| %>
@@ -61,7 +60,7 @@
         <%end%>
       </div>
 
-      <div class="tab-pane fade show" id="pills-attente" role="tabpanel" aria-labelledby="pills-attente-tab">
+      <div class="reservation-en-attente" data-reservation-target="attente" style="display: none;">
         <% unless @today_pending_bookings.empty? %>
           <em>Aujourd'hui</em>
           <% @today_pending_bookings.each do |booking| %>
@@ -98,7 +97,7 @@
         <%end%>
       </div>
 
-      <div class="tab-pane fade" id="pills-passe" role="tabpanel" aria-labelledby="pills-passe-tab">
+      <div class="reservation-en-passe" data-reservation-target="passe" style="display: none;">
         <% @passed_bookings.each do |booking| %>
           <%= render partial: 'cards_passed', locals: { booking: booking } %>
         <% end %>

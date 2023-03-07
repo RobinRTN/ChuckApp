@@ -15,3 +15,6 @@ application.register("formule", FormuleController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ReservationController from "./reservation_controller"
+application.register("reservation", ReservationController)
