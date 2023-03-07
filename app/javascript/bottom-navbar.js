@@ -1,18 +1,12 @@
-const bottomNavbarElem = document.getElementById("bottom-navbar-custom");
-const links = bottomNavbarElem.querySelectorAll(".nav-item-bottom");
-const activeIndex = parseInt(localStorage.getItem("activeIndex"));
+const navbarItems = document.querySelectorAll('.nav-item-bottom');
 
-for (let i = 0; i < links.length; i++) {
-  if (i === activeIndex) {
-    links[i].classList.add("active");
-  }
-
-  links[i].addEventListener("click", function() {
-    const current = document.querySelector(".active");
-    if (current) {
-      current.classList.remove("active");
-    }
-    this.classList.add("active");
-    localStorage.setItem("activeIndex", i.toString());
+navbarItems.forEach((item) => {
+  item.addEventListener('click', (event) => {
+    // Remove the active class from all items
+    navbarItems.forEach((item) => {
+      item.classList.remove('active');
+    });
+    // Add the active class to the clicked item
+    event.currentTarget.classList.add('active');
   });
-}
+});
