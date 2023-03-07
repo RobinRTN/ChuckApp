@@ -1,4 +1,14 @@
 <div class="container wrapper">
+  <% if current_user %>
+    <div class="px-3 d-flex align-items-center">
+      <%= link_to root_path, class: "text-decoration-none" do %>
+        <div class="back-btn me-3">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <h4 class="m-0"></h4>
+    </div>
+  <% end %>
   <div class="mx-3">
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
       <% if @user.profile_picture.attached? %>

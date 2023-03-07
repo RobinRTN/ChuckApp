@@ -205,3 +205,14 @@
   transform: scale(1.05);
   box-shadow: 0 0 4px $blue-sp;
 }
+
+.btn-share-link {
+  margin-right: 1em;
+  background-color: $white;
+  color: $l-blue-sp;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  padding: 6px;
+  font-size: 0.85em;
+  border-radius: 50%;
+  text-decoration: none;
+}
