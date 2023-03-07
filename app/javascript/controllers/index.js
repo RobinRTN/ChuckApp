@@ -7,5 +7,11 @@ import { application } from "./application"
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
+import FormuleController from "./formule_controller"
+application.register("formule", FormuleController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

@@ -29,7 +29,7 @@
             <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
             <%end %>
 
-            <div class="available-block">
+            <div class="available-block" data-controller="dropdown">
               <%array_size = daily_datetimes.size %>
               <%if array_size > 4 %>
                 <div class="dispo-slots">
@@ -50,7 +50,7 @@
                     <% end %>
                   <%end%>
                 </div>
-                <button class="btn-disponibilites d-flex justify-content-center align-items-center">
+                <button class="btn-disponibilites d-flex justify-content-center align-items-center" data-action="click->dropdown#toggle">
                   Voir plus</i>
                 </button>
 
@@ -71,22 +71,3 @@
     </div>
 
 </div>
-
-<script>
-  let dropDownButtons = document.querySelectorAll('.btn-disponibilites');
-
-  // Add click event listeners to all the drop-down buttons
-  dropDownButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      // Get the corresponding drop-down block
-      let dropDownBlock = button.previousElementSibling;
-      // Toggle the display of the drop-down block
-      if (dropDownBlock.style.display === 'none') {
-        dropDownBlock.style.display = 'grid';
-      } else {
-        dropDownBlock.style.display = 'none';
-      }
-    });
-  });
-
-</script>
