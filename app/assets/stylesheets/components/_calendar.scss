@@ -1,57 +1,57 @@
-.calendar {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-  padding: 1px;
+// .calendar {
+//   text-align: center;
+//   width: 100%;
+//   margin: 0 auto;
+//   padding: 1px;
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 334px;
+//   table {
+//     border-collapse: collapse;
+//     width: 100%;
+//     max-width: 334px;
 
 
-    th {
-      background-color: #eee;
-      font-weight: normal;
-      text-align: center;
-    }
+//     th {
+//       background-color: #eee;
+//       font-weight: normal;
+//       text-align: center;
+//     }
 
-    td {
-      border: 1px solid #ccc;
-      text-align: center;
-      vertical-align: middle;
+//     td {
+//       border: 1px solid #ccc;
+//       text-align: center;
+//       vertical-align: middle;
 
-      &:hover {
-        background-color: #f0f0f0;
-      }
+//       &:hover {
+//         background-color: #f0f0f0;
+//       }
 
-      &.today {
-        background-color: #f0f0f0;
-      }
+//       &.today {
+//         background-color: #f0f0f0;
+//       }
 
-      &.booked {
-        background-color: #c6e0b4;
-      }
-    }
+//       &.booked {
+//         background-color: #c6e0b4;
+//       }
+//     }
 
-    tr:last-child td {
-      border-bottom: none;
-    }
-  }
+//     tr:last-child td {
+//       border-bottom: none;
+//     }
+//   }
 
-  .month-year {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+//   .month-year {
+//     font-size: 24px;
+//     font-weight: bold;
+//     margin-bottom: 20px;
+//     text-align: center;
+//   }
 
-    span {
-      display: inline-block;
-      margin-right: 5px;
+//     span {
+//       display: inline-block;
+//       margin-right: 5px;
 
-      &.booked {
-        background-color: #c6e0b4;
-      }
-    }
-  }
+//       &.booked {
+//         background-color: #c6e0b4;
+//       }
+//     }
+//   }

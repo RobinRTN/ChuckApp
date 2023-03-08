@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+    @user_bookings_calendar
     user_bookings_passed = current_user.bookings.passed_current_month
     user_bookings_projected = current_user.bookings.current_month_projected
     @user_bookings_number = user_bookings_passed.count
@@ -12,8 +13,8 @@ class PagesController < ApplicationController
     @client_rankings = rank_clients_by_revenue()
     @upcoming_bookings = current_user.bookings.upcoming
 
-    @calendar_bookings = Booking.where(start_time: Date.today.beginning_of_month..Date.today.end_of_month)
-    @calendar_bookings_by_day = @calendar_bookings.group_by { |booking| booking.start_time.day }
+    @calendar_bookings = current_user.bookings.where('start_time BETWEEN ? AND ?', 2.months.ago, 2.months.from_now)
+
     end
   end
 

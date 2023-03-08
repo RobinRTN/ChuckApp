@@ -87,3 +87,4 @@ gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem "cloudinary"
 gem 'rqrcode'
 gem 'chunky_png'
+gem "simple_calendar", "~> 2.4"

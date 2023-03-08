@@ -1,3 +1,10 @@
+.scan {
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+
 .modal-content {
   position: relative;
   display: flex;
@@ -5,7 +12,7 @@
   width: 100%;
   color: var(--bs-modal-color);
   pointer-events: auto;
-  background-color: var(--bs-modal-bg);
+  background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
   background-clip: padding-box;
   border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
   border-radius: 5px;

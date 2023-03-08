@@ -1,0 +1,146 @@
+.calendar {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.1px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  .simple-calendar {
+    .table-striped > tbody > tr:nth-of-type(odd) > * {
+      --bs-table-accent-bg: $white;
+      color: var(--bs-table-striped-color);
+    }
+    .table-striped>tbody>tr:nth-child(odd)>td,
+    .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: $white // Choose your own color here
+    }
+
+    .calendar-heading {
+      border-bottom: 1px solid $light-gray;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      font-family: $headers-font;
+      color: $d-blue-sp;
+      font-weight: 600;
+
+      a {
+        text-decoration: none;
+        border-radius: 50%;
+        color: $l-blue-sp;
+        font-size: 1em;
+        margin-left: 2em;
+        margin-right: 2em;
+      }
+    }
+    table {
+      border-radius: 6px;
+      -webkit-border-horizontal-spacing: 0px;
+      -webkit-border-vertical-spacing: 0px;
+      box-sizing: border-box;
+      max-width: 100%;
+      width: 100%;
+      td {
+        padding: 6px;
+        vertical-align: top;
+        border: none !important;
+        color: $d-blue-sp !important;
+      }
+      tr {
+
+      }
+
+      th {
+        padding: 6px;
+        box-sizing: border-box;
+        text-align: center;
+        background-color: $white;
+        color: $l-blue-sp;
+        font-weight: 400;
+        font-size: 0.85em;
+      }
+      .dot-small {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $l-blue-sp;
+        margin-right: 5px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .dot-medium {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $blue-sp;
+        margin-right: 5px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .dot-big {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $darker-blue-sp;
+        margin-right: 5px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+
+
+    .day {
+      margin-bottom: none;
+      font-size: 0.9em;
+      padding: 0.45em;
+      background-color: $white;
+      border-radius: 2px;
+    }
+
+    .wday-0 {}
+    .wday-1 {}
+    .wday-2 {}
+    .wday-3 {}
+    .wday-4 {}
+    .wday-5 {}
+    .wday-6 {}
+
+    .today {
+      .day{
+        background: #ECC30B
+      }
+    }
+
+    .past {}
+    .future {}
+
+    .start-date {}
+
+    .prev-month {
+      background: $light-gray !important;
+      .day {
+        background-color: $light-gray !important;
+      }
+    }
+    .next-month {
+      background: $light-gray !important;
+      .day {
+        background-color: $light-gray !important;
+      }
+    }
+    .current-month {}
+
+    .has-events {
+    }
+
+  }
+}
