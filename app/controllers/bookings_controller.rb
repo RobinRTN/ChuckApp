@@ -87,12 +87,14 @@ class BookingsController < ApplicationController
   def confirm
     @booking = Booking.find(params[:id])
     @booking.update(status: "Accepted")
+    flash[:notice] = "Demande de réservation acceptée !"
     redirect_to bookings_path
   end
 
   def refuse
     @booking = Booking.find(params[:id])
     @booking.update(status: "Refused")
+    flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
   end
 

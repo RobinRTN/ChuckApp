@@ -157,12 +157,22 @@
   }
 
   & .accept {
+    background-color: $white;
     color: $l-blue-sp;
-    font-size: 2em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    padding: 7px;
+    font-size: 0.85em;
+    border-radius: 50%;
+    text-decoration: none;
   }
   & .refuse {
-    color: $l-yellow-sp;
-    font-size: 2em;
+    background-color: $white;
+    color: $l-blue-sp;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    padding: 7px 9.3px;
+    font-size: 0.85em;
+    border-radius: 50%;
+    text-decoration: none;
   }
   & .price-tag-paid {
     background-color: $blue-sp;

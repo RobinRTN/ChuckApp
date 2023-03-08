@@ -21,12 +21,12 @@
       </div>
       <div class="confirmation d-flex align-items-center flex-column justify-content-between">
         <%= link_to confirm_booking_path(booking), data: { "turbo-method": :put } do %>
-          <p><i class="fa-sharp fa-solid fa-circle-check accept mb-1 mt-1"></i></p>
+          <p><i class="fa-solid fa-check mb-1 mt-1 accept"></i></p>
         <% end %>
         <%= link_to refuse_booking_path(booking), data: { "turbo-method": :put } do %>
-          <p><i class="fa-sharp fa-solid fa-circle-xmark refuse"></i></p>
+          <p><i class="fa-solid fa-xmark refuse"></i></p>
         <% end %>
-        <p class="price-tag-paid mt-3"><%= booking.price.to_i %>€</p>
+        <p class="price-tag-paid mt-2"><%= booking.price.to_i %>€</p>
       </div>
     </div>
   </div>
