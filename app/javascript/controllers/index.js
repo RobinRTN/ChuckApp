@@ -21,3 +21,6 @@ application.register("hello", HelloController)
 
 import ReservationController from "./reservation_controller"
 application.register("reservation", ReservationController)
+
+import SimpleCalendarController from "./simple_calendar_controller"
+application.register("simple-calendar", SimpleCalendarController)
