@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  before_validation :set_token_and_url
+  before_validation :set_token
+  before_commit :generate_qr_code
   before_destroy :delete_formules
 
 
@@ -23,16 +24,45 @@ class User < ApplicationRecord
   has_many :packages
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
+  has_one_attached :qrcode
 
   private
 
-  def set_token_and_url
-    self.token = SecureRandom.base64(10)
-    self.url = "/reservation/#{self.token}"
+  def set_token
+    self.token = SecureRandom.urlsafe_base64(10)
   end
 
   def delete_formules
     self.formules.destroy_all
   end
 
+  def generate_qr_code
+    qrcode = RQRCode::QRCode.new(reservation_link(self.token))
+    png = qrcode.as_png(
+      bit_depth: 1,
+      border_modules: 4,
+      color_mode: ChunkyPNG::COLOR_GRAYSCALE,
+      color: "black",
+      file: nil,
+      fill: "white",
+      module_px_size: 6,
+      resize_exactly_to: false,
+      resize_gte_to: false,
+      size: 200
+    )
+
+    self.qrcode.attach(
+      io: StringIO.new(png.to_s),
+      filename: "qrcode.png",
+      content_type: 'image/png'
+    )
+  end
+
+  def reservation_link(token)
+    if Rails.env.production?
+      "https://salty-sierra-39179.herokuapp.com/landing_reservation/#{token}"
+    else
+      "http://localhost:3000/landing_reservation/#{token}"
+    end
+  end
 end

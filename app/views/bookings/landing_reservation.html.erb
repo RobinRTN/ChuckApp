@@ -7,14 +7,35 @@
         </div>
       <% end %>
     </div>
-    <div data-controller="copy-to-clipboard" data-action="click->copy-to-clipboard#copyText">
-      <div class="copy-text d-flex justify-content-center">
+    <div data-controller="copy-to-clipboard">
+      <div class="copy-text d-flex justify-content-center mb-3">
         <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
-        <button class="btn-gris-rond">Copier lien<i class="fa-solid fa-link ms-2"></i></button>
+        <button class="btn-gris-rond" data-action="click->copy-to-clipboard#copyText">Copier lien<i class="fa-solid fa-link ms-2"></i></button>
+    <!-- Button trigger modal -->
+
+        <a href="#" data-bs-toggle="modal" data-bs-target="#landing-qrcode" class="btn-gris-rond ms-3">
+          <i class="fa-solid fa-qrcode"></i>
+        </a>
       </div>
       <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
     </div>
-</p>
+
+
+    <!-- Modal -->
+        <div class="modal fade" id="landing-qrcode" tabindex="-1" aria-labelledby="landing-qrcode" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" style="margin: auto;">
+               <%= image_tag(url_for(current_user.qrcode),  class: 'img-fluid') %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
   <% end %>
   <div class="mx-3">
