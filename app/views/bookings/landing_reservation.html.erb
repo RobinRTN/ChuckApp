@@ -7,6 +7,15 @@
         </div>
       <% end %>
     </div>
+    <div data-controller="copy-to-clipboard" data-action="click->copy-to-clipboard#copyText">
+      <div class="copy-text d-flex justify-content-center">
+        <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
+        <button class="btn-gris-rond">Copier lien<i class="fa-solid fa-link ms-2"></i></button>
+      </div>
+      <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
+    </div>
+</p>
+
   <% end %>
   <div class="mx-3">
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">

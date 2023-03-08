@@ -7,6 +7,9 @@ import { application } from "./application"
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
+import CopyToClipboardController from "./copy_to_clipboard_controller"
+application.register("copy-to-clipboard", CopyToClipboardController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
