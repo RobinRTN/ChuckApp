@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   before_validation :set_token
-  before_commit :generate_qr_code
+  before_validation :generate_qr_code
   before_destroy :delete_formules
 
 
