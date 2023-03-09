@@ -1,4 +1,4 @@
-<%= month_calendar(events: @calendar_bookings, prev_link: safe_join(["<i class='fa-solid fa-circle-left'></i>"]), next_link: safe_join(["<i class='fa-solid fa-circle-right'></i>"])) do |date, bookings| %>
+<%= month_calendar(events: events, prev_link: "suivant", next_link: "suivant") do |date, bookings| %>
   <div class="day">
     <%= date.day %>
     <% if bookings.length == 1 %>
