@@ -8,8 +8,8 @@ class BookingsController < ApplicationController
   CALENDAR_ID = 'primary'
 
   def disponibilites
-    interval = 30
-    slot_duration = 1.hour
+    interval = current_user.formules.minimum(:duration)
+    slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('21:00pm') - slot_duration
     days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
