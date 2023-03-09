@@ -12,7 +12,7 @@
         <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client justify-content-between" do %>
             <div class="d-flex">
               <% if client.photo.attached? %>
-                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large", format: "png" %>
+                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
               <% else %>
                 <% initials = "#{client.first_name[0]}#{client.last_name[0]}" %>
                 <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>

@@ -12,10 +12,19 @@
       --bs-table-accent-bg: $white;
       color: var(--bs-table-striped-color);
     }
+    .table-striped > tbody > tr:nth-of-type(even) > * {
+      --bs-table-accent-bg: $white;
+      color: var(--bs-table-striped-color);
+    }
     .table-striped>tbody>tr:nth-child(odd)>td,
     .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: $white // Choose your own color here
     }
+    .table-striped>tbody>tr:nth-child(even)>td,
+    .table-striped>tbody>tr:nth-child(even)>th {
+    background-color: $white // Choose your own color here
+    }
+
 
     .calendar-heading {
       border-bottom: 1px solid $light-gray;
@@ -47,8 +56,8 @@
         border: none !important;
         color: $d-blue-sp !important;
       }
-      tr {
 
+      tr {
       }
 
       th {
@@ -104,6 +113,9 @@
       padding: 0.41em;
       background-color: $white;
       border-radius: 2px;
+    }
+    .day:hover {
+      background-color: $ll-blue-sp;
     }
 
     .wday-0 {}
