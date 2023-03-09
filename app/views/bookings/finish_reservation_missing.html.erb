@@ -42,12 +42,12 @@
     <%= simple_form_for @booking do |f| %>
       <% start_time = DateTime.parse(@datetime) %>
       <% end_time = start_time + @formule.duration.minutes %>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= f.input :start_time, as: :hidden, input_html: { value: start_time } %>
       <%= f.input :end_time, as: :hidden, input_html: { value: end_time } %>
       <%= f.input :payment_status, as: :hidden, input_html: { value: "Non réglé" } %>
       <%= f.input :price, as: :hidden, input_html: { value: @formule.price } %>
       <%= f.input :user_id, as: :hidden, input_html: { value: @user.id } %>
+      <%= f.input :formule_id, as: :hidden, input_html: { value: @formule.id }  %>
       <%= f.input :booking_type, as: :hidden, input_html: { value: "Individuel" } %>
       <%= f.fields_for :client do |client_fields| %>
         <div class="form-group">

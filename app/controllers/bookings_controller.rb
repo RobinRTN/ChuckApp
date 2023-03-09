@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
     else
       @existing_user = false
     end
-    interval = 30
+    interval = @formule.duration
     slot_duration = @formule.duration
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('21:00pm') - slot_duration
@@ -106,6 +106,7 @@ class BookingsController < ApplicationController
       if client
         @booking = Booking.new(booking_params.except(:client, :back))
         @booking.client_id = client.id
+        @booking.user_id = @user.id
         if @booking.save
           # Handle successful booking creation
           flash[:notice] = "Demande de réservation envoyée !"
@@ -130,7 +131,8 @@ class BookingsController < ApplicationController
       end
       if @client.save
         @booking.client_id = @client.id
-        if @booking.save
+        @booking.user_id = @user.id
+        if @booking.save!
           # Handle successful booking creation
           flash[:notice] = "Demande de réservation envoyée !"
           redirect_to landing_reservation_path(@user.token)
@@ -163,40 +165,40 @@ class BookingsController < ApplicationController
         "client_id" => ENV["GOOGLE_API_KEY"],
         "client_secret" => ENV["GOOGLE_API_SECRET"]
       }
-    })
-    begin
-      client.authorization = secrets.to_authorization
-      client.authorization.grant_type = "refresh_token"
+      })
+      begin
+        client.authorization = secrets.to_authorization
+        client.authorization.grant_type = "refresh_token"
 
-      if !current_user.present?
-        client.authorization.refresh!
-        current_user.update_attributes(
-          access_token: client.authorization.access_token,
-          refresh_token: client.authorization.refresh_token,
-          expires_at: client.authorization.expires_at.to_i
-        )
+        if !current_user.present?
+          client.authorization.refresh!
+          current_user.update_attributes(
+            access_token: client.authorization.access_token,
+            refresh_token: client.authorization.refresh_token,
+            expires_at: client.authorization.expires_at.to_i
+          )
+        end
+      rescue => e
+        flash[:error] = 'Your token has been expired. Please login again with google.'
+        redirect_to :back
       end
-    rescue => e
-      flash[:error] = 'Your token has been expired. Please login again with google.'
-      redirect_to :back
+      client
     end
-    client
-  end
 
-  private
+    private
 
-  def reservation_params
-    params.permit(:formule_id, :formule, :booking_option, :token, :existing_user, :datetime)
-  end
+    def reservation_params
+      params.permit(:formule_id, :formule, :booking_option, :token, :existing_user, :datetime)
+    end
 
-  def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, client: [:email, :first_name, :last_name, :phone_number, :photo], back: [:datetime, :formule, :existing_user])
-  end
+    def booking_params
+      params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, client: [:email, :first_name, :last_name, :phone_number, :photo], back: [:datetime, :formule, :existing_user])
+    end
 
-  def get_event booking
-    # attendees = booking[:members].split(',').map{ |t| {email: t.strip} }
-    event = Google::Apis::CalendarV3::Event.new({
-      summary: booking[:title],
+    def get_event booking
+      # attendees = booking[:members].split(',').map{ |t| {email: t.strip} }
+      event = Google::Apis::CalendarV3::Event.new({
+        summary: booking[:title],
       location: '800 Howard St., San Francisco, CA 94103',
       description: booking[:description],
       start: {

@@ -47,6 +47,7 @@
       <%= f.input :payment_status, as: :hidden, input_html: { value: "Non réglé" } %>
       <%= f.input :price, as: :hidden, input_html: { value: @formule.price } %>
       <%= f.input :user_id, as: :hidden, input_html: { value: @user.id } %>
+      <%= f.input :formule_id, as: :hidden, input_html: { value: @formule.id }  %>
       <%= f.input :booking_type, as: :hidden, input_html: { value: "Individuel" } %>
       <%= f.fields_for :client do |client_fields| %>
         <div class="form-group">
