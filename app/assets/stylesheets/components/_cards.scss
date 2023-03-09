@@ -347,7 +347,7 @@
     text-decoration: none;
     background-color: $white;
     border-radius: 4px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     padding: 0.55em 1em;
     margin: 0.4em 0.6em;
     cursor: pointer;
@@ -387,7 +387,7 @@
 .finish-card {
   background-color: $light-gray;
   border-radius: 50px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   width: 100%;
   h4 {
     font-size: 1em;
