@@ -1,18 +1,20 @@
-<%= month_calendar events: events, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, bookings| %>
-  <div class="day">
-    <%= date.day %>
-    <% if bookings.length == 1 %>
-      <span class="dot-small"></span>
-    <% elsif bookings.length > 1 && bookings.length <= 3  %>
-      <span class="dot-medium"></span>
-    <% elsif bookings.length >= 4  %>
-      <span class="dot-big"></span>
-    <% else %>
-    <% end %>
-  </div>
-  <% bookings.each do |booking| %>
-    <div class="card-header">
-      <!-- your booking details here -->
+<%= turbo_frame_tag 'calendar' do %>
+  <%= month_calendar(events: events) do |date, bookings| %>
+    <div class="day">
+      <%= date.day %>
+      <% if bookings.length == 1 %>
+        <span class="dot-small"></span>
+      <% elsif bookings.length > 1 && bookings.length <= 3  %>
+        <span class="dot-medium"></span>
+      <% elsif bookings.length >= 4  %>
+        <span class="dot-big"></span>
+      <% else %>
+      <% end %>
     </div>
+    <% bookings.each do |booking| %>
+      <div class="card-header">
+        <!-- your booking details here -->
+      </div>
+    <% end %>
   <% end %>
 <% end %>
