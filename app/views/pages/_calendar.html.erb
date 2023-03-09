@@ -11,10 +11,13 @@
       <% else %>
       <% end %>
     </div>
-    <% bookings.each do |booking| %>
-      <div class="card-header">
-        <!-- your booking details here -->
-      </div>
-    <% end %>
+    <div class="modal-block-calendar">
+      <% bookings.each do |booking| %>
+        <div class="card-header">
+          <%# <p><%= booking.start_time.strftime('%H:%M')</p> %>
+          <%# <p><%= booking.end_time.strftime('%H:%M') %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
