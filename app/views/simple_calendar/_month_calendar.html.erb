@@ -1,4 +1,4 @@
-<div class="simple-calendar" id="calendar">
+<div class="simple-calendar">
   <div class="calendar-heading">
     <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "previous", remote: true %>
     <span class="calendar-title" data-simple-calendar-target="title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>

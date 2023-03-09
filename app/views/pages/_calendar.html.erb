@@ -1,4 +1,4 @@
-<%= month_calendar(events: events, prev_link: "suivant", next_link: "suivant") do |date, bookings| %>
+<%= month_calendar events: events, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, bookings| %>
   <div class="day">
     <%= date.day %>
     <% if bookings.length == 1 %>
