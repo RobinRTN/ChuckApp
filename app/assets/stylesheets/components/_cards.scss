@@ -330,6 +330,7 @@
   margin-right: 0.5em;
   color: $white;
   flex: 1;
+  transition: all 0.3s ease;
   h4 {
     margin: 0;
   }
@@ -340,6 +341,12 @@
   }
 
 }
+.revenue-card:active {
+  background-color: $blue-sp;
+  box-shadow: 0 0 8px -2px $blue-sp;
+  transform: scale(0.95);
+}
+
 
 .revenue-card-projeté {
   margin-left: 0.5em;
@@ -349,6 +356,7 @@
   border-radius: 4px;
   color: $d-blue-sp;
   flex: 1;
+  transition: all 0.3s ease;
   h4 {
     margin: 0;
   }
@@ -357,7 +365,11 @@
     font-weight: 500;
     margin-bottom: 0.5em;
   }
-
+}
+.revenue-card-projeté:active {
+  background-color: $l-blue-sp;
+  box-shadow: 0 0 8px -2px $l-blue-sp;
+  transform: scale(0.95);
 }
 
 .formule-block {
@@ -429,5 +441,33 @@
   }
   p {
     margin-bottom: 0.6em;
+  }
+}
+
+.date-details-revenu-card {
+  color: $d-blue-sp;
+  text-decoration: none;
+  background-color: rgba(0,0,0,0);
+  border-radius: 4px;
+  padding: 0.55em 1em;
+  margin: 1.3em 0em;
+  border-left: 3px solid $blue-sp;
+  p {
+    margin-bottom: 0.3em;
+    font-size: 0.85em;
+  }
+ }
+
+.month-details-revenu-card {
+  color: $d-blue-sp;
+  text-decoration: none;
+  background-color: rgba(0,0,0,0);
+  border-radius: 4px;
+  padding: 0.55em 1em;
+  margin: 1.3em 0em;
+  border-left: 3px solid $l-blue-sp;
+  p {
+    margin-bottom: 0.3em;
+    font-size: 0.85em;
   }
 }

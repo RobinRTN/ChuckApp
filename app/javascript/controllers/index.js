@@ -22,5 +22,3 @@ application.register("hello", HelloController)
 import ReservationController from "./reservation_controller"
 application.register("reservation", ReservationController)
 
-import RevenuController from "./revenu_controller"
-application.register("revenu", RevenuController)
