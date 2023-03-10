@@ -195,7 +195,7 @@
   text-align: center;
   transition: all 0.15s;
   padding: 0.2em 1.2em;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
 
 }
 
@@ -203,7 +203,7 @@
   background: $blue-sp;
   color: $ll-blue-sp;
   transform: scale(1.05);
-  box-shadow: 0 0 4px $blue-sp;
+  box-shadow: 0 0 18px -4px $blue-sp;
 }
 
 .btn-share-link {
