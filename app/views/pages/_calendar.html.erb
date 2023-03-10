@@ -14,11 +14,11 @@
       </div>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuCalendar">
         <div class="modal-block-calendar">
-          <%= link_to 'Ajouter', new_booking_path, class: 'dropdown-item' %>
+          <%= link_to 'Ajouter', new_booking_path, class: 'dropdown-item ajouter-btn' %>
           <% bookings.each do |booking| %>
             <div class="card-header">
              <%= link_to booking_path(booking), class: "dropdown-item" do %>
-                <p><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
+                <p class="btn-time-slot-calendar"><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
              <% end  %>
             </div>
           <% end %>
