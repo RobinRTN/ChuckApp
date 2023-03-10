@@ -1,22 +1,29 @@
 <%= turbo_frame_tag 'calendar' do %>
   <%= month_calendar(events: events) do |date, bookings| %>
-    <div class="day">
-      <%= date.day %>
-      <% if bookings.length == 1 %>
-        <span class="dot-small"></span>
-      <% elsif bookings.length > 1 && bookings.length <= 3  %>
-        <span class="dot-medium"></span>
-      <% elsif bookings.length >= 4  %>
-        <span class="dot-big"></span>
-      <% else %>
-      <% end %>
-    </div>
-    <div class="modal-block-calendar">
-      <% bookings.each do |booking| %>
-        <div class="card-header">
+    <div class="nav-item dropdown">
+      <div class="day dropdown-toggle" id="dropdownMenuCalendar" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= date.day %>
+        <% if bookings.length == 1 %>
+          <span class="dot-small"></span>
+        <% elsif bookings.length > 1 && bookings.length <= 3  %>
+          <span class="dot-medium"></span>
+        <% elsif bookings.length >= 4  %>
+          <span class="dot-big"></span>
+        <% else %>
+        <% end %>
+      </div>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuCalendar">
+        <div class="modal-block-calendar">
+          <%= link_to 'Ajouter', new_booking_path, class: 'dropdown-item' %>
+          <% bookings.each do |booking| %>
+            <div class="card-header">
+             <%= link_to booking_path(booking), class: "dropdown-item" do %>
+                <p><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
+             <% end  %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-
+      </div>
     </div>
   <% end %>
 <% end %>

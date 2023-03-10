@@ -7,6 +7,17 @@
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+
+  .dropdown-toggle::after {
+    display: none; // hide the pseudo-element
+  }
+
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 0 16px -4px rgba(0,0,0,0.2);
+
+  }
+
   .simple-calendar {
     .table-striped > tbody > tr:nth-of-type(odd) > * {
       --bs-table-accent-bg: $white;
