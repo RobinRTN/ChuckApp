@@ -1,12 +1,12 @@
 <div class="container">
   <div class="mx-3">
     <h4 class="my-3">Tableau de Bord</h4>
-    <div class="revenue-block mb-5">
+    <div class="revenue-block mb-5"  data-controller="revenu">
       <p class="my-4 round-button-grey"><%= l(Date.today, format: '%A %e %B').capitalize %></p>
       <em class="mb-3">Revenus mensuels 💸</em>
       <div class="d-flex align-items-center justify-content-between my-3">
 
-        <div class="revenue-card collapsed" data-bs-toggle="collapse" href="#date-details-revenu" aria-expanded="false" aria-controls="date-details-revenu">
+        <div class="revenue-card" data-action="click->revenu#collapse">
           <p class="first-line">A date <em>au <%= l(Date.today, format: '%e %B') %></em></p>
           <div class="d-flex align-items-center justify-content-start">
             <i class="fa-sharp fa-solid fa-coins me-2"></i>
@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <div class="revenue-card-projeté collapsed" data-bs-toggle="collapse" href="#month-details-revenu" aria-expanded="false" aria-controls="month-details-revenu">
+        <div class="revenue-card-projeté" data-action="click->revenu#collapse">
           <p class="first-line">Totaux au <em><%= l(Date.today.end_of_month, format: '%e %B') %></em></p>
           <div class="d-flex align-items-center justify-content-start">
             <i class="fa-sharp fa-solid fa-coins me-2"></i>
@@ -24,18 +24,15 @@
       </div>
 
 
-
-
-      <div class="date-details-revenu-card collapse" id="date-details-revenu">
+      <div class="date-details-revenu-card" data-revenu-target="content">
         <% @user_bookings_passed.each do |booking| %>
           <p><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
         <%end%>
-      </div>
-      <div class="month-details-revenu-card collapse" id="month-details-revenu">
       <% @user_bookings_projected.each do |booking| %>
           <p><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
         <%end%>
       </div>
+
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>
     </div>
 

@@ -341,7 +341,7 @@
   }
 
 }
-.revenue-card:hover {
+.revenue-card:active {
   background-color: $blue-sp;
   box-shadow: 0 0 8px -2px $blue-sp;
   transform: scale(0.95);
@@ -366,10 +366,14 @@
     margin-bottom: 0.5em;
   }
 }
-.revenue-card-projeté:hover {
+.revenue-card-projeté:active {
   background-color: $l-blue-sp;
   box-shadow: 0 0 8px -2px $l-blue-sp;
   transform: scale(0.95);
+}
+
+.show {
+  display: block !important;
 }
 
 .formule-block {
@@ -452,22 +456,9 @@
   padding: 0.55em 1em;
   margin: 1.3em 0em;
   border-left: 3px solid $blue-sp;
+  display: none;
   p {
     margin-bottom: 0.3em;
     font-size: 0.85em;
   }
  }
-
-.month-details-revenu-card {
-  color: $d-blue-sp;
-  text-decoration: none;
-  background-color: rgba(0,0,0,0);
-  border-radius: 4px;
-  padding: 0.55em 1em;
-  margin: 1.3em 0em;
-  border-left: 3px solid $l-blue-sp;
-  p {
-    margin-bottom: 0.3em;
-    font-size: 0.85em;
-  }
-}
