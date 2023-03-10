@@ -15,7 +15,7 @@
       <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
         <div class="daily-dispo-card mb-2">
           <% unless daily_datetimes.empty?  %>
-          <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
+          <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
           <%end %>
 
           <div class="available-block" data-controller="dropdown">

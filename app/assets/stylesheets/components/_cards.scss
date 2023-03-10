@@ -106,6 +106,7 @@
 }
 
 .card-horizontal-booking-pending {
+  position: relative;
   text-decoration: none;
   background-color: $white;
   border-radius: 4px;
@@ -160,19 +161,32 @@
     background-color: $white;
     color: $l-blue-sp;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    padding: 7px;
+    padding: 10px;
     font-size: 0.85em;
     border-radius: 50%;
     text-decoration: none;
   }
+
+
   & .refuse {
-    background-color: $white;
+    width: 1.5em;
+    text-align: center;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: $ll-blue-sp;
     color: $l-blue-sp;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    padding: 7px 9.3px;
-    font-size: 0.85em;
+    font-size: 0.65em;
     border-radius: 50%;
     text-decoration: none;
+    top: -6px;
+    right: -6px;
+    i {
+      margin: 0;
+    }
   }
   & .price-tag-paid {
     background-color: $blue-sp;

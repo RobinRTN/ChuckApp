@@ -14,7 +14,9 @@
       </div>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuCalendar">
         <div class="modal-block-calendar">
-          <%= link_to 'Ajouter', new_booking_path, class: 'dropdown-item ajouter-btn' %>
+          <%= link_to new_booking_path, class: 'dropdown-item date-btn' do %>
+            <p><%= l(date, format: '%a %e %B') %></p>
+          <% end  %>
           <% bookings.each do |booking| %>
             <div class="card-header">
              <%= link_to booking_path(booking), class: "dropdown-item" do %>
@@ -22,6 +24,9 @@
              <% end  %>
             </div>
           <% end %>
+          <%= link_to new_booking_path, class: 'dropdown-item ajouter-btn' do %>
+            <p><i class="fa-solid fa-plus"></i> Ajouter une résa </p>
+          <% end  %>
         </div>
       </div>
     </div>

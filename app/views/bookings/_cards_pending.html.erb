@@ -14,7 +14,7 @@
         <% end%>
         <div class="card-infos d-flex align-items-start flex-column">
             <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
-            <p class="date-card"><%= l(booking.start_time, format: '%A %d %B').capitalize %></p>
+            <p class="date-card"><%= l(booking.start_time, format: '%A %e %B').capitalize %></p>
             <p class="time-card"><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
             <p><i class="fa-solid fa-fire me-1"></i> <%= booking.formule.name %> </p>
         </div>
@@ -23,11 +23,11 @@
         <%= link_to confirm_booking_path(booking), data: { "turbo-method": :put } do %>
           <p><i class="fa-solid fa-check mb-1 mt-1 accept"></i></p>
         <% end %>
-        <%= link_to refuse_booking_path(booking), data: { "turbo-method": :put } do %>
-          <p><i class="fa-solid fa-xmark refuse"></i></p>
-        <% end %>
         <p class="price-tag-paid mt-2"><%= booking.price.to_i %>€</p>
       </div>
+      <%= link_to refuse_booking_path(booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir refuser cette demande ?');" do %>
+        <p><i class="fa-solid fa-xmark refuse"></i></p>
+      <% end %>
     </div>
   </div>
 <% end %>
