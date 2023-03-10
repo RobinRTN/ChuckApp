@@ -2,18 +2,20 @@
   <div class="mx-3">
     <h4 class="my-3">Tableau de Bord</h4>
     <div class="revenue-block mb-5">
-      <p class="my-4 round-button-grey"><%= l(Date.today, format: '%A %d %B').capitalize %></p>
+      <p class="my-4 round-button-grey"><%= l(Date.today, format: '%A %e %B').capitalize %></p>
       <em class="mb-3">Combien ce mois ci ? 💸</em>
       <div class="d-flex align-items-center justify-content-between my-3">
         <div class="revenue-card">
-          <p>Gains mensuels à date</p>
+          <p class="first-line">Revenus mensuels à date</p>
+          <%# <em class="second-line">Le <%= l(Date.today, format: '%e %B') %>
           <div class="d-flex align-items-center justify-content-start">
             <i class="fa-sharp fa-solid fa-coins me-2"></i>
             <h4> <%= @passed_month_revenues.to_i %> € </h4>
           </div>
         </div>
         <div class="revenue-card-projeté">
-          <p>Gains mensuels projetés</p>
+          <p class="first-line">Revenus mensuels totaux</p>
+          <%# <em class="second-line">Le <%= l(Date.today.end_of_month, format: '%e %B') %>
           <div class="d-flex align-items-center justify-content-start">
             <i class="fa-sharp fa-solid fa-coins me-2"></i>
             <h4> <%= @projected_month_revenues.to_i %> € </h4>

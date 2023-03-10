@@ -327,29 +327,36 @@
   box-shadow: 0 0 18px -4px $blue-sp;
   padding: 1.4em 0.7em;
   border-radius: 4px;
+  margin-right: 0.5em;
   color: $white;
-
-  p {
-    font-size: 0.9em;
-  }
   h4 {
     margin: 0;
   }
+  .first-line {
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+  }
+
 }
 
 .revenue-card-projeté {
+  margin-left: 0.5em;
   background-color: $l-blue-sp;
   box-shadow: 0 0 18px -4px $l-blue-sp;
   padding: 1.4em 0.7em;
   border-radius: 4px;
   color: $d-blue-sp;
 
-  p {
-    font-size: 0.9em;
-  }
   h4 {
     margin: 0;
   }
+  .first-line {
+    font-size: 0.9em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+  }
+
 }
 
 .formule-block {
