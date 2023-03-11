@@ -49,9 +49,9 @@
               <% if @client_rankings.first[0].photo.attached? %>
                 <%= cl_image_tag @client_rankings.first[0].photo.key, crop: :fill, class: "avatar-large" %>
               <% else %>
-                <% initials = "#{booking.client.first_name[0]}#{booking.client.last_name[0]}" %>
+                <% initials = "#{@client_rankings.first[0].first_name[0]}#{@client_rankings.first[0].last_name[0]}" %>
                 <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
-                <% circle_class = color_variations[booking.client.id % color_variations.size] %>
+                <% circle_class = color_variations[@client_rankings.first[0].id % color_variations.size] %>
                 <div class="avatar-large">
                   <div class="<%= circle_class %>"><%= initials %></div>
                 </div>
