@@ -63,7 +63,7 @@
     <% unless @upcoming_bookings.empty? %>
       <div class="bookings-block">
         <em class="mb-3">Tes prochaines réservations 👇</em>
-          <% @upcoming_bookings.take(2).each do |booking| %>
+          <% @upcoming_bookings.take(3).each do |booking| %>
             <%= render partial: 'bookings/cards', locals: { booking: booking } %>
           <% end %>
       </div>

@@ -72,6 +72,7 @@ class BookingsController < ApplicationController
     @tomorrow_bookings = user_bookings.tomorrow
     @this_week_bookings = user_bookings.this_week
     @next_week_bookings = user_bookings.next_week
+    @next_bookings = user_bookings.next_bookings
     @next_month_bookings = user_bookings.next_month
     @after_bookings = user_bookings.after
     @passed_bookings = user_bookings.passed

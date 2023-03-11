@@ -52,9 +52,9 @@
           <% end %>
         <%end%>
 
-        <% unless @next_month_bookings.empty? %>
+        <% unless @next_bookings.empty? %>
           <em>Prochainement</em>
-          <% @next_month_bookings.each do |booking| %>
+          <% @next_bookings.each do |booking| %>
             <%= render partial: 'cards', locals: { booking: booking } %>
           <% end %>
         <%end%>

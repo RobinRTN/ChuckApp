@@ -174,7 +174,7 @@ current_month_range = Date.current.all_month
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.client_id = Client.first.id
+  booking.client_id = c1.id
   booking.save
 end
 
@@ -190,7 +190,7 @@ puts "_________________"
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
-  booking.client_id = Client.second.id
+  booking.client_id = c2.id
   booking.save
 end
 
@@ -208,7 +208,7 @@ puts "_________________"
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
   booking.formule_id = formule_id
-  booking.client_id = Client.third.id
+  booking.client_id = c3.id
   booking.save
 end
 
@@ -229,7 +229,7 @@ next_month_range = (Date.current + 1.month).all_month
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.formule_id = formule_id
-  booking.client_id = Client.fifth.id
+  booking.client_id = c4.id
   booking.save
 end
 
@@ -248,7 +248,22 @@ puts "_________________"
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.formule_id = formule_id
-  booking.client_id = Client.last.id
+  booking.client_id = c5.id
+  booking.save
+end
+
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.first.id
+  booking.formule_id = formule_id
+  booking.client_id = c6.id
   booking.save
 end
 
@@ -270,7 +285,7 @@ puts "===========DONE FOR FIRST USER============="
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.second.id
-  booking.client_id = Client.first.id
+  booking.client_id = c1.id
   booking.save
 end
 
@@ -286,7 +301,7 @@ puts "_________________"
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.second.id
-  booking.client_id = Client.second.id
+  booking.client_id = c2.id
   booking.save
 end
 
@@ -304,7 +319,7 @@ puts "_________________"
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.second.id
   booking.formule_id = formule_id
-  booking.client_id = Client.third.id
+  booking.client_id = c3.id
   booking.save
 end
 
@@ -325,7 +340,7 @@ next_month_range = (Date.current + 1.month).all_month
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.second.id
   booking.formule_id = formule_id
-  booking.client_id = Client.fifth.id
+  booking.client_id = c4.id
   booking.save
 end
 
@@ -344,7 +359,22 @@ puts "_________________"
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.second.id
   booking.formule_id = formule_id
-  booking.client_id = Client.last.id
+  booking.client_id = c5.id
+  booking.save
+end
+
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.second.id
+  booking.formule_id = formule_id
+  booking.client_id = c6.id
   booking.save
 end
 
