@@ -254,3 +254,101 @@ end
 
 puts "Just created 5 bookings for sixth client successfully"
 puts "_________________"
+
+puts "===========DONE FOR FIRST USER============="
+
+
+#++++++++++++++++++++++SECOND USER ++++++++++++++++++++++
+
+# create bookings for the first client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.second.id
+  booking.client_id = Client.first.id
+  booking.save
+end
+
+puts "Just created 5 bookings for first client successfully"
+puts "_________________"
+
+# create bookings for the second client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
+  booking.user_id = User.second.id
+  booking.client_id = Client.second.id
+  booking.save
+end
+
+puts "Just created 5 bookings for second client successfully"
+puts "_________________"
+
+# create bookings for the third client
+5.times do |i|
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
+  booking.user_id = User.second.id
+  booking.formule_id = formule_id
+  booking.client_id = Client.third.id
+  booking.save
+end
+
+puts "Just created 5 bookings for third client successfully"
+puts "_________________"
+
+next_month_range = (Date.current + 1.month).all_month
+
+# create bookings for the fifth client
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.second.id
+  booking.formule_id = formule_id
+  booking.client_id = Client.fifth.id
+  booking.save
+end
+
+puts "Just created 5 bookings for fifth client successfully"
+puts "_________________"
+
+# create bookings for the sixth client
+5.times do |i|
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
+  status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
+  booking.user_id = User.second.id
+  booking.formule_id = formule_id
+  booking.client_id = Client.last.id
+  booking.save
+end
+
+puts "Just created 5 bookings for sixth client successfully"
+puts "_________________"
+
+puts "===========DONE FOR SECOND USER============="
