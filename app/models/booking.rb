@@ -23,4 +23,5 @@ class Booking < ApplicationRecord
   # for dashboard
   scope :passed_current_month, -> { where("start_time < ? AND start_time >= ?", Time.now, Time.now.beginning_of_month).order(:start_time) }
   scope :current_month_projected, -> { where("start_time >= ? AND start_time < ?", Date.today.beginning_of_month, Date.today.next_month.beginning_of_month).order(:start_time) }
+  scope :current_month_rest, -> { where("start_time >= ? AND start_time < ?", Time.now, Date.today.next_month.beginning_of_month).order(:start_time) }
 end

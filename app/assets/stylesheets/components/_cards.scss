@@ -341,7 +341,7 @@
   }
 
 }
-.revenue-card:active {
+.revenue-card.collapse-transition  {
   background-color: $blue-sp;
   box-shadow: 0 0 8px -2px $blue-sp;
   transform: scale(0.95);
@@ -366,7 +366,7 @@
     margin-bottom: 0.5em;
   }
 }
-.revenue-card-projeté:active {
+.revenue-card-projeté.collapse-transition {
   background-color: $l-blue-sp;
   box-shadow: 0 0 8px -2px $l-blue-sp;
   transform: scale(0.95);
@@ -460,5 +460,13 @@
   p {
     margin-bottom: 0.3em;
     font-size: 0.85em;
+  }
+  .first-block-details {
+    font-weight: 500;
+    color: $d-blue-sp;
+  }
+  .second-block-details {
+    font-weight: 300;
+    color: $blue-sp;
   }
  }

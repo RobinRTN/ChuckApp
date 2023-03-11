@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @user_bookings_calendar
     @user_bookings_passed = current_user.bookings.passed_current_month
     @user_bookings_projected = current_user.bookings.current_month_projected
+    @user_bookings_rest = current_user.bookings.current_month_rest
     @user_bookings_number = @user_bookings_passed.count
     @user_bookings_number_proj = @user_bookings_projected.count - @user_bookings_passed.count
     @passed_month_revenues = @user_bookings_passed.sum(&:price)

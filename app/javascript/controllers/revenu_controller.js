@@ -4,7 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["content"]
 
-    collapse() {
-      this.contentTarget.classList.toggle("show")
+    collapse(event) {
+      const clickedButton = event.currentTarget;
+      this.contentTarget.classList.toggle("show");
+      clickedButton.classList.add("collapse-transition");
+    setTimeout(() => {
+      clickedButton.classList.remove("collapse-transition");
+    }, 100);
     }
   }

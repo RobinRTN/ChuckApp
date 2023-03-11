@@ -26,10 +26,10 @@
 
       <div class="date-details-revenu-card" data-revenu-target="content">
         <% @user_bookings_passed.each do |booking| %>
-          <p><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
+          <p class="first-block-details"><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
         <%end%>
-      <% @user_bookings_projected.each do |booking| %>
-          <p><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
+      <% @user_bookings_rest.each do |booking| %>
+          <p class="second-block-details"><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
         <%end%>
       </div>
 
