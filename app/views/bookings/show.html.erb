@@ -1,6 +1,5 @@
 <div class="container wrapper">
   <div class="px-3 pb-4 d-flex align-items-center">
-    <% booking_option = @existing_user == "true" ? "yes" : "no" %>
     <%= link_to request.referer || bookings_path, class: "text-decoration-none" do %>
       <div class="back-btn me-3">
         <i class="fa-solid fa-arrow-left"></i>
@@ -11,8 +10,8 @@
 
 
 
-  <div class="mx-4">
-    <div class="booking-show-client d-flex align-items-center">
+  <div class="mx-4 booking-show-client-card border-bottom py-3">
+    <div class="d-flex align-items-center">
       <h4 class="me-5"><%= @booking.client.full_name %></h4>
       <% if @booking.client.photo.attached? %>
         <%= cl_image_tag @booking.client.photo.key, crop: :fill, class: "avatar-large" %>
@@ -27,10 +26,13 @@
     </div>
 
     <div class="client-more-info">
-      <p>Réservations effectuées: <%= @client_data_hash[:bookings_count].to_i %></p>
+      <p>Réservations effectuées à date: <%= @client_data_hash[:bookings_count].to_i %></p>
       <p>Total dépensé: <%= @client_data_hash[:revenues].to_i %></p>
     </div>
+    <p class="mt-1 text-center"><%= link_to "Voir profil", client_path(@booking.client), class: "px-2 text-decoration-none" %></p>
   </div>
+
+
 
   <div class="d-flex mt-3 mx-4 border-bottom pb-3">
     <div class="finish-details-card flex-column align-items-start justify-content-start">
@@ -38,6 +40,14 @@
       <p><i class="fa-solid fa-clock me-2"></i> <%= @booking.formule.duration %> minutes</p>
       <p class="btn-disponibilites"><i class="fa-solid fa-coins me-2"></i> <%= @booking.formule.price.to_i %> €</p>
       <p><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %></p>
-
     </div>
   </div>
+
+
+  <% unless @booking.message.nil? %>
+    <div class="d-flex mt-3 mx-4 pb-3">
+      <p><%= @booking.message %></p>
+    </div>
+  <% end %>
+
+</div>

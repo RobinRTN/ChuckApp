@@ -470,3 +470,20 @@
     color: $blue-sp;
   }
  }
+
+ .booking-show-client-card {
+  color: $dd-blue-sp;
+  & h4 {
+    margin-bottom: 0;
+  }
+  & p {
+    font-size: 0.8em;
+    margin-bottom: 0;
+  }
+  & a {
+    text-decoration: none;
+    font-weight: 500;
+    color: $blue-sp;
+
+  }
+ }
