@@ -66,6 +66,11 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @client_data_hash = get_client_data(@booking.client.id)
+  end
+
   def index
     user_bookings = current_user.bookings
     @today_bookings = user_bookings.today
@@ -296,4 +301,20 @@ class BookingsController < ApplicationController
     end
     daily_datetimes.reject! { |slot| overlapping_slots.include?(slot) }
   end
+
+  def get_client_data(client_id)
+    client = Client.find(client_id)
+    if client.user == current_user
+      current_user_bookings = Booking.passed_confirmed.where(client_id: client_id)
+      revenues = 0
+      bookings_count = current_user_bookings.count
+      current_user_bookings.each do |booking|
+        revenues += booking.price
+      end
+      return { client: client, revenues: revenues, bookings_count: bookings_count }
+    else
+      return nil # return nil if the client does not belong to the current user
+    end
+  end
+
 end

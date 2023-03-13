@@ -15,7 +15,6 @@ class PagesController < ApplicationController
     @upcoming_bookings = current_user.bookings.upcoming
 
     @calendar_bookings = current_user.bookings.where('start_time BETWEEN ? AND ?', 2.months.ago, 2.months.from_now)
-
     end
   end
 
