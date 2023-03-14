@@ -1,4 +1,12 @@
 // app/assets/stylesheets/components/_map.scss
+.map-boxx > div {
+  width: 90%;
+  height: 250px;
+  border-radius: 4px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+}
+
+
 .mapboxgl-popup {
   max-width: 200px;
   border-radius: 4px;

@@ -37,12 +37,12 @@
       <p>Réservations effectuées à date : <%= @client_data_hash[:bookings_count].to_i %></p>
       <p>Total dépensé : <%= @client_data_hash[:revenues].to_i %>€</p>
     </div>
-    <p class="mt-1 text-center"><%= link_to "Voir profil", client_path(@booking.client), class: "px-2 text-decoration-none" %></p>
+    <p class="mt-2 text-center"><%= link_to "Voir profil", client_path(@booking.client), class: "px-2 text-decoration-none" %></p>
   </div>
 
 
 
-  <div class="d-flex mt-3 mx-4 border-bottom pb-3">
+  <div class="d-flex mt-4 mx-4 border-bottom pb-3">
     <div class="finish-details-card flex-column align-items-start justify-content-start">
       <p><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %></p>
       <p><i class="fa-solid fa-fire me-2"></i> <%= @booking.formule.name %></p>
@@ -61,9 +61,9 @@
   </div>
 
 
-  <p class="mx-4 mt-3"><i class="fa-solid fa-location-pin me-2"></i><%= @booking.formule.address_line %></p>
-  <div class="d-flex justify-content-center">
-    <div style="width: 90%; height: 250px;"
+  <p class="mx-4 mt-3"><i class="fa-solid fa-location-pin me-2"></i>Lieu : <%= @booking.formule.address_line %></p>
+  <div class="d-flex justify-content-center map-boxx">
+    <div
       data-controller="map"
       data-map-marker-value="<%= @marker.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
