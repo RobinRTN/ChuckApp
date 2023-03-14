@@ -1,3 +1,36 @@
 <div class="container wrapper">
+<div class="container wrapper">
+  <div class="px-3 pb-4 d-flex align-items-center">
+  <% if @previous_page == "clients_path" %>
+    <%= link_to clients_path || clients_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to root_path || clients_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+  <% end %>
+    <h4 class="m-0"></h4>
+  </div>
+
+  <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
+    <% if @client.photo.attached? %>
+      <%= cl_image_tag @client.photo.key, crop: :fill, class: "avatar-profile" %>
+    <% else %>
+      <% initials = "#{@client.first_name[0]}#{@client.last_name[0]}" %>
+      <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
+      <% circle_class = color_variations[@client.id % color_variations.size] %>
+      <div class="avatar-profile">
+        <div class="<%= circle_class %>"><%= initials %></div>
+      </div>
+      <% end%>
+    </div>
+    <h4 class= "d-flex justify-content-center pb-3"><%= @client.full_name %></h4>
+
+    
 
 </div>
