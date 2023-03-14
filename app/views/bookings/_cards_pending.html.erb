@@ -28,9 +28,7 @@
         <% end %>
         <p class="price-tag-paid mt-2"><%= booking.price.to_i %>€</p>
       </div>
-      <%= link_to refuse_booking_path(booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir refuser cette demande ?');" do %>
-        <p><i class="fa-solid fa-xmark refuse"></i></p>
-      <% end %>
+
     </div>
   </div>
 <% end %>
