@@ -1,5 +1,7 @@
 .logo img {
-  height: 40px;
+  height: 35px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  border-radius: 50%;
 }
 
 
@@ -65,12 +67,12 @@
   #top-navbar {
     max-width: 500px;
     margin: 0 auto;
-    padding-left: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 2em;
     padding-right: 2em;
     margin-bottom: 1.5em;
-    margin-bottom: 1em;
     .notification-bell {
-      padding-top: 5px;
       color: $l-blue-sp;
       font-size: 1.4em;
     }
