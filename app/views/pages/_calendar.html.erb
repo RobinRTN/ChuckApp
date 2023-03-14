@@ -19,7 +19,7 @@
           <% end  %>
           <% bookings.each do |booking| %>
             <div class="card-header">
-             <%= link_to booking_path(booking), class: "dropdown-item" do %>
+             <%= link_to booking_path(booking, previous_page: "root_path"), class: "dropdown-item" do %>
                 <p class="btn-time-slot-calendar"><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
              <% end  %>
             </div>

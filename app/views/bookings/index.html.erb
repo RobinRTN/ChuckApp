@@ -27,35 +27,35 @@
         <% unless @today_bookings.empty? %>
           <em>Aujourd'hui</em>
           <% @today_bookings.each do |booking| %>
-            <%= render partial: 'cards', locals: { booking: booking } %>
+            <%= render partial: 'cards', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @tomorrow_bookings.empty? %>
           <em>Demain</em>
           <% @tomorrow_bookings.each do |booking| %>
-            <%= render partial: 'cards', locals: { booking: booking } %>
+            <%= render partial: 'cards', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @this_week_bookings.empty? %>
           <em>Cette semaine</em>
           <% @this_week_bookings.each do |booking| %>
-            <%= render partial: 'cards', locals: { booking: booking } %>
+            <%= render partial: 'cards', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @next_week_bookings.empty? %>
           <em>Semaine prochaine</em>
           <% @next_week_bookings.each do |booking| %>
-            <%= render partial: 'cards', locals: { booking: booking } %>
+            <%= render partial: 'cards', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @next_bookings.empty? %>
           <em>Prochainement</em>
           <% @next_bookings.each do |booking| %>
-            <%= render partial: 'cards', locals: { booking: booking } %>
+            <%= render partial: 'cards', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
       </div>
@@ -64,42 +64,42 @@
         <% unless @today_pending_bookings.empty? %>
           <em>Aujourd'hui</em>
           <% @today_pending_bookings.each do |booking| %>
-            <%= render partial: 'cards_pending', locals: { booking: booking } %>
+            <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @tomorrow_pending_bookings.empty? %>
           <em>Demain</em>
           <% @tomorrow_pending_bookings.each do |booking| %>
-            <%= render partial: 'cards_pending', locals: { booking: booking } %>
+            <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @this_week_pending_bookings.empty? %>
           <em>Cette semaine</em>
           <% @this_week_pending_bookings.each do |booking| %>
-            <%= render partial: 'cards_pending', locals: { booking: booking } %>
+            <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @next_week_pending_bookings.empty? %>
           <em>Semaine prochaine</em>
           <% @next_week_pending_bookings.each do |booking| %>
-            <%= render partial: 'cards_pending', locals: { booking: booking } %>
+            <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
 
         <% unless @next_month_pending_bookings.empty? %>
           <em>Prochainement</em>
           <% @next_month_pending_bookings.each do |booking| %>
-            <%= render partial: 'cards_pending', locals: { booking: booking } %>
+            <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>
       </div>
 
       <div class="reservation-en-passe" data-reservation-target="passe" style="display: none;">
         <% @passed_bookings.each do |booking| %>
-          <%= render partial: 'cards_passed', locals: { booking: booking } %>
+          <%= render partial: 'cards_passed', locals: { booking: booking, previous_page: "bookings_path" } %>
         <% end %>
       </div>
 

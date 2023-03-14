@@ -74,6 +74,7 @@ class BookingsController < ApplicationController
       lng: @booking.formule.longitude,
       info_window_html: render_to_string(partial: "info_window", locals: { booking: @booking })
     }
+    @previous_page = params[:format]
   end
 
   def index
