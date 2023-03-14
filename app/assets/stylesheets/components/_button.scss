@@ -85,6 +85,33 @@
   }
 }
 
+.client-block {
+  .btn-client.active {
+    text-decoration: none;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    transition: none !important;
+    background: $blue-sp;
+    color: $ll-blue-sp;
+    font-size: 1em;
+    font-weight: 400;
+    box-shadow: 0 0 4px $blue-sp;
+    border: none;
+  }
+
+  .btn-client {
+    text-decoration: none;
+    padding: 0.2em 0.55em;
+    border-radius: 3em;
+    transition: none !important;
+    background: none;
+    color: $blue-sp;
+    font-size: 1em;
+    font-weight: 400;
+    border: none;
+  }
+}
+
 .profile-box-btn {
   background-color: $white;
   color: $l-blue-sp;

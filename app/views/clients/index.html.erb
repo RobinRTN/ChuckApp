@@ -8,40 +8,52 @@
         </div>
       <% end %>
     </div>
-    <% @clients.each do |client| %>
-        <%= link_to client_path(client), class: "text-decoration-none" do %>
-          <div class="d-flex align-items-center card-horizontal-client justify-content-between">
-            <div class="d-flex">
-              <% if client.photo.attached? %>
-                <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
-              <% else %>
-                <% initials = "#{client.first_name[0]}#{client.last_name[0]}" %>
-                <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
-                <% circle_class = color_variations[client.id % color_variations.size] %>
-                <div class="avatar-large">
-                  <div class="<%= circle_class %>"><%= initials %></div>
-                </div>
-               <% end%>
-              <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
-                <h4 class="card-fullname"> <%= client.full_name %></h4>
-                <%# <p class="card-location"> <%= client.billing_city %>
-              </div>
-            </div>
-            <div class="phone-message-card-horizontal d-flex align-items-center justify-content-center">
-              <%= link_to "tel:#{client.phone_number}", class:"text-decoration-none" do %>
-                <i class="fa-solid fa-phone"></i>
-              <% end %>
 
-              <%= link_to "mailto:#{client.email}", class:"text-decoration-none" do %>
-                <i class="fa-solid fa-envelope"></i>
-              <% end %>
-            </div>
-          </div>
+    <div class="mx-3 client-block" data-controller="client">
+      <ul class="nav nav-pills mb-4 d-flex justify-content-center align-items-center">
+        <li class="nav-item me-3">
+          <button class="btn-client" data-action="click->client#selectClient" id="client-groupe" data-client-target="buttonGroupe" data-block="groupe">Groupes</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn-client active" data-action="click->client#selectClient" id="client-contact" data-client-target="buttonContact" data-block="contact">Contacts</button>
+        </li>
+      </ul>
+
+      <div class="block-clients" data-client-target="contact" style="display: block;">
+
+        <% @clients.each do |client| %>
+            <%= link_to client_path(client), class: "text-decoration-none" do %>
+              <div class="d-flex align-items-center card-horizontal-client justify-content-between">
+                <div class="d-flex">
+                  <% if client.photo.attached? %>
+                    <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
+                  <% else %>
+                    <% initials = "#{client.first_name[0]}#{client.last_name[0]}" %>
+                    <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
+                    <% circle_class = color_variations[client.id % color_variations.size] %>
+                    <div class="avatar-large">
+                      <div class="<%= circle_class %>"><%= initials %></div>
+                    </div>
+                  <% end%>
+                  <div class="card-client-horizontal-text d-flex flex-column justify-content-center ">
+                    <h4 class="card-fullname"> <%= client.full_name %></h4>
+                    <%# <p class="card-location"> <%= client.billing_city %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% if @clients.empty? %>
+          <h4 class= "ms-3">Aucun client enregistré.</h4>
         <% end %>
-      <% end %>
-    <% if @clients.empty? %>
-      <h4 class= "ms-3">Aucun client enregistré.</h4>
-    <% end %>
+
+      </div>
+
+      <div class="block-groupes" data-client-target="groupe" style="display: none;">
+      </div>
+
+
+    </div>
 
 
 

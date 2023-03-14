@@ -7,6 +7,9 @@ import { application } from "./application"
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
+import ClientController from "./client_controller"
+application.register("client", ClientController)
+
 import CopyToClipboardController from "./copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
 

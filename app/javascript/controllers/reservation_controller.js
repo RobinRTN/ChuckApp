@@ -80,11 +80,11 @@ export default class extends Controller {
         selectedButton.click();
       } else {
         // show default block if button not found
-        this.buttonDutureTarget.click();
+        this.buttonFutureTarget.click();
       }
     } else {
       // show default block if no selection found in sessionStorage
-      this.buttonDutureTarget.click();
+      this.buttonFutureTarget.click();
     }
   }
 }
