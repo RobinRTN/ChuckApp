@@ -537,12 +537,54 @@
   }
  }
 
- .group-card {
-  text-decoration: none;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-  padding: 0.5em 1em;
-  margin: 0.6em;
-  width: 40%;
- }
+.groupes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1em;
+  .group-card {
+    text-decoration: none;
+    padding: 1.4em 0.7em;
+    border-radius: 4px;
+    color: $white;
+    h4 {
+      margin: 0;
+      font-size: 1em;
+    }
+    p {
+      font-size: 0.9em;
+      font-weight: 300;
+    }
+  }
+  .group-card-add {
+    text-decoration: none;
+    padding: 1.4em 0.7em;
+    border-radius: 4px;
+    color: $white;
+    background-color: none;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    i {
+      color: $ll-blue-sp;
+      font-size: 2em;
+    }
+  }
+  .group-color-0 {
+    background-color: $blue-sp;
+    box-shadow: 0 0 18px -4px $blue-sp;
+  }
+
+  .group-color-1 {
+    background-color: $green-sp;
+    box-shadow: 0 0 18px -4px $green-sp;
+  }
+
+  .group-color-2 {
+    background-color: $yellow-sp;
+    box-shadow: 0 0 18px -4px $yellow-sp;
+  }
+
+  .group-color-3 {
+    background-color: $red-sp;
+    box-shadow: 0 0 18px -4px $red-sp;
+  }
+}

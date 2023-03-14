@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_validation :generate_qr_code
   before_validation :full_address
   before_destroy :delete_formules
+  before_destroy :delete_groups
 
 
   devise :database_authenticatable, :registerable,
@@ -19,6 +20,7 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :groups
   has_many :clients
   has_many :bookings
   has_many :formules
@@ -35,6 +37,10 @@ class User < ApplicationRecord
 
   def delete_formules
     self.formules.destroy_all
+  end
+
+  def delete_groups
+    self.groups.destroy_all
   end
 
   def generate_qr_code

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_090354) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_214927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_090354) do
     t.index ["user_id"], name: "index_formules_on_user_id"
   end
 
+  create_table "group_clients", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_group_clients_on_client_id"
+    t.index ["group_id"], name: "index_group_clients_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
   create_table "packages", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -155,5 +172,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_090354) do
   add_foreign_key "bookings", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "formules", "users"
+  add_foreign_key "group_clients", "clients"
+  add_foreign_key "group_clients", "groups"
+  add_foreign_key "groups", "users"
   add_foreign_key "packages", "users"
 end

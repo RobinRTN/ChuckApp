@@ -3,6 +3,8 @@ class Client < ApplicationRecord
   before_validation :split_full_name, if: -> { full_name.present? && (first_name.blank? || last_name.blank?) }
 
   belongs_to :user
+  has_many :group_clients, dependent: :destroy
+  has_many :groups, through: :group_clients
   has_many :bookings
   has_one_attached :photo
 

@@ -9,6 +9,8 @@ class ClientsController < ApplicationController
   def index
     clients = current_user.clients
     @clients = clients.order(:full_name)
+    groups = current_user.groups
+    @groups = groups.order(:name)
   end
 
   def show

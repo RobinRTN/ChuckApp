@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :formules
   resources :packages
+  resources :groups
 
   # Defines the root path route ("/")
   # root "articles#index"

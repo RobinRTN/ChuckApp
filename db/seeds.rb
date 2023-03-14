@@ -17,6 +17,9 @@ Client.destroy_all
 puts "Deleting Formules"
 Formule.destroy_all
 
+puts "Deleting Groups"
+Group.destroy_all
+
 puts "Deleting Users"
 User.destroy_all
 
@@ -56,12 +59,13 @@ u2.profile_picture.attach(
   content_type: 'image/jpg'
 )
 u2.save!
+puts "Just created the two founders' pictures successfully"
+puts "_________________"
 
 f1 = Formule.create!({ user_id: User.first.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 60, price: 80, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
 f2 = Formule.create!({ user_id: User.first.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 120, price: 150, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
 f3 = Formule.create!({ user_id: User.first.id, name: "Yoga Pambolta", field: 'Yoga', duration: 60, price: 100, description: "Yoga des provinces Nord du Pakistan, parfait pour la flexibilité des ischiojambiers" })
-
-puts "Just created the two founders' pictures successfully"
+puts "Just created the 3 formula successfully"
 puts "_________________"
 
 c1 = Client.create!({ user_id: User.first.id, full_name: "Corentin Bénard", email: 'corentinbenard@test.com', payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 rue de l'Eglise", billing_zip_code: 75015, billing_city: "Paris" })
@@ -158,10 +162,20 @@ c13.photo.attach(
 )
 c13.save!
 
-
-puts "Just created the 3 formula successfully"
+puts "Just uploaded the pictures for clients successfully"
 puts "_________________"
 
+g1 = Group.create!(name: 'Yoga débutants', user_id: User.first.id)
+g2 = Group.create!(name: 'Super clients', user_id: User.first.id)
+g3 = Group.create!(name: 'Yoga experts', user_id: User.first.id)
+
+# Add clients to groups
+g1.clients << [c1, c2, c3, c4, c5]
+g2.clients << [c6, c7, c8, c9]
+g3.clients << [c10, c11, c12, c13]
+
+puts "Just created 3 groups with clients successfully"
+puts "_________________"
 # set the current month as a range of dates
 current_month_range = Date.current.all_month
 
