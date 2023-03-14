@@ -199,6 +199,12 @@
     font-size: 14px;
     box-shadow: 0 0 3px $blue-sp;
   }
+  & .left-side {
+      i {
+        color: $white;
+      }
+
+  }
 }
 
 .card-horizontal-booking-passed {
