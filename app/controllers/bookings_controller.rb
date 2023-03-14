@@ -11,8 +11,8 @@ class BookingsController < ApplicationController
     interval = current_user.formules.minimum(:duration)
     slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('21:00pm') - slot_duration
-    days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
+    end_time = Time.zone.parse('19:00pm') - slot_duration
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
     @user_bookings = current_user.bookings.upcoming
     # Generate the available datetimes using the generate_datetimes function
@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
     slot_duration = @formule.duration
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('21:00pm') - slot_duration
-    days_of_week = ["Monday", "Wednesday", "Thursday", "Friday"]
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
     @user_bookings = @user.bookings.upcoming
     # Generate the available datetimes using the generate_datetimes function
