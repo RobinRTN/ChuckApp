@@ -1,5 +1,4 @@
 .card-horizontal-client {
-  color: $dd-blue-sp;
   text-decoration: none;
   background-color: $white;
   border-radius: 4px;
@@ -8,6 +7,7 @@
   margin: 0.4em 0.6em;
   border-left: 3px solid $blue-sp;
   & h4 {
+    color: $dd-blue-sp;
     font-size: 1em;
     margin-bottom: 0;
   }
@@ -21,8 +21,10 @@
     overflow: hidden;
   }
   & .phone-message-card-horizontal {
-    color: $l-blue-sp;
-    font-size: 1.1em;
+    i {
+      color: $l-blue-sp;
+      font-size: 1.1em;
+    }
   }
 
   .fa-phone {

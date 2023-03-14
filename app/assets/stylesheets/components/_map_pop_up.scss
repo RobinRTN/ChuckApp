@@ -9,4 +9,20 @@
   h4 {
     font-size: 1.2em;
   }
+  .button-map {
+    button {
+    text-decoration: none;
+    border-radius: 4px;
+    background: $l-blue-sp;
+    color: $ll-blue-sp;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    font-weight: 400;
+    border: none;
+    font-family: $headers-font;
+    }
+  }
+}
+
+.mapboxgl-marker svg path{
+  fill: $blue-sp !important;
 }

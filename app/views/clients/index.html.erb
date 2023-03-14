@@ -9,7 +9,8 @@
       <% end %>
     </div>
     <% @clients.each do |client| %>
-        <%= link_to client_path(client), class: "d-flex align-items-center card-horizontal-client justify-content-between" do %>
+        <%= link_to client_path(client), class: "text-decoration-none" do %>
+          <div class="d-flex align-items-center card-horizontal-client justify-content-between">
             <div class="d-flex">
               <% if client.photo.attached? %>
                 <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-large" %>
@@ -26,12 +27,18 @@
                 <%# <p class="card-location"> <%= client.billing_city %>
               </div>
             </div>
-            <div class="phone-message-card-horizontal">
-              <i class="fa-solid fa-phone"></i>
-              <i class="fa-solid fa-envelope"></i>
+            <div class="phone-message-card-horizontal d-flex align-items-center justify-content-center">
+              <%= link_to "tel:#{client.phone_number}", class:"text-decoration-none" do %>
+                <i class="fa-solid fa-phone"></i>
+              <% end %>
+
+              <%= link_to "mailto:#{client.email}", class:"text-decoration-none" do %>
+                <i class="fa-solid fa-envelope"></i>
+              <% end %>
             </div>
-            <% end %>
+          </div>
         <% end %>
+      <% end %>
     <% if @clients.empty? %>
       <h4 class= "ms-3">Aucun client enregistré.</h4>
     <% end %>
