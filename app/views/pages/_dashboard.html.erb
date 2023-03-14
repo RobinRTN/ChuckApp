@@ -36,8 +36,13 @@
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>
     </div>
 
-      <div class="calendar my-5" id="events_calendar">
+      <div class="calendar mt-5 mb-2" id="events_calendar">
         <%= render partial: 'calendar', locals: { events: @calendar_bookings }  %>
+      </div>
+      <div class="legende-card d-flex align-items-center justify-content-center mb-4">
+        <p class="me-2"><span class="dot-small me-1"></span>Peu chargé</p>
+        <p> ---- </p>
+        <p class="ms-2"><span class="dot-big me-1"></span>Très chargé</p>
       </div>
 
 

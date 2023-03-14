@@ -496,3 +496,30 @@
 
   }
  }
+
+ .legende-card {
+  font-size: 0.8em;
+
+  .dot-small {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $l-blue-sp;
+  }
+  .dot-medium {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $blue-sp;
+  }
+
+  .dot-big {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $d-blue-sp;
+  }
+ }
