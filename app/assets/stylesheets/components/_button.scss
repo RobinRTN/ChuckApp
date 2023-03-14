@@ -241,4 +241,32 @@
   }
 }
 
+.btn-show-refuse {
+  p {
+    margin-bottom: 0px;
+  }
+  padding: 0.2em 0.55em;
+  background-color: $red-sp;
+  border-radius: 3em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  color: $ll-blue-sp;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1em;
+  width: 20%;
+}
 
+.btn-show-accept {
+  p {
+    margin-bottom: 0px;
+  }
+  padding: 0.2em 0.55em;
+  background-color: $green-sp;
+  border-radius: 3em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  color: $ll-blue-sp;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1em;
+  width: 20%;
+}
