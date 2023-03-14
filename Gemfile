@@ -88,3 +88,4 @@ gem "cloudinary"
 gem 'rqrcode'
 gem 'chunky_png'
 gem "simple_calendar", "~> 2.4"
+gem "geocoder"

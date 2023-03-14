@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   before_validation :set_token
   before_validation :generate_qr_code
+  before_validation :full_address
   before_destroy :delete_formules
 
 
@@ -64,5 +65,9 @@ class User < ApplicationRecord
     else
       "http://localhost:3000/landing_reservation/#{token}"
     end
+  end
+
+  def full_address
+    self.address = "#{billing_address_line1}, #{billing_city}" if billing_address_line1.present? && billing_city.present?
   end
 end
