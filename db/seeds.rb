@@ -175,7 +175,7 @@ current_month_range = Date.current.all_month
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c1.id
   booking.save
@@ -196,7 +196,7 @@ puts "_________________"
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c2.id
   booking.save
@@ -217,7 +217,7 @@ puts "_________________"
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c3.id
   booking.save
@@ -239,7 +239,7 @@ next_month_range = (Date.current + 1.month).all_month
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c4.id
   booking.save
@@ -259,7 +259,7 @@ puts "_________________"
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c5.id
   booking.save
@@ -275,7 +275,7 @@ end
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c6.id
   booking.save
@@ -291,7 +291,7 @@ end
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c7.id
   booking.save
@@ -307,7 +307,7 @@ end
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c8.id
   booking.save
@@ -323,7 +323,7 @@ end
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
   booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
-  booking.message = Faker::Lorem.sentence # generate a random booking message
+  booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
   booking.client_id = c9.id
   booking.save
