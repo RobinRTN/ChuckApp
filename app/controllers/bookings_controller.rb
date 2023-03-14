@@ -85,7 +85,7 @@ class BookingsController < ApplicationController
     @next_bookings = user_bookings.next_bookings
     @next_month_bookings = user_bookings.next_month
     @after_bookings = user_bookings.after
-    @passed_bookings = user_bookings.passed
+    @passed_bookings = user_bookings.passed_confirmed
 
     @today_pending_bookings = user_bookings.today_pending
     @tomorrow_pending_bookings = user_bookings.tomorrow_pending
