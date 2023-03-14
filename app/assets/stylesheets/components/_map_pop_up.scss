@@ -1,0 +1,12 @@
+// app/assets/stylesheets/components/_map.scss
+.mapboxgl-popup {
+  max-width: 200px;
+  border-radius: 4px;
+}
+
+.mapboxgl-popup-content {
+  color: $dd-blue-sp;
+  h4 {
+    font-size: 1.2em;
+  }
+}

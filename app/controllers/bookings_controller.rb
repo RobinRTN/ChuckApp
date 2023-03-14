@@ -69,6 +69,12 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @client_data_hash = get_client_data(@booking.client.id)
+    @marker = {
+      lat: @booking.formule.latitude,
+      lng: @booking.formule.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { booking: @booking },
+      marker_html: render_to_string(partial: "marker"))
+    }
   end
 
   def index
