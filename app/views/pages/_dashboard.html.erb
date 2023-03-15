@@ -3,7 +3,7 @@
     <h4 class="my-3"></h4>
     <div class="revenue-block mb-5"  data-controller="revenu">
       <p class="my-4 round-button-grey"><%= l(Date.today, format: '%A %e %B').capitalize %></p>
-      <em class="mb-3">Revenus mensuels 💸</em>
+      <em class="mb-3">Mois en cours 💸</em>
       <div class="d-flex align-items-center justify-content-between my-3">
 
         <div class="revenue-card" data-action="click->revenu#collapse">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="revenue-card-projeté" data-action="click->revenu#collapse">
-          <p class="first-line">Totaux au <em><%= l(Date.today.end_of_month, format: '%e %B') %></em></p>
+          <p class="first-line">Total au <em><%= l(Date.today.end_of_month, format: '%e %B') %></em></p>
           <div class="d-flex align-items-center justify-content-start">
             <i class="fa-sharp fa-solid fa-coins me-2"></i>
             <h4> <%= @projected_month_revenues.to_i %> € </h4>
@@ -40,9 +40,9 @@
         <%= render partial: 'calendar', locals: { events: @calendar_bookings }  %>
       </div>
       <div class="legende-card d-flex align-items-center justify-content-center mb-4">
-        <p class="me-2"><span class="dot-small me-1"></span>Peu chargé</p>
+        <p class="me-2"><span class="dot-small me-1"></span>Petite journée</p>
         <p> ---- </p>
-        <p class="ms-2"><span class="dot-big me-1"></span>Très chargé</p>
+        <p class="ms-2"><span class="dot-big me-1"></span>Grosse journée</p>
       </div>
 
 
