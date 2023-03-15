@@ -42,6 +42,16 @@
         font-family: $headers-font;
         margin-bottom: 0px;
       }
+      .red-dot {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        background-color: $red-sp;
+        border-radius: 50%;
+      }
     }
     .nav-item-bottom.active {
       i {

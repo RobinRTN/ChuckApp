@@ -13,7 +13,12 @@
   <div class="reservation-block mx-3 mt-3" data-controller="reservation">
     <ul class="nav nav-pills mb-3 d-flex justify-content-center align-items-center">
       <li class="nav-item me-1">
-        <button class="btn-reservation" data-action="click->reservation#selectReservation" id="reservation-attente" data-reservation-target="buttonAttente" data-block="attente">En attente</button>
+        <button class="btn-reservation" data-action="click->reservation#selectReservation" id="reservation-attente" data-reservation-target="buttonAttente" data-block="attente">
+          <%unless @pending_booking.nil? %>
+            <span class='dot'></span>
+          <%end %>
+          En attente
+        </button>
       </li>
       <li class="nav-item me-1">
         <button class="btn-reservation active" data-action="click->reservation#selectReservation" id="reservation-future" data-reservation-target="buttonFuture" data-block="future">Futures</button>
@@ -89,9 +94,9 @@
           <% end %>
         <%end%>
 
-        <% unless @next_month_pending_bookings.empty? %>
+        <% unless @after_pending_bookings.empty? %>
           <em>Prochainement</em>
-          <% @next_month_pending_bookings.each do |booking| %>
+          <% @after_pending_bookings.each do |booking| %>
             <%= render partial: 'cards_pending', locals: { booking: booking, previous_page: "bookings_path" } %>
           <% end %>
         <%end%>

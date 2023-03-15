@@ -59,6 +59,16 @@
 }
 
 .reservation-block {
+  .dot {
+    position: absolute;
+    top: 17.5%;
+    left: 32%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: $red-sp;
+    border-radius: 50%;
+  }
   .btn-reservation.active {
     text-decoration: none;
     padding: 0.2em 0.55em;
