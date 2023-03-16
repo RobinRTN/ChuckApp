@@ -315,3 +315,12 @@
   font-size: 1em;
   width: 20%;
 }
+
+.round-square-grey {
+  background-color: lightgrey;
+  padding: 0.2em 0.7em;
+  border-radius: 4px;
+  i {
+    color: $ll-blue-sp;
+  }
+}
