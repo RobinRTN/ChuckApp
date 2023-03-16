@@ -68,33 +68,33 @@ f3 = Formule.create!({ user_id: User.first.id, name: "Yoga Pambolta", field: 'Yo
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
-c1 = Client.create!({ user_id: User.first.id, full_name: "Corentin Bénard", email: 'corentinbenard@test.com', payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 rue de l'Eglise", billing_zip_code: 75015, billing_city: "Paris" })
+c1 = Client.create!({ user_id: User.first.id, phone_number: "0633278600", full_name: "Corentin Bénard", email: 'corentinbenard@test.com', payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 rue de l'Eglise", billing_zip_code: 75015, billing_city: "Paris" })
 
-c2 = Client.create!( { user_id: User.first.id, full_name: "Pierre Schumacher", email: 'pierreschumacher@test.com', payment_BIC: "BFBKFRT1", payment_IBAN: "FR3330002025500000157841Z25", billing_address_line1: "43 rue de Kleber", billing_zip_code: 75008, billing_city: "Paris" })
+c2 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Pierre Schumacher", email: 'pierreschumacher@test.com', payment_BIC: "BFBKFRT1", payment_IBAN: "FR3330002025500000157841Z25", billing_address_line1: "43 rue de Kleber", billing_zip_code: 75008, billing_city: "Paris" })
 
-c3 = Client.create!( { user_id: User.first.id, full_name: "Hugo Thibault", email: 'hugothibault@test.com', payment_BIC: "FFBKFRT1", payment_IBAN: "FR3332202025500000157841Z25", billing_address_line1: "43 rue du taudis", billing_zip_code: 75005, billing_city: "Paris" })
+c3 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Hugo Thibault", email: 'hugothibault@test.com', payment_BIC: "FFBKFRT1", payment_IBAN: "FR3332202025500000157841Z25", billing_address_line1: "43 rue du taudis", billing_zip_code: 75005, billing_city: "Paris" })
 
-c4 = Client.create!( { user_id: User.first.id, full_name: "Hadrien Sertin", email: 'hadriensertin@test.com', payment_BIC: "FFBKFSS1", payment_IBAN: "FR3332202025500000157841895", billing_address_line1: "43 rue du pont", billing_zip_code: 93500, billing_city: "Pantin" })
+c4 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Hadrien Sertin", email: 'hadriensertin@test.com', payment_BIC: "FFBKFSS1", payment_IBAN: "FR3332202025500000157841895", billing_address_line1: "43 rue du pont", billing_zip_code: 93500, billing_city: "Pantin" })
 
-c5 = Client.create!( { user_id: User.first.id, full_name: "Mélanie Guichard", email: 'melanieguichard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+c5 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Mélanie Guichard", email: 'melanieguichard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
-c6 = Client.create!( { user_id: User.first.id, full_name: "Malo Bedel", email: 'malobedel@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+c6 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Malo Bedel", email: 'malobedel@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
-c7 = Client.create!( { user_id: User.first.id, full_name: "Vincent Rocchietta", email: 'vincentrocchiette@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+c7 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Vincent Rocchietta", email: 'vincentrocchiette@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
-c8 = Client.create!( { user_id: User.first.id, full_name: "Gautier Roselli", email: 'gautierroselli@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+c8 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Gautier Roselli", email: 'gautierroselli@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
-c9 = Client.create!( { user_id: User.first.id, full_name: "Dominique Girard", email: 'dominiquegirard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+c9 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Dominique Girard", email: 'dominiquegirard@test.com', payment_BIC: "FFBKPSS1", payment_IBAN: "FR3992202025500000157841895", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
-c10 = Client.create!( { user_id: User.first.id, full_name: "Vanille Fremaux", email: 'vanillefremaux@test.com', payment_BIC: "FFBKPSS3", payment_IBAN: "FR3992202025500000157841866", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" })
+c10 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Vanille Fremaux", email: 'vanillefremaux@test.com', payment_BIC: "FFBKPSS3", payment_IBAN: "FR3992202025500000157841866", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" })
 
-c11 = Client.create!( { user_id: User.first.id, full_name: "Victor Launay", email: 'victorlaunay@test.com', payment_BIC: "FFBKAZS3", payment_IBAN: "FR3992202025500000157842366", billing_address_line1: "15 avenue de la trace", billing_zip_code: 75018, billing_city: "Paris" })
+c11 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Victor Launay", email: 'victorlaunay@test.com', payment_BIC: "FFBKAZS3", payment_IBAN: "FR3992202025500000157842366", billing_address_line1: "15 avenue de la trace", billing_zip_code: 75018, billing_city: "Paris" })
 
-c12 = Client.create!( { user_id: User.first.id, full_name: "Lenny Krief", email: 'lennykrief@test.com', payment_BIC: "PPBKPSS3", payment_IBAN: "FR3992202025500000157832166", billing_address_line1: "17 avenue de Londres", billing_zip_code: 75009, billing_city: "Paris" })
+c12 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Lenny Krief", email: 'lennykrief@test.com', payment_BIC: "PPBKPSS3", payment_IBAN: "FR3992202025500000157832166", billing_address_line1: "17 avenue de Londres", billing_zip_code: 75009, billing_city: "Paris" })
 
-c13 = Client.create!( { user_id: User.first.id, full_name: "Enzo Dubos", email: 'enzodubos@test.com', payment_BIC: "FFIOPSS3", payment_IBAN: "FR3992202025500000157848886", billing_address_line1: "22 avenue de Gauche", billing_zip_code: 75019, billing_city: "Paris" })
+c13 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Enzo Dubos", email: 'enzodubos@test.com', payment_BIC: "FFIOPSS3", payment_IBAN: "FR3992202025500000157848886", billing_address_line1: "22 avenue de Gauche", billing_zip_code: 75019, billing_city: "Paris" })
 
-c14 = Client.create!( { user_id: User.first.id, full_name: "Will Smith", email: 'willsmith@test.com', payment_BIC: "USBKPSS3", payment_IBAN: "FR3222202025500000157841866", billing_address_line1: "15 avenue de New York", billing_zip_code: 75020, billing_city: "Paris" })
+c14 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", full_name: "Will Smith", email: 'willsmith@test.com', payment_BIC: "USBKPSS3", payment_IBAN: "FR3222202025500000157841866", billing_address_line1: "15 avenue de New York", billing_zip_code: 75020, billing_city: "Paris" })
 
 puts "Just created the 10 clients successfully"
 puts "_________________"

@@ -1,5 +1,4 @@
 <div class="container wrapper">
-<div class="container wrapper">
   <div class="px-3 pb-4 d-flex align-items-center">
   <% if @previous_page == "clients_path" %>
     <%= link_to clients_path || clients_path, class: "text-decoration-none" do %>
@@ -22,15 +21,35 @@
       <%= cl_image_tag @client.photo.key, crop: :fill, class: "avatar-profile" %>
     <% else %>
       <% initials = "#{@client.first_name[0]}#{@client.last_name[0]}" %>
-      <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
+      <% color_variations = ['circle-pink-big', 'circle-green-big', 'circle-red-big', 'circle-orange-big'] %>
       <% circle_class = color_variations[@client.id % color_variations.size] %>
-      <div class="avatar-profile">
-        <div class="<%= circle_class %>"><%= initials %></div>
-      </div>
+      <div class="<%= circle_class %>"><%= initials %></div>
       <% end%>
     </div>
     <h4 class= "d-flex justify-content-center pb-3"><%= @client.full_name %></h4>
 
-    
+    <div class="d-flex justify-content-center align-items-center icon-cards my-4">
+      <a href="https://wa.me/<%=@client.phone_number%>" target="_blank">
+        <i class="whatsapp-card fa-brands fa-whatsapp me-5"></i>
+      </a>
+      <a href="tel:<%=@client.phone_number%>">
+        <i class="call-card fa-solid fa-phone me-5"></i>
+      </a>
+      <a href="mailto:<%=@client.email%>" target="_blank">
+        <i class="mail-card fa-regular fa-envelope"></i>
+      </a>
+    </div>
+
+    <div class="card-details-show-client">
+      <h4 class="mb-3">Informations client</h4>
+      <p><i class="mb-2 fa-solid fa-phone me-2"></i> <%= @client.phone_number %></p>
+      <p><i class="fa-regular fa-envelope me-2"></i> <%= @client.email %></p>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mt-3">
+      <p class="button-show-client"><i class="fa-solid fa-link me-2"></i>Partager lien</p>
+      <p class="button-show-client">Ajouter une réservation</p>
+    </div>
+
 
 </div>

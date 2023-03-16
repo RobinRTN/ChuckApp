@@ -324,3 +324,21 @@
     color: $blue-sp;
   }
 }
+
+.button-show-client {
+  text-decoration: none;
+  padding: 0.5em 0.8em;
+  border-radius: 4px;
+  transition-duration: 0.8s;
+  background: $white;
+  color: $blue-sp;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  margin: 0.6em;
+  font-size: 0.9em;
+  font-weight: 500;
+  width: 45%;
+  text-align: center;
+  p {
+    margin-bottom: none;
+  }
+}
