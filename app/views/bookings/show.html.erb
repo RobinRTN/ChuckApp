@@ -42,34 +42,12 @@
     <p class="round-square-grey"><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
   </div>
 
-  <div class="formule-block">
-    <div class="formule-card d-flex flex-column align-items-center justify-content-between">
-      <button class="d-flex align-items-center justify-content-between" type="button" name="formule_id" value="<%= @booking.formule.id %>">
-        <div class="d-flex flex-column align-items-start">
-          <div class="d-flex align-items-center justify-content-start">
-            <h4><%= @booking.formule.name %></h4>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal-<%= @booking.formule.id %>">
-              <p><i class="fa-sharp fa-solid fa-circle-question ms-2 mb-1"></i></p>
-            </a>
-          </div>
-          <p><%= @booking.formule.duration %> minutes</p>
-        </div>
-          <p class="btn-disponibilites"><%= @booking.formule.price.to_i %> €</p>
-      </button>
-    </div>
-  </div>
-
-  <div class="modal fade" id="descriptionModal-<%= @booking.formule.id %>" tabindex="-1" aria-labelledby="descriptionModalLabel-<%= @booking.formule.id %>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h4><%= @booking.formule.name %> :</h4>
-          <p><%= @booking.formule.description %></p>
-        </div>
-      </div>
+    <h4 class="h6 mx-4">Détails de la réservation</h4>
+<div class="d-flex mt-2 mx-4 border-bottom pb-3">
+    <div class="finish-details-card flex-column align-items-start justify-content-start">
+      <p><i class="fa-solid fa-fire me-2"></i> <%= @booking.formule.name %></p>
+      <p><i class="fa-solid fa-clock me-2"></i> <%= @booking.formule.duration %> minutes</p>
+      <p class="btn-disponibilites"><i class="fa-solid fa-coins me-2"></i> <%= @booking.formule.price.to_i %> €</p>
     </div>
   </div>
 
