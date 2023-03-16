@@ -54,14 +54,19 @@
 
 
   <% unless @booking.message.nil? %>
-    <div class="mt-5 pb-3 message-card mx-3">
-    <h4>Message du client</h4>
+    <div class="mt-5 pb-3 mx-3">
+    <h4 class="h6">Message du client</h4>
       <p><%= @booking.message %></p>
-      <%= link_to "mailto:#{@booking.client.email}", class:"text-decoration-none" do %>
-        <p>Répondre par email</p>
-      <% end %>
+      <div class="d-flex justify-content-center align-items-center icon-cards my-4">
+        <i class="whatsapp-card fa-brands fa-whatsapp me-5"></i>
+        <i class="mail-card fa-regular fa-envelope me-5"></i>
+        <i class="call-card fa-solid fa-phone"></i>
+      </div>
+      <div class="d-flex justify-content-center">
+        <%# <p>Répondre au message</p> %>
+      </div>
     </div>
-      <% end %>
+  <% end %>
 
 
 

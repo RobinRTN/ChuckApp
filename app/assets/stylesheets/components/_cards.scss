@@ -563,8 +563,45 @@
   }
 }
 
-.message-card {
-  h4 {
-    font-size: 1em;
+.icon-cards {
+  .whatsapp-card {
+    background-color: $green-sp;
+    box-shadow: 0 0 11px -4px $green-sp;
+    border-radius: 4px;
+    color: $white;
+    font-size: 1.2em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
   }
+  .mail-card {
+    background-color: $pink-sp;
+    box-shadow: 0 0 11px -4px $pink-sp;
+    border-radius: 4px;
+    color: $white;
+    font-size: 1.2em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  .call-card {
+    background-color: $blue-sp;
+    box-shadow: 0 0 11px -4px $blue-sp;
+    border-radius: 4px;
+    color: $white;
+    font-size: 1.2em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
 }
