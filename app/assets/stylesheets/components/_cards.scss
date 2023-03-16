@@ -386,9 +386,8 @@
 }
 
 .formule-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   .formule-card button{
+    width: 93%;
     background-color: white;
     color: $dd-blue-sp;
     text-decoration: none;
@@ -405,11 +404,15 @@
     margin: 0;
   }
   h4 {
+    margin: 0;
     font-size: 0.9em;
-    font-weight: 600;
+    font-weight: 700;
+  }
+  i {
+    font-size: 0.8em;
+    color: $l-blue-sp;
   }
   & .btn-disponibilites {
-    margin-top: 1em;
     margin-left: 0.1em;
     text-decoration: none;
     padding: 0.2em 0.8em;

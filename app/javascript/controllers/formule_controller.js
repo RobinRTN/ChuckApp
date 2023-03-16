@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="formule"
 export default class extends Controller {
-  static targets = ['formuleButton', 'formuleIdInput', 'optionButtonOui', 'optionButtonNon', 'optionInput'];
+  static targets = ['formuleButton', 'formuleIdInput', 'optionButtonOui', 'optionButtonNon', 'optionInput', 'submitButton'];
 
   selectFormule(event) {
     event.preventDefault();
@@ -22,6 +22,9 @@ export default class extends Controller {
     inputFormule.value = formuleId
     console.log(inputFormule.value)
     console.log(`Formule selected: ${formuleId}`);
+
+    this.enableSubmitButton(); // call new method
+
   }
 
   selectOption(event) {
@@ -44,23 +47,38 @@ export default class extends Controller {
     inputOption.value = optionValue
     console.log(inputOption.value)
     console.log(`Option selected: ${optionValue}`);
+
+    this.enableSubmitButton(); // call new method
+
   }
 
-  checkForm(event) {
-    const form = event.currentTarget;
+  enableSubmitButton() {
+    const formuleId = this.formuleIdInputTarget.value;
+    const optionValue = this.optionInputTarget.value;
+    const submitButton = this.submitButtonTarget;
 
-    const formuleButton = form.querySelector('button[name="formule_id"].selected');
-    const bookingOptionButton = form.querySelector('button[name="booking_option"].selected');
-
-    if (!formuleButton) {
-      alert('Veuillez sélectionner une formule');
-      event.preventDefault();
-    }
-
-    if (!bookingOptionButton) {
-      alert('Veuillez sélectionner une option de réservation');
-      event.preventDefault();
+    if (formuleId && optionValue) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
     }
   }
+
+  // checkForm(event) {
+  //   const form = event.currentTarget;
+
+  //   const formuleButton = form.querySelector('button[name="formule_id"].selected');
+  //   const bookingOptionButton = form.querySelector('button[name="booking_option"].selected');
+
+  //   if (!formuleButton) {
+  //     alert('Veuillez sélectionner une formule');
+  //     event.preventDefault();
+  //   }
+
+  //   if (!bookingOptionButton) {
+  //     alert('Veuillez sélectionner une option de réservation');
+  //     event.preventDefault();
+  //   }
+  // }
 
 }

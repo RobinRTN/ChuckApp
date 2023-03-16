@@ -30,12 +30,18 @@
   padding: 0.5em 0;
   width: 100%;
   border-radius: 4px;
+  transition: all 0.15s;
   transition-duration: 0.8s;
   background: $blue-sp;
   color: $ll-blue-sp;
   font-weight: 400;
   box-shadow: 0 0 3px rgba(0,0,0,0.2);
   border: none;
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.95);
+  }
 }
 
 .ajouter-client-btn {
