@@ -84,12 +84,36 @@
       <div class="formule-block">
         <% @formules.each do |formule| %>
           <div class="formule-card d-flex flex-column align-items-center justify-content-between">
-            <button type="button" name="formule_id" value="<%= formule.id %>" data-action="click->formule#selectFormule" data-formule-target="formuleButton">
-              <h4><%= formule.name %></h4>
-              <p><%= formule.duration %> minutes</p>
-              <p class="btn-disponibilites"><%= formule.price.to_i %> €</p>
+            <button class="d-flex align-items-center justify-content-between" type="button" name="formule_id" value="<%= formule.id %>" data-action="click->formule#selectFormule" data-formule-target="formuleButton">
+              <div class="d-flex flex-column align-items-start">
+                <div class="d-flex align-items-center justify-content-start">
+                  <h4><%= formule.name %></h4>
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal-<%= formule.id %>">
+                    <p><i class="fa-sharp fa-solid fa-circle-question ms-2 mb-1"></i></p>
+                  </a>
+                </div>
+                <p><%= formule.duration %> minutes</p>
+              </div>
+                <p class="btn-disponibilites"><%= formule.price.to_i %> €</p>
             </button>
           </div>
+
+          <div class="modal fade" id="descriptionModal-<%= formule.id %>" tabindex="-1" aria-labelledby="descriptionModalLabel-<%= formule.id %>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h4><%= formule.name %> :</h4>
+                  <p><%= formule.description %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
         <% end %>
       </div>
 
@@ -104,7 +128,7 @@
         <input type="hidden" name="booking_option" value="" data-formule-target="optionInput">
       </div>
       <div class="d-flex justify-content-center">
-        <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large">
+        <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large " data-formule-target="submitButton" disabled>
       </div>
     </form>
 

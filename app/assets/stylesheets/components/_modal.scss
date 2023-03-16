@@ -19,3 +19,19 @@
   outline: 0;
 
 }
+
+.btn-close {
+  display: none;
+  box-sizing: content-box;
+  width: 0.4em;
+  height: 0.4em;
+  padding: 0.25em 0.25em;
+  color: #000;
+  border: 0;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.modal-header {
+  display: none;
+}
