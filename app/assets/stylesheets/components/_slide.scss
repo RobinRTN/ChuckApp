@@ -1,4 +1,5 @@
 .slide-box {
+  opacity: 0%;
   background-color: $white;
   border-radius: 4px;
   padding: 0.6em;
@@ -97,5 +98,8 @@
     i {
       text-decoration: none;
     }
+  }
+  &.opacity {
+    opacity: 100%;
   }
 }

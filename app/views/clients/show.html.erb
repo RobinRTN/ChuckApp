@@ -42,12 +42,29 @@
           <p><%= @client.note %></p>
       </div>
     <% end %>
+
+    <% unless @all_bookings.empty? %>
+      <div class="card-details-show-client" data-controller="voir-plus">
+        <h4 class="mb-3">Réservations effectuées</h4>
+          <% @all_bookings.first(2).each do |booking|  %>
+            <p class="booking-detail-card"><%= l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.formule.name %></p>
+          <% end %>
+          <% if @all_bookings.size > 2 %>
+            <p class="btn-voir-plus" data-action="click->voir-plus#toggle">Voir plus</p>
+            <div class="d-none" data-voir-plus-target="content">
+              <% @all_bookings.drop(2).each do |booking| %>
+                <p class="booking-detail-card"><%= l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.formule.name %></p>
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+    <% end %>
     <div data-controller="share-link copy-to-clipboard">
       <div class="d-flex align-items-center justify-content-between mt-3">
         <p class="button-show-client" data-action="click->share-link#slideOptions"><i class="fa-solid fa-link me-2"></i>Partager lien</p>
         <p class="button-show-client">Ajouter une réservation</p>
       </div>
-      <div data-share-link-target="options" class="d-none mx-2 d-flex align-items-center justify-content-between slide-box">
+      <div data-share-link-target="options" class="mx-2 d-flex align-items-center justify-content-between slide-box">
         <!-- Copy link to clipboard -->
         <div data-share-link-target="copyBtn" class="d-flex flex-column align-items-center justify-content-center link-card ">
           <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>

@@ -11,7 +11,7 @@ export default class extends Controller {
     // Add active class to the clicked element
     clickedElement.classList.toggle('active');
 
-    this.optionsTarget.classList.toggle('d-none');
+    this.optionsTarget.classList.toggle('opacity');
 
   }
 

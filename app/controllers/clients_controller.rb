@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
 
   def show
     @client = Client.find(params[:id])
+    @all_bookings = @client.bookings.order(start_time: :desc)
   end
 
   def create
