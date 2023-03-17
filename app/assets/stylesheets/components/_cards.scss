@@ -568,10 +568,10 @@
     text-decoration: none;
   }
   .whatsapp-card {
-    background-color: $green-sp;
-    box-shadow: 0 0 11px -4px $green-sp;
+    background-color: $white;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     border-radius: 4px;
-    color: $white;
+    color: $green-sp;
     font-size: 1.2em;
     height: 40px;
     width: 40px;
@@ -581,10 +581,10 @@
     margin-right: 10px;
   }
   .mail-card {
-    background-color: $yellow-sp;
-    box-shadow: 0 0 11px -4px $yellow-sp;
+    background-color: $white;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     border-radius: 4px;
-    color: $white;
+    color: $yellow-sp;
     font-size: 1.2em;
     height: 40px;
     width: 40px;
@@ -594,10 +594,10 @@
     margin-right: 10px;
   }
   .call-card {
-    background-color: $blue-sp;
-    box-shadow: 0 0 11px -4px $blue-sp;
+    background-color: $white;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     border-radius: 4px;
-    color: $white;
+    color: $blue-sp;
     font-size: 1.2em;
     height: 40px;
     width: 40px;
