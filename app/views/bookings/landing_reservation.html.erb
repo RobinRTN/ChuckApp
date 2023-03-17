@@ -85,29 +85,30 @@
     <h4 class= "d-flex justify-content-center"><%= @user.full_name %></h4>
     <p class= "text-center"><%= @user.billing_city %></p>
     <p class="mt-4 mb-3 round-button-blue"><%= @user.title %></p>
-    <p class= "p-2"><%= @user.description %></p>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+      <p class= "p-2 text-center"><%= @user.description %></p>
+      <!-- Image gallery -->
+      <div class="image-gallery mb-5">
+        <% @user.gallery_pictures.each do |image| %>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-<%= image.id %>">
+            <%= cl_image_tag(image.key, class: 'img-fluid square-image') %>
+          </a>
 
-    <!-- Image gallery -->
-    <div class="image-gallery mb-5">
-      <% @user.gallery_pictures.each do |image| %>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-<%= image.id %>">
-          <%= cl_image_tag(image.key, class: 'img-fluid square-image') %>
-        </a>
-
-        <!-- Modal -->
-        <div class="modal fade" id="imageModal-<%= image.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= image.id %>" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <%= cl_image_tag(image.key, class: 'img-fluid') %>
+          <!-- Modal -->
+          <div class="modal fade" id="imageModal-<%= image.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= image.id %>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= cl_image_tag(image.key, class: 'img-fluid') %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
 
     <p class= "p-2 text-center"><strong>Choisis ta formule 👇</strong></p>

@@ -71,9 +71,9 @@
   }
   & .card-infos {
     padding: 0.5em;
-    width: 10em;
-    border-right: solid 1.5px $light-gray;
+    min-width: 10em;
     overflow: hidden;
+    flex-grow: 1;
   }
 
   & .price-infos {
@@ -149,11 +149,11 @@
     margin-bottom: 0;
   }
   & .card-infos {
-    color: $dd-blue-sp;
     padding: 0.5em;
-    width: 10em;
-    border-right: solid 1.5px $light-gray;
+    min-width: 10em;
     overflow: hidden;
+    flex-grow: 1;
+    color: $dd-blue-sp;
   }
 
   & .confirmation {
@@ -249,9 +249,9 @@
   }
   & .card-infos {
     padding: 0.5em;
-    width: 10em;
-    border-right: solid 1.5px $light-gray;
+    min-width: 10em;
     overflow: hidden;
+    flex-grow: 1;
   }
 
   & .price-infos {
