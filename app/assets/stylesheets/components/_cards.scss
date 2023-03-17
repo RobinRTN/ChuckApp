@@ -606,6 +606,19 @@
     justify-content: center;
     margin-right: 10px;
   }
+  .sms-card {
+    background-color: $white;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    color: $blue-sp;
+    font-size: 1.2em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
 
 }
 

@@ -1,9 +1,12 @@
 <div class="d-flex justify-content-center align-items-center icon-cards my-4">
-  <a href="https://wa.me/<%=client.phone_number%>?text=Bonjour%20!" target="_blank">
-    <i class="whatsapp-card fa-brands fa-whatsapp me-5"></i>
+  <a href="https://wa.me/<%= client.phone_number %>" target="_blank">
+    <i class="whatsapp-card fa-brands fa-whatsapp me-4"></i>
   </a>
   <a href="tel:<%=client.phone_number%>">
-    <i class="call-card fa-solid fa-phone me-5"></i>
+    <i class="call-card fa-solid fa-phone me-4"></i>
+  </a>
+  <a href="sms:<%= client.phone_number%>">
+    <i class="sms-card fa-regular fa-message me-4"></i>
   </a>
   <a href="mailto:<%=client.email%>" target="_blank">
     <i class="mail-card fa-regular fa-envelope"></i>
