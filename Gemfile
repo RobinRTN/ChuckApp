@@ -90,3 +90,5 @@ gem 'chunky_png'
 gem "simple_calendar", "~> 2.4"
 gem "geocoder"
 gem "faker"
+gem 'social-share-button'
+

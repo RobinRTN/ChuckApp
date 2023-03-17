@@ -30,3 +30,6 @@ application.register("reservation", ReservationController)
 
 import RevenuController from "./revenu_controller"
 application.register("revenu", RevenuController)
+
+import ShareLinkController from "./share_link_controller"
+application.register("share-link", ShareLinkController)

@@ -97,6 +97,13 @@ GEM
     cloudinary (1.23.0)
       aws_cf_signer
       rest-client (>= 2.0.0)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     date (3.3.3)
@@ -319,6 +326,8 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
+    social-share-button (1.2.4)
+      coffee-rails
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -396,6 +405,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_calendar (~> 2.4)
   simple_form!
+  social-share-button
   sprockets-rails
   stimulus-rails
   turbo-rails

@@ -1,0 +1,65 @@
+.slide-up-enter {
+  transform: translateY(100%);
+  transition: transform 0.2s ease-out;
+}
+
+.slide-up-enter-active {
+  transform: translateY(0%);
+}
+
+.slide-up-leave {
+  transform: translateY(100%);
+  transition: transform 0.1s ease-in-out;
+}
+
+.slide-box {
+  background-color: $white;
+  border-radius: 4px;
+  padding: 0.6em;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  a {
+    text-decoration: none;
+    width: 19%;
+  }
+  p {
+    margin-bottom: 0;
+    font-size: 0.8em;
+    color: $dd-blue-sp;
+  }
+  .link-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    i {
+      text-decoration: none;
+    }
+  }
+  .whatsapp-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    i {
+      text-decoration: none;
+    }
+  }
+  .mail-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    i {
+      text-decoration: none;
+    }
+  }
+  .sms-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    i {
+      text-decoration: none;
+    }
+  }
+}

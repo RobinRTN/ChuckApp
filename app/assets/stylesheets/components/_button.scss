@@ -329,7 +329,7 @@
   text-decoration: none;
   padding: 0.5em 0.8em;
   border-radius: 4px;
-  transition-duration: 0.8s;
+  transition: all 0.1s ease;
   background: $white;
   color: $blue-sp;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
@@ -340,5 +340,9 @@
   text-align: center;
   p {
     margin-bottom: none;
+  }
+  &.active {
+    background-color: $blue-sp;
+    color: $white;
   }
 }
