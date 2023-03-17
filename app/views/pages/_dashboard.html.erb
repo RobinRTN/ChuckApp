@@ -49,25 +49,27 @@
     <% unless @client_rankings.empty? %>
       <div class="client-block mb-4">
         <em class="mb-3">Client du mois 👑</em>
-          <div class="d-flex align-items-center card-horizontal-client justify-content-between">
-            <div class="d-flex">
-              <% if @client_rankings.first[0].photo.attached? %>
-                <%= cl_image_tag @client_rankings.first[0].photo.key, crop: :fill, class: "avatar-large" %>
-              <% else %>
-                <% initials = "#{@client_rankings.first[0].first_name[0]}#{@client_rankings.first[0].last_name[0]}" %>
-                <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
-                <% circle_class = color_variations[@client_rankings.first[0].id % color_variations.size] %>
-                <div class="avatar-large">
-                  <div class="<%= circle_class %>"><%= initials %></div>
+          <%= link_to client_path(@client_rankings.first[0].id), class: "text-decoration-none" do %>
+            <div class="d-flex align-items-center card-horizontal-client justify-content-between">
+              <div class="d-flex">
+                <% if @client_rankings.first[0].photo.attached? %>
+                  <%= cl_image_tag @client_rankings.first[0].photo.key, crop: :fill, class: "avatar-large" %>
+                <% else %>
+                  <% initials = "#{@client_rankings.first[0].first_name[0]}#{@client_rankings.first[0].last_name[0]}" %>
+                  <% color_variations = ['circle-pink', 'circle-green', 'circle-red', 'circle-orange'] %>
+                  <% circle_class = color_variations[@client_rankings.first[0].id % color_variations.size] %>
+                  <div class="avatar-large">
+                    <div class="<%= circle_class %>"><%= initials %></div>
+                  </div>
+                <% end%>
+                <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
+                  <h4 class="card-fullname"> <%= @client_rankings.first[0].full_name %></h4>
+                  <p> <%= @client_rankings.first[1].to_i %> € dépensés</p>
                 </div>
-              <% end%>
-              <div class="card-client-horizontal-text d-flex flex-column justify-content-center">
-                <h4 class="card-fullname"> <%= @client_rankings.first[0].full_name %></h4>
-                <p> <%= @client_rankings.first[1].to_i %> € dépensés</p>
               </div>
             </div>
           </div>
-        </div>
+        <%end %>
     <% end %>
 
     <% unless @upcoming_bookings.empty? %>
