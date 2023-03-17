@@ -67,7 +67,7 @@
         </a>
 
         <!-- Share link via text message -->
-        <a href="sms:<%=@client.phone_number%>?body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center sms-card ">
+        <a href="sms:?body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center sms-card ">
           <i class="fa-regular fa-message"></i>
         </a>
 
