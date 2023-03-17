@@ -58,4 +58,44 @@
       text-decoration: none;
     }
   }
+  .instagram-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    width: 19%;
+    i {
+      text-decoration: none;
+    }
+  }
+  .messenger-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    width: 19%;
+    i {
+      text-decoration: none;
+    }
+  }
+  .twitter-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    width: 19%;
+    i {
+      text-decoration: none;
+    }
+  }
+  .facebook-card {
+    background-color: $light-gray;
+    border-radius: 4px;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    width: 19%;
+    i {
+      text-decoration: none;
+    }
+  }
 }

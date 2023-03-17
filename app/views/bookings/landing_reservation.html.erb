@@ -29,15 +29,30 @@
         </div>
 
         <!-- Share link via email -->
-
         <a href="mailto:?subject=Lien%20de%20r%C3%A9servation&amp;body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center mail-card" target="_blank">
           <i class="fa-regular fa-envelope"></i>
         </a>
 
-        <!-- Share link via text message -->
-        <a href="sms:?body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center sms-card ">
-          <i class="fa-regular fa-message"></i>
+        <!-- Share link via Messenger -->
+        <a href="fb-messenger://share?link=<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center messenger-card" target="_blank">
+          <i class="fa-brands fa-facebook-messenger"></i>
         </a>
+
+        <!-- Share link on Facebook -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>" class="d-flex flex-column align-items-center justify-content-center facebook-card" target="_blank">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <!-- Share link on Twitter -->
+        <a href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&amp;text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center twitter-card" target="_blank">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+
+        <!-- Share link on Instagram -->
+        <a href="https://www.instagram.com/?url=<%= request.original_url %>&amp;media=&amp;description=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center instagram-card" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
       </div>
 
       <div class="d-flex justify-content-center align-items-center">
