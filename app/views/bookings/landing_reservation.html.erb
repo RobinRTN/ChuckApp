@@ -7,18 +7,45 @@
         </div>
       <% end %>
     </div>
-    <div data-controller="copy-to-clipboard">
+    <div data-controller="copy-to-clipboard share-link">
       <div class="copy-text d-flex justify-content-center mb-3">
         <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
-        <button class="btn-gris-rond" data-action="click->copy-to-clipboard#copyText">Copier lien<i class="fa-solid fa-link ms-2"></i></button>
-    <!-- Button trigger modal -->
+        <button class="btn-gris-rond" data-action="click->share-link#slideOptions">Partager lien<i class="fa-solid fa-link ms-2"></i></button>
 
+    <!-- Button trigger modal -->
 
         <a href="#" data-bs-toggle="modal" data-bs-target="#landing-qrcode" class="btn-gris-rond ms-3">
           <i class="fa-solid fa-qrcode"></i>
         </a>
+
       </div>
-      <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
+
+    <div data-share-link-target="options" class="d-none mx-2 d-flex flex-column justify-content-center slide-box">
+      <div class="d-flex align-items-center justify-content-evenly">
+      <!-- Copy link to clipboard -->
+        <div data-share-link-target="copyBtn" class="d-flex flex-column align-items-center justify-content-center link-card ">
+          <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
+          <i class="fa-solid fa-link" data-action="click->copy-to-clipboard#copyText"></i>
+        </div>
+
+        <!-- Share link via email -->
+
+        <a href="mailto:?subject=Lien%20de%20r%C3%A9servation&amp;body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center mail-card" target="_blank">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+
+        <!-- Share link via text message -->
+        <a href="sms:?body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center sms-card ">
+          <i class="fa-regular fa-message"></i>
+        </a>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
+      </div>
+
+    </div>
+
     </div>
 
 

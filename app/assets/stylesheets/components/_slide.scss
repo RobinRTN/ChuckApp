@@ -5,6 +5,9 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $blue-sp;
   font-weight: 600;
+  em {
+    color: $dd-blue-sp;
+  }
   a {
     text-decoration: none;
 

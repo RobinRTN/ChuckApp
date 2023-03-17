@@ -274,15 +274,15 @@
   padding: 0.2em 0.55em;
   border-radius: 3em;
   transition: none !important;
-  background: $light-gray;
+  // background: $light-gray;
   color: $d-blue-sp;
   font-size: 1em;
   font-weight: 400;
-  box-shadow: 0 0 4px $l-blue-sp;
+  // box-shadow: 0 0 4px $l-blue-sp;
   border: none;
-  &:active {
-    background: $l-blue-sp;
-    box-shadow: 0 0 6px $blue-sp;
+  &.active {
+    background-color: $blue-sp;
+    color: $white;
   }
 }
 
