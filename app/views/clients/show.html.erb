@@ -6,6 +6,12 @@
         <i class="fa-solid fa-arrow-left"></i>
       </div>
     <% end %>
+  <% elsif @previous_page == "booking_path" %>
+    <%= link_to booking_path(@booking_id) || clients_path, class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
   <% else %>
     <%= link_to root_path || clients_path, class: "text-decoration-none" do %>
       <div class="back-btn me-3">

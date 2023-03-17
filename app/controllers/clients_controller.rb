@@ -16,6 +16,9 @@ class ClientsController < ApplicationController
   def show
     @client = Client.find(params[:id])
     @all_bookings = @client.bookings.order(start_time: :desc)
+    received_data = params[:format].split("/")
+    @previous_page = received_data[0]
+    @booking_id = received_data[1]
   end
 
   def create

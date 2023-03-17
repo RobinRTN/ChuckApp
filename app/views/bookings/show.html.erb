@@ -17,7 +17,7 @@
   </div>
 
 
-  <%= link_to client_path(@booking.client), class: "text-decoration-none" do %>
+  <%= link_to client_path(@booking.client, ["booking_path", @booking.id]), class: "text-decoration-none" do %>
     <div class="card-horizontal-client">
       <div class="d-flex align-items-center">
         <% if @booking.client.photo.attached? %>
