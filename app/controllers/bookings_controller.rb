@@ -7,18 +7,6 @@ class BookingsController < ApplicationController
 
   CALENDAR_ID = 'primary'
 
-  def disponibilites
-    interval = current_user.formules.minimum(:duration)
-    slot_duration = current_user.formules.minimum(:duration)
-    start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('19:00pm') - slot_duration
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-    num_weeks = 4
-    @user_bookings = current_user.bookings.upcoming
-    # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration)
-    @full_datetimes = full_datetimes
-  end
 
   def landing_reservation
     @user = User.find_by(token: reservation_params[:token])
@@ -75,6 +63,7 @@ class BookingsController < ApplicationController
       info_window_html: render_to_string(partial: "info_window", locals: { booking: @booking })
     }
     @previous_page = params[:format]
+    @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted'", 2.months.ago, 2.months.from_now)
   end
 
   def index
@@ -177,17 +166,17 @@ class BookingsController < ApplicationController
         "client_id" => ENV["GOOGLE_API_KEY"],
         "client_secret" => ENV["GOOGLE_API_SECRET"]
       }
-      })
-      begin
-        client.authorization = secrets.to_authorization
-        client.authorization.grant_type = "refresh_token"
+    })
+    begin
+      client.authorization = secrets.to_authorization
+      client.authorization.grant_type = "refresh_token"
 
-        if !current_user.present?
-          client.authorization.refresh!
-          current_user.update_attributes(
-            access_token: client.authorization.access_token,
-            refresh_token: client.authorization.refresh_token,
-            expires_at: client.authorization.expires_at.to_i
+      if !current_user.present?
+        client.authorization.refresh!
+        current_user.update_attributes(
+          access_token: client.authorization.access_token,
+          refresh_token: client.authorization.refresh_token,
+          expires_at: client.authorization.expires_at.to_i
           )
         end
       rescue => e
@@ -211,14 +200,14 @@ class BookingsController < ApplicationController
       # attendees = booking[:members].split(',').map{ |t| {email: t.strip} }
       event = Google::Apis::CalendarV3::Event.new({
         summary: booking[:title],
-      location: '800 Howard St., San Francisco, CA 94103',
-      description: booking[:description],
-      start: {
-        date_time: Time.new(booking['start_date(1i)'],booking['start_date(2i)'],booking['start_date(3i)'],booking['start_date(4i)'],booking['start_date(5i)']).to_datetime.rfc3339,
-        time_zone: "Asia/Kolkata"
-        # date_time: '2019-09-07T09:00:00-07:00',
-        # time_zone: 'Asia/Kolkata',
-      },
+        location: '800 Howard St., San Francisco, CA 94103',
+        description: booking[:description],
+        start: {
+          date_time: Time.new(booking['start_date(1i)'],booking['start_date(2i)'],booking['start_date(3i)'],booking['start_date(4i)'],booking['start_date(5i)']).to_datetime.rfc3339,
+          time_zone: "Asia/Kolkata"
+          # date_time: '2019-09-07T09:00:00-07:00',
+          # time_zone: 'Asia/Kolkata',
+        },
       end: {
         date_time: Time.new(booking['end_date(1i)'],booking['end_date(2i)'],booking['end_date(3i)'],booking['end_date(4i)'],booking['end_date(5i)']).to_datetime.rfc3339,
         time_zone: "Asia/Kolkata"
@@ -233,29 +222,41 @@ class BookingsController < ApplicationController
       },
       notification_settings: {
         notifications: [
-                        {type: 'event_creation', method: 'email'},
-                        {type: 'event_change', method: 'email'},
-                        {type: 'event_cancellation', method: 'email'},
-                        {type: 'event_response', method: 'email'}
-                       ]
-      }, 'primary': true
-    })
-  end
+          {type: 'event_creation', method: 'email'},
+          {type: 'event_change', method: 'email'},
+          {type: 'event_cancellation', method: 'email'},
+          {type: 'event_response', method: 'email'}
+        ]
+        }, 'primary': true
+      })
+    end
 
+    def disponibilites
+      interval = current_user.formules.minimum(:duration)
+      slot_duration = current_user.formules.minimum(:duration)
+      start_time = Time.zone.parse('9:00am')
+      end_time = Time.zone.parse('19:00pm') - slot_duration
+      days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+      num_weeks = 4
+      @user_bookings = current_user.bookings.upcoming
+      # Generate the available datetimes using the generate_datetimes function
+      full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration)
+      @full_datetimes = full_datetimes
+    end
 
-  def generate_datetimes(start_time, end_time, given_days_of_week, interval, num_weeks, slot_duration)
-    Time.zone = 'Europe/Paris'
-    full_datetimes = []
-    weekly_datetimes = []
-    daily_datetimes = []
-    current_time = Time.zone.now
+    def generate_datetimes(start_time, end_time, given_days_of_week, interval, num_weeks, slot_duration)
+      Time.zone = 'Europe/Paris'
+      full_datetimes = []
+      weekly_datetimes = []
+      daily_datetimes = []
+      current_time = Time.zone.now
 
-    # Loop through each day of the current week
-    (0..num_weeks - 1).each do |week_num|
-      given_days_of_week.each do |day|
-        target_day = Date.parse(day)
-        target_day += (7 * week_num)
-        slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
+      # Loop through each day of the current week
+      (0..num_weeks - 1).each do |week_num|
+        given_days_of_week.each do |day|
+          target_day = Date.parse(day)
+          target_day += (7 * week_num)
+          slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
         while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
           if slot.strftime("%H:%M:%S") >= start_time.strftime("%H:%M:%S") && slot.strftime("%H:%M:%S") <= end_time.strftime("%H:%M:%S")
             daily_datetimes << slot unless slot < current_time

@@ -42,8 +42,8 @@
     <p class="round-square-grey"><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
   </div>
 
-    <h4 class="h6 mx-4">Détails de la réservation</h4>
-<div class="d-flex mt-2 mx-4 border-bottom pb-3">
+  <h4 class="h6 mx-4">Détails de la réservation</h4>
+  <div class="d-flex mt-2 mx-4 border-bottom pb-3">
     <div class="finish-details-card flex-column align-items-start justify-content-start">
       <p><i class="fa-solid fa-fire me-2"></i> <%= @booking.formule.name %></p>
       <p><i class="fa-solid fa-clock me-2"></i> <%= @booking.formule.duration %> minutes</p>
