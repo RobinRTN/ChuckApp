@@ -27,9 +27,16 @@ class BookingsController < ApplicationController
     end_time = Time.zone.parse('21:00pm') - slot_duration
     days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
-    @user_bookings = @user.bookings.upcoming
+    excluded_fixed_weekly_slots = [
+      ['Monday', '1pm', '2pm'],
+      ['Tuesday', '1pm', '2pm'],
+      ['Wednesday', '1pm', '2pm'],
+      ['Thursday', '1pm', '2pm'],
+      ['Friday', '1pm', '2pm']
+    ]
+    @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration)
+    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
     @full_datetimes = full_datetimes
   end
 
@@ -200,11 +207,35 @@ class BookingsController < ApplicationController
       ['Thursday', '1pm', '2pm'],
       ['Friday', '1pm', '2pm']
     ]
-    @user_bookings = current_user.bookings.upcoming
+
+    # Update available datetimes with newly cancelled or added slots
+    if params[:cancelled_slot]
+      cancelled_slot = Time.zone.parse(params[:cancelled_slot])
+      cancelled_booking = Booking.new(start_time: cancelled_slot, end_time: cancelled_slot + slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
+      cancelled_booking.user_id = current_user.id
+      cancelled_booking.save
+    elsif params[:added_slot]
+      added_slot = Time.zone.parse(params[:added_slot])
+      week_num = (added_slot.to_date - Date.today.beginning_of_week) / 7
+      day_of_week = added_slot.strftime('%A')
+      daily_datetimes = available_datetimes.find { |dt| dt[0].strftime('%A') == day_of_week }
+      if daily_datetimes
+        daily_datetimes << added_slot
+        daily_datetimes.sort!
+      else
+        daily_datetimes = [added_slot]
+        available_datetimes << [added_slot.to_date.beginning_of_week + (7 * week_num), daily_datetimes]
+      end
+      available_datetimes.sort_by! { |dt| dt[0] }
+    end
+
+    @user_bookings = current_user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
-    @full_datetimes = full_datetimes
-  end
+    available_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+
+
+    @full_datetimes = available_datetimes
+    end
 
 
   private
