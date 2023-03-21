@@ -12,8 +12,15 @@
                   <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn" %>
                   <%= link_to('<i class="fa-sharp fa-solid fa-circle-xmark"></i>'.html_safe, disponibilites_path(cancelled_slot: datetime, weekly_index: weekly_index, daily_index: daily_index), method: :get, class: "cancel-icon", onclick: "return confirm('Êtes vous sûr de vouloir supprimer cette disponibilité ?');") %>
                 </div>
+
+
               <%end%>
             <%end%>
+            <div class="add-slot">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#addSlotModal-<%=weekly_index %>-<%=daily_index %>">
+                <i class="fa-solid fa-plus"></i>
+              </a>
+            </div>
           </div>
       </div>
     </div>

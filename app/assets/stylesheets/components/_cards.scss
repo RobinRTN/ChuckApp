@@ -376,8 +376,27 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-weight: 400;
     text-align: center;
-
+    }
+  & .add-slot {
+    text-decoration: none;
+    padding: 0.375em 1.481em;
+    border-radius: 4px;
+    transition-duration: 0.8s;
+    background: $ll-blue-sp;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-weight: 600;
+    text-align: center;
+    margin: 0.34em 0.4em;
+    a {
+      padding: none;
+      margin: none;
+      display: block;
+    }
+    i {
+      color: $l-blue-sp;
+    }
   }
+
 
   .dispo-slot-container {
     position: relative;
