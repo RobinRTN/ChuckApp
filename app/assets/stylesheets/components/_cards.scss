@@ -331,6 +331,19 @@
     font-weight: 400;
     border: none;
   }
+  .dispo-slot-container {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .cancel-icon {
+    position: absolute;
+    top: -14px;
+    right: 7px;
+    color: $l-blue-sp;
+  }
+
+
 }
 
 .revenue-card {

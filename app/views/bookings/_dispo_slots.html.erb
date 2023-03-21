@@ -24,16 +24,14 @@
               <div class="dispo-slots">
                 <% daily_datetimes.first(4).each do |datetime| %>
                   <% if datetime > Time.zone.now %>
-                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
-                    <%= link_to 'Annuler', disponibilites_path(cancelled_slot: datetime), method: :get, class: "disponibilites-btn my-1 mx-1" %>
+                      <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
                 <% end %>
                 <%end%>
               </div>
               <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
                 <% daily_datetimes.each_with_index do |datetime, index| %>
                   <%if index >= 4 && datetime > Time.zone.now %>
-                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
-                    <%= link_to 'Annuler', disponibilites_path(cancelled_slot: datetime), method: :get, class: "disponibilites-btn my-1 mx-1" %>
+                      <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
                   <% end %>
                 <%end%>
               </div>
@@ -44,7 +42,7 @@
             <%else%>
               <div class="dispo-slots">
                 <% daily_datetimes.each do |datetime| %>
-                  <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
+                    <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn my-1 mx-1" %>
                 <%end%>
               </div>
             <%end %>

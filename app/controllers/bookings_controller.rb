@@ -210,8 +210,10 @@ class BookingsController < ApplicationController
 
     # Update available datetimes with newly cancelled or added slots
     if params[:cancelled_slot]
-      cancelled_slot = Time.zone.parse(params[:cancelled_slot])
-      cancelled_booking = Booking.new(start_time: cancelled_slot, end_time: cancelled_slot + slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
+      @cancelled_slot = Time.zone.parse(params[:cancelled_slot])
+      @weekly_index = params[:weekly_index].to_i
+      @daily_index = params[:daily_index].to_i
+      cancelled_booking = Booking.new(start_time: @cancelled_slot, end_time: @cancelled_slot + slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
       cancelled_booking.user_id = current_user.id
       cancelled_booking.save
     elsif params[:added_slot]
@@ -233,9 +235,16 @@ class BookingsController < ApplicationController
     # Generate the available datetimes using the generate_datetimes function
     available_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
 
-
     @full_datetimes = available_datetimes
+
+
+    if params[:cancelled_slot]
+      render turbo_stream:
+        turbo_stream.replace("daily-card-#{@weekly_index}-#{@daily_index}",
+        partial: "bookings/daily_card",
+        locals: { daily_datetimes: @full_datetimes[@weekly_index][@daily_index], daily_index: @daily_index, weekly_index: @weekly_index })
     end
+  end
 
 
   private
