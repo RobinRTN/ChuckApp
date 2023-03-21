@@ -346,6 +346,53 @@
 
 }
 
+.daily-dispo-card-user {
+  color: $dd-blue-sp;
+  text-decoration: none;
+  background-color: $white;
+  border-left: 3px solid $blue-sp;
+  border-radius: 4px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  padding: 0.5em 1em;
+  width: 100%;
+  height: auto;
+  & .date-text {
+    font-weight: 600;
+    font-size: 1em;
+    border-bottom: 2px solid $light-gray
+  }
+  & .dispo-slots {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & .disponibilites-btn {
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+    transition-duration: 0.8s;
+    background: $blue-sp;
+    color: $ll-blue-sp;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-weight: 400;
+    text-align: center;
+
+  }
+
+  .dispo-slot-container {
+    position: relative;
+    margin: 0.7em 0.4em;
+  }
+  .cancel-icon {
+    position: absolute;
+    top: -14px;
+    right: -4px;
+    color: $l-blue-sp;
+  }
+
+
+}
+
 .revenue-card {
   background-color: $blue-sp;
   box-shadow: 0 0 18px -4px $blue-sp;
