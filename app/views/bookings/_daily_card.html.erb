@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "daily-card-#{weekly_index}-#{daily_index}" do %>
+  <% pattern = "%H:%M"  %>
+  <% unless daily_datetimes.nil?  %>
+    <div class="daily-dispo-card-user mb-3">
+      <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
+
+      <div class="available-block" >
+          <div class="dispo-slots">
+            <% daily_datetimes.each do |datetime| %>
+              <% if datetime > Time.zone.now %>
+                <div class="dispo-slot-container" id="dispo-slot-container-<%= daily_index %>-<%= datetime.to_i %>">
+                  <%= link_to datetime.strftime(pattern), new_booking_path(datetime), class: "disponibilites-btn" %>
+                  <%= link_to('<i class="fa-sharp fa-solid fa-circle-xmark"></i>'.html_safe, disponibilites_path(cancelled_slot: datetime, weekly_index: weekly_index, daily_index: daily_index), method: :get, class: "cancel-icon", onclick: "return confirm('Êtes vous sûr de vouloir supprimer cette disponibilité ?');") %>
+                </div>
+              <%end%>
+            <%end%>
+          </div>
+      </div>
+    </div>
+  <%end %>
+<% end %>
