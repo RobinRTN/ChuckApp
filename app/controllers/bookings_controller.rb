@@ -227,6 +227,11 @@ class BookingsController < ApplicationController
       cancelled_booking = Booking.find_by(start_time: datetime, cancel_type: "Cancelled", user_id: current_user.id)
 
       if cancelled_booking
+        puts "===================="
+        puts "===================="
+        puts "Destroyed"
+        puts "===================="
+        puts "===================="
         # Destroy the cancelled booking
         cancelled_booking.destroy
       else
@@ -234,6 +239,11 @@ class BookingsController < ApplicationController
         added_slot = Available.new(start_time: datetime, end_time: datetime + slot_duration.minutes)
         added_slot.user_id = current_user.id
         added_slot.save
+        puts "===================="
+        puts "===================="
+        puts added_slot.persisted?
+        puts "===================="
+        puts "===================="
       end
     end
 
