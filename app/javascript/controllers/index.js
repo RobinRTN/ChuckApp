@@ -34,5 +34,8 @@ application.register("revenu", RevenuController)
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
 
+import VoirPlusBtnController from "./voir_plus_btn_controller"
+application.register("voir-plus-btn", VoirPlusBtnController)
+
 import VoirPlusController from "./voir_plus_controller"
 application.register("voir-plus", VoirPlusController)
