@@ -235,7 +235,8 @@ class BookingsController < ApplicationController
 
 
 
-    if params[:cancelled_slot] || params[:added_slot]
+    if params[:cancelled_slot]
+      puts "Sending Turbo Stream to update daily card..."
       render turbo_stream:
         turbo_stream.replace("daily-card-#{@weekly_index}-#{@daily_index}",
         partial: "bookings/daily_card",
