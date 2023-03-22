@@ -1,20 +1,16 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
-// Connects to data-controller="voir-plus-btn"
 export default class extends Controller {
-  static targets = ["content", "submit"]
+  static targets = ["content", "submit", "select"];
 
   connect() {
-    const submitButton = this.submitTarget;
-    submitButton.disabled = true
     this.enableSubmitButton();
   }
 
   toggle(event) {
     const voirPlusButton = event.currentTarget;
-
-    voirPlusButton.classList.add('d-none');
-    this.contentTarget.classList.remove('d-none');
+    voirPlusButton.classList.add("d-none");
+    this.contentTarget.classList.remove("d-none");
   }
 
   enableSubmitButton() {

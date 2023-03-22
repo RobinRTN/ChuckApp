@@ -222,10 +222,21 @@ class BookingsController < ApplicationController
       date = Time.zone.parse(params[:added_slot][:day])
       time = Time.zone.parse(params[:added_slot][:added_slot])
       datetime = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
-      added_slot = Available.new(start_time: datetime, end_time: datetime + slot_duration.minutes)
-      added_slot.user_id = current_user.id
-      added_slot.save
+
+      # Check if there's a booking with the same start_time and cancel_type: "Cancelled"
+      cancelled_booking = Booking.find_by(start_time: datetime, cancel_type: "Cancelled", user_id: current_user.id)
+
+      if cancelled_booking
+        # Destroy the cancelled booking
+        cancelled_booking.destroy
+      else
+        # Create a new availability
+        added_slot = Available.new(start_time: datetime, end_time: datetime + slot_duration.minutes)
+        added_slot.user_id = current_user.id
+        added_slot.save
+      end
     end
+
 
     @user_bookings = current_user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function

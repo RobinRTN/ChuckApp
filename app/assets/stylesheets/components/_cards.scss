@@ -400,6 +400,11 @@
       color: $ll-blue-sp;
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
       padding: 0.375em 0.881em;
+      &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(0.95);
+      }
 
     }
 

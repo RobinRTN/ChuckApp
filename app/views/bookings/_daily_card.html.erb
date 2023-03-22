@@ -22,12 +22,14 @@
           </div>
           <div class="d-none content-add mx-2 my-3" data-voir-plus-btn-target="content">
 
+            <% available_hours = daily_datetimes.map { |datetime| datetime.hour } %>
+
             <%= simple_form_for :added_slot, url: disponibilites_path, method: :get, id: "add-slot-form-#{weekly_index}-#{daily_index}", html: { class: 'form-horizontal' } do |f| %>
-              <p>Choisissez un horraire à ajouter</p>
+              <p>Choisissez un horraire à ajouter 👇</p>
               <%= f.input :day, as: :hidden, input_html: { value: daily_datetimes.first } %>
               <%= f.input :weekly_index, as: :hidden, input_html: { value: weekly_index} %>
               <%= f.input :daily_index, as: :hidden, input_html: { value: daily_index } %>
-              <%= f.input :added_slot, collection: (0..23).map { |hour| sprintf('%02d', hour) + "h00" }, input_html: { class: "form-select", data: { controller: "select2" } }, label: false %>
+              <%= f.input :added_slot, collection: (0..23).reject { |hour| available_hours.include?(hour) }.map { |hour| sprintf('%02d', hour) + "h00" }, input_html: { class: "form-select", data: { "voir-plus-btn-target": "select", action: "change->voir-plus-btn#selectChange" } }, label: false %>
               <button type="submit" class="add-btn" data-voir-plus-btn-target="submit"><i class="fa-solid fa-circle-plus me-1"></i> Ajouter</button>
             <% end %>
 
