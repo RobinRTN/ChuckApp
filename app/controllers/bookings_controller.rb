@@ -217,18 +217,14 @@ class BookingsController < ApplicationController
       cancelled_booking.user_id = current_user.id
       cancelled_booking.save
     elsif params[:added_slot]
-      added_slot = Time.zone.parse(params[:added_slot])
-      week_num = (added_slot.to_date - Date.today.beginning_of_week) / 7
-      day_of_week = added_slot.strftime('%A')
-      daily_datetimes = available_datetimes.find { |dt| dt[0].strftime('%A') == day_of_week }
-      if daily_datetimes
-        daily_datetimes << added_slot
-        daily_datetimes.sort!
-      else
-        daily_datetimes = [added_slot]
-        available_datetimes << [added_slot.to_date.beginning_of_week + (7 * week_num), daily_datetimes]
-      end
-      available_datetimes.sort_by! { |dt| dt[0] }
+      @weekly_index = params[:added_slot][:weekly_index].to_i
+      @daily_index = params[:added_slot][:daily_index].to_i
+      date = Time.zone.parse(params[:added_slot][:day])
+      time = Time.zone.parse(params[:added_slot][:added_slot])
+      datetime = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
+      added_slot = Available.new(start_time: datetime, end_time: datetime + slot_duration.minutes)
+      added_slot.user_id = current_user.id
+      added_slot.save
     end
 
     @user_bookings = current_user.bookings.upcoming_all
@@ -238,12 +234,14 @@ class BookingsController < ApplicationController
     @full_datetimes = available_datetimes
 
 
-    if params[:cancelled_slot]
+
+    if params[:cancelled_slot] || params[:added_slot]
       render turbo_stream:
         turbo_stream.replace("daily-card-#{@weekly_index}-#{@daily_index}",
         partial: "bookings/daily_card",
         locals: { daily_datetimes: @full_datetimes[@weekly_index][@daily_index], daily_index: @daily_index, weekly_index: @weekly_index })
     end
+
   end
 
 
@@ -301,6 +299,8 @@ class BookingsController < ApplicationController
     daily_datetimes = []
     current_time = Time.zone.now
 
+    converted_available_slots = convert_available_slots(current_user.availables)
+
     (0..num_weeks - 1).each do |week_num|
       given_days_of_week.each do |day|
         target_day = Date.parse(day)
@@ -320,7 +320,19 @@ class BookingsController < ApplicationController
           daily_datetimes << slot unless excluded || slot < current_time
           slot += interval.minutes
         end
+
+        # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
+        converted_available_slots.each do |available_slot|
+          target_day = Date.parse(day) + (7 * week_num)
+          if available_slot.to_date == target_day && !daily_datetimes.include?(available_slot)
+            daily_datetimes << available_slot
+          end
+        end
+        daily_datetimes.sort!
+
+        # Call sort_bookings after adding converted_available_slots
         sort_bookings(daily_datetimes, slot_duration)
+
         weekly_datetimes << daily_datetimes unless daily_datetimes.empty?
         daily_datetimes = []
       end
@@ -331,6 +343,15 @@ class BookingsController < ApplicationController
     full_datetimes
   end
 
+  def convert_available_slots(available_slots)
+    converted_slots = []
+    available_slots.each do |slot|
+      slot_start = slot.start_time
+      converted_slots << slot_start
+    end
+    converted_slots
+  end
+
 
   def sort_bookings(daily_datetimes, slot_duration)
     overlapping_slots = []
@@ -338,7 +359,7 @@ class BookingsController < ApplicationController
       slot_end = slot + slot_duration.minutes
       @user_bookings.each do |booking|
         if (slot >= booking.start_time && slot < booking.end_time) ||
-          (slot_end > booking.start_time && slot_end <= booking.end_time)
+           (slot_end > booking.start_time && slot_end <= booking.end_time)
           overlapping_slots << slot
           break # Exit the inner loop early
         end
