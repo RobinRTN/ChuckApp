@@ -242,6 +242,8 @@ class BookingsController < ApplicationController
         puts "===================="
         puts "===================="
         puts added_slot.persisted?
+        puts added_slot.start_time
+        puts added_slot.end_time
         puts "===================="
         puts "===================="
       end
