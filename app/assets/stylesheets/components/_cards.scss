@@ -764,9 +764,9 @@
       p {
         margin-bottom: 0 !important;
       }
-      &.form-check-input:checked {
-        background-color: $l-blue-sp;
-        border-color: $l-blue-sp;
+      .form-check-input:checked  {
+        background-color: $l-blue-sp !important;
+        border-color: $l-blue-sp !important;
       }
     }
 
