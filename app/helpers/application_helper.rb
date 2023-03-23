@@ -9,11 +9,18 @@ module ApplicationHelper
     end
   end
 
-  def slot_available?(slot, slot_duration, user_bookings)
-    slot_end = slot + slot_duration.minutes
+  def hour_available?(hour, date, user_bookings, daily_datetimes)
+    date_with_hour = date.beginning_of_day + hour.hours
+    !daily_datetimes.map(&:hour).include?(hour) && slot_available?(date_with_hour, user_bookings)
+  end
+
+  def slot_available?(datetime, user_bookings)
     user_bookings.each do |booking|
-      if (slot >= booking.start_time && slot < booking.end_time) ||
-         (slot_end > booking.start_time && slot_end <= booking.end_time)
+      booking_start = booking.start_time
+      booking_end = booking.end_time
+
+      if (datetime >= booking_start && datetime < booking_end) ||
+         (datetime < booking_start && (datetime + booking.duration_in_minutes.minutes) > booking_start)
         return false
       end
     end

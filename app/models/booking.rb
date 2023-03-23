@@ -27,4 +27,10 @@ class Booking < ApplicationRecord
   scope :passed_current_month, -> { where("start_time < ? AND start_time >= ?  AND cancel_type != 'Cancelled'", Time.now, Time.now.beginning_of_month).order(:start_time) }
   scope :current_month_projected, -> { where("start_time >= ? AND start_time < ?  AND cancel_type != 'Cancelled'", Date.today.beginning_of_month, Date.today.next_month.beginning_of_month).order(:start_time) }
   scope :current_month_rest, -> { where("start_time >= ? AND start_time < ?  AND cancel_type != 'Cancelled'", Time.now, Date.today.next_month.beginning_of_month).order(:start_time) }
+
+  def duration_in_minutes
+    ((end_time - start_time) / 60).round
+  end
+
+
 end
