@@ -1,6 +1,9 @@
 <%= turbo_frame_tag "daily-card-#{weekly_index}-#{daily_index}" do %>
   <% pattern = "%H:%M"  %>
   <% unless daily_datetimes.nil?  %>
+
+    <% available_slots = daily_datetimes.select { |datetime| slot_available?(datetime, @slot_duration, @user_bookings) } %>
+
     <div class="daily-dispo-card-user mb-3">
       <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
 
@@ -29,7 +32,7 @@
               <%= f.input :day, as: :hidden, input_html: { value: daily_datetimes.first } %>
               <%= f.input :weekly_index, as: :hidden, input_html: { value: weekly_index} %>
               <%= f.input :daily_index, as: :hidden, input_html: { value: daily_index } %>
-              <%= f.input :added_slot, collection: (0..23).reject { |hour| available_hours.include?(hour) }.map { |hour| sprintf('%02d', hour) + "h00" }, input_html: { class: "form-select", data: { "voir-plus-btn-target": "select", action: "change->voir-plus-btn#selectChange" } }, label: false %>
+              <%= f.input :added_slot, collection: (4..22).reject { |hour| available_hours.include?(hour) }.map { |hour| sprintf('%02d', hour) + "h00" }, input_html: { class: "form-select", data: { "voir-plus-btn-target": "select", action: "change->voir-plus-btn#selectChange" } }, label: false %>
               <button type="submit" class="add-btn" data-voir-plus-btn-target="submit"><i class="fa-solid fa-circle-plus me-1"></i> Ajouter</button>
             <% end %>
 

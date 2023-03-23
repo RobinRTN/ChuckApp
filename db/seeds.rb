@@ -20,6 +20,9 @@ Formule.destroy_all
 puts "Deleting Groups"
 Group.destroy_all
 
+puts "Deleting Availibles"
+Available.destroy_all
+
 puts "Deleting Users"
 User.destroy_all
 

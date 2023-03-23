@@ -9,4 +9,15 @@ module ApplicationHelper
     end
   end
 
+  def slot_available?(slot, slot_duration, user_bookings)
+    slot_end = slot + slot_duration.minutes
+    user_bookings.each do |booking|
+      if (slot >= booking.start_time && slot < booking.end_time) ||
+         (slot_end > booking.start_time && slot_end <= booking.end_time)
+        return false
+      end
+    end
+    true
+  end
+
 end

@@ -195,9 +195,9 @@ class BookingsController < ApplicationController
 
   def disponibilites
     interval = current_user.formules.minimum(:duration)
-    slot_duration = current_user.formules.minimum(:duration)
+    @slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('7:00pm') - slot_duration
+    end_time = Time.zone.parse('7:00pm') - @slot_duration
     days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
     excluded_fixed_weekly_slots = [
@@ -213,7 +213,7 @@ class BookingsController < ApplicationController
       @cancelled_slot = Time.zone.parse(params[:cancelled_slot])
       @weekly_index = params[:weekly_index].to_i
       @daily_index = params[:daily_index].to_i
-      cancelled_booking = Booking.new(start_time: @cancelled_slot, end_time: @cancelled_slot + slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
+      cancelled_booking = Booking.new(start_time: @cancelled_slot, end_time: @cancelled_slot + @slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
       cancelled_booking.user_id = current_user.id
       cancelled_booking.save
     elsif params[:added_slot]
@@ -227,32 +227,20 @@ class BookingsController < ApplicationController
       cancelled_booking = Booking.find_by(start_time: datetime, cancel_type: "Cancelled", user_id: current_user.id)
 
       if cancelled_booking
-        puts "===================="
-        puts "===================="
-        puts "Destroyed"
-        puts "===================="
-        puts "===================="
         # Destroy the cancelled booking
         cancelled_booking.destroy
       else
         # Create a new availability
-        added_slot = Available.new(start_time: datetime, end_time: datetime + slot_duration.minutes)
+        added_slot = Available.new(start_time: datetime, end_time: datetime + @slot_duration.minutes)
         added_slot.user_id = current_user.id
         added_slot.save
-        puts "===================="
-        puts "===================="
-        puts added_slot.persisted?
-        puts added_slot.start_time
-        puts added_slot.end_time
-        puts "===================="
-        puts "===================="
       end
     end
 
 
     @user_bookings = current_user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    available_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+    available_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, @slot_duration, excluded_fixed_weekly_slots)
 
     @full_datetimes = available_datetimes
 
@@ -347,12 +335,15 @@ class BookingsController < ApplicationController
 
         # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
         converted_available_slots.each do |available_slot|
-          target_day = Date.parse(day) + (7 * week_num)
+          # target_day = Date.parse(day) + (7 * week_num)
           if available_slot.to_date == target_day && !daily_datetimes.include?(available_slot)
+            puts "Adding #{available_slot} to daily_datetimes"
             daily_datetimes << available_slot
           end
         end
+
         daily_datetimes.sort!
+        puts "daily_datetimes after sorting: #{daily_datetimes}"
 
         # Call sort_bookings after adding converted_available_slots
         sort_bookings(daily_datetimes, slot_duration)
