@@ -9,6 +9,14 @@ module ApplicationHelper
     end
   end
 
+  def filtered_hours(daily_datetimes, user_bookings)
+    (4..22).select do |hour|
+      datetime = daily_datetimes.first.beginning_of_day + hour.hours
+      hour_available?(hour, daily_datetimes.first, user_bookings, daily_datetimes) && datetime > Time.zone.now
+    end
+  end
+
+
   def hour_available?(hour, date, user_bookings, daily_datetimes)
     date_with_hour = date.beginning_of_day + hour.hours
     !daily_datetimes.map(&:hour).include?(hour) && slot_available?(date_with_hour, user_bookings)
