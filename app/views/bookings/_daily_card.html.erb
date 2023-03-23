@@ -27,7 +27,7 @@
             <% available_hours = daily_datetimes.map { |datetime| datetime.hour } %>
 
             <%= simple_form_for :added_slot, url: disponibilites_path, method: :get, id: "add-slot-form-#{weekly_index}-#{daily_index}", html: { class: 'form-horizontal' } do |f| %>
-              <p>Choisissez un horraire à ajouter 👇</p>
+              <p>Choisissez un horaire à ajouter 👇</p>
 
               <%= f.input :day, as: :hidden, input_html: { value: daily_datetimes.first } %>
               <%= f.input :weekly_index, as: :hidden, input_html: { value: weekly_index} %>
