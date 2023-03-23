@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_171849) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_161332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_171849) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "availability_weeks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "week_start"
+    t.date "week_end"
+    t.boolean "week_enabled"
+    t.boolean "available_monday"
+    t.boolean "available_tuesday"
+    t.boolean "available_wednesday"
+    t.boolean "available_thursday"
+    t.boolean "available_friday"
+    t.boolean "available_saturday"
+    t.boolean "available_sunday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_availability_weeks_on_user_id"
   end
 
   create_table "availables", force: :cascade do |t|
@@ -178,6 +195,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_171849) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "availability_weeks", "users"
   add_foreign_key "availables", "users"
   add_foreign_key "bookings", "clients"
   add_foreign_key "bookings", "formules"

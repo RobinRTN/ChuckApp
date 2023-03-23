@@ -26,6 +26,7 @@ class User < ApplicationRecord
   has_many :formules
   has_many :packages
   has_many :availables
+  has_many :availability_weeks
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
   has_one_attached :qrcode

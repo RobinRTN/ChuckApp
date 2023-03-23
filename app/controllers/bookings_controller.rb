@@ -194,6 +194,11 @@ class BookingsController < ApplicationController
   end
 
   def disponibilites
+    # // FOR WEEKLY
+    start_date = Date.today.beginning_of_week
+    end_date = 6.months.from_now.end_of_week
+    @weeks = (start_date..end_date).step(7).to_a
+    # // FOR DAILY
     interval = current_user.formules.minimum(:duration)
     @slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse('9:00am')
@@ -256,6 +261,11 @@ class BookingsController < ApplicationController
 
   end
 
+  def update_availability
+    availability = AvailabilityWeek.find(params[:id])
+    availability.update(availability_week_params)
+    render json: { success: true }
+  end
 
   private
 
@@ -265,6 +275,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, client: [:email, :first_name, :last_name, :phone_number, :photo], back: [:datetime, :formule, :existing_user])
+  end
+
+  def availability_week_params
+    params.require(:availability_week).permit(:week_enabled, :available_monday, :available_tuesday, :available_wednesday, :available_thursday, :available_friday, :available_saturday, :available_sunday)
   end
 
   def get_event booking

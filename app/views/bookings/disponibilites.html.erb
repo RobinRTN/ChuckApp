@@ -3,5 +3,26 @@
   <div class="mx-3 mt-4 mb-3 d-flex justify-content-between align-items-center">
     <h4 class="mb-0">Mes disponibilités</h4>
   </div>
-  <%= render partial: 'dispo_slots_user' %>
+
+
+  <div class="mx-3 client-block" data-controller="client">
+    <ul class="nav nav-pills mb-4 d-flex justify-content-center align-items-center">
+      <li class="nav-item me-3">
+        <button class="btn-client active" data-action="click->client#selectClient" id="client-groupe" data-client-target="buttonGroupe" data-block="groupe">Journées</button>
+      </li>
+      <li class="nav-item">
+        <button class="btn-client " data-action="click->client#selectClient" id="client-contact" data-client-target="buttonContact" data-block="contact">Semaines</button>
+      </li>
+    </ul>
+
+    <div class="block-clients" data-client-target="contact" style="display: none;">
+      <%= render partial: 'week_slots_user' %>
+    </div>
+    <div class="block-groupes" data-client-target="groupe" style="display: block;">
+      <%= render partial: 'dispo_slots_user' %>
+    </div>
+
+
+
+  </div>
 </div>
