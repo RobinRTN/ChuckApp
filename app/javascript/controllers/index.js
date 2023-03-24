@@ -43,5 +43,5 @@ application.register("voir-plus-btn", VoirPlusBtnController)
 import VoirPlusController from "./voir_plus_controller"
 application.register("voir-plus", VoirPlusController)
 
-import WeekAvailabilityController from "./week_availability_controller"
-application.register("week-availability", WeekAvailabilityController)
+import WeekToggleController from "./week_toggle_controller"
+application.register("week-toggle", WeekToggleController)

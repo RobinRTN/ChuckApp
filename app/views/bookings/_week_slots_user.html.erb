@@ -1,4 +1,4 @@
-<div data-controller="week-availability voir-plus-back" class="week-slots">
+<div data-controller="voir-plus-back week-toggle" class="week-slots">
   <% @weeks.each_with_index do |week_start, week_index| %>
    <% week_end = week_start.end_of_week %>
     <% availability = current_user.availability_weeks.find_or_initialize_by(week_start: week_start, week_end: week_end) %>
@@ -7,7 +7,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h4 class="h6" data-action="click->voir-plus-back#toggle" data-week-index="<%= week_index %>"><%= l(week_start.to_date, format: '%e %B') %> - <%= l(week_end.to_date, format: '%e %B') %></h4>
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="week-<%= availability.id %>" data-availability-id="<%= availability.id %>" data-target="toggle-availability.weekToggle" data-action="change->toggle-availability#toggleWeek" checked>
+          <input class="form-check-input" type="checkbox" id="week-<%= availability.id %>" data-availability-id="<%= availability.id %>" data-week-toggle-target="weekSwitch" data-week-index="<%= week_index %>" data-action="click->week-toggle#toggleWeek" checked>
           <label class="form-check-label" for="week-<%= availability.id %>"></label>
         </div>
       </div>
@@ -18,7 +18,7 @@
             <% day_date = week_start + i.days %>
             <p><%= l(day_date, format: '%A %e %B').capitalize %></p>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="day-<%= availability.id %>-<%= i %>" data-availability-id="<%= availability.id %>" data-day="available_<%= AvailabilityWeek::DAYS[i] %>" data-target="toggle-availability.dayToggle" data-action="change->toggle-availability#toggleDay" checked>
+              <input class="form-check-input" type="checkbox" role="switch" id="day-<%= availability.id %>-<%= i %>" data-availability-id="<%= availability.id %>" data-day="available_<%= AvailabilityWeek::DAYS[i] %>" data-week-toggle-target="daySwitch" data-week-index="<%= week_index %>" checked>
               <label class="form-check-label" for="day-<%= availability.id %>-<%= i %>"></label>
             </div>
           </div>
