@@ -55,7 +55,7 @@
             <%= link_to group_path(group), class: "text-decoration-none" do %>
               <div class="group-card group-color-<%=index % 4%>">
                 <h4><%= group.name %></h4>
-                <p><%= group.clients.count %> membres</p>
+                <p class="membres"><%= group.clients.count %> membres</p>
                 <% if group.clients.any? %>
                   <div class="group-clients d-flex">
                     <% group.clients.limit(4).each do |client| %>

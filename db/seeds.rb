@@ -102,68 +102,68 @@ c14 = Client.create!( { user_id: User.first.id, phone_number: "0633278600", note
 puts "Just created the 10 clients successfully"
 puts "_________________"
 
-c1.photo.attach(
-  io: URI.open("https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Corentin_bneyvf.jpg"),
-  filename: 'Corentin_bneyvf.jpg',
-  content_type: 'image/jpg'
-)
-c1.save!
+# c1.photo.attach(
+#   io: URI.open("https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Corentin_bneyvf.jpg"),
+#   filename: 'Corentin_bneyvf.jpg',
+#   content_type: 'image/jpg'
+# )
+# c1.save!
 
-c2.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Pierre_mkavne.jpg'),
-  filename: 'Pierre_mkavne.jpg',
-  content_type: 'image/jpg'
-)
-c2.save!
+# c2.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Pierre_mkavne.jpg'),
+#   filename: 'Pierre_mkavne.jpg',
+#   content_type: 'image/jpg'
+# )
+# c2.save!
 
-c3.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Hugo_exm7zw.jpg'),
-  filename: 'Hugo_exm7zw.jpg',
-  content_type: 'image/jpg'
-)
-c3.save!
+# c3.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Hugo_exm7zw.jpg'),
+#   filename: 'Hugo_exm7zw.jpg',
+#   content_type: 'image/jpg'
+# )
+# c3.save!
 
-c5.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Me%CC%81lanie_z4nj0h.jpg'),
-  filename: 'Me%CC%81lanie_z4nj0h.jpg',
-  content_type: 'image/jpg'
-)
-c5.save!
+# c5.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Me%CC%81lanie_z4nj0h.jpg'),
+#   filename: 'Me%CC%81lanie_z4nj0h.jpg',
+#   content_type: 'image/jpg'
+# )
+# c5.save!
 
-c6.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Malo_ojsvi7.jpg'),
-  filename: 'Malo_ojsvi7.jpg',
-  content_type: 'image/jpg'
-)
-c6.save!
+# c6.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Malo_ojsvi7.jpg'),
+#   filename: 'Malo_ojsvi7.jpg',
+#   content_type: 'image/jpg'
+# )
+# c6.save!
 
-c10.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Vanille_pwhhwr.jpg'),
-  filename: 'Vanille_pwhhwr.jpg',
-  content_type: 'image/jpg'
-)
-c10.save!
+# c10.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Vanille_pwhhwr.jpg'),
+#   filename: 'Vanille_pwhhwr.jpg',
+#   content_type: 'image/jpg'
+# )
+# c10.save!
 
-c11.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Victor_bv5mbm.jpg'),
-  filename: 'Victor_bv5mbm.jpg',
-  content_type: 'image/jpg'
-)
-c11.save!
+# c11.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Victor_bv5mbm.jpg'),
+#   filename: 'Victor_bv5mbm.jpg',
+#   content_type: 'image/jpg'
+# )
+# c11.save!
 
-c12.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Lenny_waly5a.jpg'),
-  filename: 'Lenny_waly5a.jpg',
-  content_type: 'image/jpg'
-)
-c12.save!
+# c12.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/Lenny_waly5a.jpg'),
+#   filename: 'Lenny_waly5a.jpg',
+#   content_type: 'image/jpg'
+# )
+# c12.save!
 
-c13.photo.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/enzo_awwezf.jpg'),
-  filename: 'enzo_awwezf.jpg',
-  content_type: 'image/jpg'
-)
-c13.save!
+# c13.photo.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381100/enzo_awwezf.jpg'),
+#   filename: 'enzo_awwezf.jpg',
+#   content_type: 'image/jpg'
+# )
+# c13.save!
 
 puts "Just uploaded the pictures for clients successfully"
 puts "_________________"
