@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "daily-card-#{weekly_index}-#{daily_index}" do %>
   <% pattern = "%H:%M"  %>
-  <% unless daily_datetimes.nil?  %>
+  <% unless daily_datetimes.nil? %>
 
     <div class="daily-dispo-card-user mb-3">
       <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>

@@ -343,14 +343,14 @@ class BookingsController < ApplicationController
               break
             end
           end
-          daily_datetimes << slot unless excluded || slot < current_time
+          daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
           slot += interval.minutes
         end
 
         # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
         converted_available_slots.each do |available_slot|
           # target_day = Date.parse(day) + (7 * week_num)
-          if available_slot.to_date == target_day && !daily_datetimes.include?(available_slot)
+          if available_slot.to_date == target_day && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
             puts "Adding #{available_slot} to daily_datetimes"
             daily_datetimes << available_slot
           end
