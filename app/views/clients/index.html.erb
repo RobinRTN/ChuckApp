@@ -53,9 +53,9 @@
         <div class="groupes-grid">
           <% @groups.each_with_index do |group, index| %>
             <%= link_to group_path(group), class: "text-decoration-none" do %>
-              <div class="group-card group-color-<%=index % 4%>">
+              <div class="group-card group-color-<%=index % 4%> d-flex flex-column align-items-start">
                 <h4><%= group.name %></h4>
-                <p class="membres"><%= group.clients.count %> membres</p>
+                <p class="membres my-2"><%= group.clients.count %> membres</p>
                 <% if group.clients.any? %>
                   <div class="group-clients d-flex">
                     <% group.clients.limit(4).each do |client| %>

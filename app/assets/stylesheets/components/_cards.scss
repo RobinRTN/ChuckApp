@@ -620,8 +620,14 @@
       font-size: 1em;
     }
     p {
-      font-size: 0.9em;
+      font-size: 0.85em;
       font-weight: 300;
+    }
+    .membres {
+      background-color: $light-gray;
+      padding: 0.1em;
+      border-radius: 2px;
+      margin-bottom: 0.4em
     }
 
   }
