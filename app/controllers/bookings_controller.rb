@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
     ]
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
     @full_datetimes = full_datetimes
   end
 
@@ -318,14 +318,15 @@ class BookingsController < ApplicationController
 
 
 
-  def generate_datetimes(start_time, end_time, given_days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+  def generate_datetimes(start_time, end_time, given_days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil)
     Time.zone = 'Europe/Paris'
     full_datetimes = []
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
 
-    converted_available_slots = convert_available_slots(current_user.availables)
+    user ||= current_user
+    converted_available_slots = convert_available_slots(user.availables)
 
     (0..num_weeks - 1).each do |week_num|
       given_days_of_week.each do |day|

@@ -58,8 +58,6 @@
           </div>
           <%= client_fields.input :phone_number, required: true, label: false, input_html: { class: "form-box", placeholder: "Numéro de téléphone" } %>
           <%= client_fields.input :email, required: true, label: false, input_html: { class: "form-box", placeholder: "Adresse email" } %>
-          <p>Photo de profil (facultatif)</p>
-          <%= client_fields.input :photo, as: :file, input_html: { class: "form-box" }, label: false %>
         </div>
       <% end %>
       <%= f.fields_for :back do |client_fields| %>

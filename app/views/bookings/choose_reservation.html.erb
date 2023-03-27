@@ -24,6 +24,7 @@
           <%else%>
           <% end %>
         <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
+          <% daily_datetimes.select! { |datetime| datetime > Time.zone.now } %>
           <div class="daily-dispo-card mb-2">
             <% unless daily_datetimes.empty?  %>
             <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>

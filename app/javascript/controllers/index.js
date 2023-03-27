@@ -13,6 +13,9 @@ application.register("client", ClientController)
 import CopyToClipboardController from "./copy_to_clipboard_controller"
 application.register("copy-to-clipboard", CopyToClipboardController)
 
+import DispoController from "./dispo_controller"
+application.register("dispo", DispoController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
