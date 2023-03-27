@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
   get '/finish_reservation_exist/:token', to: 'bookings#finish_reservation_exist', as: 'finish_reservation_exist'
   get '/finish_reservation_missing/:token', to: 'bookings#finish_reservation_missing', as: 'finish_reservation_missing'
-
+  patch '/update_availability/:id', to: 'bookings#update_availability', as: 'update_availability'
 
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do

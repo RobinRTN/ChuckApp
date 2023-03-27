@@ -218,9 +218,14 @@ class BookingsController < ApplicationController
       @cancelled_slot = Time.zone.parse(params[:cancelled_slot])
       @weekly_index = params[:weekly_index].to_i
       @daily_index = params[:daily_index].to_i
-      cancelled_booking = Booking.new(start_time: @cancelled_slot, end_time: @cancelled_slot + @slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
-      cancelled_booking.user_id = current_user.id
-      cancelled_booking.save
+      available_booking = Available.find_by(start_time: @cancelled_slot, end_time: @cancelled_slot + @slot_duration.minutes)
+      if available_booking
+        available_booking.destroy
+      else
+        cancelled_booking = Booking.new(start_time: @cancelled_slot, end_time: @cancelled_slot + @slot_duration.minutes, status:"Accepted", cancel_type: "Cancelled")
+        cancelled_booking.user_id = current_user.id
+        cancelled_booking.save
+      end
     elsif params[:added_slot]
       @weekly_index = params[:added_slot][:weekly_index].to_i
       @daily_index = params[:added_slot][:daily_index].to_i
@@ -327,9 +332,20 @@ class BookingsController < ApplicationController
 
     user ||= current_user
     converted_available_slots = convert_available_slots(user.availables)
+    availability_weeks = user.availability_weeks
 
     (0..num_weeks - 1).each do |week_num|
+      formatted_current_week_start = (current_time.beginning_of_week + week_num.weeks).strftime("%a, %d %b %Y")
+      availability_week = availability_weeks.find { |aw| aw.week_start.strftime("%a, %d %b %Y") == formatted_current_week_start }
+
+        # Skip the week if it's not enabled
+      next if availability_week && !availability_week.week_enabled
+
       given_days_of_week.each do |day|
+        # Skip the day if it's not available
+        next if availability_week && !availability_week["available_#{day.downcase}"]
+
+
         target_day = Date.parse(day)
         target_day += (7 * week_num)
         slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
