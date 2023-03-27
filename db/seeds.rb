@@ -22,6 +22,8 @@ Group.destroy_all
 
 puts "Deleting Availibles"
 Available.destroy_all
+puts "Deleting Week Availibles"
+AvailabilityWeek.destroy_all
 
 puts "Deleting Users"
 User.destroy_all
