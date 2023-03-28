@@ -1,0 +1,18 @@
+.turbo-progress {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 9999;
+  background-color: $blue-sp;
+  transition: width 300ms ease, opacity 150ms ease;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.turbo-progress[data-turbo-action="restore"] {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}

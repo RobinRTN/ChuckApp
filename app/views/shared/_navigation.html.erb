@@ -1,25 +1,23 @@
 <div class="bottom-navbar-background">
-
   <nav id="bottom-navbar-custom" class="d-flex justify-content-between align-items-center" data-controller="bottom" data-bottom-pending="<%= @pending_booking&.id %>">
     <div class="nav-item-bottom d-flex flex-column align-items-center" data-bottom-target="navItem">
-      <a href="/" class=""><i class="fa-solid fa-house"></i></a>
+      <a href="/" data-turbo-action="replace" class=""><i class="fa-solid fa-house"></i></a>
       <p>Dashboard</p>
     </div>
 
     <div class="nav-item-bottom d-flex flex-column align-items-center" data-bottom-target="navItem">
-      <a href="/clients" class=""><i class="fa-solid fa-address-book"></i></a>
+      <a href="/clients" data-turbo-action="replace" class=""><i class="fa-solid fa-address-book"></i></a>
       <p>Contacts</p>
     </div>
 
     <div class="nav-item-bottom d-flex flex-column align-items-center" data-bottom-target="navItem reservation">
-      <a href="/bookings" class=""><i class="fa-regular fa-calendar"></i></a>
+      <a href="/bookings" data-turbo-action="replace" class=""><i class="fa-regular fa-calendar"></i></a>
       <p>Réservations</p>
     </div>
 
     <div class="nav-item-bottom d-flex flex-column align-items-center" data-bottom-target="navItem">
-      <a href="/disponibilites" class=""><i class="fa-regular fa-calendar-check"></i></a>
+      <a href="/disponibilites" data-turbo-action="replace" class=""><i class="fa-regular fa-calendar-check"></i></a>
       <p>Disponibilités</p>
     </div>
-  </nav>
   </nav>
 </div>
