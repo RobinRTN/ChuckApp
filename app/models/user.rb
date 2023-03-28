@@ -7,6 +7,11 @@ class User < ApplicationRecord
   before_destroy :delete_formules
   before_destroy :delete_groups
 
+  serialize :days_of_week, Array
+
+
+
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]

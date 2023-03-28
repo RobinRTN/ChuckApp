@@ -16,9 +16,10 @@
     </ul>
 
 
-    <div class="block-groupes" data-client-target="groupe" style="display: block;">
-      <%= render partial: 'dispo_slots_user' %>
+    <div class="block-groupes" data-client-target="groupe" id="dispo_slots_user" style="display: block;">
+      <%= render partial: 'dispo_slots_user', locals: { full_datetimes: @full_datetimes } %>
     </div>
+
     <div class="block-clients" data-client-target="contact" style="display: none;">
       <%= render partial: 'week_slots_user' %>
     </div>

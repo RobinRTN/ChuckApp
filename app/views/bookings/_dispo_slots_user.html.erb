@@ -1,6 +1,6 @@
 <% pattern = "%H:%M"  %>
   <div class="mx-3 available" data-controller="disponibilites">
-    <% @full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
+    <% full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
         <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
         <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
           <p><%= "Cette semaine" %></p>

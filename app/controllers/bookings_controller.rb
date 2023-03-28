@@ -203,7 +203,7 @@ class BookingsController < ApplicationController
     @slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse('9:00am')
     end_time = Time.zone.parse('7:00pm') - @slot_duration
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    @days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     num_weeks = 4
     excluded_fixed_weekly_slots = [
       ['Monday', '1pm', '2pm'],
@@ -250,7 +250,7 @@ class BookingsController < ApplicationController
 
     @user_bookings = current_user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    available_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, @slot_duration, excluded_fixed_weekly_slots)
+    available_datetimes = generate_datetimes(start_time, end_time, @days_of_week, interval, num_weeks, @slot_duration, excluded_fixed_weekly_slots)
 
     @full_datetimes = available_datetimes
 
@@ -269,7 +269,27 @@ class BookingsController < ApplicationController
   def update_availability
     availability = AvailabilityWeek.find(params[:id])
     availability.update(availability_week_params)
-    render json: { success: true }
+     # Render Turbo Stream to refresh the dispo_slots_user partial
+    # // FOR DAILY
+    interval = current_user.formules.minimum(:duration)
+    slot_duration = current_user.formules.minimum(:duration)
+    start_time = Time.zone.parse('9:00am')
+    end_time = Time.zone.parse('7:00pm') - slot_duration
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    num_weeks = 4
+    excluded_fixed_weekly_slots = [
+      ['Monday', '1pm', '2pm'],
+      ['Tuesday', '1pm', '2pm'],
+      ['Wednesday', '1pm', '2pm'],
+      ['Thursday', '1pm', '2pm'],
+      ['Friday', '1pm', '2pm']
+    ]
+    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+    # Replace the existing render json: line with the following
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("dispo_slots_user", partial: "dispo_slots_user", locals: { full_datetimes: full_datetimes }) }
+      format.html { redirect_to disponibilites_path }
+    end
   end
 
   private
@@ -377,7 +397,7 @@ class BookingsController < ApplicationController
         puts "daily_datetimes after sorting: #{daily_datetimes}"
 
         # Call sort_bookings after adding converted_available_slots
-        sort_bookings(daily_datetimes, slot_duration)
+        sort_bookings(daily_datetimes, slot_duration, user)
 
         weekly_datetimes << daily_datetimes unless daily_datetimes.empty?
         daily_datetimes = []
@@ -399,7 +419,8 @@ class BookingsController < ApplicationController
   end
 
 
-  def sort_bookings(daily_datetimes, slot_duration)
+  def sort_bookings(daily_datetimes, slot_duration, user)
+    @user_bookings = user.bookings.upcoming_all
     overlapping_slots = []
     daily_datetimes.each do |slot|
       slot_end = slot + slot_duration.minutes

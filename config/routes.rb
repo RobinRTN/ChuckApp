@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get 'profile', to: 'pages#profile'
-  get '/disponibilites', to: 'bookings#disponibilites'
+  get '/disponibilites', to: 'bookings#disponibilites', as: 'disponibilites'
   get '/landing_reservation/:token', to: 'bookings#landing_reservation', as: 'landing_reservation'
   get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
   get '/finish_reservation_exist/:token', to: 'bookings#finish_reservation_exist', as: 'finish_reservation_exist'
