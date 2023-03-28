@@ -4,19 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["weekSwitch", "daySwitch", "refreshNeeded"];
 
-  connect() {
-    this.updateWeekTogglesOnLoad();
-  }
-
-
-  toggleWeek(event) {
+  async toggleWeek(event) {
     const availabilityId = event.target.dataset.availabilityId;
     const weekEnabled = event.target.checked;
-    // console.log(availabilityId);
-    // console.log(weekEnabled);
 
     // Update the server
-    fetch(`/update_availability/${availabilityId}`, {
+    await fetch(`/update_availability/${availabilityId}`, {
       method: "PATCH",
       body: new URLSearchParams({
         "availability_week[week_enabled]": weekEnabled,
@@ -29,17 +22,15 @@ export default class extends Controller {
 
     this.updateDaySwitches(weekEnabled, event.target.dataset.weekIndex);
     this.refreshNeededTarget.dataset.value = 'true';
-
   }
 
-  toggleDay(event) {
+  async toggleDay(event) {
     const availabilityId = event.target.dataset.availabilityId;
     const day = event.target.dataset.day;
     const dayEnabled = event.target.checked;
 
-
     // Update the server
-    fetch(`/update_availability/${availabilityId}`, {
+    await fetch(`/update_availability/${availabilityId}`, {
       method: "PATCH",
       body: new URLSearchParams({
         [`availability_week[${day}]`]: dayEnabled,
@@ -63,17 +54,29 @@ export default class extends Controller {
       (weekSwitch) => weekSwitch.dataset.weekIndex == weekIndex
     );
 
-    // Ensure the week toggle is checked when at least one day is toggled
-    if (anyDayEnabled) {
-      weekSwitch.checked = true;
-    } else { // Add this else statement to untoggle the week when no day is toggled
-      weekSwitch.checked = false;
+    // Check if the week switch state is different from anyDayEnabled
+    if (weekSwitch.checked !== anyDayEnabled) {
+      // Ensure the week toggle is checked when at least one day is toggled
+      weekSwitch.checked = anyDayEnabled;
+
+      // Update the week's state in the database
+      await fetch(`/update_availability/${weekSwitch.dataset.availabilityId}`, {
+        method: "PATCH",
+        body: new URLSearchParams({
+          "availability_week[week_enabled]": anyDayEnabled,
+          authenticity_token: this.getMetaContent("csrf-token"),
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
     }
+
     this.refreshNeededTarget.dataset.value = 'true';
   }
 
 
-  updateDaySwitches(weekEnabled, weekIndex) {
+  async updateDaySwitches(weekEnabled, weekIndex) {
     this.days_of_week = JSON.parse(this.data.get("days-of-week"));
     const daysOfWeek = this.days_of_week.map(day => `available_${day.toLowerCase()}`);
     console.log(daysOfWeek);
@@ -82,28 +85,27 @@ export default class extends Controller {
       (daySwitch) => daySwitch.dataset.weekIndex == weekIndex
     );
 
-    daySwitches.forEach((daySwitch) => {
-      const dayAttribute = daySwitch.dataset.day; // Get the day attribute from the data-day attribute
-      if (weekEnabled && daysOfWeek.includes(dayAttribute)) {
-        daySwitch.checked = true;
-      } else if (!weekEnabled) {
-        daySwitch.checked = false;
-      }
-    });
+    // Update the day switches both in HTML and the database
+    for (const daySwitch of daySwitches) {
+      const dayAttribute = daySwitch.dataset.day;
+      const availabilityId = daySwitch.dataset.availabilityId;
+      const dayEnabled = weekEnabled && daysOfWeek.includes(dayAttribute);
+
+      daySwitch.checked = dayEnabled;
+
+      // Update the server
+      await fetch(`/update_availability/${availabilityId}`, {
+        method: "PATCH",
+        body: new URLSearchParams({
+          [`availability_week[${dayAttribute}]`]: dayEnabled,
+          authenticity_token: this.getMetaContent("csrf-token"),
+        }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+    }
   }
-
-  updateWeekTogglesOnLoad() {
-    this.weekSwitchTargets.forEach((weekSwitch) => {
-      const weekIndex = weekSwitch.dataset.weekIndex;
-      const daySwitchesForWeek = this.daySwitchTargets.filter(
-        (daySwitch) => daySwitch.dataset.weekIndex == weekIndex
-      );
-
-      const anyDayEnabled = daySwitchesForWeek.some((daySwitch) => daySwitch.checked);
-      weekSwitch.checked = anyDayEnabled;
-    });
-  }
-
 
   getMetaContent(name) {
     const element = document.querySelector(`meta[name="${name}"]`);
