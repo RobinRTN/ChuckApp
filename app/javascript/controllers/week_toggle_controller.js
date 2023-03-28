@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="week-availability"
 export default class extends Controller {
-  static targets = ["weekSwitch", "daySwitch"];
+  static targets = ["weekSwitch", "daySwitch", "refreshNeeded"];
 
 
   toggleWeek(event) {
@@ -24,6 +24,8 @@ export default class extends Controller {
     });
 
     this.updateDaySwitches(weekEnabled, event.target.dataset.weekIndex);
+    this.refreshNeededTarget.dataset.value = 'true';
+
   }
 
   toggleDay(event) {
@@ -63,6 +65,7 @@ export default class extends Controller {
     if (anyDayEnabled) {
       weekSwitch.checked = true;
     }
+    this.refreshNeededTarget.dataset.value = 'true';
   }
 
 

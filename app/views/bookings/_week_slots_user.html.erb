@@ -1,4 +1,4 @@
-<div data-controller="voir-plus-back week-toggle" class="week-slots" data-week-toggle-days-of-week="<%= @days_of_week.to_json %>">
+<div data-controller="voir-plus-back week-toggle" class="week-slots" data-week-toggle-days-of-week="<%= @days_of_week.to_json %>"  data-dispo-target="refreshNeeded" data-week-toggle-target="refreshNeeded" data-value="false">
   <% @weeks.each_with_index do |week_start, week_index| %>
     <% week_end = week_start.end_of_week %>
     <% availability = current_user.availability_weeks.find_or_create_by(week_start: week_start, week_end: week_end) %>
