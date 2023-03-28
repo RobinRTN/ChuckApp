@@ -1,4 +1,5 @@
-<% pattern = "%H:%M"  %>
+<%= turbo_frame_tag "dispo-slots-user" do %>
+  <% pattern = "%H:%M"  %>
   <div class="mx-3 available" data-controller="disponibilites">
     <% full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
         <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
@@ -17,3 +18,4 @@
       <%end%>
     <%end%>
   </div>
+<%end%>

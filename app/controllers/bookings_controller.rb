@@ -271,25 +271,28 @@ class BookingsController < ApplicationController
     availability.update(availability_week_params)
      # Render Turbo Stream to refresh the dispo_slots_user partial
     # // FOR DAILY
-    interval = current_user.formules.minimum(:duration)
-    slot_duration = current_user.formules.minimum(:duration)
-    start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('7:00pm') - slot_duration
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-    num_weeks = 4
-    excluded_fixed_weekly_slots = [
-      ['Monday', '1pm', '2pm'],
-      ['Tuesday', '1pm', '2pm'],
-      ['Wednesday', '1pm', '2pm'],
-      ['Thursday', '1pm', '2pm'],
-      ['Friday', '1pm', '2pm']
-    ]
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
-    # Replace the existing render json: line with the following
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("dispo_slots_user", partial: "dispo_slots_user", locals: { full_datetimes: full_datetimes }) }
-      format.html { redirect_to disponibilites_path }
-    end
+    # interval = current_user.formules.minimum(:duration)
+    # slot_duration = current_user.formules.minimum(:duration)
+    # start_time = Time.zone.parse('9:00am')
+    # end_time = Time.zone.parse('7:00pm') - slot_duration
+    # days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    # num_weeks = 4
+    # excluded_fixed_weekly_slots = [
+    #   ['Monday', '1pm', '2pm'],
+    #   ['Tuesday', '1pm', '2pm'],
+    #   ['Wednesday', '1pm', '2pm'],
+    #   ['Thursday', '1pm', '2pm'],
+    #   ['Friday', '1pm', '2pm']
+    # ]
+    # full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
+    # puts "Sending Turbo Stream to update all..."
+    # # Replace the existing render json: line with the following
+    # render turbo_stream:
+    #     turbo_stream.replace("dispo-slots-user",
+    #     partial: "bookings/dispo_slots_user",
+    #     locals: { full_datetimes: full_datetimes })
+    # puts "Turbo Stream updated"
+
   end
 
   private
