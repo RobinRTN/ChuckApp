@@ -4,6 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["weekSwitch", "daySwitch", "refreshNeeded"];
 
+  connect() {
+    this.updateWeekTogglesOnLoad();
+  }
+
 
   toggleWeek(event) {
     const availabilityId = event.target.dataset.availabilityId;
@@ -50,10 +54,8 @@ export default class extends Controller {
     const weekIndex = event.target.dataset.weekIndex;
     const daySwitchesForWeek = this.daySwitchTargets.filter(
       (daySwitch) => daySwitch.dataset.weekIndex == weekIndex
-      );
-    console.log("=============")
-    console.log("==============")
-    console.log(daySwitchesForWeek)
+    );
+
     const anyDayEnabled = daySwitchesForWeek.some((daySwitch) => daySwitch.checked);
 
     // Update the week switch accordingly
@@ -64,6 +66,8 @@ export default class extends Controller {
     // Ensure the week toggle is checked when at least one day is toggled
     if (anyDayEnabled) {
       weekSwitch.checked = true;
+    } else { // Add this else statement to untoggle the week when no day is toggled
+      weekSwitch.checked = false;
     }
     this.refreshNeededTarget.dataset.value = 'true';
   }
@@ -85,6 +89,18 @@ export default class extends Controller {
       } else if (!weekEnabled) {
         daySwitch.checked = false;
       }
+    });
+  }
+
+  updateWeekTogglesOnLoad() {
+    this.weekSwitchTargets.forEach((weekSwitch) => {
+      const weekIndex = weekSwitch.dataset.weekIndex;
+      const daySwitchesForWeek = this.daySwitchTargets.filter(
+        (daySwitch) => daySwitch.dataset.weekIndex == weekIndex
+      );
+
+      const anyDayEnabled = daySwitchesForWeek.some((daySwitch) => daySwitch.checked);
+      weekSwitch.checked = anyDayEnabled;
     });
   }
 
