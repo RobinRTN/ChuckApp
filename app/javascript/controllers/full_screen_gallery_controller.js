@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="full-screen-gallery"
 // full_screen_gallery_controller.js
 export default class extends Controller {
-  static targets = ["image", "galleryImage"];
+  static targets = ["image", "galleryImage", "icons"];
 
   connect() {
     this.currentIndex = 0;
@@ -17,11 +17,13 @@ export default class extends Controller {
     console.log(this.currentIndex)
     this.updateImage();
     this.element.classList.add("full-screen-gallery-active");
+    this.iconsTarget.classList.remove("d-none")
   }
 
   hideGallery() {
     console.log("hide triggered")
     this.element.classList.remove("full-screen-gallery-active");
+    this.iconsTarget.classList.add("d-none")
   }
 
   prevImage() {

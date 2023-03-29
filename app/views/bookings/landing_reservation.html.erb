@@ -100,9 +100,11 @@
         <div class="full-screen-gallery">
           <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
         </div>
-        <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
-        <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery">Fermer</button>
+        <div data-full-screen-gallery-target="icons" class="d-none" >
+          <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
+          <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+        </div>
       </div>
 
 
