@@ -35,3 +35,20 @@
 .modal-header {
   display: none;
 }
+
+
+.modal-navigation-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1050;
+  cursor: pointer;
+}
+
+.modal-navigation-arrow-left {
+  left: 10px;
+}
+
+.modal-navigation-arrow-right {
+  right: 10px;
+}

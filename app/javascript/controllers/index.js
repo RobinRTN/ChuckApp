@@ -22,6 +22,9 @@ application.register("dropdown", DropdownController)
 import FormuleController from "./formule_controller"
 application.register("formule", FormuleController)
 
+import FullScreenGalleryController from "./full_screen_gallery_controller"
+application.register("full-screen-gallery", FullScreenGalleryController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
