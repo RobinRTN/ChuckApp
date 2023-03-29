@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     @client_rankings = rank_clients_by_revenue()
     @upcoming_bookings = current_user.bookings.upcoming
 
-    @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", 2.months.ago, 2.months.from_now)
+    @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", 3.months.ago, 3.months.from_now)
     end
   end
 
