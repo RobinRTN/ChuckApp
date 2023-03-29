@@ -644,26 +644,26 @@
   }
   .group-color-0 {
     color: $dd-blue-sp;
-    box-shadow: 0 0 12px -4px $blue-sp;
-    border: 2px solid $blue-sp;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    border-left: 3px solid $blue-sp;
   }
 
   .group-color-1 {
     color: $dd-blue-sp;
-    box-shadow: 0 0 12px -4px $green-sp;
-    border: 2px solid $green-sp;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    border-left: 3px solid $green-sp;
   }
 
   .group-color-2 {
     color: $dd-blue-sp;
-    box-shadow: 0 0 12px -4px $yellow-sp;
-    border: 2px solid $yellow-sp;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    border-left: 3px solid $yellow-sp;
   }
 
   .group-color-3 {
     color: $dd-blue-sp;
-    box-shadow: 0 0 12px -4px $red-sp;
-    border: 2px solid $red-sp;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+    border-left: 3px solid $red-sp;
   }
 }
 
