@@ -88,28 +88,24 @@
     <div class="d-flex justify-content-center flex-column align-items-center">
       <p class= "p-2 text-center"><%= @user.description %></p>
       <!-- Image gallery -->
-      <div class="image-gallery mb-5">
-        <% @user.gallery_pictures.each do |image| %>
-          <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-<%= image.id %>">
-            <%= cl_image_tag(image.key, class: 'img-fluid square-image') %>
-          </a>
 
-          <!-- Modal -->
-          <div class="modal fade" id="imageModal-<%= image.id %>" tabindex="-1" aria-labelledby="imageModalLabel-<%= image.id %>" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <%= cl_image_tag(image.key, class: 'img-fluid') %>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="image-gallery mb-5" data-controller="full-screen-gallery">
+        <% @user.gallery_pictures.each_with_index do |image, index| %>
+          <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
+            <%= cl_image_tag(image.key, class: 'img-fluid square-image', data: { full_screen_gallery_target: 'galleryImage', src: cl_image_path(image.key, width: 800, height: 600, crop: :fill) }) %>
+          </a>
         <% end %>
+
+        <!-- Full-screen gallery -->
+        <div class="full-screen-gallery">
+          <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
+        </div>
+        <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery">Fermer</button>
       </div>
-    </div>
+
+
 
     <p class= "p-2 text-center"><strong>Choisis ta formule 👇</strong></p>
     <form action="/choose_reservation/<%=@user.token%>" data-controller="formule" data-action="submit->formule#checkForm" method="get">
