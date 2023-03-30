@@ -110,7 +110,7 @@
 
 
     <p class= "p-2 text-center"><strong>Choisis ta formule 👇</strong></p>
-    <form action="/choose_reservation/<%=@user.token%>" data-controller="formule" data-action="submit->formule#checkForm" method="get">
+    <form action="/choose_reservation/<%=@user.token%>" data-controller="formule" data-action="submit->formule#checkForm" method="get" class="w-100">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="formule-block">
         <% @packages.each do |package| %>
@@ -160,8 +160,8 @@
         <input type="hidden" name="formule_id" value="" data-formule-target="formuleIdInput">
         <input type="hidden" name="booking_option" value="" data-formule-target="optionInput">
       </div>
-      <div class="d-flex justify-content-center">
-        <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large " data-formule-target="submitButton" disabled>
+      <div class="d-flex justify-content-center w-100">
+        <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large" data-formule-target="submitButton" disabled>
       </div>
     </form>
 
