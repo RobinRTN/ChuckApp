@@ -147,9 +147,6 @@
           <% end %>
         <% end %>
       </div>
-    </form>
-
-
       <p class="p-2 mt-3 text-center"><strong>As-tu déjà réservé une séance avec <%= @user.first_name %> ?</strong></p>
       <div class="d-flex align-items-center justify-content-center">
         <button type="button" name="booking_option" value="yes" class="booking-option-button me-2" data-action="click->formule#selectOption" data-formule-target="optionButtonOui">Oui</button>
@@ -163,6 +160,9 @@
       <div class="d-flex justify-content-center w-100">
         <input type="submit" value="Etape suivante" class="mt-4 btn-basic-bleu-large" data-formule-target="submitButton" disabled>
       </div>
+    </form>
+
+
     </form>
 
 
