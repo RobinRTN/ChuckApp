@@ -89,23 +89,36 @@
       <p class= "p-2 text-center"><%= @user.description %></p>
       <!-- Image gallery -->
 
-      <div class="image-gallery mb-5" data-controller="full-screen-gallery">
-        <% @user.gallery_pictures.each_with_index do |image, index| %>
-          <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
+    <div class="image-gallery mb-5" data-controller="full-screen-gallery">
+      <% @user.gallery_pictures.each_with_index do |image, index| %>
+        <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
+          <div class="image-wrapper">
             <%= cl_image_tag(image.key, class: 'img-fluid square-image', data: { full_screen_gallery_target: 'galleryImage', src: cl_image_path(image.key, width: 800, height: 600, crop: :fill) }) %>
-          </a>
-        <% end %>
+            <div class="spinner-wrapper spinner-small" data-full-screen-gallery-target="smallSpinner">
+              <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      <% end %>
 
-        <!-- Full-screen gallery -->
-        <div class="full-screen-gallery">
-          <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
-        </div>
-        <div data-full-screen-gallery-target="icons" class="d-none" >
-          <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
-          <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+      <!-- Full-screen gallery -->
+      <div class="full-screen-gallery">
+        <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
+        <div class="spinner-wrapper" data-full-screen-gallery-target="spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
       </div>
+      <div data-full-screen-gallery-target="icons" class="d-none">
+        <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
+        <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
 
 
 

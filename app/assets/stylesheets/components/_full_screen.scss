@@ -1,3 +1,23 @@
+.image-wrapper {
+  position: relative;
+}
+
+.spinner-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-small .spinner-border {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.15em;
+}
+
 .full-screen-gallery {
   display: none;
   position: fixed;
@@ -19,6 +39,7 @@
   max-width: 90%;
   max-height: 90%;
   object-fit: contain;
+  position: relative;
 }
 
 .full-screen-gallery-prev,
