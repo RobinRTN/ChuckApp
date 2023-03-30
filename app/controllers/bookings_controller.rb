@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
   def landing_reservation
     @user = User.find_by(token: reservation_params[:token])
     @formules = @user.formules
+    @packages = @user.packages
   end
 
   def choose_reservation

@@ -113,40 +113,42 @@
     <form action="/choose_reservation/<%=@user.token%>" data-controller="formule" data-action="submit->formule#checkForm" method="get">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="formule-block">
-        <% @formules.each do |formule| %>
-          <div class="formule-card d-flex flex-column align-items-center justify-content-between">
-            <button class="d-flex align-items-center justify-content-between" type="button" name="formule_id" value="<%= formule.id %>" data-action="click->formule#selectFormule" data-formule-target="formuleButton">
-              <div class="d-flex flex-column align-items-start">
-                <div class="d-flex align-items-center justify-content-start">
-                  <h4><%= formule.name %></h4>
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal-<%= formule.id %>">
-                    <p><i class="fa-sharp fa-solid fa-circle-question ms-2 mb-1"></i></p>
-                  </a>
+        <% @packages.each do |package| %>
+          <h4 class="h6 my-2 ms-2"><%= package.name %></h4>
+          <% package.formules.each do |formule| %>
+            <div class="formule-card d-flex flex-column align-items-center justify-content-between">
+              <button class="d-flex align-items-center justify-content-between" type="button" name="formule_id" value="<%= formule.id %>" data-action="click->formule#selectFormule" data-formule-target="formuleButton">
+                <div class="d-flex flex-column align-items-start">
+                  <div class="d-flex align-items-center justify-content-start">
+                    <h4><%= formule.name %></h4>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#descriptionModal-<%= formule.id %>">
+                      <p><i class="fa-sharp fa-solid fa-circle-question ms-2 mb-1"></i></p>
+                    </a>
+                  </div>
+                  <p><%= formule.duration %> minutes</p>
                 </div>
-                <p><%= formule.duration %> minutes</p>
-              </div>
-                <p class="btn-disponibilites"><%= formule.price.to_i %> €</p>
-            </button>
-          </div>
+                  <p class="btn-disponibilites"><%= formule.price.to_i %> €</p>
+              </button>
+            </div>
 
-          <div class="modal fade" id="descriptionModal-<%= formule.id %>" tabindex="-1" aria-labelledby="descriptionModalLabel-<%= formule.id %>" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <h4 class="mb-5"><%= formule.name %></h4>
-                  <p><%= formule.description %></p>
+            <div class="modal fade" id="descriptionModal-<%= formule.id %>" tabindex="-1" aria-labelledby="descriptionModalLabel-<%= formule.id %>" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h4 class="mb-5"><%= formule.name %></h4>
+                    <p><%= formule.description %></p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-
-
+          <% end %>
         <% end %>
       </div>
+    </form>
+
 
       <p class="p-2 mt-3 text-center"><strong>As-tu déjà réservé une séance avec <%= @user.first_name %> ?</strong></p>
       <div class="d-flex align-items-center justify-content-center">
