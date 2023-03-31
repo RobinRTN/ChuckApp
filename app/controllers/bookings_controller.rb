@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
     ]
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
+    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
     @full_datetimes = full_datetimes
   end
 
@@ -251,7 +251,7 @@ class BookingsController < ApplicationController
 
     @user_bookings = current_user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
-    available_datetimes = generate_datetimes(start_time, end_time, @days_of_week, interval, num_weeks, @slot_duration, excluded_fixed_weekly_slots)
+    available_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, @slot_duration, excluded_fixed_weekly_slots)
 
     @full_datetimes = available_datetimes
 
@@ -347,12 +347,13 @@ class BookingsController < ApplicationController
 
 
 
-  def generate_datetimes(start_time, end_time, given_days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil)
+  def generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil)
     Time.zone = 'Europe/Paris'
     full_datetimes = []
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
+    given_days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     user ||= current_user
     converted_available_slots = convert_available_slots(user.availables)
@@ -366,12 +367,16 @@ class BookingsController < ApplicationController
       next if availability_week && !availability_week.week_enabled
 
       given_days_of_week.each do |day|
-        # Skip the day if it's not available
+        # Calculate the first day of the week for the current iteration
         next if availability_week && !availability_week["available_#{day.downcase}"]
+        # Calculate the first day of the week for the current iteration
+        first_day_of_week = current_time.beginning_of_week + week_num.weeks
+        # Calculate the target_day based on the first_day_of_week and the current day of the week
+        day_offset = (Date.parse(day).wday - first_day_of_week.wday) % 7
+        target_day = first_day_of_week + day_offset.days
 
+        # Skip the day if it's not available
 
-        target_day = Date.parse(day)
-        target_day += (7 * week_num)
         slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
         while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
           excluded = false
