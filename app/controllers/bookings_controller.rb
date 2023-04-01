@@ -399,7 +399,8 @@ class BookingsController < ApplicationController
           # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
           converted_available_slots.each do |available_slot|
             # target_day = Date.parse(day) + (7 * week_num)
-            if available_slot.to_date == target_day && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
+            puts "Checking available_slot: #{available_slot.to_date}, target_day: #{target_day.to_date}, current_time: #{current_time.to_date}"
+            if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
               puts "Adding #{available_slot} to daily_datetimes"
               daily_datetimes << available_slot
             end
