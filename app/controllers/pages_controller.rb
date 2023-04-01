@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     if user_signed_in?
     @user_bookings_calendar
-    @user_bookings_passed = current_user.bookings.passed_confirmed
+    @user_bookings_passed = current_user.bookings.passed_current_month
     @user_bookings_projected = current_user.bookings.current_month_projected
     @user_bookings_rest = current_user.bookings.current_month_rest
     @user_bookings_number = @user_bookings_passed.count
