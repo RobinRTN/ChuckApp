@@ -3,7 +3,7 @@ require "google/api_client/client_secrets.rb"
 require 'active_support/time'
 
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation_missing, :finish_reservation_exist, :create]
+  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation_missing, :create]
 
   CALENDAR_ID = 'primary'
 
