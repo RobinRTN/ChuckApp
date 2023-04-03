@@ -1,14 +1,13 @@
-<div class="container wrapper">
+<div class="container wrapper" data-controller="form-toggle">
   <div class="px-3 pb-4 d-flex align-items-center">
-    <% booking_option = @existing_user == "true" ? "yes" : "no" %>
-    <%= link_to choose_reservation_path(@user.token, formule_id: @formule.id, booking_option: booking_option), class: "text-decoration-none" do %>
+    <%= link_to choose_reservation_path(@user.token, formule_id: @formule.id), class: "text-decoration-none" do %>
       <div class="back-btn me-3">
         <i class="fa-solid fa-arrow-left"></i>
       </div>
     <% end %>
     <h4 class="m-0"></h4>
   </div>
-  <p class="mx-3 mb-4"><strong>Récapitulatif de la réservation en cours</strong></p>
+  <p class="mx-3 mb-4 text-center"><strong>Récapitulatif de la réservation en cours</strong></p>
   <div class="recap-card mx-3">
     <div class="d-flex align-items-center justify-content-start finish-card">
       <div class="d-flex justify-content-center">
@@ -35,10 +34,16 @@
     </div>
   </div>
 
+  <p class="p-2 mt-3 text-center"><strong>As-tu déjà réservé une séance avec <%= @user.first_name %> ?</strong></p>
+
+  <div class="d-flex align-items-center justify-content-center mb-4">
+    <button class="booking-option-button me-2" data-action="click->form-toggle#showReducedForm" data-form-toggle-target="yesButton">Oui</button>
+    <button class="booking-option-button ms-2" data-action="click->form-toggle#showFullForm" data-form-toggle-target="noButton">Non</button>
+  </div>
 
 
 
-  <div class="form-new-client mx-3">
+  <div class="form-new-client mx-3 d-none" data-form-toggle-target="fullForm">
     <%= simple_form_for @booking do |f| %>
       <% start_time = DateTime.parse(@datetime) %>
       <% end_time = start_time + @formule.duration.minutes %>
@@ -52,10 +57,14 @@
       <%= f.fields_for :client do |client_fields| %>
         <div class="form-group">
           <p><strong>Renseigne tes informations personnelles 👇</strong></p>
-          <div class="d-flex w-100 justify-content-between">
-            <%= client_fields.input :first_name, required: true, label: false, input_html: { class: "form-box-half me-2", placeholder: "Prénom" } %>
-            <%= client_fields.input :last_name, required: true, label: false, input_html: { class: "form-box-half ms-2", placeholder: "Nom de famille" } %>
+        <div class="row">
+          <div class="col">
+            <%= client_fields.input :first_name, required: true, label: false, input_html: { class: "form-box w-100", placeholder: "Prénom" } %>
           </div>
+          <div class="col">
+            <%= client_fields.input :last_name, required: true, label: false, input_html: { class: "form-box w-100", placeholder: "Nom de famille" } %>
+          </div>
+        </div>
           <%= client_fields.input :phone_number, required: true, label: false, input_html: { class: "form-box", placeholder: "Numéro de téléphone" } %>
           <%= client_fields.input :email, required: true, label: false, input_html: { class: "form-box", placeholder: "Adresse email" } %>
         </div>
@@ -63,16 +72,48 @@
       <%= f.fields_for :back do |client_fields| %>
           <%= client_fields.input :datetime, as: :hidden, input_html: { value: @datetime }  %>
           <%= client_fields.input :formule, as: :hidden, input_html: { value: @formule.id }  %>
-          <%= client_fields.input :existing_user, as: :hidden, input_html: { value: @existing_user }  %>
       <% end %>
 
       <p class="mt-4"><strong>Ajoute un message à ta demande 👇</strong></p>
-      <%= f.input :message, label: false %>
-      <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4" %>
+      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name}" } %>
+      <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4"%>
     <% end %>
       <div class="mt-3">
         <small><em>Tu receveras un e-mail de confirmation de la demande.</em></small>
-        <small><em>Attends ensuite la confirmation par e-mail du professionnel ! </em></small>
+        <small><em>Attends ensuite la confirmation par e-mail de <%= @user.first_name %> ! </em></small>
       </div>
   </div>
+
+  <div class="form-new-client mx-3 d-none" data-form-toggle-target="reducedForm">
+    <%= simple_form_for @booking do |f| %>
+      <% start_time = DateTime.parse(@datetime) %>
+      <% end_time = start_time + @formule.duration.minutes %>
+      <%= f.input :start_time, as: :hidden, input_html: { value: start_time } %>
+      <%= f.input :end_time, as: :hidden, input_html: { value: end_time } %>
+      <%= f.input :payment_status, as: :hidden, input_html: { value: "Non réglé" } %>
+      <%= f.input :price, as: :hidden, input_html: { value: @formule.price } %>
+      <%= f.input :user_id, as: :hidden, input_html: { value: @user.id } %>
+      <%= f.input :formule_id, as: :hidden, input_html: { value: @formule.id }  %>
+      <%= f.input :booking_type, as: :hidden, input_html: { value: "Individuel" } %>
+      <%= f.fields_for :client do |client_fields| %>
+        <div class="form-group">
+          <p><strong>Renseigne ton adresse email 👇</strong></p>
+          <%= client_fields.input :email, required: false, label: false, input_html: { class: "form-control", placeholder: "Adresse email" } %>
+        </div>
+      <% end %>
+      <%= f.fields_for :back do |client_fields| %>
+        <%= client_fields.input :datetime, as: :hidden, input_html: { value: @datetime }  %>
+        <%= client_fields.input :formule, as: :hidden, input_html: { value: @formule.id }  %>
+      <% end %>
+      <p class="mt-4"><strong>Ajoute un message à ta demande</strong></p>
+      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name}" } %>
+      <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4"%>
+    <% end %>
+      <div class="mt-3">
+        <small><em>Tu receveras un e-mail de confirmation de la demande.</em></small>
+        <small><em>Attends ensuite la confirmation par e-mail de <%= @user.first_name %> ! </em></small>
+      </div>
+  </div>
+
+
 </div>

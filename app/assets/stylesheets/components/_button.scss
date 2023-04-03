@@ -20,18 +20,16 @@
   font-weight: 400;
 }
 
-.btn-basic-bleu:hover {
-  background: $d-blue-sp;
-  color: $ll-blue-sp;
-}
+// .btn-basic-bleu:hover {
+//   background: $d-blue-sp;
+//   color: $ll-blue-sp;
+// }
 
 .btn-basic-bleu-large {
   text-decoration: none;
   padding: 0.5em 0;
   width: 100% !important;
   border-radius: 4px;
-  transition: all 0.01s;
-  transition-duration: 0.8s;
   background: $blue-sp;
   color: $ll-blue-sp;
   font-weight: 400;

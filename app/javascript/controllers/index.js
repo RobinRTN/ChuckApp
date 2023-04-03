@@ -19,6 +19,9 @@ application.register("dispo", DispoController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import FormToggleController from "./form_toggle_controller"
+application.register("form-toggle", FormToggleController)
+
 import FormuleController from "./formule_controller"
 application.register("formule", FormuleController)
 
