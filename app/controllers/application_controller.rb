@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_pending_booking
-    @pending_booking = Booking.after_pending.first
+    @pending_booking = Booking.all_pending.first
   end
 end
