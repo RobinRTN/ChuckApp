@@ -20,9 +20,15 @@
           <% end  %>
           <% bookings.each do |booking| %>
             <div class="card-header">
-             <%= link_to booking_path(booking, previous_page: "root_path"), class: "dropdown-item" do %>
-                <p class="btn-time-slot-calendar"><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
-             <% end  %>
+              <%= link_to booking_path(booking, previous_page: "root_path"), class: "dropdown-item" do %>
+                <% initials = "#{booking.client.first_name[0]}#{booking.client.last_name[0]}" %>
+                <% color_variations = ['circle-pink-tiny', 'circle-green-tiny', 'circle-red-tiny', 'circle-orange-tiny'] %>
+                <% circle_class = color_variations[booking.client.id % color_variations.size] %>
+                <div class="btn-time-slot-calendar d-flex justify-content-between">
+                  <p class="mb-0"><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
+                  <p class="mb-0 <%= circle_class %>"><%= initials %></p>
+                </div>
+              <% end %>
             </div>
           <% end %>
           <%= link_to new_booking_path, class: 'dropdown-item ajouter-btn' do %>
