@@ -27,7 +27,7 @@
           <% daily_datetimes.select! { |datetime| datetime > Time.zone.now } %>
           <% unless daily_datetimes.empty?  %>
             <div class="daily-dispo-card mb-3">
-              <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
+              <p class="date-text"><%= l(daily_datetimes.first, format: "%A %-d %B").capitalize %></p>
               <div class="available-block" data-controller="dropdown">
                 <%array_size = daily_datetimes.size %>
                 <%if array_size > 4 %>
