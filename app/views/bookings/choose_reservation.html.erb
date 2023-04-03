@@ -25,45 +25,44 @@
           <% end %>
         <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
           <% daily_datetimes.select! { |datetime| datetime > Time.zone.now } %>
-          <div class="daily-dispo-card mb-3">
-            <% unless daily_datetimes.empty?  %>
-            <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
-            <%end %>
+          <% unless daily_datetimes.empty?  %>
+            <div class="daily-dispo-card mb-3">
+              <p class="date-text"><%= l(daily_datetimes.first, format: "%A %d %B").capitalize %></p>
+              <div class="available-block" data-controller="dropdown">
+                <%array_size = daily_datetimes.size %>
+                <%if array_size > 4 %>
+                  <div class="dispo-slots">
+                    <% daily_datetimes.first(4).each do |datetime| %>
+                      <%= link_to datetime.strftime(pattern),
+                            finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
+                            class: "disponibilites-btn my-1 mx-1" %>
+                    <%end%>
+                  </div>
+                  <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
+                    <% daily_datetimes.each_with_index do |datetime, index| %>
+                      <%if index >= 4 %>
+                        <%= link_to datetime.strftime(pattern),
+                            finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
+                            class: "disponibilites-btn my-1 mx-1" %>
+                      <% end %>
+                    <%end%>
+                  </div>
+                  <button class="btn-disponibilites d-flex justify-content-center align-items-center" data-action="click->dropdown#toggle">
+                    Voir plus</i>
+                  </button>
 
-            <div class="available-block" data-controller="dropdown">
-              <%array_size = daily_datetimes.size %>
-              <%if array_size > 4 %>
-                <div class="dispo-slots">
-                  <% daily_datetimes.first(4).each do |datetime| %>
-                    <%= link_to datetime.strftime(pattern),
-                          finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
-                          class: "disponibilites-btn my-1 mx-1" %>
-                  <%end%>
-                </div>
-                <div class="dispo-slots-drop" id="drop-down-dispo-block-<%=daily_index%>" style="display:none;">
-                  <% daily_datetimes.each_with_index do |datetime, index| %>
-                    <%if index >= 4 %>
+                <%else%>
+                  <div class="dispo-slots">
+                    <% daily_datetimes.each do |datetime| %>
                       <%= link_to datetime.strftime(pattern),
                           finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
                           class: "disponibilites-btn my-1 mx-1" %>
-                    <% end %>
-                  <%end%>
-                </div>
-                <button class="btn-disponibilites d-flex justify-content-center align-items-center" data-action="click->dropdown#toggle">
-                  Voir plus</i>
-                </button>
-
-              <%else%>
-                <div class="dispo-slots">
-                  <% daily_datetimes.each do |datetime| %>
-                    <%= link_to datetime.strftime(pattern),
-                        finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
-                        class: "disponibilites-btn my-1 mx-1" %>
-                  <%end%>
-                </div>
-              <%end %>
+                    <%end%>
+                  </div>
+                <%end %>
+              </div>
             </div>
-          </div>
+          <%end%>
         <%end%>
       <%end%>
     </div>
