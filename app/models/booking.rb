@@ -21,7 +21,7 @@ class Booking < ApplicationRecord
   scope :this_week_pending, -> { where("start_time >= ? AND start_time < ? AND status = 'Pending'  AND cancel_type != 'Cancelled'", Date.tomorrow.end_of_day, Date.today.end_of_week).order(:start_time) }
   scope :next_week_pending, -> { where("start_time >= ? AND start_time < ? AND status = 'Pending'  AND cancel_type != 'Cancelled'", Date.today.end_of_week, Date.today.end_of_week + 7.days).order(:start_time) }
   scope :next_month_pending, -> { where("start_time >= ? AND start_time < ? AND status = 'Pending'  AND cancel_type != 'Cancelled'", Date.today.end_of_month, Date.today.end_of_month + 1.month).order(:start_time) }
-  scope :after_pending, -> { where("start_time >= ? AND status = 'Pending' AND cancel_type != 'Cancelled'", Date.today.end_of_month + 1.month).order(:start_time) }
+  scope :after_pending, -> { where("start_time >= ? AND status = 'Pending' AND cancel_type != 'Cancelled'", Date.today.end_of_week + 7.days).order(:start_time) }
   scope :all_pending, -> { where("start_time >= ? AND status = 'Pending' AND cancel_type != 'Cancelled'", Time.now)}
 
   # for dashboard
