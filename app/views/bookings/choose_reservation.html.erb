@@ -36,7 +36,7 @@
                 <div class="dispo-slots">
                   <% daily_datetimes.first(4).each do |datetime| %>
                     <%= link_to datetime.strftime(pattern),
-                          finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule),
+                          finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
                           class: "disponibilites-btn my-1 mx-1" %>
                   <%end%>
                 </div>
@@ -44,7 +44,7 @@
                   <% daily_datetimes.each_with_index do |datetime, index| %>
                     <%if index >= 4 %>
                       <%= link_to datetime.strftime(pattern),
-                          finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule),
+                          finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
                           class: "disponibilites-btn my-1 mx-1" %>
                     <% end %>
                   <%end%>
@@ -57,7 +57,7 @@
                 <div class="dispo-slots">
                   <% daily_datetimes.each do |datetime| %>
                     <%= link_to datetime.strftime(pattern),
-                        finish_reservation_missing_path(token: @user.token, datetime: datetime, formule: @formule),
+                        finish_reservation_path(token: @user.token, datetime: datetime, formule: @formule),
                         class: "disponibilites-btn my-1 mx-1" %>
                   <%end%>
                 </div>

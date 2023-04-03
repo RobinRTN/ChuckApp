@@ -3,7 +3,7 @@ require "google/api_client/client_secrets.rb"
 require 'active_support/time'
 
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation_missing, :finish_reservation_exist, :create]
+  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
 
   CALENDAR_ID = 'primary'
 
@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
     @full_datetimes = full_datetimes
   end
 
-  def finish_reservation_missing
+  def finish_reservation
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find_by(id: reservation_params[:formule].to_i)
     @datetime = reservation_params[:datetime]
@@ -109,12 +109,11 @@ class BookingsController < ApplicationController
         else
           # Handle errors if the booking can't be saved
           flash[:alert] = "Erreur de création réservation"
-          redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
         end
       else
         flash[:alert] = "Adresse email non répertoriée, veuillez effectuer l'inscription"
-        @existing_user = false
-        redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+        redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
       end
     elsif params[:booking][:client].present? && params[:booking][:client].key?(:first_name)
       @user = User.find(booking_params[:user_id])
@@ -134,11 +133,11 @@ class BookingsController < ApplicationController
         else
           # Handle errors if the booking can't be saved
           flash[:alert] = "Erreur de création réservation"
-          redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
         end
       else
         flash[:alert] = "Erreur de création contact client"
-        redirect_to finish_reservation_missing_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+        redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
       end
     else
       client = get_google_calendar_client current_user
@@ -256,30 +255,6 @@ class BookingsController < ApplicationController
   def update_availability
     availability = AvailabilityWeek.find(params[:id])
     availability.update(availability_week_params)
-     # Render Turbo Stream to refresh the dispo_slots_user partial
-    # // FOR DAILY
-    # interval = current_user.formules.minimum(:duration)
-    # slot_duration = current_user.formules.minimum(:duration)
-    # start_time = Time.zone.parse('9:00am')
-    # end_time = Time.zone.parse('7:00pm') - slot_duration
-    # days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-    # num_weeks = 4
-    # excluded_fixed_weekly_slots = [
-    #   ['Monday', '1pm', '2pm'],
-    #   ['Tuesday', '1pm', '2pm'],
-    #   ['Wednesday', '1pm', '2pm'],
-    #   ['Thursday', '1pm', '2pm'],
-    #   ['Friday', '1pm', '2pm']
-    # ]
-    # full_datetimes = generate_datetimes(start_time, end_time, days_of_week, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots)
-    # puts "Sending Turbo Stream to update all..."
-    # # Replace the existing render json: line with the following
-    # render turbo_stream:
-    #     turbo_stream.replace("dispo-slots-user",
-    #     partial: "bookings/dispo_slots_user",
-    #     locals: { full_datetimes: full_datetimes })
-    # puts "Turbo Stream updated"
-
   end
 
   private
