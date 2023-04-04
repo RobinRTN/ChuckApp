@@ -217,24 +217,15 @@ puts "_________________"
 # set the current month as a range of dates
 current_month_range = Date.current.all_month
 
-def random_weekday(range)
-  weekday = nil
-  loop do
-    weekday = range.to_a.sample
-    break unless [6, 7].include?(weekday.wday) # exclude weekends (Saturday and Sunday)
-  end
-  weekday
-end
-
 # create bookings for the first client
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -249,13 +240,13 @@ puts "_________________"
 
 # create bookings for the second client
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -270,13 +261,13 @@ puts "_________________"
 
 # create bookings for the third client
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = 100 # set the price to 100
+  payment_status = 'Réglé' # set the payment status to 'Réglé'
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -291,13 +282,14 @@ next_month_range = (Date.current + 1.month).all_month
 
 # create bookings for the fifth client
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -310,13 +302,14 @@ puts "_________________"
 
 # create bookings for the sixth client
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -325,13 +318,14 @@ puts "_________________"
 end
 
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -340,13 +334,14 @@ end
 end
 
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -355,13 +350,14 @@ end
 end
 
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = next_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -370,13 +366,14 @@ end
 end
 
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -385,13 +382,14 @@ end
 end
 
 5.times do |i|
-  start_time = random_weekday(current_month_range) + rand(9..17).hours
-  formule_id = [f1.id, f2.id, f3.id].sample
-  formule = Formule.find(formule_id)
-  end_time = start_time + formule.duration.hours
-  price = 100
+  start_time = current_month_range.to_a.sample + rand(9..17).hours # choose a random day and time between 9am and 5pm
+  end_time = start_time + 2.hours # set the end time to be 2 hours after the start time
+  price = [80, 100].sample # choose a random price from the array [80, 100]
+  payment_status = ['Réglé', 'Non réglé'].sample # choose a random payment status
+  formule_id = [f1.id, f2.id, f3.id].sample # choose a random formule_id
+  booking_type = ['Collectif', 'Individuel'].sample # choose a random booking type
   status = ['Accepted', 'Pending'].sample # choose a random status or 'Pending'
-  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, status: status)
+  booking = Booking.new(start_time: start_time, end_time: end_time, price: price, payment_status: payment_status, booking_type: booking_type, status: status)
   booking.user_id = User.first.id
   booking.message = Faker::Lorem.sentence(word_count: 25) # generate a random booking message
   booking.formule_id = formule_id
@@ -403,3 +401,10 @@ puts "Just created 5 bookings for sixth client successfully"
 puts "_________________"
 
 puts "===========DONE FOR FIRST USER============="
+
+
+# start_time = next_month_range.to_a.sample + rand(9..17).hours
+# formule_id = [f1.id, f2.id, f3.id].sample
+# formule = Formule.find(formule_id)
+# end_time = start_time + formule.duration.hours
+# price = 100
