@@ -786,3 +786,16 @@
   }
 
 }
+
+.tag-card {
+  text-decoration: none;
+  border-radius: 3em;
+  background: $light-gray;
+  color: $dd-blue-sp;
+  font-size: 0.8em;
+  font-weight: 400;
+  border: none;
+  text-align: center;
+  padding: 0.1em 0.5em;
+  margin-bottom: 0em;
+}

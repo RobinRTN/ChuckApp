@@ -26,6 +26,9 @@ Group.destroy_all
 puts "Deleting Availibles"
 Available.destroy_all
 
+puts "Deleting Tags"
+Tag.destroy_all
+
 puts "Deleting Week Availibles"
 AvailabilityWeek.destroy_all
 
@@ -84,6 +87,23 @@ f4 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Stretch
 f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Souplesse totale", field: 'Fitness', duration: 60, price: 100, description: "Un objectif - vous faire atteindre les votres !" })
 f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Body Flex", field: 'Fitness', duration: 60, price: 100, description: "Toutes les parties du corps sont travaillées, arrivez bout de bois repartez caoutchouc" })
 puts "Just created the 3 formula successfully"
+puts "_________________"
+
+tags = [
+  "remise en forme",
+  "fitness",
+  "yoga",
+  "inde",
+  "body positive",
+  "souplesse",
+  "gainage"
+]
+
+tags.each do |tag_name|
+  u1.tags.create!(name: tag_name)
+end
+
+puts "Just created tags successfully"
 puts "_________________"
 
 c1 = Client.create!({ user_id: User.first.id, phone_number: "0633278600", note:"Très cool!", full_name: "Corentin Bénard", email: 'corentinbenard@test.com', payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 rue de l'Eglise", billing_zip_code: 75015, billing_city: "Paris" })
