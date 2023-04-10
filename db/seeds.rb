@@ -6,6 +6,8 @@ require 'open-uri'
 require 'active_support/time'
 Time.zone = 'Europe/Paris'
 
+puts "CLOUDINARY_URL: #{ENV['CLOUDINARY_URL']}"
+
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Deleting Bookings"
