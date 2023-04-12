@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get 'new_choose_reservation', to: 'bookings#new_choose_reservation', as: 'new_choose_reservation'
   get 'new_finish_reservation', to: 'bookings#new_finish_reservation', as: 'new_finish_reservation'
 
+
+  get 'date_new_reservation', to: 'bookings#date_new_reservation', as: 'date_new_reservation'
+  get 'date_new_finish_reservation', to: 'bookings#date_new_finish_reservation', as: 'date_new_finish_reservation'
+
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do
       put :confirm

@@ -46,7 +46,6 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
     @user = current_user
     @packages = @user.packages
   end
@@ -76,6 +75,23 @@ class BookingsController < ApplicationController
   def new_finish_reservation
     @user = current_user
     @formule = Formule.find_by(id: reservation_params[:formule].to_i)
+    @datetime = reservation_params[:datetime]
+    @booking = Booking.new
+    @client = Client.new
+    @clients = @user.clients
+  end
+
+  def date_new_reservation
+    @user = current_user
+    @packages = @user.packages
+    @datetime = params[:datetime]
+    @jour = params[:jour]
+  end
+
+  def date_new_finish_reservation
+    @user = current_user
+    @formule = Formule.find_by(id: reservation_params[:formule].to_i)
+    raise
     @datetime = reservation_params[:datetime]
     @booking = Booking.new
     @client = Client.new
