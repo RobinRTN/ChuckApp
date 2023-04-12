@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get '/finish_reservation/:token', to: 'bookings#finish_reservation', as: 'finish_reservation'
   patch '/update_availability/:id', to: 'bookings#update_availability', as: 'update_availability'
 
+  get 'new_choose_reservation', to: 'bookings#new_choose_reservation', as: 'new_choose_reservation'
+  get 'new_finish_reservation', to: 'bookings#new_finish_reservation', as: 'new_finish_reservation'
+
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do
       put :confirm
