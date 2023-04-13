@@ -17,8 +17,27 @@
   </div>
 
   <div class="mx-3">
+
     <% if @jour %>
-      <p class="p-2 text-center">Choisis parmis le créneaux dispo le <%= l(Date.parse(@jour), format: '%a %e %B') %></p>
+      <div data-controller="datetime">
+        <div class="mb-3">
+          <% pattern = "%H:%M" %>
+          <p class="text-center mx-3">Choisis parmis le créneaux disponibles le <strong><%= l(Date.parse(@jour), format: '%a %e %B') %></strong></p>
+          <div class="daily-dispo-self-card">
+            <% @datetimes.each do |datetime| %>
+              <div
+                data-datetime="<%= datetime.strftime(pattern) %>"
+                data-action="click->datetime#setActiveDateTime"
+                data-datetime-target="datetimeButton"
+                class="disponibilites-btn"
+              >
+                <%= datetime.strftime(pattern) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+         <span data-datetime-target="displayDatetime" class="d-none"></span>
+      </div>
     <% end %>
 
 
@@ -26,7 +45,12 @@
     <p class= "p-2 text-center"><strong>Choisis ta formule 👇</strong></p>
     <form action="/date_new_finish_reservation" data-controller="formule" method="get" class="w-100">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <%= hidden_field_tag :datetime, @datetime %>
+      <% if @jour %>
+        <%= hidden_field_tag :time, '', id: "datetime" %>
+        <%= hidden_field_tag :jour, @jour %>
+      <% else %>
+        <%= hidden_field_tag :datetime, @datetime %>
+      <% end %>
       <div class="formule-block">
         <% @packages.each do |package| %>
           <h4 class="h6 my-2 ms-2"><%= package.name %></h4>

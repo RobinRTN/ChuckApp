@@ -86,6 +86,22 @@ class BookingsController < ApplicationController
     @packages = @user.packages
     @datetime = params[:datetime]
     @jour = params[:jour]
+    if @jour
+      interval = @user.formules.minimum(:duration)
+      slot_duration = @user.formules.minimum(:duration)
+      start_time = Time.zone.parse('9:00am')
+      end_time = Time.zone.parse('21:00pm') - slot_duration
+      days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+      num_weeks = 4
+      excluded_fixed_weekly_slots = [
+        ['Monday', '1pm', '2pm'],
+        ['Tuesday', '1pm', '2pm'],
+        ['Wednesday', '1pm', '2pm'],
+        ['Thursday', '1pm', '2pm'],
+        ['Friday', '1pm', '2pm']
+      ]
+      @datetimes = generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, @user, @jour)
+    end
   end
 
   def date_new_finish_reservation
@@ -478,6 +494,45 @@ class BookingsController < ApplicationController
     full_datetimes
   end
 
+  def generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, user = nil, target_date)
+    Time.zone = 'Europe/Paris'
+    daily_datetimes = []
+    current_time = Time.zone.now
+
+    user ||= current_user
+    converted_available_slots = convert_available_slots(user.availables)
+
+    target_day = Date.parse(target_date)
+
+    slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
+    while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+      excluded = false
+      excluded_fixed_weekly_slots.each do |fw_slot|
+        fw_day_of_week = fw_slot[0]
+        fw_start_time = Time.zone.parse(fw_slot[1])
+        fw_end_time = Time.zone.parse(fw_slot[2])
+        if slot.strftime("%A") == fw_day_of_week && slot >= Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0) && slot + slot_duration.minutes <= Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
+          excluded = true
+          break
+        end
+      end
+      daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
+      slot += interval.minutes
+    end
+
+    converted_available_slots.each do |available_slot|
+      if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
+        daily_datetimes << available_slot
+      end
+    end
+
+    daily_datetimes.sort!
+    sort_bookings(daily_datetimes, slot_duration, user)
+
+    daily_datetimes
+  end
+
+
   def convert_available_slots(available_slots)
     converted_slots = []
     available_slots.each do |slot|
@@ -495,7 +550,7 @@ class BookingsController < ApplicationController
       slot_end = slot + slot_duration.minutes
       @user_bookings.each do |booking|
         if (slot >= booking.start_time && slot < booking.end_time) ||
-           (slot_end > booking.start_time && slot_end <= booking.end_time)
+            (slot_end > booking.start_time && slot_end <= booking.end_time)
           overlapping_slots << slot
           break # Exit the inner loop early
         end

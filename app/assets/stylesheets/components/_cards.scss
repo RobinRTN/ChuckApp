@@ -376,7 +376,7 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-weight: 400;
     text-align: center;
-    }
+  }
   & .add-slot {
     text-decoration: none;
     padding: 0.375em 1.481em;
@@ -408,7 +408,7 @@
 
     }
 
-    }
+  }
 
 
   .dispo-slot-container {
@@ -423,6 +423,32 @@
   }
 
 
+}
+
+
+.daily-dispo-self-card {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5em 1em;
+  height: auto;
+  justify-content: center;
+  & .disponibilites-btn {
+    text-decoration: none;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+    background: $white;
+    color: $dd-blue-sp;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    font-weight: 400;
+    text-align: center;
+    margin: 0.2em;
+    }
+    & .active {
+      background: $blue-sp;
+      color: $ll-blue-sp;
+      box-shadow: 0 0 18px -4px $blue-sp;
+
+    }
 }
 
 .revenue-card {

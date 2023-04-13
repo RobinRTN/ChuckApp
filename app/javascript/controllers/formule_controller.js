@@ -20,8 +20,6 @@ export default class extends Controller {
     // add selected class to clicked button
     clickedButton.classList.add('selected');
     inputFormule.value = formuleId
-    console.log(inputFormule.value)
-    console.log(`Formule selected: ${formuleId}`);
 
     this.enableSubmitButton(); // call new method
 
