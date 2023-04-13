@@ -95,6 +95,7 @@
       <%= f.input :formule_id, as: :hidden, input_html: { value: @formule.id }  %>
       <%= f.input :booking_type, as: :hidden, input_html: { value: "Individuel" } %>
       <%= f.input :status, as: :hidden, input_html: { value: "Accepted" } %>
+      <%= f.input :origin, as: :hidden, input_html: { value: "date_new_finish" } %>
 
       <%= f.fields_for :client do |client_fields| %>
       <div class="form-group">

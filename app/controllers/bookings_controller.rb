@@ -178,9 +178,15 @@ class BookingsController < ApplicationController
           flash[:notice] = "Réservation ajoutée !"
           redirect_to root_path
         else
-          # Handle errors if the booking can't be saved
-          flash[:alert] = "Erreur de création réservation"
-          redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          if params[:booking][:origin] == "date_new_finish"
+            # Handle errors if the booking can't be saved
+            flash[:alert] = "Erreur de création réservation"
+            redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          else
+             # Handle errors if the booking can't be saved
+             flash[:alert] = "Erreur de création réservation"
+             redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          end
         end
       elsif params[:booking][:client].present? && params[:booking][:client].key?(:first_name)
         @user = current_user
@@ -196,15 +202,28 @@ class BookingsController < ApplicationController
           if @booking.save!
             # Handle successful booking creation
             flash[:notice] = "Réservation ajoutée !"
-            redirect_to new_booking_path
+            redirect_to root_booking_path
           else
-            # Handle errors if the booking can't be saved
-            flash[:alert] = "Erreur de création réservation"
-            redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            if params[:booking][:origin] == "date_new_finish"
+              # Handle errors if the booking can't be saved
+              flash[:alert] = "Erreur de création réservation"
+              redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            else
+               # Handle errors if the booking can't be saved
+               flash[:alert] = "Erreur de création réservation"
+               redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            end
           end
         else
-          flash[:alert] = "Erreur de création contact client"
-          redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          if params[:booking][:origin] == "date_new_finish"
+            # Handle errors if the booking can't be saved
+            flash[:alert] = "Erreur de création contact client"
+            redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          else
+             # Handle errors if the booking can't be saved
+             flash[:alert] = "Erreur de création contact client"
+             redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          end
         end
       end
 
