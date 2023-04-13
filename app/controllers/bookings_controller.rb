@@ -106,13 +106,18 @@ class BookingsController < ApplicationController
 
   def date_new_finish_reservation
     @user = current_user
-    @formule = Formule.find_by(id: reservation_params[:formule].to_i)
-    raise
-    @datetime = reservation_params[:datetime]
+    @formule = Formule.find(params[:formule_id])
+    if params[:jour]
+      @datetime = Time.zone.parse("#{params[:jour]} #{params[:time]}").to_s
+    else
+      @datetime = params[:datetime]
+    end
     @booking = Booking.new
     @client = Client.new
     @clients = @user.clients
   end
+
+  {"authenticity_token"=>"[FILTERED]", "time"=>"17:00", "jour"=>"2023-04-18", "formule_id"=>"359"}
 
   def show
     @booking = Booking.find(params[:id])
@@ -171,7 +176,7 @@ class BookingsController < ApplicationController
         if @booking.save
           # Handle successful booking creation
           flash[:notice] = "Réservation ajoutée !"
-          redirect_to new_booking_path
+          redirect_to root_path
         else
           # Handle errors if the booking can't be saved
           flash[:alert] = "Erreur de création réservation"
