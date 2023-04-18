@@ -275,6 +275,7 @@ class BookingsController < ApplicationController
           redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
         end
       end
+      # hello\
 
     end
   end
