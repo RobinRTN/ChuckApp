@@ -9,6 +9,7 @@ class BookingMailer < ApplicationMailer
   def client_booking_email_pending(client, booking)
     @client = client
     @booking = booking
+    @user = booking.user
     mail(to: @client.email, subject: 'Demande de réservation envoyée')
   end
 
@@ -22,6 +23,7 @@ class BookingMailer < ApplicationMailer
   def client_booking_email(client, booking)
     @client = client
     @booking = booking
+    @user = booking.user
     mail(to: @client.email, subject: 'Nouvelle réservation confirmée')
   end
 
@@ -35,6 +37,7 @@ class BookingMailer < ApplicationMailer
   def client_booking_email_refuse(client, booking)
     @client = client
     @booking = booking
+    @user = booking.user
     mail(to: @client.email, subject: 'Réservation refusée')
   end
 
@@ -48,6 +51,7 @@ class BookingMailer < ApplicationMailer
   def client_booking_email_cancel(client, booking)
     @client = client
     @booking = booking
+    @user = booking.user
     mail(to: @client.email, subject: 'Réservation annulée')
   end
 end
