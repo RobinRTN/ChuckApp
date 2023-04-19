@@ -241,6 +241,8 @@ class BookingsController < ApplicationController
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
+            BookingMailer.user_booking_email(@user, @booking).deliver_later
+            BookingMailer.client_booking_email(@client, @booking).deliver_later
           else
             # Handle errors if the booking can't be saved
             flash[:alert] = "Erreur de création réservation"
@@ -275,7 +277,6 @@ class BookingsController < ApplicationController
           redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
         end
       end
-      # hello\
 
     end
   end
