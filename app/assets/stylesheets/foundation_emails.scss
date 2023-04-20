@@ -1,0 +1,41 @@
+// foundation_emails.scss
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
+
+// foundation_emails.scss (continue from the previous code block)
+
+// Foundation for Emails variables
+$body-font: 'Source Sans Pro', 'sans-serif';
+$headers-font: 'Raleway', 'sans-serif';
+
+@import 'foundation-emails';
+
+body {
+  font-family: $body-font;
+  color: #03062d;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  color: #5761f2;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+}
+
+td {
+  padding: 8px;
+}
+
+.container {
+  background-color: #ffffff;
+}
+
+.row {
+  background: linear-gradient(to top, #f3f4fe 0%, white 100%);
+  border-radius: 8px;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,48 @@
+<container>
+  <row>
+    <columns>
+      <h5>Bonjour <%= @user.first_name %>,</h5>
+      <p>Une nouvelle réservation est <strong>en attente de votre confirmation</strong>.</p>
+      <p>Informations sur la réservation :</p>
+    </columns>
+  </row>
+  <row>
+    <columns small="12" large="6">
+      <table>
+        <tr>
+          <td><strong>Date :</strong></td>
+          <td><%= l(@booking.start_time, format: "%A, %e %B %Y") %></td>
+        </tr>
+        <tr>
+          <td><strong>Heure :</strong></td>
+          <td><%= @booking.start_time.strftime("%Hh%M") %> à <%= @booking.end_time.strftime("%Hh%M") %></td>
+        </tr>
+        <tr>
+          <td><strong>Formule :</strong></td>
+          <td><%= @booking.formule.name %></td>
+        </tr>
+        <tr>
+          <td><strong>Prix :</strong></td>
+          <td><%= number_to_currency(@booking.formule.price, unit: '€') %></td>
+        </tr>
+        <tr>
+          <td><strong>Durée :</strong></td>
+          <td><%= @booking.formule.duration %> minutes</td>
+        </tr>
+        <tr>
+          <td><strong>Adresse :</strong></td>
+          <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
+        </tr>
+        <tr>
+          <td><strong>Client :</strong></td>
+          <td><%= @client.full_name %></td>
+        </tr>
+      </table>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <p>Veuillez confirmer ou refuser la réservation dans votre espace client.</p>
+    </columns>
+  </row>
+</container>

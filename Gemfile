@@ -91,4 +91,6 @@ gem "simple_calendar", "~> 2.4"
 gem "geocoder"
 gem "faker"
 gem 'social-share-button'
-
+gem 'inky-rb', require: 'inky'
+# Stylesheet inlining for email
+gem 'premailer-rails'

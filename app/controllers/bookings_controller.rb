@@ -154,6 +154,8 @@ class BookingsController < ApplicationController
     @booking.update(status: "Accepted")
     flash[:notice] = "Demande de réservation acceptée !"
     redirect_to bookings_path
+    BookingMailer.user_booking_email(@user, @booking).deliver_later
+    BookingMailer.client_booking_email(@client, @booking).deliver_later
   end
 
   def refuse
@@ -161,6 +163,8 @@ class BookingsController < ApplicationController
     @booking.update(status: "Refused")
     flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
+    BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later
+    BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later
   end
 
   def create
@@ -177,6 +181,8 @@ class BookingsController < ApplicationController
           # Handle successful booking creation
           flash[:notice] = "Réservation ajoutée !"
           redirect_to root_path
+          BookingMailer.user_booking_email(@user, @booking).deliver_later
+          BookingMailer.client_booking_email(@client, @booking).deliver_later
         else
           if params[:booking][:origin] == "date_new_finish"
             # Handle errors if the booking can't be saved
@@ -203,6 +209,8 @@ class BookingsController < ApplicationController
             # Handle successful booking creation
             flash[:notice] = "Réservation ajoutée !"
             redirect_to root_booking_path
+            BookingMailer.user_booking_email(@user, @booking).deliver_later
+            BookingMailer.client_booking_email(@client, @booking).deliver_later
           else
             if params[:booking][:origin] == "date_new_finish"
               # Handle errors if the booking can't be saved
@@ -241,8 +249,8 @@ class BookingsController < ApplicationController
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
-            BookingMailer.user_booking_email(@user, @booking).deliver_later
-            BookingMailer.client_booking_email(@client, @booking).deliver_later
+            BookingMailer.user_booking_email_pending(@user, @booking).deliver_later
+            BookingMailer.client_booking_email_pending(@client, @booking).deliver_later
           else
             # Handle errors if the booking can't be saved
             flash[:alert] = "Erreur de création réservation"
@@ -267,6 +275,8 @@ class BookingsController < ApplicationController
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
+            BookingMailer.user_booking_email_pending(@user, @booking).deliver_later
+            BookingMailer.client_booking_email_pending(@client, @booking).deliver_later
           else
             # Handle errors if the booking can't be saved
             flash[:alert] = "Erreur de création réservation"
@@ -279,36 +289,6 @@ class BookingsController < ApplicationController
       end
 
     end
-  end
-
-  def get_google_calendar_client current_user
-    client = Google::Apis::CalendarV3::CalendarService.new
-    return unless (current_user.present? && current_user.access_token.present? && current_user.refresh_token.present?)
-    secrets = Google::APIClient::ClientSecrets.new({
-      "web" => {
-        "access_token" => current_user.access_token,
-        "refresh_token" => current_user.refresh_token,
-        "client_id" => ENV["GOOGLE_API_KEY"],
-        "client_secret" => ENV["GOOGLE_API_SECRET"]
-      }
-    })
-    begin
-      client.authorization = secrets.to_authorization
-      client.authorization.grant_type = "refresh_token"
-
-      if !current_user.present?
-        client.authorization.refresh!
-        current_user.update_attributes(
-          access_token: client.authorization.access_token,
-          refresh_token: client.authorization.refresh_token,
-          expires_at: client.authorization.expires_at.to_i
-        )
-      end
-    rescue => e
-      flash[:error] = 'Your token has been expired. Please login again with google.'
-      redirect_to :back
-    end
-    client
   end
 
   def disponibilites
@@ -402,41 +382,6 @@ class BookingsController < ApplicationController
   def availability_week_params
     params.require(:availability_week).permit(:week_enabled, :available_monday, :available_tuesday, :available_wednesday, :available_thursday, :available_friday, :available_saturday, :available_sunday)
   end
-
-  def get_event booking
-    # attendees = booking[:members].split(',').map{ |t| {email: t.strip} }
-    event = Google::Apis::CalendarV3::Event.new({
-      summary: booking[:title],
-      location: '800 Howard St., San Francisco, CA 94103',
-      description: booking[:description],
-      start: {
-        date_time: Time.new(booking['start_date(1i)'],booking['start_date(2i)'],booking['start_date(3i)'],booking['start_date(4i)'],booking['start_date(5i)']).to_datetime.rfc3339,
-        time_zone: "Asia/Kolkata"
-        # date_time: '2019-09-07T09:00:00-07:00',
-        # time_zone: 'Asia/Kolkata',
-      },
-    end: {
-      date_time: Time.new(booking['end_date(1i)'],booking['end_date(2i)'],booking['end_date(3i)'],booking['end_date(4i)'],booking['end_date(5i)']).to_datetime.rfc3339,
-      time_zone: "Asia/Kolkata"
-    },
-    # attendees: attendees,
-    reminders: {
-      use_default: false,
-      overrides: [
-        Google::Apis::CalendarV3::EventReminder.new(reminder_method:"popup", minutes: 10),
-        Google::Apis::CalendarV3::EventReminder.new(reminder_method:"email", minutes: 20)
-      ]
-    },
-    notification_settings: {
-      notifications: [
-        {type: 'event_creation', method: 'email'},
-        {type: 'event_change', method: 'email'},
-        {type: 'event_cancellation', method: 'email'},
-        {type: 'event_response', method: 'email'}
-      ]
-      }, 'primary': true
-      })
-    end
 
 
 
