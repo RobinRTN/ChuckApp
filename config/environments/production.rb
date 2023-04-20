@@ -4,11 +4,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "https://salty-sierra-39179.herokuapp.com/" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'smtp.sendgrid.net',
     port: 587,
-    domain: ENV['EMAIL_DOMAIN'],
-    user_name: ENV['EMAIL_USERNAME'],
-    password: ENV['EMAIL_PASSWORD'],
+    domain: 'https://salty-sierra-39179.herokuapp.com/', # Replace with your application's domain
+    user_name: 'apikey', # This is the username for SendGrid's API
+    password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
