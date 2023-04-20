@@ -208,7 +208,7 @@ class BookingsController < ApplicationController
           if @booking.save!
             # Handle successful booking creation
             flash[:notice] = "Réservation ajoutée !"
-            redirect_to root_booking_path
+            redirect_to root_path
             BookingMailer.user_booking_email(@user, @booking).deliver_later
             BookingMailer.client_booking_email(@client, @booking).deliver_later
           else
