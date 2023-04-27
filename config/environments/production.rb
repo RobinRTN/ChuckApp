@@ -6,8 +6,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587,
-    domain: 'www.chuckapp.fr', # Replace with your application's custom domain
-    user_name: 'apikey', # This is the username for SendGrid's API
+    domain: 'https://www.chuckapp.fr',
+    user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
     enable_starttls_auto: true
