@@ -172,17 +172,17 @@ class BookingsController < ApplicationController
 
       if params[:booking][:client].present? && !params[:booking][:client].key?(:first_name)
         client_id = booking_params[:client][:id]
-        client = Client.find(client_id)
+        @client = Client.find(client_id)
         @user = current_user
         @booking = Booking.new(booking_params.except(:client, :back))
-        @booking.client_id = client.id
+        @booking.client_id = @client.id
         @booking.user_id = @user.id
         if @booking.save
           # Handle successful booking creation
           flash[:notice] = "Réservation ajoutée !"
           redirect_to root_path
-          BookingMailer.user_booking_email(@user, @booking).deliver_later
-          BookingMailer.client_booking_email(@client, @booking).deliver_later
+          BookingMailer.user_booking_email(@user, @booking).deliver_now
+          BookingMailer.client_booking_email(@client, @booking).deliver_now
         else
           if params[:booking][:origin] == "date_new_finish"
             # Handle errors if the booking can't be saved
@@ -239,11 +239,11 @@ class BookingsController < ApplicationController
 
       if params[:booking][:client].present? && !params[:booking][:client].key?(:first_name)
         client_email = booking_params[:client][:email]
-        client = Client.find_by(email: client_email)
+        @client = Client.find_by(email: client_email)
         @user = User.find(booking_params[:user_id])
-        if client
+        if @client
           @booking = Booking.new(booking_params.except(:client, :back))
-          @booking.client_id = client.id
+          @booking.client_id = @client.id
           @booking.user_id = @user.id
           if @booking.save
             # Handle successful booking creation

@@ -1,12 +1,12 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "https://salty-sierra-39179.herokuapp.com/" }
+  config.action_mailer.default_url_options = { host: "www.chuckapp.fr", protocol: 'https' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
     port: 587,
-    domain: 'https://salty-sierra-39179.herokuapp.com/', # Replace with your application's domain
+    domain: 'www.chuckapp.fr', # Replace with your application's custom domain
     user_name: 'apikey', # This is the username for SendGrid's API
     password: ENV['SENDGRID_API_KEY'],
     authentication: 'plain',
@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
