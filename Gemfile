@@ -94,3 +94,4 @@ gem 'social-share-button'
 gem 'inky-rb', require: 'inky'
 # Stylesheet inlining for email
 gem 'premailer-rails'
+gem 'sendgrid-ruby'

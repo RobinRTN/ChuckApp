@@ -318,6 +318,7 @@ GEM
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -331,6 +332,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -420,6 +423,7 @@ DEPENDENCIES
   rqrcode
   sassc-rails
   selenium-webdriver
+  sendgrid-ruby
   simple_calendar (~> 2.4)
   simple_form!
   social-share-button
