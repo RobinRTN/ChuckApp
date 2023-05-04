@@ -78,9 +78,9 @@ puts "_________________"
 p1 = Package.create!({ user_id: User.first.id, name: "Yoga" })
 p2 = Package.create!({ user_id: User.first.id, name: "Stretching" })
 
-f1 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 60, price: 80, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
-f2 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Strujkuja", field: 'Yoga', duration: 120, price: 150, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
-f3 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Pambolta", field: 'Yoga', duration: 60, price: 100, description: "Yoga des provinces Nord du Pakistan, parfait pour la flexibilité des ischiojambiers" })
+f1 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Ashtanga", field: 'Yoga', duration: 60, price: 80, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
+f2 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Hatha", field: 'Yoga', duration: 120, price: 150, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
+f3 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Vinyasa", field: 'Yoga', duration: 60, price: 100, description: "Yoga des provinces Nord du Pakistan, parfait pour la flexibilité des ischiojambiers" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
