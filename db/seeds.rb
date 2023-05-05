@@ -40,7 +40,7 @@ User.destroy_all
 puts "Starting to generate the users and activities..."
 puts "_________________"
 
-u1 = User.create!({ full_name: "Robin Rettien", title: "Professeur de Yoga Indien", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Robin", last_name: "Rettien", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Thomas", last_name: "Courtois", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
 
 u2 = User.create!({ full_name: "Maxime Lavoine", title: "Professeur de Yoga Indien", hourly_rate: 90, email: 'maximelavoine@test.com', password: 'password', first_name: "Maxime", last_name: "Lavoine", payment_BIC: "BFBKFKP1", payment_IBAN: "FR3330002105500000157841Z25", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" })
 
@@ -48,20 +48,20 @@ puts "Just created the two founders' accounts successfully"
 puts "_________________"
 
 u1.profile_picture.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/robin_xlupho.jpg'),
-  filename: 'robin.jpg',
-  content_type: 'image/jpg'
+  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683284933/Screenshot_2023-05-05_at_13.08.46_fsikhe.png'),
+  filename: 'thomas.png',
+  content_type: 'image/png'
 )
 u1.save!
 
-u1.description = "Je suis un professeur de yoga indien avec plus de 10 ans d'expérience dans l'enseignement du yoga. J'ai aidé des étudiants du monde entier à découvrir les bienfaits du yoga pour la santé et la paix intérieure."
+u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants de tous les horizons à découvrir les joies et les bienfaits de ce sport passionnant. Je suis passionné par l'enseignement du tennis et je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
 u1.save!
 
 u1.gallery_pictures.attach(
   [
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554635/pexels-yan-krukau-8436691_b8mp8f.jpg'), filename: 'gallery_picture1.jpg', content_type: 'image/jpeg' },
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554632/pexels-cottonbro-studio-4327033_tavr6e.jpg'), filename: 'gallery_picture2.jpg', content_type: 'image/jpeg' },
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1677554629/pexels-yan-krukau-8436715_ioqvfy.jpg'), filename: 'gallery_picture3.jpg', content_type: 'image/jpeg' }
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285018/pexels-anna-shvets-5067824_gvnyfu.jpg'), filename: 'gallery_picture1.jpg', content_type: 'image/jpeg' },
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285017/pexels-florian-doppler-3207473_lnkoh5.jpg'), filename: 'gallery_picture2.jpg', content_type: 'image/jpeg' },
+    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285003/pexels-lebih-dari-ini-5908430_vjgypa.jpg'), filename: 'gallery_picture3.jpg', content_type: 'image/jpeg' }
   ]
 )
 u1.save!
@@ -75,27 +75,27 @@ u2.save!
 puts "Just created the two founders' pictures successfully"
 puts "_________________"
 
-p1 = Package.create!({ user_id: User.first.id, name: "Yoga" })
-p2 = Package.create!({ user_id: User.first.id, name: "Stretching" })
+p1 = Package.create!({ user_id: User.first.id, name: "Tennis" })
+p2 = Package.create!({ user_id: User.first.id, name: "Fitness" })
 
-f1 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Ashtanga", field: 'Yoga', duration: 60, price: 80, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
-f2 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Hatha", field: 'Yoga', duration: 120, price: 150, description: "Yoga du Pendjab, bon pour les muscles et pour la relaxation. Travail de souplesse intense" })
-f3 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Yoga Vinyasa", field: 'Yoga', duration: 60, price: 100, description: "Yoga des provinces Nord du Pakistan, parfait pour la flexibilité des ischiojambiers" })
+f1 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis découverte", field: 'Tennis', duration: 60, price: 80, description: "Pour les jeunes et moins jeune, ressentez les premières sensations du tennis et des joie de frapper la petite balle jaune" })
+f2 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis perfectionnement", field: 'Tennis', duration: 120, price: 150, description: "Tu maitrises les bases du tennis ? Viens perfectionner ta technique pour être plus tranchant sur chaque point" })
+f3 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis expert", field: 'Tennis', duration: 60, price: 100, description: "Réservé aux joueurs expérimentés et en forme. On travaille les petits détails pour passer le prochain pallier !" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
 f4 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
-f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Souplesse totale", field: 'Fitness', duration: 60, price: 100, description: "Un objectif - vous faire atteindre les votres !" })
-f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Body Flex", field: 'Fitness', duration: 60, price: 100, description: "Toutes les parties du corps sont travaillées, arrivez bout de bois repartez caoutchouc" })
+f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique générale 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
+f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique générale 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
 tags = [
   "remise en forme",
+  "tennis",
+  "service",
+  "perfectionnement",
   "fitness",
-  "yoga",
-  "inde",
-  "body positive",
   "souplesse",
   "gainage"
 ]
@@ -204,9 +204,9 @@ puts "_________________"
 puts "Just uploaded the pictures for clients successfully"
 puts "_________________"
 
-g1 = Group.create!(name: 'Yoga débutants', user_id: User.first.id)
+g1 = Group.create!(name: 'Tennis débutants', user_id: User.first.id)
 g2 = Group.create!(name: 'Super clients', user_id: User.first.id)
-g3 = Group.create!(name: 'Yoga experts', user_id: User.first.id)
+g3 = Group.create!(name: 'Tennis experts', user_id: User.first.id)
 
 # Add clients to groups
 g1.clients << [c1, c2, c3, c4, c5]
