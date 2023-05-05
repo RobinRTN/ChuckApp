@@ -54,7 +54,7 @@ u1.profile_picture.attach(
 )
 u1.save!
 
-u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants de tous les horizons à découvrir les joies et les bienfaits de ce sport passionnant. Je suis passionné par l'enseignement du tennis et je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
+u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants à découvrir les joies et les bienfaits de ce sport passionnant. Je suis passionné par l'enseignement du tennis et je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
 u1.save!
 
 u1.gallery_pictures.attach(
@@ -85,8 +85,8 @@ puts "Just created the 3 formula successfully"
 puts "_________________"
 
 f4 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
-f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique générale 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
-f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique générale 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
+f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique G 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
+f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique G 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
