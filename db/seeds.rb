@@ -54,7 +54,7 @@ u1.profile_picture.attach(
 )
 u1.save!
 
-u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants à découvrir les joies et les bienfaits de ce sport passionnant. Je suis passionné par l'enseignement du tennis et je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
+u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants à découvrir les joies et les bienfaits de ce sport passionnant. Je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
 u1.save!
 
 u1.gallery_pictures.attach(
