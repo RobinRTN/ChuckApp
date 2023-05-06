@@ -390,9 +390,9 @@
 }
 
 .hero-webflow-image {
-  outline-offset: 0px;
+  outline-offset: 0;
   mix-blend-mode: normal;
-  outline: 3px #555;
+  outline: 3px solid #555;
   flex: 1;
   overflow: hidden;
 }
