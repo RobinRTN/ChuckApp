@@ -43,6 +43,9 @@ application.register("reservation", ReservationController)
 import RevenuController from "./revenu_controller"
 application.register("revenu", RevenuController)
 
+import ScrollNavController from "./scroll_nav_controller"
+application.register("scroll-nav", ScrollNavController)
+
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
 

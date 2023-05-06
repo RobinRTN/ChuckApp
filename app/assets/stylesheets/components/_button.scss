@@ -10,20 +10,35 @@
 }
 
 .btn-basic-bleu {
-  text-decoration: none;
-  padding: 0.5em 0.8em;
-  border-radius: 0.4em;
-  transition-duration: 0.8s;
   background: $blue-sp;
   color: $ll-blue-sp;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  font-weight: 400;
+  padding: 0.8em 1em;
+  font-family: Raleway, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  border-radius: 0.2em;
+  transition: all 0.2s;
 }
 
-// .btn-basic-bleu:hover {
-//   background: $d-blue-sp;
-//   color: $ll-blue-sp;
-// }
+.btn-basic-bleu:hover {
+  box-shadow: none;
+  color: $ll-blue-sp;
+  background-color: $blue-sp !important;
+}
+
+.btn-minimal {
+  color: $blue-sp;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: all 0.2s;
+
+}
+.btn-minimal:hover {
+  color: $d-blue-sp;
+  text-decoration: none;
+}
 
 .btn-basic-bleu-large {
   text-decoration: none;

@@ -1,7 +1,7 @@
 <div class="container wrapper">
   <div class="row">
     <div class="col-6">
-      <h2 class="my-3">Se connecter</h2>
+      <h4 class="my-4">Se connecter</h4>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
         <div class="form-inputs">
           <%= f.input :email,
