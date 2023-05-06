@@ -95,3 +95,4 @@ gem 'inky-rb', require: 'inky'
 # Stylesheet inlining for email
 gem 'premailer-rails'
 gem 'sendgrid-ruby'
+gem 'rails_12factor'
