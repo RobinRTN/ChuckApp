@@ -12,7 +12,7 @@
 .btn-basic-bleu {
   background: $blue-sp;
   color: $ll-blue-sp;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
   padding: 0.8em 1em;
   font-family: Raleway, sans-serif;
   font-size: 13px;
@@ -23,7 +23,7 @@
 }
 
 .btn-basic-bleu:hover {
-  box-shadow: none;
+  box-shadow: none !important;
   color: $ll-blue-sp;
   background-color: $blue-sp !important;
 }
