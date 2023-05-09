@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="scroll-nav"
 export default class extends Controller {
+  static targets = ["navbar"];
+
   connect() {
     console.log('connected')
     window.addEventListener('scroll', this.handleScroll.bind(this));
@@ -12,7 +13,8 @@ export default class extends Controller {
   }
 
   handleScroll() {
-    const navbar = document.querySelector('.nav-bar-webflow');
+    const navbar = this.navbarTarget;
+
     const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
 
     if (scrollPercentage >= 7) {

@@ -9,6 +9,10 @@ html, body {
   background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
 }
 
+.exception-page {
+  background: none;
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
