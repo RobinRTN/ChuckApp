@@ -25,27 +25,19 @@
         <a href="#" class="btn-basic-bleu ms-3">Accéder à la Beta</a>
       </div>
       <div class="hero-webflow-image">
-        <img src="assets/Add-a-heading-18.png" loading="lazy"
-          alt="" style="max-width: 100%; height: auto; width: 100%;
-              max-width: 456px;
-              @media (max-width: 767px) {
-                width: 90vw;
-              }
-              @media (min-width: 768px) and (max-width: 990px) {
-                width: 330px;
-              }">
+          <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/w_456/v1683620231/Hero_456_456_px_dalzfw.png", loading:"lazy", crop: :fill, style:"width: 92%; max-width: 456px; height: auto;" %>
       </div>
     </div>
     <div class="benef-section-webflow">
-      <div data-w-id="e7a9937b-beac-1c42-e573-5dcb4b945ffd" class="benf-1-webflow"><img src="assets/megaphone-front-gradient.png" loading="lazy" width="45" sizes="45px" alt="">
+      <div class="benf-1-webflow"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/Megaphone_grqaix.png", loading:"lazy" %>
         <h3 class="heading-3-webflow">Gagne en <span>visibilité</span></h3>
         <div class="text-bloc-webflow">avec un site personnalisé et à ton image</div>
       </div>
-      <div class="benef-2-webflow"><img src="assets/mobile-front-gradient.png" loading="lazy" width="45" sizes="45px" alt="">
+      <div class="benef-2-webflow"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/phone_paxohy.png", loading:"lazy" %>
         <h3 class="heading-3-webflow">Simplifie tes réservations</h3>
         <div class="text-bloc-webflow-2">fini les conversations à rallonge </div>
       </div>
-      <div class="benef-webflow-3"><img src="assets/folder-front-gradient.png" loading="lazy" width="45" sizes="45px" alt="">
+      <div class="benef-webflow-3"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/folder_clc637.png", loading:"lazy" %>
         <h3 class="heading-3-webflow">Améliore ton organisation</h3>
         <div class="text-bloc-webflow-3">suivi des prestations, calendrier dynamique </div>
       </div>
