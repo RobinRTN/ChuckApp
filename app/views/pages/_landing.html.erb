@@ -3,11 +3,12 @@
     <div class="nav-bar-webflow" data-controller="scroll-nav">
       <div class="container-navbar-webflow w-container">
         <a href="/" class="brand-webflow w-nav-brand">
-          <div><img src="assets/chuck__1_-removebg-preview.png" loading="lazy" width="82" sizes="82px" srcset="assets/chuck__1_-removebg-preview-p-500.png 500w, assets/chuck__1_-removebg-preview.png 800w" alt="" class="ms-3 image-1-webflow"></div>
+          <div><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683637768/Untitled_design_11_j7c8xt.png", loading:"lazy", crop: :fill, style:"", class:"ms-3 image-1-webflow" %></div>
         </a>
         <nav role="navigation" class="w-nav-menu">
           <a href="https://www.chuckapp.fr/users/sign_up" id="https-www.chuckapp.fr-users-sign_up" class="btn-minimal d-none">S&#x27;inscrire</a>
           <%=link_to "Se connecter", new_user_session_path, class: "btn-minimal me-3" %>
+
         </nav>
       </div>
     </div>
@@ -20,9 +21,9 @@
   <div class="container-webflow-1 w-container">
     <div class="hero-section-webflow">
       <div class="hero-webflow-text ">
-        <h1 class="heading-webflow">Crée ton <span class="gradient-webflow">site</span> et <span class="gradient-webflow">gère</span> ton activité <span class="gradient-webflow">simplement</span> ! </h1>
-        <div class="text-block-webflow">Un site web <strong><em>à ton image</em></strong> généré <strong><em>en 2 minutes</em></strong> : gestion de ton <strong><em>agenda</em></strong>, gestion de tes <strong><em>réservations</em></strong>, <strong><em>paiement</em></strong> en ligne et <strong><em>avis</em></strong> <strong><em>clients</em></strong> ...</div>
-        <a href="https://calendly.com/maxime-lavoine/chuckdemo" class="btn-basic-bleu ms-3">Commencer</a>
+        <h1 class="heading-webflow p-0 mx-3 mt-5 mb-3 m">Crée ton <span class="gradient-webflow">site</span> et <span class="gradient-webflow">gère</span> ton activité <span class="gradient-webflow">simplement</span> ! </h1>
+        <div class="text-block-webflow p-0 ms-3 me-3 mb-4">Un site web <strong><em>à ton image</em></strong> généré <strong><em>en 2 minutes</em></strong> : gestion de ton <strong><em>agenda</em></strong>, gestion de tes <strong><em>réservations</em></strong>, <strong><em>paiement</em></strong> en ligne et <strong><em>avis</em></strong> <strong><em>clients</em></strong> ...</div>
+        <a href="https://calendly.com/maxime-lavoine/chuckdemo" class="btn-basic-bleu ms-3" style="font-size: 0.8em;">Commencer</a>
       </div>
       <div class="hero-webflow-image d-flex align-items-center justify-content-center">
           <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/w_456/v1683620231/Hero_456_456_px_dalzfw.png", loading:"lazy", crop: :fill, style:"width: 92%; max-width: 456px; height: auto;" %>
@@ -48,7 +49,7 @@
       </div>
       <div class="div-webflow-iphone-text">
         <h3 class="heading-3-webflow">Partage ton <span class="gradient-webflow">lien</span> chuck sur tes <br><span class="gradient-webflow">réseaux sociaux ...</span></h3>
-        <div class="text-bloc-webflow-2">Sur ta page Instagram, Tiktok ou par message fais connaitre ton site de réservation et booste ton agenda ! <br><br>Chuck te simplifie la vie et te permet de partager simplement ton lien.</div>
+        <div class="text-bloc-webflow-2">Sur ta page Instagram, Tiktok, ou par message fais connaitre ton site de réservation et booste ton agenda ! <br><br>Chuck te simplifie la vie et te permet de partager simplement ton lien.</div>
       </div>
       <div class="circle_1-wf"></div>
       <div class="circle_2-wf"></div>
@@ -57,7 +58,7 @@
       <div class="div-webflow-iphone-text">
         <h3 class="heading-3-webflow">... et colle ton <br><span class="gradient-webflow">QR code</span> partout ! <span class="gradient-webflow"></span></h3>
         <div class="text-bloc-webflow-2">Dans les salles de sports, sur des flyers ou dans la rue, fais toi connaitre partout.</div>
-        <a href="https://calendly.com/maxime-lavoine/chuckdemo" class="btn-basic-bleu">Commencer</a>
+        <a href="https://calendly.com/maxime-lavoine/chuckdemo" class="btn-basic-bleu" style="font-size: 0.8em;">Commencer</a>
       </div>
       <div class="div-webflow-iphone-picture d-flex justify-content-center">
         <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683635081/Iphone-QR_zuaz6f.png", loading:"lazy", crop: :fill, style:"width: 95%; max-width: 250px; height: auto; border-radius: 0.5em;" %>
@@ -89,7 +90,7 @@
         </div>
       </div>
       <div class="footer-divid-webflow"></div>
-      <div class="footer-copyr-wb">Copyright © 2021 ChuckApp</div>
+      <div class="footer-copyr-wb">Copyright © 2023 ChuckApp</div>
     </section>
   </div>  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>
