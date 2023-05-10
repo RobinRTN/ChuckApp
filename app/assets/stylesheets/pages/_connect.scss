@@ -1,0 +1,47 @@
+.navbar-connect {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 1em ;
+  padding-bottom: 1em;
+  position: fixed;
+  z-index: 1000;
+}
+
+.container-connect-nav {
+  max-width: 500px;
+  width: 80%;
+  .logo-landing img {
+    height: 2em;
+  }
+
+}
+
+.container-connect {
+  padding-top: 5em;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 80%;
+  height: 100vh;
+}
+
+.form-inputs-connect {
+  max-width: 250px;
+}
+
+.links-connect {
+  font-size: 0.8em;
+  margin-top: 1.5em;
+  a {
+    text-decoration: none;
+    color: $d-blue-sp;
+    margin-bottom: 2em;
+  }
+  .google-auth {
+    margin-top: 1em;
+  }
+}
+
+.no-bg {
+  background-color: white;
+  height: 1000vh;
+}

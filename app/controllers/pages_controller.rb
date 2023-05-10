@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :conditions, :politique, :mentions ]
 
   def home
     if user_signed_in?
@@ -19,6 +19,15 @@ class PagesController < ApplicationController
   end
 
   def profile
+  end
+
+  def conditions
+  end
+
+  def politique
+  end
+
+  def mentions
   end
 
   private

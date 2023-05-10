@@ -28,6 +28,27 @@
   background-color: $blue-sp !important;
 }
 
+.btn-basic-bleu-large-form {
+  background: $blue-sp;
+  color: $ll-blue-sp;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  padding: 0.8em 1em;
+  font-family: Raleway, sans-serif;
+  font-size: 0.8em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  border-radius: 0.2em;
+  transition: all 0.2s;
+  width: 100% !important;
+  max-width: 250px;
+}
+
+.btn-basic-bleu-large-form:hover {
+  box-shadow: none !important;
+  color: $ll-blue-sp;
+  background-color: $blue-sp !important;
+}
+
 .btn-minimal {
   color: $blue-sp;
   font-size: 0.9em;
