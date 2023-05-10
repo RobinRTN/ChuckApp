@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
   get 'profile', to: 'pages#profile'
+  get 'conditions', to: 'pages#conditions'
+  get 'mentions', to: 'pages#mentions'
+  get 'politique', to: 'pages#politique'
   get '/disponibilites', to: 'bookings#disponibilites', as: 'disponibilites'
   get '/landing_reservation/:token', to: 'bookings#landing_reservation', as: 'landing_reservation'
   get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
