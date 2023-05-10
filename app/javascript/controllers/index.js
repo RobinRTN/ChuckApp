@@ -34,6 +34,9 @@ application.register("full-screen-gallery", FullScreenGalleryController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ImageAppearController from "./image_appear_controller"
+application.register("image-appear", ImageAppearController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 
@@ -45,6 +48,12 @@ application.register("revenu", RevenuController)
 
 import ScrollNavController from "./scroll_nav_controller"
 application.register("scroll-nav", ScrollNavController)
+
+import ScrollToElementController from "./scroll_to_element_controller"
+application.register("scroll-to-element", ScrollToElementController)
+
+import ScrollToElementUpController from "./scroll_to_element_up_controller"
+application.register("scroll-to-element-up", ScrollToElementUpController)
 
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)

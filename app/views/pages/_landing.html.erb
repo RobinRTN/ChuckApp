@@ -8,46 +8,46 @@
   </div>
 </div>
 
-<div class="gradient-section-1">
+<div class="gradient-section-1" div data-controller="image-appear">
   <div class="circle-1-gradient"></div>
   <div class="circle-2-gradient"></div>
   <div class="container-landing">
     <div class="hero-section">
-      <div class="hero-text">
+      <div class="hero-text hidden" data-image-appear-target="text">
         <h1 class="hero-heading mb-5">Crée ton <span class="gradient-webflow">site</span> et <span class="gradient-webflow">gère</span> ton activité <span class="gradient-webflow">simplement</span> ! </h1>
         <div class="hero-text-block mb-5">Un site web <strong><em>à ton image</em></strong> généré <strong><em>en 2 minutes</em></strong> : gestion de ton <strong><em>agenda</em></strong>, gestion de tes <strong><em>réservations</em></strong>, <strong><em>paiement</em></strong> en ligne et <strong><em>avis</em></strong> <strong><em>clients</em></strong> ...</div>
         <a href="https://calendly.com/maxime-lavoine/chuckdemo" class="btn-basic-bleu mb-5">Commencer</a>
       </div>
-      <div class="hero-image d-flex align-items-center justify-content-center">
-          <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683666676/Add_a_heading_1181_1181_px_2_zkxyu6.png", loading:"lazy", crop: :fill %>
+      <div class="hero-image d-flex align-items-center justify-content-center hidden" data-image-appear-target="image">
+        <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683666676/Add_a_heading_1181_1181_px_2_zkxyu6.png", loading:"lazy", crop: :fill %>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container-landing">
-  <div class="benef-section-landing">
-    <div class="benef-landing"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/Megaphone_grqaix.png", loading:"lazy" %>
+  <div class="benef-section-landing" data-controller="scroll-to-element-up">
+    <div class="benef-landing hidden-up"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/Megaphone_grqaix.png", loading:"lazy" %>
       <h3 class="heading-3-landing">Gagne en <span>visibilité</span></h3>
       <div class="text-bloc-landing">avec un site personnalisé et à ton image</div>
     </div>
-    <div class="benef-landing"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/phone_paxohy.png", loading:"lazy" %>
+    <div class="benef-landing hidden-up"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/phone_paxohy.png", loading:"lazy" %>
       <h3 class="heading-3-landing">Simplifie tes réservations</h3>
       <div class="text-bloc-landing-2">fini les conversations à rallonge </div>
     </div>
-    <div class="benef-landing"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/folder_clc637.png", loading:"lazy" %>
+    <div class="benef-landing hidden-up"><%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683624695/folder_clc637.png", loading:"lazy" %>
       <h3 class="heading-3-landing">Améliore ton organisation</h3>
       <div class="text-bloc-landing-3">suivi des prestations, calendrier dynamique </div>
     </div>
   </div>
 </div>
 
-<div class="gradient-section-2 mt-1">
+<div class="gradient-section-2" data-controller="scroll-to-element">
   <div class="circle-3-gradient"></div>
   <div class="circle-4-gradient"></div>
   <div class="real-landing container-landing">
 
-    <div class="real-landing-part">
+    <div class="real-landing-part hidden-bottom-left">
       <div class="landing-iphone-picture d-flex justify-content-center">
         <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683666765/Add_a_heading_1181_1181_px_5_gaacw2.png", loading:"lazy", crop: :fill, style:"width: 95%; max-width: 350px; height: auto;" %>
       </div>
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <div class="real-landing-part">
+    <div class="real-landing-part hidden-bottom-right">
       <div class="div-landing-iphone-text">
         <h3 class="heading-3-landing mb-3">... et colle ton <br><span class="gradient-webflow">QR code</span> partout ! <span class="gradient-webflow"></span></h3>
         <div class="text-bloc-landing mb-3">Dans les salles de sports, sur des flyers ou dans la rue, fais toi connaitre partout.</div>
