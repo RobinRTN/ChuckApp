@@ -1,5 +1,11 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <h2>Confirmation de votre adresse e-mail</h2>
+  <p>Bonjour <%= @resource.full_name %>,</p>
+  <p>Merci de vous être inscrit à ChuckApp. Pour confirmer votre adresse e-mail, veuillez cliquer sur le lien ci-dessous :</p>
+  <p>
+    <%= link_to 'Confirmer mon adresse e-mail', confirmation_url(@resource, confirmation_token: @token) %>
+  </p>
+  <p>
+    Si vous n'avez pas créé de compte sur ChuckApp, ignorez simplement cet e-mail.
+  </p>
+  <p>Merci,</p>
+  <p>L'équipe ChuckApp</p>
