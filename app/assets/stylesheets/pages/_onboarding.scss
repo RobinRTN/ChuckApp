@@ -1,0 +1,55 @@
+.progress-bar-container {
+  width: 100%;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+
+  .progress-bar-fill {
+    height: 100%;
+    background-color: $blue-sp;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .step1 {
+    width: 33%;
+  }
+
+  .step2 {
+    width: 66%;
+  }
+
+  .step3 {
+    width: 100%;
+  }
+}
+
+.progress-bar-steps {
+  display: flex;
+  justify-content: space-between;
+
+  .progress-bar-step {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.onboarding-form-description {
+  font-weight: 600;
+}
+
+.title-onboarding {
+  display: inline;
+  padding: 0.2em 1em;
+  border-radius: 3em;
+  background-color: $blue-sp;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: $ll-blue-sp;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
