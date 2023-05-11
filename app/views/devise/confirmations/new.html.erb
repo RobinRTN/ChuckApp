@@ -1,20 +1,37 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
-
-  <div class="form-inputs-connect">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                input_html: { autocomplete: "email" } %>
+<div class="navbar-connect d-flex justify-content-center">
+  <div class="container-connect-nav d-flex align-items-center justify-content-between">
+    <%= link_to root_path, class: "logo-landing" do %>
+      <%= image_tag "chuck__1_-removebg-preview.png", class: "mt-1" %>
+    <% end %>
+    <%=link_to "Se connecter", new_user_session_path, class: "btn-minimal" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Resend confirmation instructions" %>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="container-connect">
+  <div class="form-connect">
+    <h5 class="my-4">Renvoyer e-mail de confirmation</h5>
+
+    <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <%= f.full_error :confirmation_token %>
+
+      <div class="form-inputs-connect">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    label: false,
+                    value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                    input_html: { autocomplete: "email", placeholder: "Adresse email" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Renvoyer e-mail de confirmation", class: "btn-basic-bleu-large-form", value: "Renvoyer e-mail de confirmation" %>
+
+      </div>
+    <% end %>
+  </div>
+  <div class="links-connect">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
