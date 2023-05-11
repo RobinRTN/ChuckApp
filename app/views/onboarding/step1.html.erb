@@ -1,0 +1,65 @@
+<div class="container wrapper">
+  <div class="mx-3">
+
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill <%= 'step1' if @step == 'step1' %> <%= 'step2' if @step == 'step2' %> <%= 'step3' if @step == 'step3' %>"></div>
+      </div>
+      <div class="progress-bar-steps">
+        <div class="progress-bar-step <%= 'active' if @step == 'step1' %>">
+          <%# <div class="step-number">1</div> %>
+          <%# <div class="step-desc">pInformations personnelles</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step2' %>">
+          <%# <div class="step-number">2</div> %>
+          <%# <div class="step-desc">Prestations et tarification</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step3' %>">
+          <%# <div class="step-number">3</div> %>
+          <%# <div class="step-desc">Emploi du temps</div> %>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <p class="mt-2 mb-5 title-onboarding">1 - Informations personnelles</p>
+    </div>
+
+    <div class="form-onboarding">
+      <%= simple_form_for(@user, url: onboarding_path) do |f| %>
+          <p class="onboarding-form-description">Dis en plus sur toi et ton activité 🕺</p>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :first_name, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Prénom" }%>
+            </div>
+            <div class="col-6">
+              <%= f.input :last_name, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Nom" }%>
+            </div>
+          </div>
+          <%= f.input :title, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Profession" }%>
+          <%= f.input :billing_city, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Ville ou région de l'activité" }%>
+          <%= f.input :description, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Description" },
+                        class: "mb-3"%>
+          <p class="onboarding-form-description mt-4">Ta plus belle photo de profil  📸 </p>
+          <%= f.input :profile_picture, as: :file, label: false %>
+          <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
+
+        <% end %>
+      </div>
+
+  </div>
+</div>

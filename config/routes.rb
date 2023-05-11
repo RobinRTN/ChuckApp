@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
   }
 
   root to: "pages#home"
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   get 'mentions', to: 'pages#mentions'
   get 'politique', to: 'pages#politique'
   get '/disponibilites', to: 'bookings#disponibilites', as: 'disponibilites'
-  get '/landing_reservation/:token', to: 'bookings#landing_reservation', as: 'landing_reservation'
+  get '/landing_reservation/:toksen', to: 'bookings#landing_reservation', as: 'landing_reservation'
   get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
   get '/finish_reservation/:token', to: 'bookings#finish_reservation', as: 'finish_reservation'
   patch '/update_availability/:id', to: 'bookings#update_availability', as: 'update_availability'
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   resources :formules
   resources :packages
   resources :groups
+  resources :onboarding, only: [:show, :update]
 
   # Defines the root path route ("/")
   # root "articles#index"
