@@ -9,6 +9,11 @@ html, body {
   background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  font-weight: 600;
+}
+
 .exception-page {
   background: none;
 }
