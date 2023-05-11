@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @tags = @user.tags
   end
 
-  def choose_reservation
+  def choose_reservation  
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find(reservation_params[:formule_id])
     interval = @formule.duration

@@ -18,16 +18,23 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $headers-font;
   color: #5761f2;
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.9em;
 }
 
 table {
+
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 8px;
 }
 
 td {
-  padding: 8px;
+  font-size: 0.9em;
+  padding: 2px;
 }
 
 .container {
@@ -35,7 +42,7 @@ td {
 }
 
 .row {
-  background: linear-gradient(to top, #f3f4fe 0%, white 100%);
-  border-radius: 8px;
+  background: white;
+  border-radius: 5px;
   margin-bottom: 15px;
 }
