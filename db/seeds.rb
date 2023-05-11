@@ -52,6 +52,7 @@ u1.profile_picture.attach(
   filename: 'thomas.png',
   content_type: 'image/png'
 )
+u1.confirm
 u1.save!
 
 u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants à découvrir les joies et les bienfaits de ce sport passionnant. Je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
@@ -71,6 +72,7 @@ u2.profile_picture.attach(
   filename: 'maxime.jpg',
   content_type: 'image/jpg'
 )
+u2.confirm
 u2.save!
 puts "Just created the two founders' pictures successfully"
 puts "_________________"
