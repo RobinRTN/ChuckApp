@@ -1,5 +1,7 @@
 class OnboardingController < ApplicationController
   before_action :authenticate_user!
+  helper_method :step, :previous_step
+
 
   def show
     @user = current_user
@@ -9,11 +11,30 @@ class OnboardingController < ApplicationController
 
   def update
     @user = current_user
-    # Update user attributes and go to the next step
-    if @user.update(user_params)
-      redirect_to onboarding_path(step: next_step)
+    case step
+    when 'step1'
+      if @user.update(step1_params)
+        redirect_to onboarding_path(step: next_step)
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        render :show
+      end
+    when 'step2'
+      if @user.update(step2_params)
+        redirect_to onboarding_path(step: next_step)
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        render :show
+      end
+    when 'step3'
+      if @user.update(step3_params)
+        redirect_to onboarding_path(step: next_step)
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        render :show
+      end
     else
-      render step
+      redirect_to root_path, notice: "Invalid onboarding step"
     end
   end
 
@@ -37,7 +58,30 @@ class OnboardingController < ApplicationController
     end
   end
 
-  def user_params
-    params.require(:user).permit(:daily_start_time, :daily_end_time, :excluded_fixed_weekly_slots)
+  def previous_step
+    case step
+    when 'step2' then 'step1'
+    when 'step3' then 'step2'
+    # Add more steps as needed
+    else
+      # If there's no previous step, redirect to the first step
+      'step1'
+    end
   end
+
+
+  def step1_params
+    params.require(:user).permit(:first_name, :last_name, :title, :billing_city, :description, :profile_picture)
+  end
+
+  def step2_params
+    # Replace these with the actual parameters for step2
+    params.require(:user).permit(:param1, :param2, :param3)
+  end
+
+  def step3_params
+    # Replace these with the actual parameters for step3
+    params.require(:user).permit(:param1, :param2, :param3)
+  end
+
 end

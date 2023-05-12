@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AddressAutocompleteController from "./address_autocomplete_controller"
+application.register("address-autocomplete", AddressAutocompleteController)
+
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
@@ -57,6 +60,9 @@ application.register("scroll-to-element-up", ScrollToElementUpController)
 
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
+
+import Step2Controller from "./step2_controller"
+application.register("step2", Step2Controller)
 
 import VoirPlusBackController from "./voir_plus_back_controller"
 application.register("voir-plus-back", VoirPlusBackController)

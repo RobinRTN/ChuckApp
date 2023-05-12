@@ -44,6 +44,10 @@ u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis",
 
 u2 = User.create!({ full_name: "Maxime Lavoine", title: "Professeur de Yoga Indien", hourly_rate: 90, email: 'maximelavoine@test.com', password: 'password', first_name: "Maxime", last_name: "Lavoine", payment_BIC: "BFBKFKP1", payment_IBAN: "FR3330002105500000157841Z25", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" })
 
+u3 = User.create!({ email: 'robin@gmail.com', password: 'password'})
+u3.confirm
+u3.save!
+
 puts "Just created the two founders' accounts successfully"
 puts "_________________"
 

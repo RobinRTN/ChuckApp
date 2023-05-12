@@ -54,8 +54,8 @@
                         label: false,
                         input_html: { placeholder: "Description" },
                         class: "mb-3"%>
-          <p class="onboarding-form-description mt-4">Ta plus belle photo de profil  📸 </p>
-          <%= f.input :profile_picture, as: :file, label: false %>
+          <p class="onboarding-form-description mt-4">Ta plus belle photo de profil   📸 </p>
+          <%= f.input :profile_picture, as: :file, input_html: { class: "form-box" }, label: false %>
           <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
 
         <% end %>
