@@ -7,12 +7,12 @@
   "theme_color": "#5761f2",
   "icons": [
     {
-      "src": "/app/assets/images/PWA_small_logo_chuck.png",
+      "src": "/PWA_small_logo_chuck.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/app/assets/images/PWA_big_logo_chuck.pngg",
+      "src": "/PWA_big_logo_chuck.png",
       "sizes": "512x512",
       "type": "image/png"
     }
