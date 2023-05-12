@@ -20,20 +20,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- Define the web app title and link to the icons -->
-    <meta name="apple-mobile-web-app-title" content="Chuck">
-    <link rel="apple-touch-icon" href="/PWA_small_logo_chuck.png">
-
-    <!-- Define the display style and status bar color -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <!-- Theme color for Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#5761f2">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-    <!-- Link to the manifest file -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
 
+    <%= render 'shared/ios_pwa_links' %>
 
 
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
