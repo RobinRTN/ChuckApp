@@ -35,5 +35,9 @@ module ApplicationHelper
     true
   end
 
+  def duration_options
+    ['15min', '30min', '45min', '1h', '2h', '2h30', '3h', '4h', '5h', '6h', '10h', '12h']
+  end
+
 
 end

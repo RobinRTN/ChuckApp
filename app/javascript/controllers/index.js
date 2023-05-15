@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AddFormulePackageController from "./add_formule_package_controller"
+application.register("add-formule-package", AddFormulePackageController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
