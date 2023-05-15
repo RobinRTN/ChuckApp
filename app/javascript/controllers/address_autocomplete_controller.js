@@ -33,5 +33,7 @@ export default class extends Controller {
 
   disconnect() {
     this.geocoder.onRemove()
+    // Remove the geocoder instance from the element to prevent cloning issues
+    // this.element.removeChild(this.geocoder.container)
   }
 }

@@ -92,6 +92,7 @@
                                                       input_html: { placeholder: "Description de la prestation" } %>
                         <%# <div class="round-btn-add"> %>
                       </div>
+
                       <p class="add-formule btn-minimal" data-action="click->add-formule-package#newFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p>
                           <%# <i class="fa-solid fa-circle-plus"></i> %>
                         <%# </div> %>
@@ -111,7 +112,74 @@
         </div>
       </div>
 
-      <div class="d-none" data-step2-target="multipleForm">
+      <div class="d-none" data-step2-target="multipleForm" data-controller="add-formule-package">
+        <div>
+          <%= simple_form_for(@user, url: onboarding_path) do |f| %>
+
+            <div class="package-step2" data-add-formule-package-target="package">
+              <div class="d-flex align-items-center justify-content-between">
+                <p class="onboarding-form-description mt-3">Ajoute une catégorie de prestations</p>
+                <p class="delete-package d-none" data-action="click->add-formule-package#deletePackage">Supprimer</p>
+              </div>
+              <%= f.simple_fields_for :packages do |package_fields| %>
+                <%= package_fields.input :name, required: true,
+                                          autofocus: true,
+                                          label: false,
+                                          input_html: { placeholder: "Catégorie de prestations" } %>
+                <p class="onboarding-form-description mt-3 mb-1">Ajoute des prestations associées</p>
+                <div class="formules-step2 d-flex flex-column">
+                  <div class="formules-step2-child mt-2" data-add-formule-package-target="formule">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p class="formule-count" data-add-formule-package-target="formuleCount">Prestation proposée</p>
+                      <p class="delete-formule d-none" data-action="click->add-formule-package#deleteFormule">Supprimer</p>
+                    </div>
+                    <%= package_fields.simple_fields_for :formules do |formule_fields| %>
+                      <%= formule_fields.input :name, required: true,
+                                                      autofocus: true,
+                                                      label: false,
+                                                      input_html: { placeholder: "Nom de la prestation" } %>
+                      <%= formule_fields.input :price, as: :numeric, required: true,
+                                                autofocus: true,
+                                                label: false,
+                                                input_html: {
+                                                  placeholder: "Prix de la prestation (en €)",
+                                                  step: 0.1,
+                                                  min: 0
+                                                }
+                      %>
+                      <%# <p class="mb-1"><em>Selectionne la durée de la prestation</em></p> %>
+                      <%= formule_fields.input :duration, as: :select,
+                                                include_blank: "Durée de la prestation",
+                                                collection: duration_options,
+                                                required: true,
+                                                autofocus: true,
+                                                label: false,
+                                                input_html: { placeholder: "Durée de la prestation" } %>
+                      <%= formule_fields.input :address_line,
+                                                    label: false,
+                                                    input_html: {data: {address_autocomplete_target: "address"}, class: "d-none" },
+                                                    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+                      <%= formule_fields.input :description, as: :text, required: true,
+                                                      autofocus: true,
+                                                      label: false,
+                                                      input_html: { placeholder: "Description de la prestation" } %>
+                        <%# <div class="round-btn-add"> %>
+                      </div>
+                      <p class="add-formule btn-minimal" data-action="click->add-formule-package#newFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p>
+                          <%# <i class="fa-solid fa-circle-plus"></i> %>
+                        <%# </div> %>
+                    <% end %>
+                </div>
+
+
+              <% end %>
+            </div>
+            <p class="add-package btn-minimal" data-action="click->add-formule-package#newPackage"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre catégorie de prestations</p>
+
+            <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
+          <% end %>
+
+        </div>
       </div>
     </div>
 

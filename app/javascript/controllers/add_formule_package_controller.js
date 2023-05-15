@@ -9,6 +9,7 @@ export default class extends Controller {
     // Here we're just cloning the last ".formules-step2-child" we find.
     const newFormule = this.formuleTargets[this.formuleTargets.length - 1].cloneNode(true);
 
+
     // Clear the input values in the cloned node
     newFormule.querySelectorAll("input").forEach(input => {
       input.value = "";
