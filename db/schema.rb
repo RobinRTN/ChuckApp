@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_142909) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_132151) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -115,7 +115,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_142909) do
     t.string "field"
     t.integer "duration"
     t.float "price"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address_line"
@@ -124,7 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_142909) do
     t.float "longitude"
     t.bigint "package_id"
     t.index ["package_id"], name: "index_formules_on_package_id"
-    t.index ["user_id"], name: "index_formules_on_user_id"
   end
 
   create_table "group_clients", force: :cascade do |t|
@@ -198,6 +196,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_142909) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "daily_start_time"
+    t.string "daily_end_time"
+    t.jsonb "excluded_fixed_weekly_slots", default: []
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -211,7 +212,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_142909) do
   add_foreign_key "bookings", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "formules", "packages"
-  add_foreign_key "formules", "users"
   add_foreign_key "group_clients", "clients"
   add_foreign_key "group_clients", "groups"
   add_foreign_key "groups", "users"

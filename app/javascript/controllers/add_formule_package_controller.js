@@ -6,55 +6,68 @@ export default class extends Controller {
   newFormule(event) {
     event.preventDefault();
 
-    // Here we're just cloning the last ".formules-step2-child" we find.
     const newFormule = this.formuleTargets[this.formuleTargets.length - 1].cloneNode(true);
 
+    newFormule.querySelectorAll("input, select, textarea").forEach(input => {
+      console.log(input)
+      const name = input.getAttribute('name');
+      console.log(name)
+      const id = input.getAttribute('id');
+      console.log(id)
+      if (name && id) { // Check if name and id are not null
+        const matches = name.match(/\[([^\]]+)\]/g);
+        const key = matches[matches.length - 1].replace(/[\[\]']+/g, '');
+        const packageIndexMatches = name.match(/user\[packages_attributes\]\[(\d+)\]\[formules_attributes\]\[(\d+)\]/);
+        const packageIndex = packageIndexMatches[1];
+        const formuleIndex = parseInt(packageIndexMatches[2]) + 1;
 
-    // Clear the input values in the cloned node
-    newFormule.querySelectorAll("input").forEach(input => {
-      input.value = "";
+        input.setAttribute('name', `user[packages_attributes][${packageIndex}][formules_attributes][${formuleIndex}][${key}]`);
+        input.setAttribute('id', `user_packages_attributes_${packageIndex}_formules_attributes_${formuleIndex}_${key}`);
+        input.value = "";
+      }
     });
 
-    // Remove selected state from select
     newFormule.querySelector("select").selectedIndex = 0;
 
-    // Update the formule count in the new node
-    // newFormule.querySelector("[data-add-formule-package-target='formuleCount']").textContent = `Prestation ${this.formuleTargets.length + 1}`;
-
-    // Make the "Supprimer" button visible in the new node
     newFormule.querySelector(".delete-formule").classList.remove("d-none");
 
-    // Append the cloned node to the form
     event.currentTarget.parentNode.insertBefore(newFormule, event.currentTarget);
   }
 
   deleteFormule(event) {
     event.preventDefault();
 
-    // Get the parent ".formules-step2-child" of the clicked delete button
     const formuleToDelete = event.currentTarget.closest(".formules-step2-child");
-
-    // Remove it from the DOM
     formuleToDelete.remove();
   }
 
   newPackage(event) {
     event.preventDefault();
 
-    // Clone the last ".package-step2" we find.
     const newPackage = this.packageTargets[this.packageTargets.length - 1].cloneNode(true);
 
-    // Clear the input values in the cloned node
-    newPackage.querySelectorAll("input").forEach(input => {
-      input.value = "";
+    newPackage.querySelectorAll("input, select, textarea").forEach(input => {
+      const name = input.getAttribute('name');
+      const id = input.getAttribute('id');
+      if (name && id) { // Check if name and id are not null
+        const matches = name.match(/user\[packages_attributes\]\[(\d+)\]/);
+        console.log(matches)
+        const packageIndex = parseInt(matches[1]) + 1;
+        console.log(packageIndex)
+        const packageRegex = /user\[packages_attributes\]\[\d+\]/;
+        const packageMatchLength = name.match(packageRegex)[0].length;
+
+        input.setAttribute('name', `user[packages_attributes][${packageIndex}]${name.slice(packageMatchLength)}`);
+        input.setAttribute('id', `user_packages_attributes_${packageIndex}_${id.slice(packageMatchLength - 1)}`);
+
+        input.value = "";
+      }
     });
 
-    // Remove selected state from select
     newPackage.querySelectorAll("select").forEach(select => {
       select.selectedIndex = 0;
     });
 
-    // Keep only the first formule and remove the others
     const formules = newPackage.querySelectorAll(".formules-step2-child");
     formules.forEach((formule, index) => {
       if (index !== 0) {
@@ -62,27 +75,41 @@ export default class extends Controller {
       }
     });
 
-    // Make the "Supprimer" button visible in the new node
     newPackage.querySelector(".delete-package").classList.remove("d-none");
 
-    // Append the cloned node to the form
     event.currentTarget.parentNode.insertBefore(newPackage, event.currentTarget);
 
-    // Hide the delete button in the first formule of the new package
     const firstFormuleDeleteButton = newPackage.querySelector(".formules-step2-child .delete-formule");
     if (firstFormuleDeleteButton) {
       firstFormuleDeleteButton.classList.add("d-none");
     }
+
+
   }
 
   deletePackage(event) {
     event.preventDefault();
 
-    // Get the parent ".package-step2" of the clicked delete button
     const packageToDelete = event.currentTarget.closest(".package-step2");
 
-    // Remove it from the DOM
     packageToDelete.remove();
   }
 
 }
+
+
+
+
+/* <input class="form-control string required" placeholder="Catégorie de prestations" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][0][name]" id="user_packages_attributes_0_name"></input>
+<input class="form-control string required" placeholder="Catégorie de prestations" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][name]" id="user_packages_attributes_1_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][0][formules_attributes][0][name]" id="user_packages_attributes_0_formules_attributes_0_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][formules_attributes][0][name]" id="user_packages_attributes_1_formules_attributes_0_name"></input> */
+
+
+/* <input class="form-control string required" placeholder="Catégorie de prestations" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][0][name]" id="user_packages_attributes_0_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][0][formules_attributes][0][name]" id="user_packages_attributes_0_formules_attributes_0_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][formules_attributes][2]" id="user_packages_attributes_1_formules_attributes_2_name">
+
+<input class="form-control string required" placeholder="Catégorie de prestations" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][name]" id="user_packages_attributes_1_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][formules_attributes][1]" id="user_packages_attributes_1_formules_attributes_1_name"></input>
+<input class="form-control string required" placeholder="Nom de la prestation" autofocus="autofocus" required="required" aria-required="true" type="text" name="user[packages_attributes][1][formules_attributes][2]" id="user_packages_attributes_1_formules_attributes_2_name"></input> */

@@ -40,7 +40,7 @@
       <div class="d-none" data-step2-target="fixForm" data-controller="add-formule-package">
         <p class="onboarding-form-description">Renseigne ce lieu en question 👇</p>
         <div>
-          <%= simple_form_for(@user, url: onboarding_path) do |f| %>
+          <%= simple_form_for(@user, url: onboarding_path(step: 'step2')) do |f| %>
             <%= f.input :address,
               label: false,
               input_html: {data: {address_autocomplete_target: "address"}, class: "d-none" },
@@ -53,6 +53,8 @@
                 <p class="delete-package d-none" data-action="click->add-formule-package#deletePackage">Supprimer</p>
               </div>
               <%= f.simple_fields_for :packages do |package_fields| %>
+                <%= package_fields.input :id, as: :hidden %>
+                <%= package_fields.input :_destroy, as: :hidden %>
                 <%= package_fields.input :name, required: true,
                                           autofocus: true,
                                           label: false,
@@ -65,6 +67,8 @@
                       <p class="delete-formule d-none" data-action="click->add-formule-package#deleteFormule">Supprimer</p>
                     </div>
                     <%= package_fields.simple_fields_for :formules do |formule_fields| %>
+                      <%= formule_fields.input :id, as: :hidden %>
+                      <%= formule_fields.input :_destroy, as: :hidden %>
                       <%= formule_fields.input :name, required: true,
                                                       autofocus: true,
                                                       label: false,
@@ -114,14 +118,15 @@
 
       <div class="d-none" data-step2-target="multipleForm" data-controller="add-formule-package">
         <div>
-          <%= simple_form_for(@user, url: onboarding_path) do |f| %>
-
+          <%= simple_form_for(@user, url: onboarding_path(step: 'step2')) do |f| %>
             <div class="package-step2" data-add-formule-package-target="package">
               <div class="d-flex align-items-center justify-content-between">
                 <p class="onboarding-form-description mt-3">Ajoute une catégorie de prestations</p>
                 <p class="delete-package d-none" data-action="click->add-formule-package#deletePackage">Supprimer</p>
               </div>
               <%= f.simple_fields_for :packages do |package_fields| %>
+                <%= package_fields.input :id, as: :hidden %>
+                <%= package_fields.input :_destroy, as: :hidden %>
                 <%= package_fields.input :name, required: true,
                                           autofocus: true,
                                           label: false,
@@ -134,6 +139,8 @@
                       <p class="delete-formule d-none" data-action="click->add-formule-package#deleteFormule">Supprimer</p>
                     </div>
                     <%= package_fields.simple_fields_for :formules do |formule_fields| %>
+                      <%= formule_fields.input :id, as: :hidden %>
+                      <%= formule_fields.input :_destroy, as: :hidden %>
                       <%= formule_fields.input :name, required: true,
                                                       autofocus: true,
                                                       label: false,

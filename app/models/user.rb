@@ -14,7 +14,20 @@ class User < ApplicationRecord
 
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+  :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+
+  has_many :groups
+  has_many :clients
+  has_many :bookings
+  has_many :packages
+  has_many :availables
+  has_many :availability_weeks
+  has_many :tags
+  has_many :formules, through: :packages
+  accepts_nested_attributes_for :packages, allow_destroy: true
+  has_one_attached :profile_picture
+  has_many_attached :gallery_pictures
+  has_one_attached :qrcode
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -25,17 +38,6 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :groups
-  has_many :clients
-  has_many :bookings
-  has_many :formules
-  has_many :packages
-  has_many :availables
-  has_many :availability_weeks
-  has_many :tags
-  has_one_attached :profile_picture
-  has_many_attached :gallery_pictures
-  has_one_attached :qrcode
 
   private
 

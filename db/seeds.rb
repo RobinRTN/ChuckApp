@@ -84,15 +84,15 @@ puts "_________________"
 p1 = Package.create!({ user_id: User.first.id, name: "Tennis" })
 p2 = Package.create!({ user_id: User.first.id, name: "Fitness" })
 
-f1 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis découverte", field: 'Tennis', duration: 60, price: 80, description: "Pour les jeunes et moins jeune, ressentez les premières sensations du tennis et des joie de frapper la petite balle jaune" })
-f2 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis perfectionnement", field: 'Tennis', duration: 120, price: 150, description: "Tu maitrises les bases du tennis ? Viens perfectionner ta technique pour être plus tranchant sur chaque point" })
-f3 = Formule.create!({ user_id: User.first.id, package_id: p1.id, name: "Tennis expert", field: 'Tennis', duration: 60, price: 100, description: "Réservé aux joueurs expérimentés et en forme. On travaille les petits détails pour passer le prochain pallier !" })
+f1 = Formule.create!({ package_id: p1.id, name: "Tennis découverte", field: 'Tennis', duration: 60, price: 80, description: "Pour les jeunes et moins jeune, ressentez les premières sensations du tennis et des joie de frapper la petite balle jaune" })
+f2 = Formule.create!({ package_id: p1.id, name: "Tennis perfectionnement", field: 'Tennis', duration: 120, price: 150, description: "Tu maitrises les bases du tennis ? Viens perfectionner ta technique pour être plus tranchant sur chaque point" })
+f3 = Formule.create!({ package_id: p1.id, name: "Tennis expert", field: 'Tennis', duration: 60, price: 100, description: "Réservé aux joueurs expérimentés et en forme. On travaille les petits détails pour passer le prochain pallier !" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
-f4 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
-f5 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique G 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
-f6 = Formule.create!({ user_id: User.first.id, package_id: p2.id, name: "Préparation physique G 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
+f4 = Formule.create!({ package_id: p2.id, name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
+f5 = Formule.create!({ package_id: p2.id, name: "Préparation physique G 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
+f6 = Formule.create!({ package_id: p2.id, name: "Préparation physique G 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 

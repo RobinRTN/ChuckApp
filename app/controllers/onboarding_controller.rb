@@ -5,6 +5,10 @@ class OnboardingController < ApplicationController
 
   def show
     @user = current_user
+    @user.packages.build unless @user.packages.present?
+    @user.packages.each do |package|
+      package.formules.build unless package.formules.present?
+    end
     # Render the view for the current onboarding step
     render step
   end
@@ -17,21 +21,21 @@ class OnboardingController < ApplicationController
         redirect_to onboarding_path(step: next_step)
       else
         flash[:error] = @user.errors.full_messages.join(", ")
-        render :show
+        render "onboarding/step1", status: :unprocessable_entity
       end
     when 'step2'
       if @user.update(step2_params)
         redirect_to onboarding_path(step: next_step)
       else
+        render "onboarding/step2", status: :unprocessable_entity
         flash[:error] = @user.errors.full_messages.join(", ")
-        render :show
       end
     when 'step3'
       if @user.update(step3_params)
         redirect_to onboarding_path(step: next_step)
       else
         flash[:error] = @user.errors.full_messages.join(", ")
-        render :show
+        render "onboarding/step3", status: :unprocessable_entity
       end
     else
       redirect_to root_path, notice: "Invalid onboarding step"
@@ -76,7 +80,7 @@ class OnboardingController < ApplicationController
 
   def step2_params
     # Replace these with the actual parameters for step2
-    params.require(:user).permit(:param1, :param2, :param3)
+    params.require(:user).permit(:address, packages_attributes: [:id, :_destroy, :name, formules_attributes: [:id, :_destroy, :name, :price, :duration, :description, :address_line]])
   end
 
   def step3_params
