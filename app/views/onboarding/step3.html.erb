@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to onboarding_path(step: previous_step), class: "text-decoration-none" do %>
+      <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
         <div class="back-btn mt-2 mb-5">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
