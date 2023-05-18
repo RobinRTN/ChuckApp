@@ -41,6 +41,10 @@
                             input_html: { placeholder: "Nom" }%>
             </div>
           </div>
+          <%= f.input :phone_number, required: true,
+            autofocus: true,
+            label: false,
+            input_html: { placeholder: "Numéro de téléphone portable (06 ou 07)" } %>
           <%= f.input :title, required: true,
                         autofocus: true,
                         label: false,
@@ -48,7 +52,7 @@
           <%= f.input :billing_city, required: true,
                         autofocus: true,
                         label: false,
-                        input_html: { placeholder: "Ville ou région de l'activité" }%>
+                        input_html: { placeholder: "Ville ou région de l'activité exercée" }%>
           <%= f.input :description, required: true,
                         autofocus: true,
                         label: false,
@@ -56,6 +60,9 @@
                         class: "mb-3"%>
           <p class="onboarding-form-description mt-4">Ta plus belle photo de profil   📸 </p>
           <%= f.input :profile_picture, as: :file, input_html: { class: "form-box" }, label: false %>
+
+          <p class="onboarding-form-description mt-4">Ajoute 3 photos pour compléter ta page  😎 </p>
+          <%= f.input :gallery_pictures, as: :file, input_html: { multiple: true, class: "form-box" }, label: false %>
           <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
 
         <% end %>

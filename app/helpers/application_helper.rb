@@ -36,7 +36,53 @@ module ApplicationHelper
   end
 
   def duration_options
-    ['15min', '30min', '45min', '1h', '2h', '2h30', '3h', '4h', '5h', '6h', '10h', '12h']
+    [
+      ['15min', 15],
+      ['30min', 30],
+      ['45min', 45],
+      ['1h', 60],
+      ['2h', 120],
+      ['2h30', 150],
+      ['3h', 180],
+      ['4h', 240],
+      ['5h', 300],
+      ['6h', 360],
+      ['10h', 600],
+      ['12h', 720]
+    ]
+  end
+
+  def time_selection
+    (4..23).flat_map { |h| ["%02d:00" % h, "%02d:30" % h] } + ["00:00"]
+  end
+
+  def generate_time_slots(start_time, end_time)
+    start_time = Time.parse(start_time) if start_time.is_a?(String)
+    end_time = Time.parse(end_time) if end_time.is_a?(String)
+
+    time_slots = []
+    while start_time < end_time
+      time_slots << start_time
+      start_time += 30.minutes
+    end
+
+    time_slots.pop if time_slots.last == end_time
+    time_slots
+  end
+
+
+  def english_to_french_day(day)
+    day_mapping = {
+      "Monday" => "Lun.",
+      "Tuesday" => "Mar.",
+      "Wednesday" => "Mer.",
+      "Thursday" => "Jeu.",
+      "Friday" => "Ven.",
+      "Saturday" => "Sam.",
+      "Sunday" => "Dim."
+    }
+
+    day_mapping[day]
   end
 
 

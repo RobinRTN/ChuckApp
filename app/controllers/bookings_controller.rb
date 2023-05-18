@@ -1,6 +1,7 @@
 require "google/apis/calendar_v3"
 require "google/api_client/client_secrets.rb"
 require 'active_support/time'
+require 'json'
 
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
@@ -15,22 +16,17 @@ class BookingsController < ApplicationController
     @tags = @user.tags
   end
 
-  def choose_reservation  
+  def choose_reservation
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find(reservation_params[:formule_id])
     interval = @formule.duration
     slot_duration = @formule.duration
-    start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('21:00pm') - slot_duration
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    start_time = Time.zone.parse(@user.daily_start_time)
+    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    days_of_week = @user.days_of_week
     num_weeks = 4
-    excluded_fixed_weekly_slots = [
-      ['Monday', '1pm', '2pm'],
-      ['Tuesday', '1pm', '2pm'],
-      ['Wednesday', '1pm', '2pm'],
-      ['Thursday', '1pm', '2pm'],
-      ['Friday', '1pm', '2pm']
-    ]
+    excluded_fixed_weekly_slots = JSON.parse(current_user.excluded_fixed_weekly_slots)
+
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
     full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
@@ -55,17 +51,12 @@ class BookingsController < ApplicationController
     @formule = Formule.find(reservation_params[:formule_id])
     interval = @formule.duration
     slot_duration = @formule.duration
-    start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('21:00pm') - slot_duration
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    start_time = Time.zone.parse(@user.daily_start_time)
+    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    days_of_week = @user.days_of_week
     num_weeks = 4
-    excluded_fixed_weekly_slots = [
-      ['Monday', '1pm', '2pm'],
-      ['Tuesday', '1pm', '2pm'],
-      ['Wednesday', '1pm', '2pm'],
-      ['Thursday', '1pm', '2pm'],
-      ['Friday', '1pm', '2pm']
-    ]
+    excluded_fixed_weekly_slots = JSON.parse(current_user.excluded_fixed_weekly_slots)
+
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
     full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
@@ -89,17 +80,12 @@ class BookingsController < ApplicationController
     if @jour
       interval = @user.formules.minimum(:duration)
       slot_duration = @user.formules.minimum(:duration)
-      start_time = Time.zone.parse('9:00am')
-      end_time = Time.zone.parse('21:00pm') - slot_duration
-      days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+      start_time = Time.zone.parse(@user.daily_start_time)
+      end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+      days_of_week = @user.days_of_week
       num_weeks = 4
-      excluded_fixed_weekly_slots = [
-        ['Monday', '1pm', '2pm'],
-        ['Tuesday', '1pm', '2pm'],
-        ['Wednesday', '1pm', '2pm'],
-        ['Thursday', '1pm', '2pm'],
-        ['Friday', '1pm', '2pm']
-      ]
+      excluded_fixed_weekly_slots = JSON.parse(current_user.excluded_fixed_weekly_slots)
+
       @datetimes = generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, @user, @jour)
     end
   end
@@ -116,8 +102,6 @@ class BookingsController < ApplicationController
     @client = Client.new
     @clients = @user.clients
   end
-
-  {"authenticity_token"=>"[FILTERED]", "time"=>"17:00", "jour"=>"2023-04-18", "formule_id"=>"359"}
 
   def show
     @booking = Booking.find(params[:id])
@@ -292,6 +276,7 @@ class BookingsController < ApplicationController
   end
 
   def disponibilites
+
     # // FOR WEEKLY
     start_date = Date.today.beginning_of_week
     end_date = 6.months.from_now.end_of_week
@@ -299,17 +284,11 @@ class BookingsController < ApplicationController
     # // FOR DAILY
     interval = current_user.formules.minimum(:duration)
     @slot_duration = current_user.formules.minimum(:duration)
-    start_time = Time.zone.parse('9:00am')
-    end_time = Time.zone.parse('7:00pm') - @slot_duration
-    @days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    start_time = Time.zone.parse(current_user.daily_start_time)
+    end_time = Time.zone.parse(current_user.daily_end_time) - @slot_duration
+    @days_of_week = current_user.days_of_week
     num_weeks = 4
-    excluded_fixed_weekly_slots = [
-      ['Monday', '1pm', '2pm'],
-      ['Tuesday', '1pm', '2pm'],
-      ['Wednesday', '1pm', '2pm'],
-      ['Thursday', '1pm', '2pm'],
-      ['Friday', '1pm', '2pm']
-    ]
+    excluded_fixed_weekly_slots = JSON.parse(current_user.excluded_fixed_weekly_slots)
 
     # Update available datetimes with newly cancelled or added slots
     if params[:cancelled_slot]
@@ -391,10 +370,10 @@ class BookingsController < ApplicationController
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
-    given_days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     user ||= current_user
-    converted_available_slots = convert_available_slots(user.availables)
+    given_days_of_week = user.days_of_week
+    converted_available_slots = convert_available_slots(user.availables) 
     availability_weeks = user.availability_weeks
 
     week_num = 0

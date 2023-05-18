@@ -1,5 +1,5 @@
   <h2>Confirmation de votre adresse e-mail</h2>
-  <p>Bonjour <%= @resource.full_name %>,</p>
+  <p>Bonjour,</p>
   <p>Merci de vous être inscrit à ChuckApp. Pour confirmer votre adresse e-mail, veuillez cliquer sur le lien ci-dessous :</p>
   <p>
     <%= link_to 'Confirmer mon adresse e-mail', confirmation_url(@resource, confirmation_token: @token) %>

@@ -64,6 +64,9 @@ application.register("scroll-to-element-up", ScrollToElementUpController)
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
 
+import SlotSelectorController from "./slot_selector_controller"
+application.register("slot-selector", SlotSelectorController)
+
 import Step2Controller from "./step2_controller"
 application.register("step2", Step2Controller)
 
@@ -78,3 +81,6 @@ application.register("voir-plus", VoirPlusController)
 
 import WeekToggleController from "./week_toggle_controller"
 application.register("week-toggle", WeekToggleController)
+
+import WeekdaySelectorController from "./weekday_selector_controller"
+application.register("weekday-selector", WeekdaySelectorController)

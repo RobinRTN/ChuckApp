@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_pending_booking
-    @pending_booking = Booking.all_pending.first
+    @pending_booking = current_user.bookings.all_pending.first if current_user
   end
 end

@@ -1,0 +1,56 @@
+<div class="container wrapper">
+  <div class="mx-3">
+
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill <%= 'step1' if @step == 'step1' %> <%= 'step2' if @step == 'step2' %> <%= 'step3' if @step == 'step3' %>"></div>
+      </div>
+      <div class="progress-bar-steps">
+        <div class="progress-bar-step <%= 'active' if @step == 'step1' %>">
+          <%# <div class="step-number">1</div> %>
+          <%# <div class="step-desc">pInformations personnelles</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step2' %>">
+          <%# <div class="step-number">2</div> %>
+          <%# <div class="step-desc">Prestations et tarification</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step3' %>">
+          <%# <div class="step-number">3</div> %>
+          <%# <div class="step-desc">Emploi du temps</div> %>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
+        <div class="back-btn mt-2 mb-5">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <p class="mt-2 mb-5 title-onboarding m-auto">4 - Indisponibilités</p>
+    </div>
+
+    <p class="onboarding-form-description">Cliques les horaires pour lesquels tu n'est pas disponible 👇</p>
+    <p class="onboarding-form-description-small mx-2"><em>Ces boutons représentent des intervalles de 30 minutes, l'horraire indiquée est celle de départ</em></p>
+
+    <%= simple_form_for @user, url: onboarding_path(step: 'step4') do |f| %>
+      <div data-controller="slot-selector" class="d-flex align-items-center justify-content-between">
+        <% @user.days_of_week.each do |day| %>
+          <div class="day-column d-flex flex-column align-items-center justify-content-center flex-grow-1">
+            <p class="text-center"><%= english_to_french_day(day) %></p>
+            <% time_slots = generate_time_slots(@user.daily_start_time, @user.daily_end_time) %>
+            <% time_slots.each_with_index do |time_slot, index| %>
+              <div data-action="click->slot-selector#toggle" data-slot-selector-target="slot" data-day="<%= day %>" data-start-time="<%= time_slot.strftime("%H:%M") %>" data-end-time="<%= (time_slot + 30.minutes).strftime("%H:%M") %>" class="time-slot-break">
+                <%= time_slot.strftime("%H:%M") %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= f.input :excluded_fixed_weekly_slots, as: :hidden, input_html: { id: "hidden_excluded_fixed_weekly_slots", value: @user.excluded_fixed_weekly_slots.to_json } %>
+
+      <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-5", value: "Etape suivante 👉" %>
+    <% end %>
+
+  </div>
+</div>

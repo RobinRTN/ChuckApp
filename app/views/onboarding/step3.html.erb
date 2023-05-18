@@ -29,3 +29,44 @@
       <% end %>
       <p class="mt-2 mb-5 title-onboarding m-auto">3 - Emploi du temps</p>
     </div>
+
+    <p class="onboarding-form-description">Quels jours de la semaine proposes-tu tes prestations ?</p>
+    <p class="onboarding-form-description-small"><em>Clique sur les jours travaillés (par défaut de lundi à vendredi) 👇</em></p>
+
+    <%= simple_form_for @user, url: onboarding_path(step: 'step3') do |f| %>
+      <div data-controller="weekday-selector" class="d-flex align-items-center flex-wrap my-5">
+        <% [["Lundi", "Monday"], ["Mardi", "Tuesday"], ["Mercredi", "Wednesday"], ["Jeudi", "Thursday"], ["Vendredi", "Friday"], ["Samedi", "Saturday"], ["Dimanche", "Sunday"]].each_with_index do |day, index| %>
+          <div id="day_<%= index %>" data-action="click->weekday-selector#toggle" data-weekday-selector-target="weekday" class="weekday-button-onboarding" data-day="<%= day[1] %>">
+            <%= day[0] %>
+          </div>
+        <% end %>
+        <%= f.input :days_of_week, as: :hidden, input_html: { id: "hidden_days_of_week", value: @user.days_of_week.join(',') } %>
+      </div>
+      <p class="onboarding-form-description">De quelle heure à quelle heure ? </p>
+      <div class="row">
+        <div class="col-6">
+          <%= f.input :daily_start_time, as: :select,
+                        include_blank: "A partir de",
+                        collection: time_selection,
+                        required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "A partir de" } %>
+        </div>
+        <div class="col-6">
+          <%= f.input :daily_end_time, as: :select,
+                        include_blank: "Jusqu'à",
+                        collection: time_selection,
+                        required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Jusqu'à" } %>
+        </div>
+      </div>
+      <p class="onboarding-form-description-small"><em>Tu indiqueras tes pauses et tes indisponibilités hebdomadaires à la prochaine étape </em></p>
+
+      <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-5", value: "Etape suivante   👉" %>
+    <% end %>
+
+  </div>
+</div>
