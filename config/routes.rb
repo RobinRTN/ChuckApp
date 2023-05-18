@@ -27,6 +27,13 @@ Rails.application.routes.draw do
   get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
   patch 'onboarding/:step', to: 'onboarding#update'
 
+  resources :users, only: [] do
+    collection do
+      get 'edit_info'
+      patch 'update_info'
+    end
+  end
+
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do
       put :confirm

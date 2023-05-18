@@ -1,0 +1,50 @@
+<div class="container wrapper">
+  <div class="mx-3">
+
+    <div class="form-onboarding">
+      <%= simple_form_for(@user, url: update_info_users_path, method: :patch) do |f| %>
+          <p class="onboarding-form-description">Informations sur toi et ton activité 🕺</p>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :first_name, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Prénom" }%>
+            </div>
+            <div class="col-6">
+              <%= f.input :last_name, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Nom" }%>
+            </div>
+          </div>
+          <%= f.input :phone_number, required: true,
+            autofocus: true,
+            label: false,
+            input_html: { placeholder: "Numéro de téléphone portable (06 ou 07)" } %>
+          <%= f.input :title, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Profession" }%>
+          <%= f.input :billing_city, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Ville ou région de l'activité exercée" }%>
+          <%= f.input :description, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Description" },
+                        class: "mb-3"%>
+          <p class="onboarding-form-description mt-4">Ta plus belle photo de profil   📸 </p>
+          <%= image_tag url_for(@user.profile_picture) if @user.profile_picture.attached? %>
+          <%= f.input :profile_picture, as: :file, input_html: { class: "form-box" }, label: false %>
+
+          <p class="onboarding-form-description mt-4">3 photos pour compléter ta page  😎 </p>
+          <%= f.input :gallery_pictures, as: :file, input_html: { multiple: true, class: "form-box" }, label: false %>
+          <%= f.button :submit, "Mettre à jour", class: "btn-basic-bleu-large-onboard mt-4", value: "Mettre à jour" %>
+
+        <% end %>
+      </div>
+
+  </div>
+</div>
