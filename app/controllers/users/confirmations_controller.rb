@@ -16,6 +16,18 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super
   # end
 
+  def show
+    self.resource = resource_class.confirm_by_token(params[:confirmation_token])
+
+    if resource.errors.empty?
+      sign_in(resource) # This will sign in the user
+      redirect_to onboarding_path(step: 'step1')
+    else
+      render :new
+    end
+  end
+
+
   protected
 
   # The path used after resending confirmation instructions.
@@ -28,7 +40,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   #   super(resource_name, resource)
   # end
 
-  def after_confirmation_path_for(resource_name, resource)
-    onboarding_path(step: 'step1')
-  end
+  # def after_confirmation_path_for(resource_name, resource)
+  #   onboarding_path(step: 'step1')
+  # end
 end
