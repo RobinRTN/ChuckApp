@@ -48,6 +48,10 @@ u3 = User.create!({ email: 'robin@gmail.com', password: 'password'})
 u3.confirm
 u3.save!
 
+u4 = User.create!({ email: 'maxime@gmail.com', password: 'password'})
+u4.confirm
+u4.save!
+
 puts "Just created the two founders' accounts successfully"
 puts "_________________"
 
