@@ -9,7 +9,7 @@
       <% end %>
     </div>
 
-    <%# <div class="mx-3 client-block" data-controller="client">
+    <div class="mx-3 client-block" data-controller="client">
       <ul class="nav nav-pills mb-4 d-flex justify-content-center align-items-center">
         <li class="nav-item me-3">
           <button class="btn-client" data-action="click->client#selectClient" id="client-groupe" data-client-target="buttonGroupe" data-block="groupe">Groupes</button>
@@ -17,9 +17,9 @@
         <li class="nav-item">
           <button class="btn-client active" data-action="click->client#selectClient" id="client-contact" data-client-target="buttonContact" data-block="contact">Contacts</button>
         </li>
-      </ul> %>
+      </ul>
 
-      <div class="block-clients">
+      <div class="block-clients" data-client-target="contact" style="display: block;">
 
         <% @clients.each do |client| %>
             <%= link_to client_path(client, "clients_path"), class: "text-decoration-none" do %>
@@ -48,6 +48,39 @@
           <p class= "ms-3 text-center">Ajoute tes clients manuellement ou attends tes premières réservations, ils s'ajouteront automatiquement !</p>
         <% end %>
 
+      </div>
+
+      <div class="block-groupes" data-client-target="groupe" style="display: none;">
+        <div class="groupes-grid">
+          <% @groups.each_with_index do |group, index| %>
+            <%= link_to group_path(group), class: "text-decoration-none" do %>
+              <div class="group-card group-color-<%=index % 4%> d-flex flex-column align-items-start">
+                <h4><%= group.name %></h4>
+                <p class="membres my-2"><%= group.clients.count %> membres</p>
+                <% if group.clients.any? %>
+                  <div class="group-clients d-flex">
+                    <% group.clients.limit(4).each do |client| %>
+                      <% if client.photo.attached? %>
+                        <%= cl_image_tag client.photo.key, crop: :fill, class: "avatar-tiny" %>
+                      <% else %>
+                        <% initials = "#{client.first_name[0]}#{client.last_name[0]}" %>
+                        <% color_variations = ['circle-pink-tiny', 'circle-green-tiny', 'circle-red-tiny', 'circle-orange-tiny'] %>
+                        <% circle_class = color_variations[client.id % color_variations.size] %>
+                        <div class="<%= circle_class %>"><%= initials %></div>
+                      <% end%>
+                    <% end %>
+                    <% if group.clients.count > 4 %>
+                      <p class="ms-2 mb-1">+</p>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="group-card-add d-flex justify-content-center align-items-center">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
       </div>
 
 

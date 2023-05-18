@@ -20,6 +20,7 @@ export default class extends Controller {
 
         // check if @pending_booking is not empty and add red dot above reservation icon
         const pendingBookingId = this.data.get("pending");
+        console.log("PendingBookingID:")
         console.log(pendingBookingId);
         console.log(isBookingPage);
         console.log(this.hasReservationIconTarget);
