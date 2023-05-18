@@ -39,5 +39,38 @@ module ApplicationHelper
     ['15min', '30min', '45min', '1h', '2h', '2h30', '3h', '4h', '5h', '6h', '10h', '12h']
   end
 
+  def time_selection
+    (4..23).flat_map { |h| ["%02d:00" % h, "%02d:30" % h] } + ["00:00"]
+  end
+
+  def generate_time_slots(start_time, end_time)
+    start_time = Time.parse(start_time) if start_time.is_a?(String)
+    end_time = Time.parse(end_time) if end_time.is_a?(String)
+
+    time_slots = []
+    while start_time < end_time
+      time_slots << start_time
+      start_time += 30.minutes
+    end
+
+    time_slots.pop if time_slots.last == end_time
+    time_slots
+  end
+
+
+  def english_to_french_day(day)
+    day_mapping = {
+      "Monday" => "Lun.",
+      "Tuesday" => "Mar.",
+      "Wednesday" => "Mer.",
+      "Thursday" => "Jeu.",
+      "Friday" => "Ven.",
+      "Saturday" => "Sam.",
+      "Sunday" => "Dim."
+    }
+
+    day_mapping[day]
+  end
+
 
 end

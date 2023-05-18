@@ -37,6 +37,13 @@ class OnboardingController < ApplicationController
         flash[:error] = @user.errors.full_messages.join(", ")
         render "onboarding/step3", status: :unprocessable_entity
       end
+    when 'step4'
+      if @user.update(step4_params)
+        redirect_to root_path
+      else
+        flash[:error] = @user.errors.full_messages.join(", ")
+        render "onboarding/step4", status: :unprocessable_entity
+      end
     else
       redirect_to root_path, notice: "Invalid onboarding step"
     end
@@ -66,6 +73,7 @@ class OnboardingController < ApplicationController
     case step
     when 'step2' then 'step1'
     when 'step3' then 'step2'
+    when 'step4' then 'step3'
     # Add more steps as needed
     else
       # If there's no previous step, redirect to the first step
@@ -84,8 +92,13 @@ class OnboardingController < ApplicationController
   end
 
   def step3_params
-    # Replace these with the actual parameters for step3
-    params.require(:user).permit(:param1, :param2, :param3)
+    params.require(:user).permit(:daily_start_time, :daily_end_time).tap do |whitelisted|
+      whitelisted[:days_of_week] = params[:user][:days_of_week].split(',')
+    end
+  end
+
+  def step4_params
+    params.require(:user).permit(:excluded_fixed_weekly_slots)
   end
 
 end
