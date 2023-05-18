@@ -75,8 +75,7 @@
                                                   placeholder: "Prix de la prestation (en €)",
                                                   step: 0.1,
                                                   min: 0
-                                                }
-                      %>
+                                                } %>
                       <%# <p class="mb-1"><em>Selectionne la durée de la prestation</em></p> %>
                       <%= formule_fields.input :duration, as: :select,
                                                 include_blank: "Durée de la prestation",
@@ -84,7 +83,9 @@
                                                 required: true,
                                                 autofocus: true,
                                                 label: false,
-                                                input_html: { placeholder: "Durée de la prestation" } %>
+                                                input_html: { placeholder: "Durée de la prestation" },
+                                                label_method: :first,
+                                                value_method: :last %>
                       <%= formule_fields.input :description, as: :text, required: true,
                                                       autofocus: true,
                                                       label: false,

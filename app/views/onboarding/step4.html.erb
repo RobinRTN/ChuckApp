@@ -35,7 +35,7 @@
     <%= simple_form_for @user, url: onboarding_path(step: 'step4') do |f| %>
       <div data-controller="slot-selector" class="d-flex align-items-center justify-content-between">
         <% @user.days_of_week.each do |day| %>
-          <div class="day-column d-flex flex-column align-items-center justify-content-center">
+          <div class="day-column d-flex flex-column align-items-center justify-content-center flex-grow-1">
             <p class="text-center"><%= english_to_french_day(day) %></p>
             <% time_slots = generate_time_slots(@user.daily_start_time, @user.daily_end_time) %>
             <% time_slots.each_with_index do |time_slot, index| %>

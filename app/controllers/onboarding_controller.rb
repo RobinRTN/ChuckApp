@@ -83,7 +83,7 @@ class OnboardingController < ApplicationController
 
 
   def step1_params
-    params.require(:user).permit(:first_name, :last_name, :title, :billing_city, :description, :profile_picture)
+    params.require(:user).permit(:first_name, :last_name, :title, :billing_city, :description, :profile_picture, :phone_number, gallery_pictures: [])
   end
 
   def step2_params

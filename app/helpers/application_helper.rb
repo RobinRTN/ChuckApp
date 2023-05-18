@@ -36,7 +36,20 @@ module ApplicationHelper
   end
 
   def duration_options
-    ['15min', '30min', '45min', '1h', '2h', '2h30', '3h', '4h', '5h', '6h', '10h', '12h']
+    [
+      ['15min', 15],
+      ['30min', 30],
+      ['45min', 45],
+      ['1h', 60],
+      ['2h', 120],
+      ['2h30', 150],
+      ['3h', 180],
+      ['4h', 240],
+      ['5h', 300],
+      ['6h', 360],
+      ['10h', 600],
+      ['12h', 720]
+    ]
   end
 
   def time_selection
