@@ -40,9 +40,9 @@ User.destroy_all
 puts "Starting to generate the users and activities..."
 puts "_________________"
 
-u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Thomas", last_name: "Courtois", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris" })
+u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Thomas", last_name: "Courtois", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris", daily_start_time: "9:00", daily_end_time: "18:00" })
 
-u2 = User.create!({ full_name: "Maxime Lavoine", title: "Professeur de Yoga Indien", hourly_rate: 90, email: 'maximelavoine@test.com', password: 'password', first_name: "Maxime", last_name: "Lavoine", payment_BIC: "BFBKFKP1", payment_IBAN: "FR3330002105500000157841Z25", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris" })
+u2 = User.create!({ full_name: "Maxime Lavoine", title: "Professeur de Yoga Indien", hourly_rate: 90, email: 'maximelavoine@test.com', password: 'password', first_name: "Maxime", last_name: "Lavoine", payment_BIC: "BFBKFKP1", payment_IBAN: "FR3330002105500000157841Z25", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris", daily_start_time: "9:00", daily_end_time: "18:00" })
 
 u3 = User.create!({ email: 'robin@gmail.com', password: 'password'})
 u3.confirm

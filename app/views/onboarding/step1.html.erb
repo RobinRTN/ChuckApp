@@ -62,9 +62,7 @@
           <%= f.input :profile_picture, as: :file, input_html: { class: "form-box" }, label: false %>
 
           <p class="onboarding-form-description mt-4">Ajoute 3 photos pour compléter ta page  😎 </p>
-          <%= f.input :gallery_pictures, as: :file, input_html: { class: "form-box" }, label: false %>
-          <%= f.input :gallery_pictures, as: :file, input_html: { class: "form-box" }, label: false %>
-          <%= f.input :gallery_pictures, as: :file, input_html: { class: "form-box" }, label: false %>
+          <%= f.input :gallery_pictures, as: :file, input_html: { multiple: true, class: "form-box" }, label: false %>
           <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
 
         <% end %>

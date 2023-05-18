@@ -373,7 +373,7 @@ class BookingsController < ApplicationController
 
     user ||= current_user
     given_days_of_week = user.days_of_week
-    converted_available_slots = convert_available_slots(user.availables)
+    converted_available_slots = convert_available_slots(user.availables) 
     availability_weeks = user.availability_weeks
 
     week_num = 0
