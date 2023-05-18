@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get 'date_new_reservation', to: 'bookings#date_new_reservation', as: 'date_new_reservation'
   get 'date_new_finish_reservation', to: 'bookings#date_new_finish_reservation', as: 'date_new_finish_reservation'
 
+  get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
+  patch 'onboarding/:step', to: 'onboarding#update'
+
   resources :bookings do  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     member do
       put :confirm
@@ -34,7 +37,6 @@ Rails.application.routes.draw do
   resources :formules
   resources :packages
   resources :groups
-  resources :onboarding, only: [:show, :update]
 
   # Defines the root path route ("/")
   # root "articles#index"
