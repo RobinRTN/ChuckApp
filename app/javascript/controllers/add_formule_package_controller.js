@@ -3,7 +3,16 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["formule", "formuleCount", "package"];
 
+  connect() {
+    console.log('connecté au JS de Add Formule')
+    console.log('packages:')
+    console.log(this.packageTargets)
+    console.log('formules:')
+    console.log(this.formuleTargets)
+  }
+
   newFormule(event) {
+    console.log("newFormule action well activated")
     event.preventDefault();
 
     const newFormule = this.formuleTargets[this.formuleTargets.length - 1].cloneNode(true);
@@ -42,6 +51,7 @@ export default class extends Controller {
   }
 
   newPackage(event) {
+    console.log("starting to create a new package")
     event.preventDefault();
 
     const newPackage = this.packageTargets[this.packageTargets.length - 1].cloneNode(true);
@@ -51,9 +61,7 @@ export default class extends Controller {
       const id = input.getAttribute('id');
       if (name && id) { // Check if name and id are not null
         const matches = name.match(/user\[packages_attributes\]\[(\d+)\]/);
-        console.log(matches)
         const packageIndex = parseInt(matches[1]) + 1;
-        console.log(packageIndex)
         const packageRegex = /user\[packages_attributes\]\[\d+\]/;
         const packageMatchLength = name.match(packageRegex)[0].length;
 

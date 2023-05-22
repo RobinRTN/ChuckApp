@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbolinks-visit-control" content="reload">
+<% end %>
+
 <div class="container wrapper">
   <div class="mx-3">
 
@@ -51,7 +55,7 @@
                         required: true,
                         autofocus: true,
                         label: false,
-                        input_html: { placeholder: "A partir de" } %>
+                        input_html: { placeholder: "A partir de", value: @user.daily_start_time || "09:00" } %>
         </div>
         <div class="col-6">
           <%= f.input :daily_end_time, as: :select,
@@ -60,7 +64,7 @@
                         required: true,
                         autofocus: true,
                         label: false,
-                        input_html: { placeholder: "Jusqu'à" } %>
+                        input_html: { placeholder: "Jusqu'à", value: @user.daily_end_time || "18:00" } %>
         </div>
       </div>
       <p class="onboarding-form-description-small"><em>Tu indiqueras tes pauses et tes indisponibilités hebdomadaires à la prochaine étape </em></p>

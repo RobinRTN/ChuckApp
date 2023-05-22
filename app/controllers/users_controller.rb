@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def update_info
     @user = current_user
     if @user.update(user_info_params)
-      redirect_to 'user/edit_info', notice: 'Vos informations ont bien été mises à jour !'
+      redirect_to edit_info_users_path, notice: 'Vos informations ont bien été mises à jour !'
+
     else
       render :edit_info
     end

@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbolinks-visit-control" content="reload">
+<% end %>
+
 <div class="container wrapper">
   <div class="mx-3">
 
@@ -22,7 +26,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to onboarding_path(step: previous_step), class: "text-decoration-none" do %>
+      <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
         <div class="back-btn mt-2 mb-5">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
@@ -32,7 +36,7 @@
 
     <div class="step2-survey">
 
-      <div class="" data-step2-target="fixForm" data-controller="add-formule-package">
+      <div class="fixFom" data-step2-target="fixForm" data-controller="add-formule-package">
         <p class="onboarding-form-description">Où réalises tu tes prestations ? 👇</p>
         <div>
           <%= simple_form_for(@user, url: onboarding_path(step: 'step2')) do |f| %>

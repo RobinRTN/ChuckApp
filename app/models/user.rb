@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # attr_accessor :onboarding_process
   before_validation :set_token
   before_validation :generate_qr_code
   before_validation :full_address
@@ -9,8 +10,10 @@ class User < ApplicationRecord
 
   serialize :days_of_week, Array
 
-
-
+  # with_options if: :onboarding_process do |user|
+  #   user.validates :first_name, :last_name, :phone_number, :title, :billing_city, :description, :address, presence: true
+  #   user.validates :phone_number, format: { with: /\A(\+33|0)[67]\d{8}\z/, message: "Merci d'enter un numéro de téléphone au bon format" }
+  # end
 
 
   devise :database_authenticatable, :registerable,
@@ -40,6 +43,10 @@ class User < ApplicationRecord
 
 
   private
+
+  def onboarding_process?
+    onboarding_process == true
+  end
 
   def set_token
     self.token = SecureRandom.urlsafe_base64(10)

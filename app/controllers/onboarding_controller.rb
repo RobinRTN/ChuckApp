@@ -5,6 +5,7 @@ class OnboardingController < ApplicationController
 
   def show
     @user = current_user
+    @user.onboarding_process = true
     @user.packages.build unless @user.packages.present?
     @user.packages.each do |package|
       package.formules.build unless package.formules.present?
@@ -15,6 +16,7 @@ class OnboardingController < ApplicationController
 
   def update
     @user = current_user
+
     case step
     when 'step1'
       if @user.update(step1_params)

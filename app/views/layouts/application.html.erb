@@ -41,6 +41,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= turbo_include_tags %>
 
+    <%= yield :head %>
+
+
   </head>
 
   <body class="exception-page">
