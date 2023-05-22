@@ -1,19 +1,21 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # attr_accessor :onboarding_process
+  attr_accessor :onboarding_process
   before_validation :set_token
   before_validation :generate_qr_code
   before_validation :full_address
+  before_save :set_full_name
+  before_save :extract_billing_city
   before_destroy :delete_formules
   before_destroy :delete_groups
 
   serialize :days_of_week, Array
 
-  # with_options if: :onboarding_process do |user|
-  #   user.validates :first_name, :last_name, :phone_number, :title, :billing_city, :description, :address, presence: true
-  #   user.validates :phone_number, format: { with: /\A(\+33|0)[67]\d{8}\z/, message: "Merci d'enter un numéro de téléphone au bon format" }
-  # end
+  with_options if: :onboarding_process do |user|
+    user.validates :first_name, :last_name, :phone_number, :title, :description, :address, presence: true
+    user.validates :phone_number, format: { with: /\A(\+33|0)[67]\d{8}\z/, message: "Merci d'enter un numéro de téléphone au bon format" }
+  end
 
 
   devise :database_authenticatable, :registerable,
@@ -93,4 +95,16 @@ class User < ApplicationRecord
   def full_address
     self.address = "#{billing_address_line1}, #{billing_city}" if billing_address_line1.present? && billing_city.present?
   end
+
+  def set_full_name
+    self.full_name = "#{first_name} #{last_name}".strip
+  end
+
+  def extract_billing_city
+    if address.present?
+      match_data = address.match(/(\d{5,})\s(?:\p{L}+\s)*?(.+),\sFrance/)
+      self.billing_city = match_data[2] if match_data
+    end
+  end
+
 end

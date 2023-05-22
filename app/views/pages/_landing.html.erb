@@ -16,7 +16,7 @@
       <div class="hero-text hidden" data-image-appear-target="text">
         <h1 class="hero-heading mb-5">Crée ton <span class="gradient-webflow">site</span> et <span class="gradient-webflow">gère</span> ton activité <span class="gradient-webflow">simplement</span> ! </h1>
         <div class="hero-text-block mb-5">Un site web <strong><em>à ton image</em></strong> généré <strong><em>en 2 minutes</em></strong> : gestion de ton <strong><em>agenda</em></strong>, gestion de tes <strong><em>réservations</em></strong>, <strong><em>paiement</em></strong> en ligne et <strong><em>avis</em></strong> <strong><em>clients</em></strong> ...</div>
-        <a href="https://pspj19gyvvk.typeform.com/to/RyZ9NLor?typeform-source=admin.typeform.com" class="btn-basic-bleu mb-5">Commencer</a>
+        <%=link_to "S'inscrire", new_user_registration_path, class: "btn-basic-bleu mb-5" %>
       </div>
       <div class="hero-image d-flex align-items-center justify-content-center hidden" data-image-appear-target="image">
         <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683666676/Add_a_heading_1181_1181_px_2_zkxyu6.png", loading:"lazy", crop: :fill %>
@@ -64,7 +64,7 @@
       <div class="div-landing-iphone-text">
         <h3 class="heading-3-landing mb-3">... et colle ton <br><span class="gradient-webflow">QR code</span> partout ! <span class="gradient-webflow"></span></h3>
         <div class="text-bloc-landing mb-3">Dans les salles de sports, sur des flyers ou dans la rue, fais toi connaitre partout.</div>
-        <a href="https://pspj19gyvvk.typeform.com/to/RyZ9NLor?typeform-source=admin.typeform.com" class="btn-basic-bleu" style="font-size: 0.8em;">Commencer</a>
+        <%=link_to "S'inscrire", new_user_registration_path, class: "btn-basic-bleu", style: "font-size: 0.8em;" %>
       </div>
       <div class="landing-iphone-picture d-flex justify-content-center">
         <%= cl_image_tag "https://res.cloudinary.com/dk8a13iyc/image/upload/v1683666677/Add_a_heading_1181_1181_px_4_dxxguw.png", loading:"lazy", crop: :fill, style:"width: 95%; max-width: 250px; height: auto; border-radius: 0.5em;" %>

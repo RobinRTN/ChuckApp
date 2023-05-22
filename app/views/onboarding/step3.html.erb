@@ -26,15 +26,15 @@
       </div>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
-        <div class="back-btn mt-2 mb-5">
+      <%# <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
+        <%# <div class="back-btn mt-2 mb-5">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
       <% end %>
       <p class="mt-2 mb-5 title-onboarding m-auto">3 - Emploi du temps</p>
     </div>
 
-    <p class="onboarding-form-description">Quels jours de la semaine proposes-tu tes prestations ?</p>
+    <p class="onboarding-form-description">Indique tes disponibilités de la semaine</p>
     <p class="onboarding-form-description-small"><em>Clique sur les jours travaillés (par défaut de lundi à vendredi) 👇</em></p>
 
     <%= simple_form_for @user, url: onboarding_path(step: 'step3') do |f| %>

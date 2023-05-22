@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_075520) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_220311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -178,7 +178,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_075520) do
     t.string "billing_address_line1"
     t.string "billing_address_line2"
     t.string "billing_zip_code"
-    t.string "billing_city"
+    t.string "billing_city", default: "Paris"
     t.string "billing_country"
     t.string "first_name"
     t.string "last_name"
@@ -196,8 +196,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_075520) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "daily_start_time"
-    t.string "daily_end_time"
+    t.string "daily_start_time", default: "9:00"
+    t.string "daily_end_time", default: "18:00"
     t.jsonb "excluded_fixed_weekly_slots", default: []
     t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true

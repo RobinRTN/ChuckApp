@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
-        <div class="back-btn mt-2 mb-5">
+      <%# <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
+        <%# <div class="back-btn mt-2 mb-5">
           <i class="fa-solid fa-arrow-left"></i>
         </div>
       <% end %>
@@ -37,20 +37,14 @@
     <div class="step2-survey">
 
       <div class="fixFom" data-step2-target="fixForm" data-controller="add-formule-package">
-        <p class="onboarding-form-description">Où réalises tu tes prestations ? 👇</p>
         <div>
           <%= simple_form_for(@user, url: onboarding_path(step: 'step2')) do |f| %>
-            <%= f.input :address,
-              label: false,
-              input_html: {data: {address_autocomplete_target: "address"}, class: "d-none" },
-              wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
-            %>
-
             <div class="package-step2" data-add-formule-package-target="package">
               <div class="d-flex align-items-center justify-content-between">
                 <p class="onboarding-form-description mt-3">Ajoute une catégorie de prestations</p>
                 <p class="delete-package d-none" data-action="click->add-formule-package#deletePackage">Supprimer</p>
               </div>
+              <p><em>Tennis, Préparation mentale …</em></p>
               <%= f.simple_fields_for :packages do |package_fields| %>
                 <%= package_fields.input :id, as: :hidden %>
                 <%= package_fields.input :_destroy, as: :hidden %>
@@ -59,6 +53,7 @@
                                           label: false,
                                           input_html: { placeholder: "Catégorie de prestations" } %>
                 <p class="onboarding-form-description mt-3 mb-1">Ajoute des prestations associées</p>
+                <p class="mt-2"><em>Cours particulier, niveau du cours (débutant, intermédiaire…)</em></p>
                 <div class="formules-step2 d-flex flex-column">
                   <div class="formules-step2-child mt-2" data-add-formule-package-target="formule">
                     <div class="d-flex justify-content-between align-items-center">

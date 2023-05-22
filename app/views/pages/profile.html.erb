@@ -11,49 +11,12 @@
       <% end %>
     </div>
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
-
-    <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
-      <div class= "profile-box-btn d-flex justify-content-between">
-        <p class= "profile-box-text">Mes informations personnelles</p>
-        <p><i class="fa-solid fa-pencil"></i></p>
-      </div>
-    <%end%>
-
-
-    <%= link_to formules_path, class: "text-decoration-none" do %>
-      <div class= "profile-box-btn d-flex justify-content-between">
-        <p class="profile-box-text">Mes cours et tarifs</p>
-        <p><i class="fa-solid fa-pencil"></i></p>
-      </div>
-    <% end %>
-
-    <%= link_to packages_path, class: "text-decoration-none" do %>
-      <div class= "profile-box-btn d-flex justify-content-between">
-        <p class="profile-box-text">Mes packages</p>
-        <p><i class="fa-solid fa-pencil"></i></p>
-      </div>
-    <%end%>
-
-    <%= link_to packages_path, class: "text-decoration-none" do %>
-      <div class= "profile-box-btn d-flex justify-content-between">
-        <p class="profile-box-text">Mes disponiblités</p>
-        <p><i class="fa-solid fa-pencil"></i></p>
-      </div>
-    <%end%>
-
-    <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
-      <div class= "profile-box-btn d-flex justify-content-between">
-        <p class="profile-box-text">Email et mot de passe</p>
-        <p><i class="fa-solid fa-pencil"></i></p>
-      </div>
-    <%end%>
-
-    <div class= "btn-basic-bleu-large d-flex justify-content-center mt-3">
-      <%= link_to "Lien de réservation", reservation_link(current_user.token), class: "text-decoration-none" %>
     </div>
 
-    <div class= "signout-box-btn d-flex justify-content-center">
-      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "signout-box-text text-decoration-none" %></p>
+    <p class="my-5 text-center">Contacte nous si tu souhaite modifier ton profil, les changements arrivent vite 🚀 !</p>
+
+    <div class= "d-flex justify-content-center">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-basic-bleu-large-form" %></p>
     </div>
 
 </div>

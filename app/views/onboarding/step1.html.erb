@@ -53,10 +53,12 @@
                         autofocus: true,
                         label: false,
                         input_html: { placeholder: "Profession" }%>
-          <%= f.input :billing_city, required: true,
-                        autofocus: true,
-                        label: false,
-                        input_html: { placeholder: "Ville ou région de l'activité exercée" }%>
+          <%= f.input :address,
+            required: true,
+            label: false,
+            input_html: { name: "user[address]", data: { address_autocomplete_target: "address" }, class: "d-none" },
+            wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] } } %>
+
           <%= f.input :description, required: true,
                         autofocus: true,
                         label: false,
