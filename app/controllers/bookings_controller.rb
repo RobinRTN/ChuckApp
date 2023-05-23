@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
     days_of_week = @user.days_of_week
     num_weeks = 4
-    excluded_fixed_weekly_slots = JSON.parse(current_user.excluded_fixed_weekly_slots)
+    excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
 
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
@@ -373,7 +373,7 @@ class BookingsController < ApplicationController
 
     user ||= current_user
     given_days_of_week = user.days_of_week
-    converted_available_slots = convert_available_slots(user.availables) 
+    converted_available_slots = convert_available_slots(user.availables)
     availability_weeks = user.availability_weeks
 
     week_num = 0
