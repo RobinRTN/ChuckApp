@@ -15,8 +15,17 @@
 
     <p class="my-5 text-center">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p>
 
-    <div class= "d-flex justify-content-center">
-      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-basic-bleu-large-form" %></p>
+    <div class= "d-flex justify-content-center mt-3">
+      <p><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-minimal my-4" %></p>
+    </div>
+    <div class= "d-flex justify-content-center mt-3">
+      <p><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-minimal my-4" %></p>
+    </div>
+    <div class= "d-flex justify-content-center mt-3">
+      <p><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-minimal my-4" %></p>
+    </div>
+    <div class= "d-flex justify-content-center mt-3">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-basic-bleu-large-form w-100" %></p>
     </div>
 
 </div>

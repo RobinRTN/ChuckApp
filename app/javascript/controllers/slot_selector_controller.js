@@ -1,11 +1,26 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="slot-selector"
 export default class extends Controller {
   static targets = ["slot"];
 
   connect() {
-    this.excludedFixedWeeklySlots = JSON.parse(this.hiddenInput.value) || [];
+    const parsedValue = JSON.parse(this.hiddenInput.value);
+    this.excludedFixedWeeklySlots = Array.isArray(parsedValue) ? parsedValue : [];
+    this.refreshSlots();
+  }
+
+  refreshSlots() {
+    this.slotTargets.forEach((slot) => {
+      const day = slot.dataset.day;
+      const startTime = slot.dataset.startTime;
+      const endTime = slot.dataset.endTime;
+
+      if (this.excludedFixedWeeklySlots.some(([d, st, et]) => d == day && st == startTime && et == endTime)) {
+        slot.classList.add('selected');
+      } else {
+        slot.classList.remove('selected');
+      }
+    });
   }
 
   toggle(event) {

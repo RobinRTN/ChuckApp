@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     collection do
       get 'edit_info'
       patch 'update_info'
+      get 'edit_dispo'
+      patch 'update_dispo'
+      get 'edit_indispo'
+      patch 'update_indispo'
     end
   end
 
