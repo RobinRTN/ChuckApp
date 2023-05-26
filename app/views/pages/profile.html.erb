@@ -1,6 +1,6 @@
 <div class="container wrapper">
   <div class="mx-3">
-    <h4 class="mb-0">Mon compte</h4>
+
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
       <% if current_user.profile_picture.attached? %>
         <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-profile" %>
@@ -10,22 +10,70 @@
         <%= image_tag "user.png", class: 'avatar-profile' %>
       <% end %>
     </div>
+
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
+
+    <div class="modif-profile mx-4 mb-3">
+      <p class="title-profile-block">GALLERIE PHOTOS</p>
+
+      <% if current_user.gallery_pictures.attached? %>
+        <div class="d-flex justify-content-center">
+          <div class="image-gallery d-flex flex-wrap align-items-center mb-5" data-controller="full-screen-gallery">
+            <% current_user.gallery_pictures.each_with_index do |image, index| %>
+              <div class="d-flex flex-column justify-content-center">
+                <%= link_to(delete_gallery_users_path(user_id: current_user.id, image_key: image.key), method: :delete, data: { confirm: "Etes vous sûr de vouloir supprimer cette photo ?" }, class: "delete-link") do %>
+                  <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+                <% end %>
+                <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
+                  <div class="image-wrapper image-container">
+                      <%= cl_image_tag(image.key, class: 'img-fluid square-image', data: { full_screen_gallery_target: 'galleryImage', src: cl_image_path(image.key, width: 800, height: 600, crop: :fill) }) %>
+                    <div class="spinner-wrapper spinner-small" data-full-screen-gallery-target="smallSpinner">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <% end %>
+
+            <div class="add-slot-profile">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+
+          <!-- Full-screen gallery -->
+          <div class="full-screen-gallery">
+            <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
+            <div class="spinner-wrapper" data-full-screen-gallery-target="spinner">
+              <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div data-full-screen-gallery-target="icons" class="d-none">
+            <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
+        <% end %>
+        </div>
+
+      <p class="title-profile-block">INFORMATIONS DE RESERVATION</p>
+      <div class= "d-flex border-bottom mt-3 pb-1">
+        <p class="mb-0"><i class="fa-solid fa-user me-2"></i><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-profile my-4" %></p>
+      </div>
+      <div class= "d-flex border-bottom mt-3 pb-1">
+        <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2"></i><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-profile my-4" %></p>
+      </div>
+      <div class= "d-flex border-bottom mt-3 pb-1">
+        <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-profile my-4" %></p>
+      </div>
+    </div>
+    <p class="my-5 text-center mx-3">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p>
+    <div class= "d-flex justify-content-center mt-3">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-minimal-red w-100" %></p>
     </div>
 
-    <p class="my-5 text-center">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p>
-
-    <div class= "d-flex justify-content-center mt-3">
-      <p><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-minimal my-4" %></p>
-    </div>
-    <div class= "d-flex justify-content-center mt-3">
-      <p><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-minimal my-4" %></p>
-    </div>
-    <div class= "d-flex justify-content-center mt-3">
-      <p><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-minimal my-4" %></p>
-    </div>
-    <div class= "d-flex justify-content-center mt-3">
-      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-basic-bleu-large-form w-100" %></p>
-    </div>
-
+  </div>
 </div>

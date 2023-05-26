@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :onboarding_process
+  attr_accessor :onboarding_process_step4
   before_validation :set_token
   before_validation :generate_qr_code
   before_validation :full_address

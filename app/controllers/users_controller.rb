@@ -42,6 +42,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete_gallery
+    user = current_user
+
+    # Get the image by key
+    image_attachment = user.gallery_pictures.joins(:blob).find_by(active_storage_blobs: { key: params[:image_key] })
+
+    # Delete the image
+    if image_attachment
+      image_attachment.purge
+      flash[:notice] = "Image supprimée"
+    else
+      flash[:alert] = "Image non trouvée"
+    end
+    # Redirect back to the previous page
+    redirect_to profile_path
+  end
+
   private
 
   def user_info_params
