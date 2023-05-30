@@ -59,6 +59,19 @@ class UsersController < ApplicationController
     redirect_to profile_path
   end
 
+  def add_gallery
+    user = current_user
+    if params[:gallery_pictures]
+      params[:gallery_pictures].each do |image|
+        user.gallery_pictures.attach(image)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to profile_path, notice: "Images added successfully" }
+      format.js { render js: 'window.location.reload();' }
+    end
+  end
+
   private
 
   def user_info_params

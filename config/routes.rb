@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get 'edit_indispo'
       patch 'update_indispo'
       get 'delete_gallery'
+      post 'add_gallery'
     end
   end
 

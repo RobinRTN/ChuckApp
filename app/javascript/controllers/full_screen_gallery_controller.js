@@ -3,13 +3,15 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="full-screen-gallery"
 // full_screen_gallery_controller.js
 export default class extends Controller {
-  static targets = ["image", "galleryImage", "icons", "spinner", "smallSpinner"];
+  static targets = ["image", "galleryImage", "icons", "spinner", "smallSpinner", "fileInput"];
 
   connect() {
+    console.log("full screen gallery connected")
     this.currentIndex = 0;
     this.updateImage();
     this.loadSmallImages();
   }
+
 
   showImage(event) {
     console.log("showing");
@@ -71,4 +73,8 @@ export default class extends Controller {
       };
     });
   }
+  addImages() {
+    this.fileInputTarget.click()
+  } 
+
 }

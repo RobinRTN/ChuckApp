@@ -7,6 +7,9 @@ import { application } from "./application"
 import AddFormulePackageController from "./add_formule_package_controller"
 application.register("add-formule-package", AddFormulePackageController)
 
+import AddGalleryPicturesController from "./add_gallery_pictures_controller"
+application.register("add-gallery-pictures", AddGalleryPicturesController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 

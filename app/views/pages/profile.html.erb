@@ -1,5 +1,5 @@
 <div class="container wrapper">
-  <div class="mx-3">
+  <div class="mx-3" data-controller="full-screen-gallery add-gallery-pictures">
 
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
       <% if current_user.profile_picture.attached? %>
@@ -16,13 +16,17 @@
     <div class="modif-profile mx-4 mb-3">
       <p class="title-profile-block">GALLERIE PHOTOS</p>
 
+    <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { target: "full-screen-gallery.form" }  } do |form| %>
+      <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { target: "add-gallery-pictures.fileInput" } %>
+    <% end %>
+
       <% if current_user.gallery_pictures.attached? %>
         <div class="d-flex justify-content-center">
-          <div class="image-gallery d-flex flex-wrap align-items-center mb-5" data-controller="full-screen-gallery">
+          <div class="image-gallery d-flex flex-wrap align-items-center mb-5">
             <% current_user.gallery_pictures.each_with_index do |image, index| %>
               <div class="d-flex flex-column justify-content-center">
-                <%= link_to(delete_gallery_users_path(user_id: current_user.id, image_key: image.key), method: :delete, data: { confirm: "Etes vous sûr de vouloir supprimer cette photo ?" }, class: "delete-link") do %>
-                  <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+                <%= link_to(delete_gallery_users_path(user_id: current_user.id, image_key: image.key), method: :delete, onclick: "return confirm('Êtes vous sûr de vouloir supprimer cette photo ?');", class: "delete-link") do %>
+                  <i class="fa-sharp fa-solid fa-circle-xmark delete-icon"></i>
                 <% end %>
                 <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
                   <div class="image-wrapper image-container">
@@ -37,9 +41,9 @@
               </div>
             <% end %>
 
-            <div class="add-slot-profile">
-              <i class="fa-solid fa-plus"></i>
-            </div>
+          <div class="add-slot-profile" data-action="click->add-gallery-pictures#addImages">
+            <i class="fa-solid fa-plus"></i>
+          </div>
 
           <!-- Full-screen gallery -->
           <div class="full-screen-gallery">
@@ -60,17 +64,17 @@
         </div>
 
       <p class="title-profile-block">INFORMATIONS DE RESERVATION</p>
-      <div class= "d-flex border-bottom mt-3 pb-1">
+      <div class= "d-flex mt-3 pb-1">
         <p class="mb-0"><i class="fa-solid fa-user me-2"></i><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-profile my-4" %></p>
       </div>
-      <div class= "d-flex border-bottom mt-3 pb-1">
+      <div class= "d-flex mt-3 pb-1">
         <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2"></i><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-profile my-4" %></p>
       </div>
-      <div class= "d-flex border-bottom mt-3 pb-1">
+      <div class= "d-flex mt-3 pb-1">
         <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-profile my-4" %></p>
       </div>
     </div>
-    <p class="my-5 text-center mx-3">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p>
+    <%# <p class="my-5 text-center mx-3">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p> %>
     <div class= "d-flex justify-content-center mt-3">
       <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-minimal-red w-100" %></p>
     </div>
