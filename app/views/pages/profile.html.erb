@@ -1,5 +1,5 @@
 <div class="container wrapper">
-  <div class="mx-3" data-controller="full-screen-gallery add-gallery-pictures">
+  <div class="mx-3 d-flex justify-content-center flex-column align-items-center" data-controller="full-screen-gallery add-gallery-pictures">
 
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
       <% if current_user.profile_picture.attached? %>
@@ -13,16 +13,16 @@
 
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
-    <div class="modif-profile mx-4 mb-3">
-      <p class="title-profile-block">GALLERIE PHOTOS</p>
-
+    <div class="my-3">
+      <p class="title-profile">Gallerie photos 📸</p>
+    </div>
     <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { target: "full-screen-gallery.form" }  } do |form| %>
       <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { target: "add-gallery-pictures.fileInput" } %>
     <% end %>
 
       <% if current_user.gallery_pictures.attached? %>
-        <div class="d-flex justify-content-center">
-          <div class="image-gallery d-flex flex-wrap align-items-center mb-5">
+        <div class="d-flex justify-content-center mt-4">
+          <div class="image-gallery d-flex flex-wrap align-items-center mb-4">
             <% current_user.gallery_pictures.each_with_index do |image, index| %>
               <div class="d-flex flex-column justify-content-center">
                 <%= link_to(delete_gallery_users_path(user_id: current_user.id, image_key: image.key), method: :delete, onclick: "return confirm('Êtes vous sûr de vouloir supprimer cette photo ?');", class: "delete-link") do %>
@@ -63,21 +63,34 @@
         <% end %>
         </div>
 
-      <p class="title-profile-block">INFORMATIONS DE RESERVATION</p>
-      <div class= "d-flex mt-3 pb-1">
-        <p class="mb-0"><i class="fa-solid fa-user me-2"></i><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-profile my-4" %></p>
-      </div>
-      <div class= "d-flex mt-3 pb-1">
-        <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2"></i><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-profile my-4" %></p>
-      </div>
-      <div class= "d-flex mt-3 pb-1">
-        <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-profile my-4" %></p>
+      <div class="block-info-profile">
+        <p class="title-profile text-align-center">Informations réservations 👇</p>
+        <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+          <p class="mb-0"><i class="fa-solid fa-user me-2"></i><%= link_to "Informations personnelles",  edit_info_users_path, class: "btn-profile" %></p>
+          <div><i class="fa-solid fa-angle-right"></i></div>
+        </div>
+        <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+          <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2"></i><%= link_to "Disponibilités hebdomadaires",  edit_dispo_users_path, class: "btn-profile my-4" %></p>
+          <div><i class="fa-solid fa-angle-right"></i></div>
+        </div>
+        <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+          <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i><%= link_to "Indisponibilités hebdomadaires",  edit_indispo_users_path, class: "btn-profile my-4" %></p>
+          <div><i class="fa-solid fa-angle-right"></i></div>
+        </div>
+        <div class= "d-flex mt-5 d-flex align-items-center justify-content-center block-link-profile">
+          <%= link_to reservation_link(current_user.token) do %>
+            <p class="p-0"></i>Lien de partage</p>
+          <% end %>
+        </div>
       </div>
     </div>
     <%# <p class="my-5 text-center mx-3">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p> %>
-    <div class= "d-flex justify-content-center mt-3">
+
+
+    <div class= "d-flex justify-content-center mt-1">
       <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-minimal-red w-100" %></p>
     </div>
+
 
   </div>
 </div>
