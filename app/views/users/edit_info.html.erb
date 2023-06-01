@@ -15,46 +15,46 @@
           <p class="onboarding-form-description">Informations sur toi et ton activité 🕺</p>
           <div class="row">
             <div class="col-6">
+              <p class="disclaimer">Prénom</p>
               <%= f.input :first_name, required: true,
                             autofocus: true,
                             label: false,
                             input_html: { placeholder: "Prénom" }%>
             </div>
             <div class="col-6">
+              <p class="disclaimer">Nom</p>
               <%= f.input :last_name, required: true,
                             autofocus: true,
                             label: false,
                             input_html: { placeholder: "Nom" }%>
             </div>
           </div>
+          <p class="disclaimer">Numéro de téléphone</p>
           <%= f.input :phone_number, required: true,
             autofocus: true,
             label: false,
             input_html: { placeholder: "Numéro de téléphone portable (06 ou 07)" } %>
+          <p class="disclaimer">Profession</p>
           <%= f.input :title, required: true,
                         autofocus: true,
                         label: false,
                         input_html: { placeholder: "Profession" }%>
-          <%= f.input :billing_city, required: true,
-                        autofocus: true,
-                        label: false,
-                        input_html: { placeholder: "Ville ou région de l'activité exercée" }%>
+          <p class="disclaimer">Adresse</p>
+          <%= f.input :address,
+            required: true,
+            label: false,
+            input_html: { name: "user[address]", data: { address_autocomplete_target: "address" }, class: "" },
+            wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"] } } %>
+            <div class="disclaimer text-center">
+              <p><em>Attention ! Assure toi que le format de l'adresse soit bien le suivant : <br><strong>15 Rue de la Paix, 75008 Paris, France</strong></em></p>
+              <p><em>Pour t'en assurer, utilise le champs recherche d'adresse ci-dessus 👆🔍</em></p>
+            </div>
+          <p class="disclaimer">Description</p>
           <%= f.input :description, required: true,
                         autofocus: true,
                         label: false,
                         input_html: { placeholder: "Description" },
                         class: "mb-3"%>
-          <%# <p class="onboarding-form-description mt-4">Ta plus belle photo de profil   📸 </p>
-          <%= image_tag url_for(@user.profile_picture), class: 'edit-onboarding-picture' if @user.profile_picture.attached? %>
-          <%# <%= f.input :profile_picture, as: :file, input_html: { class: "form-box" }, label: false %>
-
-          <%# <p class="onboarding-form-description mt-4">3 photos pour compléter ta page  😎 </p> %>
-          <%# <% if @user.gallery_pictures.attached? %>
-            <%# <% @user.gallery_pictures.each do |picture| %>
-              <%# <%= image_tag url_for(picture), class: 'edit-onboarding-picture'%>
-            <%# <% end %>
-          <%# <% end %>
-          <%# <%= f.input :gallery_pictures, as: :file, input_html: { multiple: true, class: "form-box" }, label: false %>
           <%= f.button :submit, "Mettre à jour", class: "btn-basic-bleu-large-onboard mt-4", value: "Mettre à jour" %>
 
         <% end %>
