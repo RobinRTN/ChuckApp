@@ -387,3 +387,20 @@ fr:
       long: "%A %d %B %Y %Hh%M"
       short: "%d %b %Hh%M"
     pm: pm
+
+  # admin:
+  #   actions:
+  #     index:
+  #       title: 'Titre Index' # Your translated text for 'Index Title'
+  #       breadcrumb: 'Chemin Index' # Your translated text for 'Index Breadcrumb'
+  #       menu: 'Menu Index' # Your translated text for 'Index Menu'
+  #     new:
+  #       menu: 'Nouveau Menu' # Your translated text for 'New Menu'
+  #     export:
+  #       menu: 'Menu Export' # Your translated text for 'Export Menu'
+  #       link: 'Lien Export' # Your translated text for 'Export Link'
+  #     dashboard:
+  #       breadcrumb: 'Chemin Tableau de bord' # Your translated text for 'Dashboard Breadcrumb'
+  # # You didn't provide a context for these, so I put them at the root level. You might want to move them under a specific namespace if necessary.
+  # add_filter: 'Ajouter un filtre' # Your translated text for 'Add Filter'
+  # bulk_menu_title: 'Titre du menu en vrac' # Your transla

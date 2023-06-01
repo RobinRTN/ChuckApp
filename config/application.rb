@@ -18,6 +18,7 @@ module MRProject
     config.load_defaults 7.0
 
     config.i18n.default_locale = :fr
+    config.i18n.exception_handler = ->(exception, locale, key, options) { key }
     config.time_zone = 'Paris'
 
 
