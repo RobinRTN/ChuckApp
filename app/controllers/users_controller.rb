@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_formules
+    @user = current_user
+  end
+
   def update_indispo
     @user = current_user
     if @user.update(user_indispo_params)
