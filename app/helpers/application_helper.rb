@@ -3,9 +3,9 @@ module ApplicationHelper
 
   def reservation_link(token)
     if Rails.env.production?
-      "http://chuckapp.fr/perso/#{token}"
+      "http://chuckapp.fr/#{token}"
     else
-      "http://localhost:3000/perso/#{token}"
+      "http://localhost:3000/#{token}"
     end
   end
 

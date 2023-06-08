@@ -4,12 +4,12 @@ require 'active_support/time'
 require 'json'
 
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:choose_reservation, :perso, :finish_reservation, :create]
+  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
 
   CALENDAR_ID = 'primary'
 
 
-  def perso
+  def landing_reservation
     @user = User.find_by(token: reservation_params[:token])
     @formules = @user.formules
     @packages = @user.packages
@@ -241,7 +241,7 @@ class BookingsController < ApplicationController
           if @booking.save
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
-            redirect_to perso_path(@user.token)
+            redirect_to landing_reservation_path(@user.token)
             BookingMailer.user_booking_email_pending(@user, @booking).deliver_later
             BookingMailer.client_booking_email_pending(@client, @booking).deliver_later
           else
@@ -267,7 +267,7 @@ class BookingsController < ApplicationController
           if @booking.save!
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
-            redirect_to perso_path(@user.token)
+            redirect_to landing_reservation_path(@user.token)
             BookingMailer.user_booking_email_pending(@user, @booking).deliver_later
             BookingMailer.client_booking_email_pending(@client, @booking).deliver_later
           else

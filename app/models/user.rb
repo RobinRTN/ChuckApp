@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :onboarding_process
   attr_accessor :onboarding_process_step4
-  before_validation :set_token
-  before_validation :generate_qr_code
   before_validation :full_address
   before_save :set_full_name
+  before_save :set_token
+  before_save :generate_qr_code
   before_save :extract_billing_city
   before_destroy :delete_formules
   before_destroy :delete_groups
@@ -52,7 +52,20 @@ class User < ApplicationRecord
   end
 
   def set_token
-    self.token = SecureRandom.urlsafe_base64(10)
+    self.token = unique_token(full_name)
+  end
+
+  def unique_token(name)
+    base_token = name.parameterize
+    token = base_token
+    i = 1
+
+    while User.exists?(token: token)
+      token = "#{base_token}-#{i}"
+      i += 1
+    end
+
+    token
   end
 
   def delete_formules
@@ -87,9 +100,9 @@ class User < ApplicationRecord
 
   def reservation_link(token)
     if Rails.env.production?
-      "https://salty-sierra-39179.herokuapp.com/perso/#{token}"
+      "http://chuckapp.fr/#{token}"
     else
-      "http://localhost:3000/perso/#{token}"
+      "http://localhost:3000/#{token}"
     end
   end
 

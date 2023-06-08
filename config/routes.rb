@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'mentions', to: 'pages#mentions'
   get 'politique', to: 'pages#politique'
   get '/disponibilites', to: 'bookings#disponibilites', as: 'disponibilites'
-  get '/perso/:token', to: 'bookings#perso', as: 'perso'
   get '/choose_reservation/:token', to: 'bookings#choose_reservation', as: 'choose_reservation'
   get '/finish_reservation/:token', to: 'bookings#finish_reservation', as: 'finish_reservation'
   patch '/update_availability/:id', to: 'bookings#update_availability', as: 'update_availability'
@@ -59,4 +58,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get '/:token', to: 'bookings#landing_reservation', as: 'landing_reservation'
 end
