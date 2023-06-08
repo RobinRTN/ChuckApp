@@ -10,6 +10,9 @@ application.register("add-formule-package", AddFormulePackageController)
 import AddGalleryPicturesController from "./add_gallery_pictures_controller"
 application.register("add-gallery-pictures", AddGalleryPicturesController)
 
+import AddProfilePictureController from "./add_profile_picture_controller"
+application.register("add-profile-picture", AddProfilePictureController)
+
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 

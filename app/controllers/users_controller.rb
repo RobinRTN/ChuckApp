@@ -76,6 +76,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_profile_picture
+    if params[:profile_picture]
+      current_user.profile_picture.attach(params[:profile_picture])
+      flash[:notice] = "Photo de profil modifiée avec succès"
+    else
+      flash[:alert] = "Aucune image selectionnée"
+    end
+    redirect_to profile_path
+  end
+
   private
 
   def user_info_params

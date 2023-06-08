@@ -1,7 +1,7 @@
 <div class="container wrapper">
-  <div class="mx-3 d-flex justify-content-center flex-column align-items-center" data-controller="full-screen-gallery add-gallery-pictures">
+  <div class="mx-3 d-flex justify-content-center flex-column align-items-center" data-controller="full-screen-gallery add-gallery-pictures add-profile-picture">
 
-    <div class="profile-picture d-flex justify-content-center pt-3 pb-3">
+    <div class="profile-picture d-flex justify-content-center pt-3 pb-3 position-relative">
       <% if current_user.profile_picture.attached? %>
         <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-profile" %>
       <% elsif current_user.avatar_url.present? %>
@@ -9,7 +9,15 @@
       <% else %>
         <%= image_tag "user.png", class: 'avatar-profile' %>
       <% end %>
+      <div class="change-button" data-action="click->add-profile-picture#addImages">
+        <i class="fa-solid fa-rotate primary"></i>
+      </div>
     </div>
+
+    <%= form_with url: update_profile_picture_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { target: "add-profile-picture.formProfile" } } do |form| %>
+      <%= form.file_field :profile_picture, hidden: true, data: { target: "add-profile-picture.fileInputProfile"} %>
+    <% end %>
+
 
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
