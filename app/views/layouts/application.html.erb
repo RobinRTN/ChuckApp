@@ -48,7 +48,7 @@
 
   <body class="exception-page">
 
-    <% unless (controller_name == 'bookings' && action_name == 'landing_reservation') || (controller_name == 'bookings' && action_name == 'choose_reservation') || (controller_name == 'bookings' && action_name == 'finish_reservation') || (request.path == '/' && !user_signed_in?) || controller_name =="onboarding" %>
+    <% unless (controller_name == 'bookings' && action_name == 'perso') || (controller_name == 'bookings' && action_name == 'choose_reservation') || (controller_name == 'bookings' && action_name == 'finish_reservation') || (request.path == '/' && !user_signed_in?) || controller_name =="onboarding" %>
       <%= render "shared/navbar" %>
     <% end %>
       <%= render "shared/flashes" %>

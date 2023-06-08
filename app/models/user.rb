@@ -87,9 +87,9 @@ class User < ApplicationRecord
 
   def reservation_link(token)
     if Rails.env.production?
-      "https://salty-sierra-39179.herokuapp.com/landing_reservation/#{token}"
+      "https://salty-sierra-39179.herokuapp.com/perso/#{token}"
     else
-      "http://localhost:3000/landing_reservation/#{token}"
+      "http://localhost:3000/perso/#{token}"
     end
   end
 
