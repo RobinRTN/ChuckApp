@@ -1,6 +1,10 @@
-<div class="nested-fields" data-new-record="<%= f.object.new_record? %>">
-  <%= f.input :id, as: :hidden %>
-  <%= f.input :_destroy, as: :hidden %>
+<div class="formule-fields">
+  <%= f.input_field :_destroy, as: :hidden %>
+  <div class="d-flex align-items-center justify-content-between mb-2">
+    <p class="formule-number">Prestation proposée </p>
+    <%= link_to 'Supprimer', '#', class:"delete-formule btn-minimal", data: { action: "click->add-formule-package#removeRecord" } %>
+  </div>
+  <%# <p class="delete-formule btn-minimal"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p> %>
 
   <%= f.input :name, required: true,
                       autofocus: true,
@@ -30,6 +34,4 @@
                             autofocus: true,
                             label: false,
                             input_html: { placeholder: "Description de la prestation" } %>
-
-  <p class="delete-formule btn-minimal" data-action="click->add-formule-package#deleteFormule"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p>
 </div>

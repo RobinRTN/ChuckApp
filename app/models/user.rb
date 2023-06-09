@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_save :set_token
   before_save :generate_qr_code
   before_save :extract_billing_city
+  before_save :check_excluded_fixed_weekly_slots
   before_destroy :delete_formules
   before_destroy :delete_groups
 
@@ -29,9 +30,9 @@ class User < ApplicationRecord
   has_many :availables
   has_many :availability_weeks
   has_many :tags
-  has_many :formules, through: :packages
+  has_many :formules, dependent: :destroy
+  accepts_nested_attributes_for :formules, allow_destroy: true, reject_if: proc { |att| att['name'].blank? }
   # accepts_nested_attributes_for :packages, allow_destroy: true
-  accepts_nested_attributes_for :formules, allow_destroy: true
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
   has_one_attached :qrcode
@@ -113,6 +114,10 @@ class User < ApplicationRecord
 
   def set_full_name
     self.full_name = "#{first_name} #{last_name}".strip
+  end
+
+  def check_excluded_fixed_weekly_slots
+    self.excluded_fixed_weekly_slots = [] if self.excluded_fixed_weekly_slots == "\"[]\""
   end
 
   def extract_billing_city

@@ -34,21 +34,24 @@
       <p class="mt-2 mb-5 title-onboarding m-auto">2 - Prestations et tarification</p>
     </div>
 
-    <div class="step2-survey">
-      <div data-controller="add-formule-package">
+    <div class="step2-survey" data-controller="add-formule-package">
+      <%= simple_form_for @user, url: onboarding_path(step: 'step2') do |f| %>
+        <%= f.error_notification %>
 
-        <%= simple_form_for @user, url: onboarding_path(step: 'step2') do |f| %>
-            <%= f.simple_fields_for :formules do |formule_fields| %>
-              <div data-add-formule-package-target="formule" class="formules-step2-child">
-                <%= render 'formule_fields', f: formule_fields %>
-              </div>
-            <% end %>
+        <div class="fields">
+          <%= f.simple_fields_for :formules do |formule_fields| %>
+            <%= render 'formule', f: formule_fields %>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+          <%= link_to_add_row('Ajouter une prestation', f, :formules, class:"add_fields add-formule btn-minimal" , data: { action: "click->add-formule-package#addFields" }) %>
+        </div>
 
-          <p class="add-formule btn-minimal" data-action="click->add-formule-package#addFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p>
-
-          <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
-        <% end %>
-      </div>
+        <%# <p class="add-formule btn-minimal" data-action="click->add-formule-package#addFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p> %>
+        <div class="form-actions">
+          <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante 👉" %>
+        </div>
+      <% end %>
     </div>
 
   </div>

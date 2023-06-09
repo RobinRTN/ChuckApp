@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_091140) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_122012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -178,7 +178,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_091140) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "package_id"
+    t.bigint "user_id"
     t.index ["package_id"], name: "index_formules_on_package_id"
+    t.index ["user_id"], name: "index_formules_on_user_id"
   end
 
   create_table "group_clients", force: :cascade do |t|
@@ -270,6 +272,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_091140) do
   add_foreign_key "bookings", "users"
   add_foreign_key "clients", "users"
   add_foreign_key "formules", "packages"
+  add_foreign_key "formules", "users"
   add_foreign_key "group_clients", "clients"
   add_foreign_key "group_clients", "groups"
   add_foreign_key "groups", "users"

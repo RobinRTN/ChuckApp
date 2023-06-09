@@ -1,0 +1,37 @@
+<div class="formule-fields">
+  <%= f.input_field :_destroy, as: :hidden %>
+  <div class="d-flex align-items-center justify-content-between mb-2">
+    <p class="formule-number">Prestation proposée </p>
+    <%= link_to 'Supprimer', '#', class:"delete-formule btn-minimal", data: { action: "click->add-formule-package#removeRecord" } %>
+  </div>
+  <%# <p class="delete-formule btn-minimal"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p> %>
+
+  <%= f.input :name, required: true,
+                      autofocus: true,
+                      label: false,
+                      input_html: { placeholder: "Nom de la prestation" } %>
+
+  <%= f.input :price, as: :numeric, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: {
+                          placeholder: "Prix de la prestation (en €)",
+                          step: 0.1,
+                          min: 0
+                        } %>
+
+  <%= f.input :duration, as: :select,
+                        include_blank: "Durée de la prestation",
+                        collection: duration_options,
+                        required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Durée de la prestation" },
+                        label_method: :first,
+                        value_method: :last %>
+
+  <%= f.input :description, as: :text, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Description de la prestation" } %>
+</div>

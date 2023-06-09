@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get 'delete_gallery'
       post 'add_gallery'
       get 'edit_formules'
+      patch 'update_formules'
       post 'update_profile_picture'
     end
   end

@@ -37,6 +37,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update_formules
+    @user = current_user
+    if @user.update(user_formule_params)
+      redirect_to edit_indispo_users_path, notice: 'Vos prestations ont bien été mises à jour !'
+    else
+      redirect_to edit_formules_users_path
+      logger.error "Error updating formules: #{@user.errors.full_messages.join(', ')}"
+    end
+  end
+
   def update_indispo
     @user = current_user
     if @user.update(user_indispo_params)
@@ -96,6 +106,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:daily_start_time, :daily_end_time).tap do |whitelisted|
       whitelisted[:days_of_week] = params[:user][:days_of_week].split(',')
     end
+  end
+
+  def user_formule_params
+    params.require(:user).permit(:name, :email, formules_attributes: Formule.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
 

@@ -5,7 +5,7 @@ class OnboardingController < ApplicationController
 
   def show
     @user = current_user
-    @user.formules.build
+    @user.formules.build if @user.formules.empty?
     # Render the view for the current onboarding step
     render step
   end
@@ -86,7 +86,7 @@ class OnboardingController < ApplicationController
 
   def step2_params
     # Replace these with the actual parameters for step2
-    params.require(:user).permit(:name, :email, formules_attributes: [:id, :name, :price, :duration, :description, :_destroy])
+    params.require(:user).permit(:name, :email, formules_attributes: Formule.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   def step3_params
