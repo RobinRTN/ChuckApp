@@ -2,9 +2,7 @@
   <%= f.input_field :_destroy, as: :hidden %>
   <%# <div class="d-flex align-items-center justify-content-between mb-2"> %>
     <%# <p class="formule-number">Prestation proposée </p> %>
-    <%= link_to '#', class:"delete-formule btn-minimal", data: { action: "click->add-formule-package#removeRecord" } do %>
-      <i class="fa-sharp fa-solid fa-circle-xmark"></i>
-    <% end  %>
+    <%= link_to "Supprimer", '#', class:"text-end delete-formule btn-minimal mb-2", data: { action: "click->add-formule-package#removeRecord" } %>
   <%# </div> %>
   <%# <p class="delete-formule btn-minimal"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p> %>
 
