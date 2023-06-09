@@ -10,6 +10,10 @@
       <p class="mt-2 mb-5 title-onboarding m-auto">Prestations proposées</p>
     </div>
 
+    <div class="d-flex justify-content-center my-2 text-center px-4">
+      <p>N'oublie pas de valider les modifications en cliquant sur "Mettre à jour" en bas de la page 👇</p>
+    </div>
+
     <div class="step2-survey" data-controller="add-formule-package">
       <%= simple_form_for @user, url: update_formules_users_path, method: :patch do |f| %>
         <%= f.error_notification %>
