@@ -14,9 +14,7 @@
     <form action="/new_choose_reservation" data-controller="formule" method="get" class="w-100">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <div class="formule-block">
-        <% @packages.each do |package| %>
-          <h4 class="h6 my-2 ms-2"><%= package.name %></h4>
-          <% package.formules.each do |formule| %>
+          <% @formules.each do |formule| %>
             <div class="formule-card d-flex flex-column align-items-center justify-content-between">
               <button class="d-flex align-items-center justify-content-between" type="button" name="formule_id" value="<%= formule.id %>" data-action="click->formule#selectFormule" data-formule-target="formuleButton">
                 <div class="d-flex flex-column align-items-start">
@@ -46,7 +44,6 @@
               </div>
             </div>
           <% end %>
-        <% end %>
       </div>
 
       <div class="option-buttons mb-4">

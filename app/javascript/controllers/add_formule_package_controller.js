@@ -9,6 +9,7 @@ export default class extends Controller {
     console.log("SSUPPPRRR")
     event.preventDefault();
     event.target.previousElementSibling.value = '1';
+    console.log(event.target.previousElementSibling)
     event.target.closest('.formule-fields').style.display = 'none';
   }
 

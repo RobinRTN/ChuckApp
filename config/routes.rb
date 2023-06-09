@@ -54,7 +54,6 @@ Rails.application.routes.draw do
   end
   resources :clients
   resources :formules
-  resources :packages
   resources :groups
 
   # Defines the root path route ("/")

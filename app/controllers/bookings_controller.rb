@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
 
   def new
     @user = current_user
-    @packages = @user.packages
+    @formules = @user.formules
   end
 
   def new_choose_reservation
@@ -79,7 +79,7 @@ class BookingsController < ApplicationController
 
   def date_new_reservation
     @user = current_user
-    @packages = @user.packages
+    @formules = @user.formules
     @datetime = params[:datetime]
     @jour = params[:jour]
     if @jour

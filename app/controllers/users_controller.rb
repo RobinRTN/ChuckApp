@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def update_formules
     @user = current_user
     if @user.update(user_formule_params)
-      redirect_to edit_indispo_users_path, notice: 'Vos prestations ont bien été mises à jour !'
+      redirect_to edit_formules_users_path, notice: 'Vos prestations ont bien été mises à jour !'
     else
       redirect_to edit_formules_users_path
       logger.error "Error updating formules: #{@user.errors.full_messages.join(', ')}"
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
   end
 
   def user_formule_params
-    params.require(:user).permit(:name, :email, formules_attributes: Formule.attribute_names.map(&:to_sym).push(:_destroy))
+    params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :_destroy])
   end
 
 

@@ -26,7 +26,6 @@ class User < ApplicationRecord
   has_many :groups
   has_many :clients
   has_many :bookings
-  has_many :packages
   has_many :availables
   has_many :availability_weeks
   has_many :tags
