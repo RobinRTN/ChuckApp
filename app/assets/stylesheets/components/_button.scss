@@ -419,6 +419,8 @@
   color: $d-blue-sp;
   font-weight: 500;
   text-decoration: none;
+  width: 100%;
+  flex-wrap: nowrap;
   img {
     height: 25px;
   }
