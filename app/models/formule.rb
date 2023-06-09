@@ -1,6 +1,7 @@
 class Formule < ApplicationRecord
+  belongs_to :user
   belongs_to :package
-  has_many :bookings
+  has_many :bookings, dependent: :nullify
   before_validation :set_default_address
   geocoded_by :address_line
   after_validation :geocode, if: :will_save_change_to_address_line?

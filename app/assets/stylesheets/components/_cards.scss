@@ -842,3 +842,17 @@
   padding: 0.1em 0.5em;
   margin-bottom: 0em;
 }
+
+.formule-fields {
+  padding: 1em;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-bottom: 0;
+    font-weight: 600;
+  }
+}

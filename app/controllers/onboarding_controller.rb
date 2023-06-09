@@ -5,10 +5,7 @@ class OnboardingController < ApplicationController
 
   def show
     @user = current_user
-    @user.packages.build unless @user.packages.present?
-    @user.packages.each do |package|
-      package.formules.build unless package.formules.present?
-    end
+    @user.formules.build if @user.formules.empty?
     # Render the view for the current onboarding step
     render step
   end
@@ -89,7 +86,7 @@ class OnboardingController < ApplicationController
 
   def step2_params
     # Replace these with the actual parameters for step2
-    params.require(:user).permit(packages_attributes: [:id, :_destroy, :name, formules_attributes: [:id, :_destroy, :name, :price, :duration, :description, :address_line]])
+    params.require(:user).permit(:name, :email, formules_attributes: Formule.attribute_names.map(&:to_sym).push(:_destroy))
   end
 
   def step3_params
