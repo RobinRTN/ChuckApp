@@ -1,0 +1,35 @@
+<div class="nested-fields" data-new-record="<%= f.object.new_record? %>">
+  <%= f.input :id, as: :hidden %>
+  <%= f.input :_destroy, as: :hidden %>
+
+  <%= f.input :name, required: true,
+                      autofocus: true,
+                      label: false,
+                      input_html: { placeholder: "Nom de la prestation" } %>
+
+  <%= f.input :price, as: :numeric, required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: {
+                          placeholder: "Prix de la prestation (en €)",
+                          step: 0.1,
+                          min: 0
+                        } %>
+
+  <%= f.input :duration, as: :select,
+                        include_blank: "Durée de la prestation",
+                        collection: duration_options,
+                        required: true,
+                        autofocus: true,
+                        label: false,
+                        input_html: { placeholder: "Durée de la prestation" },
+                        label_method: :first,
+                        value_method: :last %>
+
+  <%= f.input :description, as: :text, required: true,
+                            autofocus: true,
+                            label: false,
+                            input_html: { placeholder: "Description de la prestation" } %>
+
+  <p class="delete-formule btn-minimal" data-action="click->add-formule-package#deleteFormule"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p>
+</div>

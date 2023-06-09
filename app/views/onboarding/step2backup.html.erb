@@ -1,0 +1,113 @@
+<% content_for :head do %>
+  <meta name="turbolinks-visit-control" content="reload">
+<% end %>
+
+<div class="container wrapper">
+  <div class="mx-3">
+
+
+    <div class="progress-bar-container">
+      <div class="progress-bar">
+        <div class="progress-bar-fill <%= 'step1' if @step == 'step1' %> <%= 'step2' if @step == 'step2' %> <%= 'step3' if @step == 'step3' %>"></div>
+      </div>
+      <div class="progress-bar-steps">
+        <div class="progress-bar-step <%= 'active' if @step == 'step1' %>">
+          <%# <div class="step-number">1</div> %>
+          <%# <div class="step-desc">pInformations personnelles</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step2' %>">
+          <%# <div class="step-number">2</div> %>
+          <%# <div class="step-desc">Prestations et tarification</div> %>
+        </div>
+        <div class="progress-bar-step <%= 'active' if @step == 'step3' %>">
+          <%# <div class="step-number">3</div> %>
+          <%# <div class="step-desc">Emploi du temps</div> %>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <%# <%= link_to onboarding_path(step: previous_step), data: { turbolinks: false }, class: "text-decoration-none" do %>
+        <%# <div class="back-btn mt-2 mb-5">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <p class="mt-2 mb-5 title-onboarding m-auto">2 - Prestations et tarification</p>
+    </div>
+
+    <div class="step2-survey">
+
+      <div class="fixFom" data-step2-target="fixForm" data-controller="add-formule-package">
+        <div>
+          <%= simple_form_for(@user, url: onboarding_path(step: 'step2')) do |f| %>
+            <div class="package-step2" data-add-formule-package-target="package">
+              <div class="d-flex align-items-center justify-content-between">
+                <p class="onboarding-form-description mt-3">Ajoute une catégorie de prestations</p>
+                <p class="delete-package d-none" data-action="click->add-formule-package#deletePackage">Supprimer</p>
+              </div>
+              <p><em>Tennis, Préparation mentale …</em></p>
+              <%= f.simple_fields_for :packages do |package_fields| %>
+                <%= package_fields.input :id, as: :hidden %>
+                <%= package_fields.input :_destroy, as: :hidden %>
+                <%= package_fields.input :name, required: true,
+                                          autofocus: true,
+                                          label: false,
+                                          input_html: { placeholder: "Catégorie de prestations" } %>
+                <p class="onboarding-form-description mt-3 mb-1">Ajoute des prestations associées</p>
+                <p class="mt-2"><em>Cours particulier, niveau du cours (débutant, intermédiaire…)</em></p>
+                <div class="formules-step2 d-flex flex-column">
+                  <div class="formules-step2-child mt-2" data-add-formule-package-target="formule">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p class="formule-count" data-add-formule-package-target="formuleCount">Prestation proposée</p>
+                      <p class="delete-formule d-none" data-action="click->add-formule-package#deleteFormule">Supprimer</p>
+                    </div>
+                    <%= package_fields.simple_fields_for :formules do |formule_fields| %>
+                      <%= formule_fields.input :id, as: :hidden %>
+                      <%= formule_fields.input :_destroy, as: :hidden %>
+                      <%= formule_fields.input :name, required: true,
+                                                      autofocus: true,
+                                                      label: false,
+                                                      input_html: { placeholder: "Nom de la prestation" } %>
+                      <%= formule_fields.input :price, as: :numeric, required: true,
+                                                autofocus: true,
+                                                label: false,
+                                                input_html: {
+                                                  placeholder: "Prix de la prestation (en €)",
+                                                  step: 0.1,
+                                                  min: 0
+                                                } %>
+                      <%# <p class="mb-1"><em>Selectionne la durée de la prestation</em></p> %>
+                      <%= formule_fields.input :duration, as: :select,
+                                                include_blank: "Durée de la prestation",
+                                                collection: duration_options,
+                                                required: true,
+                                                autofocus: true,
+                                                label: false,
+                                                input_html: { placeholder: "Durée de la prestation" },
+                                                label_method: :first,
+                                                value_method: :last %>
+                      <%= formule_fields.input :description, as: :text, required: true,
+                                                      autofocus: true,
+                                                      label: false,
+                                                      input_html: { placeholder: "Description de la prestation" } %>
+                        <%# <div class="round-btn-add"> %>
+                      </div>
+
+                      <p class="add-formule btn-minimal" data-action="click->add-formule-package#newFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p>
+                          <%# <i class="fa-solid fa-circle-plus"></i> %>
+                        <%# </div> %>
+                    <% end %>
+                </div>
+
+
+              <% end %>
+            </div>
+            <p class="add-package btn-minimal" data-action="click->add-formule-package#newPackage"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre catégorie de prestations</p>
+
+            <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

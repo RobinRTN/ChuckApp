@@ -30,7 +30,8 @@ class User < ApplicationRecord
   has_many :availability_weeks
   has_many :tags
   has_many :formules, through: :packages
-  accepts_nested_attributes_for :packages, allow_destroy: true
+  # accepts_nested_attributes_for :packages, allow_destroy: true
+  accepts_nested_attributes_for :formules, allow_destroy: true
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
   has_one_attached :qrcode
