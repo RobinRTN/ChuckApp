@@ -1,5 +1,5 @@
 class AddUserToFormules < ActiveRecord::Migration[7.0]
   def change
-    add_reference :formules, :user, foreign_key: true
+    remove_column :formules, :package_id
   end
 end

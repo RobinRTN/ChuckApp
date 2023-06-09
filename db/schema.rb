@@ -177,9 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_122012) do
     t.string "address_city"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "package_id"
     t.bigint "user_id"
-    t.index ["package_id"], name: "index_formules_on_package_id"
     t.index ["user_id"], name: "index_formules_on_user_id"
   end
 
@@ -198,16 +196,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_122012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_groups_on_user_id"
-  end
-
-  create_table "packages", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.float "price"
-    t.float "frequence"
-    t.index ["user_id"], name: "index_packages_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -271,11 +259,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_122012) do
   add_foreign_key "bookings", "formules"
   add_foreign_key "bookings", "users"
   add_foreign_key "clients", "users"
-  add_foreign_key "formules", "packages"
   add_foreign_key "formules", "users"
   add_foreign_key "group_clients", "clients"
   add_foreign_key "group_clients", "groups"
   add_foreign_key "groups", "users"
-  add_foreign_key "packages", "users"
   add_foreign_key "tags", "users"
 end
