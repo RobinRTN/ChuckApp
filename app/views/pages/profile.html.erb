@@ -14,9 +14,10 @@
       </div>
     </div>
 
-    <%= form_with url: update_profile_picture_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { target: "add-profile-picture.formProfile" } } do |form| %>
-      <%= form.file_field :profile_picture, hidden: true, data: { target: "add-profile-picture.fileInputProfile"} %>
+    <%= form_with url: update_profile_picture_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { add_profile_picture_target: "formProfile" } } do |form| %>
+      <%= form.file_field :profile_picture, hidden: true, data: { add_profile_picture_target: "fileInputProfile"} %>
     <% end %>
+
 
 
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
@@ -24,8 +25,8 @@
     <div class="my-3">
       <p class="title-profile">Gallerie photos 📸</p>
     </div>
-    <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { target: "full-screen-gallery.form" }  } do |form| %>
-      <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { target: "add-gallery-pictures.fileInput" } %>
+    <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { add_gallery_pictures_target: "form" }  } do |form| %>
+      <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { add_gallery_pictures_target: "fileInput" } %>
     <% end %>
 
       <% if current_user.gallery_pictures.attached? %>

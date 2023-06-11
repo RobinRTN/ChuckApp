@@ -7,8 +7,11 @@ export default class extends Controller {
   connect() {
     console.log("fully connected")
     console.log(this.fileInputTarget)
-    this.fileInputTarget.addEventListener('change', this.submitForm.bind(this));
-  }
+    this.fileInputTarget.addEventListener('change', (event) => {
+      if (event.target.files.length > 0) {
+        this.formTarget.submit()
+      }
+    });  }
 
   addImages() {
     this.fileInputTarget.click();
