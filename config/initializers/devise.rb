@@ -30,7 +30,7 @@ Devise.setup do |config|
       access_type: "offline",
       prompt: "consent",
       select_account: true,
-      scope: 'userinfo.email, calendar'
+      scope: 'userinfo.email'
     }
 
 
