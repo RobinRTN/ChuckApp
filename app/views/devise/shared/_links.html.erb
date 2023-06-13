@@ -17,3 +17,16 @@
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <%= link_to "Instructions de déverouillage non reçues ?", new_unlock_path(resource_name) %><br />
 <% end %>
+
+<%- if devise_mapping.omniauthable? %>
+   <div class="google-auth">
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= form_for "Login",
+          url: omniauth_authorize_path(resource_name, provider),
+         method: :post,
+         data: {turbo: "false"} do |f| %>
+          <%= f.submit "Login", type: "image", src: asset_path("btn_google_signin_light_normal_web.png") %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
