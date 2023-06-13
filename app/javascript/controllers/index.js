@@ -52,6 +52,9 @@ application.register("image-appear", ImageAppearController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import NotesController from "./notes_controller"
+application.register("notes", NotesController)
+
 import ReservationController from "./reservation_controller"
 application.register("reservation", ReservationController)
 

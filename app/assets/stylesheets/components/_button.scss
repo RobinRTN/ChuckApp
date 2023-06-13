@@ -70,8 +70,8 @@
 }
 
 .btn-minimal {
-  color: $blue-sp;
-  font-size: 0.9em;
+  color: $blue-sp !important;
+  font-size: 0.9em !important;
   text-decoration: none;
   transition: all 0.2s;
 

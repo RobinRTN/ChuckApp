@@ -856,3 +856,15 @@
     font-weight: 600;
   }
 }
+
+.card-text-area {
+  border: solid 1px $ll-blue-sp;
+  padding: 0.3em;
+  width: 100%;
+  margin: 0;
+  font-size: 0.9em;
+}
+.card-text-area:focus {
+  border: solid 1px $l-blue-sp;
+
+}

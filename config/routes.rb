@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
   patch 'onboarding/:step', to: 'onboarding#update'
 
+  put '/clients/:id/update_note', to: 'clients#update_note', as: :update_note
+
   resources :users, only: [] do
     collection do
       get 'edit_info'

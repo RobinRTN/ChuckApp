@@ -42,12 +42,20 @@
       <p><i class="mail-card fa-solid fa-envelope me-2"></i> <%= @client.email %></p>
     </div>
 
-    <% unless @client.note.nil? %>
-      <div class="card-details-show-client">
-        <h4 class="mb-3">Notes</h4>
-          <p><%= @client.note %></p>
-      </div>
-    <% end %>
+    <%# <% unless @client.note.nil? %>
+      <%# <div class="card-details-show-client"> %>
+        <%# <h4 class="mb-3">Notes</h4> %>
+          <%# <p><%= @client.note %>
+      <%# </div> %>
+    <%# <% end %>
+
+    <div class="card-details-show-client" data-controller="notes" data-notes-client-id="<%= @client.id %>">
+      <h4 class="mb-3">Notes</h4>
+      <p data-notes-target="noteText"><%= @client.note %></p>
+      <div data-action="click->notes#editNote" data-notes-target="editButton" class="btn-minimal mt-2">Modifier</div>
+      <textarea data-notes-target="noteField" class="d-none card-text-area"></textarea>
+      <div data-action="click->notes#saveNote" data-notes-target="saveButton" class="d-none btn-minimal">Sauvegarder</div>
+    </div>
 
     <% unless @all_bookings.empty? %>
       <div class="card-details-show-client" data-controller="voir-plus">
@@ -56,7 +64,7 @@
             <p class="booking-detail-card"><%= l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.formule.name %></p>
           <% end %>
           <% if @all_bookings.size > 2 %>
-            <p class="btn-voir-plus" data-action="click->voir-plus#toggle">Voir plus</p>
+            <p class="btn-minimal" data-action="click->voir-plus#toggle">Voir plus</p>
             <div class="d-none" data-voir-plus-target="content">
               <% @all_bookings.drop(2).each do |booking| %>
                 <p class="booking-detail-card"><%= l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.formule.name %></p>

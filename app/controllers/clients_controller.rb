@@ -38,6 +38,15 @@ class ClientsController < ApplicationController
     redirect_to clients_path
   end
 
+  def update_note
+    @client = Client.find(params[:id])
+    if @client.update(note: params[:note])
+      render json: { status: 'success', note: @client.note }
+    else
+      render json: { status: 'error', errors: @client.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def client_params
