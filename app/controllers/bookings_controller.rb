@@ -111,6 +111,41 @@ class BookingsController < ApplicationController
     @clients = @user.clients
   end
 
+  def client_new_reservation
+    @user = current_user
+    @formules = @user.formules
+    @client = Client.find(params[:client_id])
+  end
+
+  def client_new_finish_reservation
+    @user = current_user
+    @formule = Formule.find(params[:formule_id])
+    @client = Client.find(params[:client_id])
+    interval = @formule.duration
+    slot_duration = @formule.duration
+    start_time = Time.zone.parse(@user.daily_start_time)
+    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    days_of_week = @user.days_of_week
+    num_weeks = 5
+    if @user.excluded_fixed_weekly_slots.is_a?(String)
+      excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
+    else
+      excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
+    end
+    @user_bookings = @user.bookings.upcoming_all
+    # Generate the available datetimes using the generate_datetimes function
+    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
+    @full_datetimes = full_datetimes
+  end
+
+  def client_confirm_reservation
+    @user = current_user
+    @formule = Formule.find(params[:formule].to_i)
+    @client = Client.find(params[:client_id].to_i)
+    @datetime = params[:datetime]
+    @booking = Booking.new
+  end
+
   def show
     @booking = Booking.find(params[:id])
     @client_data_hash = get_client_data(@booking.client.id)
@@ -162,7 +197,25 @@ class BookingsController < ApplicationController
   def create
     if params[:booking][:status] == "Accepted"
 
-      if params[:booking][:client].present? && !params[:booking][:client].key?(:first_name)
+      if params[:booking][:origin] == "client_new_finish"
+        client_id = params[:booking][:client_id].to_i
+        @client = Client.find(client_id)
+        @user = current_user
+        @booking = Booking.new(client_booking_params)
+        @booking.client_id = @client.id
+        @booking.user_id = @user.id
+        if @booking.save
+          flash[:notice] = "Réservation ajoutée !"
+          redirect_to root_path
+          BookingMailer.user_booking_email(@user, @booking).deliver_now
+          BookingMailer.client_booking_email(@client, @booking).deliver_now
+        else
+          # Handle errors if the booking can't be saved
+          flash[:alert] = "Erreur de création réservation"
+          redirect_to client_confirm_reservation_path(client_id: params[:client_id], datetime: params[:start_time], formule: params[:formule_id])
+        end
+
+      elsif params[:booking][:client].present? && !params[:booking][:client].key?(:first_name)
         client_id = booking_params[:client][:id]
         @client = Client.find(client_id)
         @user = current_user
@@ -367,6 +420,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, :status, client: [:email, :first_name, :last_name, :phone_number, :photo, :id], back: [:datetime, :formule])
+  end
+
+  def client_booking_params
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, :status)
   end
 
   def availability_week_params

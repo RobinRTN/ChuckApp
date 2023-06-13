@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   get 'date_new_reservation', to: 'bookings#date_new_reservation', as: 'date_new_reservation'
   get 'date_new_finish_reservation', to: 'bookings#date_new_finish_reservation', as: 'date_new_finish_reservation'
 
+  get 'client_new_reservation', to: 'bookings#client_new_reservation', as: 'client_new_reservation'
+  get 'client_new_finish_reservation', to: 'bookings#client_new_finish_reservation', as: 'client_new_finish_reservation'
+  get 'client_confirm_reservation', to: 'bookings#client_confirm_reservation', as: 'client_confirm_reservation'
+
   get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
   patch 'onboarding/:step', to: 'onboarding#update'
 
