@@ -47,12 +47,15 @@ class User < ApplicationRecord
     end
   end
 
-    def just_signed_up?
-      self.created_at == self.updated_at
-      puts "YYYYEEESSSS"
-      puts self.created_at
-      puts self.updated_at
+  def just_signed_up?
+    if (self.created_at - self.updated_at).abs <= 60
+      puts "YES"
+    else
+      puts "NO"
     end
+    puts self.created_at
+    puts self.updated_at
+  end
 
 
   private
