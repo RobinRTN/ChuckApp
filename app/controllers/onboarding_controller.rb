@@ -1,6 +1,5 @@
 class OnboardingController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :check_onboarding_status
   helper_method :step, :previous_step
 
 

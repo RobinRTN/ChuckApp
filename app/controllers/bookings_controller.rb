@@ -6,6 +6,20 @@ require 'json'
 class BookingsController < ApplicationController
   before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
 
+  before_action :check_onboarding_status, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
+
+  def check_onboarding_status
+    if current_user && !current_user.step_1
+      redirect_to onboarding_path(step: 'step1')
+    elsif current_user && !current_user.step_2
+      redirect_to onboarding_path(step: 'step2')
+    elsif current_user && !current_user.step_3
+      redirect_to onboarding_path(step: 'step3')
+    elsif current_user && !current_user.step_4
+      redirect_to onboarding_path(step: 'step4')
+    end
+  end
+
   CALENDAR_ID = 'primary'
 
 

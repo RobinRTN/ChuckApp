@@ -2,6 +2,22 @@ class ClientsController < ApplicationController
 
   before_action :set_client, only: :update
 
+  before_action :check_onboarding_status
+
+  def check_onboarding_status
+    if current_user && !current_user.step_1
+      redirect_to onboarding_path(step: 'step1')
+    elsif current_user && !current_user.step_2
+      redirect_to onboarding_path(step: 'step2')
+    elsif current_user && !current_user.step_3
+      redirect_to onboarding_path(step: 'step3')
+    elsif current_user && !current_user.step_4
+      redirect_to onboarding_path(step: 'step4')
+    end
+  end
+
+
+
   def new
     @client = Client.new
   end

@@ -1,6 +1,20 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :conditions, :politique, :mentions ]
 
+  before_action :check_onboarding_status, except: [:home, :conditions, :politique, :mentions ]
+
+  def check_onboarding_status
+    if current_user && !current_user.step_1
+      redirect_to onboarding_path(step: 'step1')
+    elsif current_user && !current_user.step_2
+      redirect_to onboarding_path(step: 'step2')
+    elsif current_user && !current_user.step_3
+      redirect_to onboarding_path(step: 'step3')
+    elsif current_user && !current_user.step_4
+      redirect_to onboarding_path(step: 'step4')
+    end
+  end
+
   def home
     if user_signed_in?
     @user_bookings_calendar
