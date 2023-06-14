@@ -29,8 +29,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.expires_at = auth.credentials.expires_at
       @user.refresh_token = auth.credentials.refresh_token
       @user.save!
-      sign_in(@user)
-      redirect_to bookings_path
+      sign_in_and_redirect @user, event: :authentication
     else
       session["devise.google_data"] = request.env["omniauth.auth"].except!(:extra)
       redirect_to new_user_registration_url
@@ -44,8 +43,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    stored_location_for(resource_or_scope) || root_path
+    if resource_or_scope.just_signed_up?
+      onboarding_path(step: 'step1')
+    else
+      stored_location_for(resource_or_scope) || root_path
+    end
   end
+
+
 
   private
 

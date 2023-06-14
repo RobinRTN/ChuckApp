@@ -42,11 +42,17 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.full_name = auth.info.name # assuming the user model has a name
       user.avatar_url = auth.info.image # assuming the user model has an image
+      # Confirm the email only for users registering through Google OAuth
+    user.confirmed_at = Time.current
     end
   end
 
 
   private
+
+  def just_signed_up?
+    self.created_at == self.updated_at
+  end
 
   def onboarding_process?
     onboarding_process == true
