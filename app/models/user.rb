@@ -47,12 +47,12 @@ class User < ApplicationRecord
     end
   end
 
+    def just_signed_up?
+      self.created_at == self.updated_at
+    end
+
 
   private
-
-  def just_signed_up?
-    self.created_at == self.updated_at
-  end
 
   def onboarding_process?
     onboarding_process == true
