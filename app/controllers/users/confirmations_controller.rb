@@ -21,7 +21,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
     if resource.errors.empty?
       sign_in(resource) # This will sign in the user
-      redirect_to onboarding_path(step: 'step1')
+      redirect_to root_path # Redirect to root_path instead of onboarding
     else
       render :new
     end

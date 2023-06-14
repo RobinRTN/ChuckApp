@@ -43,11 +43,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.just_signed_up?
-      onboarding_path(step: 'step1')
-    else
-      stored_location_for(resource_or_scope) || root_path
-    end
+    stored_location_for(resource_or_scope) || root_path # Redirect to root_path instead of onboarding
   end
 
 

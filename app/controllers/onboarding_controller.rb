@@ -1,5 +1,6 @@
 class OnboardingController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :check_onboarding_status
   helper_method :step, :previous_step
 
 
@@ -16,6 +17,7 @@ class OnboardingController < ApplicationController
     case step
     when 'step1'
       if @user.update(step1_params)
+        @user.update(step_1: true)
         redirect_to onboarding_path(step: next_step)
       else
         flash[:error] = @user.errors.full_messages.join(", ")
@@ -23,6 +25,7 @@ class OnboardingController < ApplicationController
       end
     when 'step2'
       if @user.update(step2_params)
+        @user.update(step_2: true)
         redirect_to onboarding_path(step: next_step)
       else
         flash[:error] = @user.errors.full_messages.join(", ")
@@ -30,6 +33,7 @@ class OnboardingController < ApplicationController
       end
     when 'step3'
       if @user.update(step3_params)
+        @user.update(step_3: true)
         redirect_to onboarding_path(step: next_step)
       else
         flash[:error] = @user.errors.full_messages.join(", ")
@@ -37,6 +41,7 @@ class OnboardingController < ApplicationController
       end
     when 'step4'
       if @user.update(step4_params)
+        @user.update(step_4: true)
         redirect_to root_path
       else
         flash[:error] = @user.errors.full_messages.join(", ")

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
+
   def edit_info
     @user = current_user
   end

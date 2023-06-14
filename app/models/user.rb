@@ -11,6 +11,7 @@ class User < ApplicationRecord
   before_save :check_excluded_fixed_weekly_slots
   before_destroy :delete_formules
   before_destroy :delete_groups
+  after_initialize :init
 
   serialize :days_of_week, Array
 
@@ -47,14 +48,12 @@ class User < ApplicationRecord
     end
   end
 
-  def just_signed_up?
-    if (self.created_at - self.updated_at).abs <= 60
-      puts "YES"
-    else
-      puts "NO"
-    end
-    puts self.created_at
-    puts self.updated_at
+
+  def init
+    self.step_1 ||= false
+    self.step_2 ||= false
+    self.step_3 ||= false
+    self.step_4 ||= false
   end
 
 
