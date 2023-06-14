@@ -5,6 +5,7 @@
 <div class="container wrapper">
   <div class="mx-3">
 
+
     <div class="progress-bar-container">
       <div class="progress-bar">
         <div class="progress-bar-fill <%= 'step1' if @step == 'step1' %> <%= 'step2' if @step == 'step2' %> <%= 'step3' if @step == 'step3' %>"></div>
@@ -73,6 +74,11 @@
 
         <% end %>
       </div>
+
+
+    <div class= "d-flex justify-content-center mt-5">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-minimal-red w-100" %></p>
+    </div>
 
   </div>
 </div>

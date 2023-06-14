@@ -52,5 +52,9 @@
       <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-5", value: "Etape suivante 👉" %>
     <% end %>
 
+    <div class= "d-flex justify-content-center mt-5">
+      <p><%=link_to "Se déconnecter", destroy_user_session_path, data: {turbo_method: :delete}, onclick: "return confirm('Êtes vous sûr de vouloir vous déconnecter ?');", class: "btn-minimal-red w-100" %></p>
+    </div>
+
   </div>
 </div>
