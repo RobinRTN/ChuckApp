@@ -2,5 +2,5 @@
 //= link_directory ../stylesheets .css
 //= link application.css
 //= link_tree ../builds
-//= link manifest.json
+//= link_directory ../json .json
 
