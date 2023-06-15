@@ -64,7 +64,7 @@ class User < ApplicationRecord
   end
 
   def set_token
-    self.token = unique_token(full_name)
+    self.token ||= unique_token(full_name)
   end
 
   def unique_token(name)
