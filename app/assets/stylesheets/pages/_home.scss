@@ -42,3 +42,9 @@ h1, h2, h3, h4, h5, h6 {
 .text-justify {
   text-align: justify;
 }
+
+@media (max-width: 484px) {
+  html, body {
+    background-image: url('background-gradient-small.svg');
+  }
+}
