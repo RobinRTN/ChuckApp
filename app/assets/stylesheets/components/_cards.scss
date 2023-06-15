@@ -524,6 +524,10 @@
   }
 
 }
+.revenue-card:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
 .revenue-card.collapse-transition  {
   background-color: $blue-sp;
   box-shadow: 0 0 8px -2px $blue-sp;
@@ -548,6 +552,10 @@
     font-weight: 500;
     margin-bottom: 0.5em;
   }
+}
+.revenue-card-projeté:hover {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 .revenue-card-projeté.collapse-transition {
   background-color: $l-blue-sp;
@@ -843,6 +851,7 @@
     box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     border-radius: 4px;
     background-color: $white;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     h4 {
       color: $dd-blue-sp;
     }
@@ -851,18 +860,32 @@
       // padding: 0.2em 0.55em;
       border-radius: 4px;
       margin-bottom: 0.7em;
+      transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
       p {
         margin-bottom: 0 !important;
+      }
+      .form-check-input {
+        transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
       }
       .form-check-input:checked  {
         background-color: $l-blue-sp !important;
         border-color: $l-blue-sp !important;
       }
+
+    }
+
+    .form-check-input:hover {
+      cursor: pointer !important;
+      transform: scale(1.02) !important;
     }
     i {
       color: $light-gray;
     }
 
+  }
+  .week-card:hover {
+    box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+    cursor: pointer;
   }
 
 }

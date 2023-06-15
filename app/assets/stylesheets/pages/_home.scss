@@ -6,8 +6,12 @@
 }
 
 html, body {
-  background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
+  // background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
   // background: white;
+  background-image: url('background-gradient.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 h1, h2, h3, h4, h5, h6 {
