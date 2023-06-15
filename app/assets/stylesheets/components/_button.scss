@@ -124,6 +124,11 @@
   color: $dd-blue-sp;
   text-decoration: none;
   font-size: 0.9em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ajouter-client-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
 }
 
 .back-btn {
@@ -168,7 +173,12 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
+  .btn-reservation:hover {
+    transform: scale(1.02);
+  }
+
 }
 
 .client-block {
@@ -195,8 +205,13 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .btn-client:hover {
+    transform: scale(1.02);
   }
 }
+
 
 .profile-box-btn {
   background-color: $white;
@@ -328,6 +343,12 @@
   font-size: 0.85em;
   border-radius: 50%;
   text-decoration: none;
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-share-link:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  color: $blue-sp;
 }
 
 .disclaimer-copy {
@@ -430,4 +451,19 @@
   position: relative;
   right: 15px;
   color: $blue-sp;
+}
+
+.profile-btn {
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.profile-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+}
+
+.logo-btn {
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.logo-btn:hover {
+  transform: scale(1.04);
 }

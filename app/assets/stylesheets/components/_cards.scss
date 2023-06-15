@@ -6,6 +6,7 @@
   padding: 0.55em 1em;
   margin: 0.6em;
   border-left: 3px solid $blue-sp;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   & h4 {
     color: $dd-blue-sp;
     font-size: 1em;
@@ -32,6 +33,10 @@
     padding-right: 1em;
   }
 
+}
+.card-horizontal-client:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  border-left: 8px solid $blue-sp;
 }
 
 .card-horizontal-booking {
@@ -123,6 +128,7 @@
   border-left: 3px solid $blue-sp;
   padding: 0.5em 1em;
   margin: 0.6em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   & h4 {
     font-size: 0.95em;
     margin-bottom: 0;
@@ -213,6 +219,10 @@
 
   }
 }
+.card-horizontal-pending:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  border-left: 8px solid $blue-sp;
+}
 
 .card-horizontal-booking-passed {
   color: $dd-blue-sp;
@@ -222,6 +232,8 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   padding: 0.5em 1em;
   margin: 0.6em;
+  border-left: 1px solid $blue-sp;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   & h4 {
     font-size: 0.95em;
     margin-bottom: 0;
@@ -286,6 +298,10 @@
   & .booking-status {
     font-size: 0.7em;
   }
+}
+.card-horizontal-booking-passed:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  border-left: 4px solid $blue-sp;
 }
 
 .daily-dispo-card {
@@ -362,6 +378,7 @@
   padding: 0.5em 1em;
   width: 100%;
   height: auto;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   & .date-text {
     font-weight: 600;
     font-size: 1em;
@@ -393,9 +410,15 @@
     font-weight: 600;
     text-align: center;
     margin: 0.34em 0.4em;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       color: $l-blue-sp;
     }
+  }
+
+  .add-slot:hover {
+    transform: scale(1.05);
+    cursor: pointer;
   }
 
   & .content-add {
@@ -420,6 +443,10 @@
   .dispo-slot-container {
     position: relative;
     margin: 0.7em 0.4em;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .dispo-slot-container:hover {
+    transform: scale(1.05);
   }
   .cancel-icon {
     position: absolute;
@@ -429,6 +456,10 @@
   }
 
 
+
+}
+.daily-dispo-card-user:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
 }
 
 .add-slot-profile {

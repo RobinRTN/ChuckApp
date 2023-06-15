@@ -2,7 +2,7 @@
   <div class="top-navbar-background" data-controller="scroll-nav" data-scroll-nav-target="navbar">
     <nav id="top-navbar" class="d-flex justify-content-between align-items-center">
 
-      <div class="logo">
+      <div class="logo logo-btn">
         <%= link_to root_path, class: "logo-landing" do %>
           <%= image_tag "chuck__1_-removebg-preview.png", class: "mt-1" %>
         <% end %>
@@ -17,11 +17,11 @@
         <%= link_to profile_path do %>
           <div class="profile-picture d-flex justify-content-center">
             <% if current_user.profile_picture.attached? %>
-              <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small" %>
+              <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small profile-btn" %>
             <% elsif current_user.avatar_url.present? %>
-              <%= image_tag current_user.avatar_url, class: 'avatar-small' %>
+              <%= image_tag current_user.avatar_url, class: 'avatar-small profile-btn' %>
             <% else %>
-              <%= image_tag "user.png", class: 'avatar-small' %>
+              <%= image_tag "user.png", class: 'avatar-small profile-btn' %>
             <% end %>
           </div>
         <%end%>
