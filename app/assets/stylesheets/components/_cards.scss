@@ -43,6 +43,8 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   padding: 0.5em 1em;
   margin: 0.6em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+
   & h4 {
     font-size: 0.95em;
     margin-bottom: 0;
@@ -106,6 +108,10 @@
   & .booking-status {
     font-size: 0.7em;
   }
+}
+.card-horizontal-booking:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  border-left: 8px solid $blue-sp;
 }
 
 .card-horizontal-booking-pending {

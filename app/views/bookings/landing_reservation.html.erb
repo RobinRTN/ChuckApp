@@ -88,8 +88,6 @@
     <div class="w-100 d-flex justify-content-center">
       <p class="mt-4 mb-3 round-button-blue"><%= @user.title %></p>
     </div>
-    <div class="d-flex justify-content-center flex-column align-items-center">
-      <p class= "p-2 text-justify mb-0"><%= @user.description %></p>
     <% unless @tags.nil? %>
       <div class="d-flex align-items-center justify-content-center flex-wrap my-3">
         <% @tags.each do | tag | %>
@@ -97,6 +95,8 @@
         <% end  %>
       </div>
     <% end %>
+    <div class="d-flex justify-content-center flex-column align-items-center">
+      <p class= "p-2 text-justify mb-0"><%= @user.description %></p>
 
       <!-- Image gallery -->
 
