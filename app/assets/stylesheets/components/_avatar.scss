@@ -34,6 +34,10 @@
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
+  border: solid 1px $d-blue-sp;
+  box-shadow: 0 0 20px -2px rgba(0,0,0,0.3);
+  // box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+
 }
 
 

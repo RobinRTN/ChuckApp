@@ -285,6 +285,7 @@
   text-align: center;
   margin: auto;
   padding: 0.1em 0.5em;
+  box-shadow: 0 0 18px -4px $blue-sp;
 }
 
 .round-button-l-blue {
@@ -367,11 +368,16 @@
   color: $d-blue-sp;
   font-size: 1em;
   font-weight: 400;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   // box-shadow: 0 0 4px $l-blue-sp;
   border: none;
   &.active {
     background-color: $blue-sp;
     color: $white;
+  }
+  &:hover {
+    transform: scale(1.02);
+    cursor: pointer;
   }
 }
 

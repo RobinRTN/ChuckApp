@@ -524,9 +524,19 @@
   }
 
 }
-.revenue-card:hover {
-  cursor: pointer;
-  transform: scale(1.03);
+
+
+.revenue-card {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+
+  @media screen and (max-width: 390px) {
+    &:hover {
+      transform: scale(1);
+    }
+  }
 }
 .revenue-card.collapse-transition  {
   background-color: $blue-sp;
@@ -553,9 +563,17 @@
     margin-bottom: 0.5em;
   }
 }
-.revenue-card-projeté:hover {
-  cursor: pointer;
-  transform: scale(1.03);
+.revenue-card-projeté {
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+  }
+
+  @media screen and (max-width: 390px) {
+    &:hover {
+      transform: scale(1);
+    }
+  }
 }
 .revenue-card-projeté.collapse-transition {
   background-color: $l-blue-sp;
@@ -876,7 +894,6 @@
 
     .form-check-input:hover {
       cursor: pointer !important;
-      transform: scale(1.02) !important;
     }
     i {
       color: $light-gray;
@@ -926,5 +943,16 @@
 }
 .card-text-area:focus {
   border: solid 1px $l-blue-sp;
+
+}
+
+.description-card {
+  padding: 1em;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  width: 93%;
+  font-size: 0.9em;
+  border-left: 3px solid $blue-sp;
 
 }
