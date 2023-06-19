@@ -6,7 +6,6 @@ class User < ApplicationRecord
   before_validation :full_address
   before_save :set_full_name
   before_save :set_token
-  before_save :generate_qr_code
   before_save :extract_billing_city
   before_save :check_excluded_fixed_weekly_slots
   before_destroy :delete_formules
@@ -62,30 +61,12 @@ class User < ApplicationRecord
   def onboarding_process?
     onboarding_process == true
   end
-
   def set_token
-    self.token ||= unique_token(full_name)
-  end
-
-  def unique_token(name)
-    base_token = name.parameterize
-    token = base_token
-    i = 1
-
-    while User.exists?(token: token)
-      token = "#{base_token}-#{i}"
-      i += 1
+    if self.token.nil?
+      self.token = unique_token(full_name)
+      # Call generate_qr_code method when a new token is generated
+      generate_qr_code
     end
-
-    token
-  end
-
-  def delete_formules
-    self.formules.destroy_all
-  end
-
-  def delete_groups
-    self.groups.destroy_all
   end
 
   def generate_qr_code
@@ -109,6 +90,29 @@ class User < ApplicationRecord
       content_type: 'image/png'
     )
   end
+
+
+  def unique_token(name)
+    base_token = name.parameterize
+    token = base_token
+    i = 1
+
+    while User.exists?(token: token)
+      token = "#{base_token}-#{i}"
+      i += 1
+    end
+
+    token
+  end
+
+  def delete_formules
+    self.formules.destroy_all
+  end
+
+  def delete_groups
+    self.groups.destroy_all
+  end
+
 
   def reservation_link(token)
     if Rails.env.production?
