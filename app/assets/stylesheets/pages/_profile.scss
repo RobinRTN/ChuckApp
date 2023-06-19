@@ -2,8 +2,10 @@
   width: 100%;
   padding: 1em;
   border-radius: 4px;
+
   .block-info-profile {
     background-color: white;
+
     padding: 0.5em 0.7em;
     border-radius: 5px;
     // box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
@@ -44,9 +46,14 @@
   text-decoration: none;
   transition: all 0.2s;
   padding-bottom: 0.5em;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 }
 .btn-profile:hover {
   color: $d-blue-sp;
   text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0 5px -2px rgba(0,0,0,0.2);
+  transform: scale(1.02);
 }

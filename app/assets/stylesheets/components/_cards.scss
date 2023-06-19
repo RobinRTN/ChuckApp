@@ -334,13 +334,16 @@
     text-decoration: none;
     padding: 0.5em 0.8em;
     border-radius: 4px;
-    transition-duration: 0.8s;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     background: $blue-sp;
     color: $ll-blue-sp;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-weight: 400;
     text-align: center;
-
+  }
+  & .disponibilites-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
   }
   & .btn-disponibilites {
     margin-top: 1em;
@@ -348,10 +351,15 @@
     text-decoration: none;
     padding: 0.2em 0.8em;
     border-radius: 3em;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     color: $blue-sp;
     font-size: 0.9em;
     font-weight: 400;
     border: none;
+  }
+  & .btn-disponibilites:hover {
+    transform: scale(1.02);
+    cursor: pointer;
   }
   .dispo-slot-container {
     position: relative;
@@ -465,7 +473,7 @@
 .add-slot-profile {
   text-decoration: none;
   border-radius: 4px;
-  transition-duration: 0.8s;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   background: $ll-blue-sp;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   font-weight: 600;
@@ -477,6 +485,10 @@
   i {
     color: $l-blue-sp;
   }
+}
+.add-slot-profile:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 

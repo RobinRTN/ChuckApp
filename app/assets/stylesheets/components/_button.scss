@@ -132,9 +132,14 @@
 }
 
 .back-btn {
-
   color: $blue-sp;
   font-size: 1.2em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.back-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  color: $d-blue-sp;
 }
 
 .reservation-block {
@@ -457,6 +462,12 @@
   position: relative;
   right: 15px;
   color: $blue-sp;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.change-button:hover {
+  cursor: pointer;
+  color: $d-blue-sp;
+  transform: scale(1.02);
 }
 
 .profile-btn {
