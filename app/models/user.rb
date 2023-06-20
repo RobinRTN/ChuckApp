@@ -62,7 +62,7 @@ class User < ApplicationRecord
     onboarding_process == true
   end
   def set_token
-    if self.token.nil?
+    if self.token.nil? || full_name_changed?
       self.token = unique_token(full_name)
       # Call generate_qr_code method when a new token is generated
       generate_qr_code
