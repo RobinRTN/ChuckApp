@@ -95,4 +95,8 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields" + args[:class], data: { id: id, fields: fields.gsub("\n", ""),  action: "click->add-formule-package#addFields" })
   end
 
+  def meta_image
+    image_path("Meta-Full-Logo.png")
+  end
+
 end
