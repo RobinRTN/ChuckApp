@@ -21,6 +21,7 @@
   padding: 0.5em 0.7em;
   border-radius: 5px;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  text-decoration: none;
 
   p {
     color: white;
@@ -28,6 +29,12 @@
     padding: 0;
     font-size: 0.9em;
   }
+}
+
+.block-link-profile:hover {
+  text-decoration: none;
+  box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+
 }
 
 .title-profile {

@@ -72,13 +72,15 @@
 .btn-minimal {
   color: $blue-sp !important;
   font-size: 0.9em !important;
+  font-weight: 500 !important;
   text-decoration: none;
   transition: all 0.2s;
 
 }
 .btn-minimal:hover {
-  color: $d-blue-sp;
+  color: $d-blue-sp !important;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-minimal-red {
@@ -438,6 +440,8 @@
   font-weight: 500;
   width: 45%;
   text-align: center;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+
   p {
     margin-bottom: none;
   }
@@ -446,6 +450,13 @@
     color: $white;
   }
 }
+
+.button-show-client:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+}
+
 
 .sponsor-btn {
   color: $d-blue-sp;

@@ -801,6 +801,8 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+
   }
   .mail-card {
     background-color: $white;
@@ -814,6 +816,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .call-card {
     background-color: $white;
@@ -827,6 +830,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .sms-card {
     background-color: $white;
@@ -840,8 +844,30 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
+}
+
+.whatsapp-card:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+}
+.call-card:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+}
+.mail-card:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+}
+.sms-card:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
 }
 
 
