@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour Maxx,</h1>
+    <p>Une nouvelle réservation a été créée par un client.</p>
+    <p>
+      <strong>Informations sur la réservation:</strong><br>
+      <strong>Identifiant du coach:</strong> <%= @booking.user.id %><br>
+      <strong>Nom du coach:</strong> <%= @booking.user.full_name %><br>
+      <strong>Identifiant du client:</strong> <%= @booking.client.id %><br>
+      <strong>Nom du client:</strong> <%= @booking.client.first_name %> <%= @booking.client.last_name %><br>
+      <strong>Formule de réservation:</strong> <%= @booking.formule.name %><br>
+      <strong>Date de début:</strong> <%= @booking.start_time %><br>
+      <strong>Date de fin:</strong> <%= @booking.end_time %><br>
+      <strong>Statut de la réservation:</strong> <%= @booking.status %>
+    </p>
+  </body>
+</html>

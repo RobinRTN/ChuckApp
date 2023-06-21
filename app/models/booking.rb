@@ -2,6 +2,17 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :client, optional: true
   belongs_to :formule, optional: true
+
+  after_create :send_email_announce, if: :client_type?
+
+  def client_type?
+    cancel_type == 'Client'
+  end
+
+  def send_email_announce
+    BookingMailer.send_email_announce(self).deliver_now if Rails.env.production?
+  end
+
   # scope to print out incoming accepted bookings
   scope :today, -> { where("start_time >= ? AND start_time < ? AND status = 'Accepted'  AND cancel_type != 'Cancelled'", Time.now, Date.today.end_of_day).order(:start_time) }
   scope :tomorrow, -> { where("start_time >= ? AND start_time < ? AND status = 'Accepted'  AND cancel_type != 'Cancelled'", Date.tomorrow.beginning_of_day, Date.tomorrow.end_of_day).order(:start_time) }

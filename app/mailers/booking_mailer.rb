@@ -54,4 +54,11 @@ class BookingMailer < ApplicationMailer
     @user = booking.user
     mail(to: @client.email, subject: 'Réservation annulée')
   end
+
+  def send_email_announce(booking)
+    @booking = booking
+    @user = booking.user
+    @client = booking.client
+    mail(to: 'lavoinemaxime@gmail.com', subject: 'Nouvelle réservation effectuée en prod !')
+  end
 end
