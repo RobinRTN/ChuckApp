@@ -161,6 +161,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @booking = Booking.find(params[:id])
     @client_data_hash = get_client_data(@booking.client.id)
     @marker = {
@@ -284,11 +285,11 @@ class BookingsController < ApplicationController
         else
           if params[:booking][:origin] == "date_new_finish"
             # Handle errors if the booking can't be saved
-            flash[:alert] = "Erreur de création contact client"
+            flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
             redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           else
              # Handle errors if the booking can't be saved
-             flash[:alert] = "Erreur de création contact client"
+             flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
              redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           end
         end
@@ -342,7 +343,7 @@ class BookingsController < ApplicationController
             redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           end
         else
-          flash[:alert] = "Erreur de création contact client"
+          flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
           redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
         end
       end

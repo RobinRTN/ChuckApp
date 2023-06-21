@@ -11,7 +11,7 @@ class Formule < ApplicationRecord
   private
 
   def set_default_address
-    self.address_line
+    self.address_line ||= self.user.address
   end
 
 end
