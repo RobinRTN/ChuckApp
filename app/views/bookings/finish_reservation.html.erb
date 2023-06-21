@@ -75,7 +75,7 @@
       <% end %>
 
       <p class="mt-4"><strong>Ajoute un message à ta demande 👇</strong></p>
-      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name}" } %>
+      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name} : niveau, envies particulières, etc." } %>
       <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4"%>
     <% end %>
       <div class="mt-3">
@@ -106,7 +106,7 @@
         <%= client_fields.input :formule, as: :hidden, input_html: { value: @formule.id }  %>
       <% end %>
       <p class="mt-4"><strong>Ajoute un message à ta demande</strong></p>
-      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name}" } %>
+      <%= f.input :message, label: false, input_html: {placeholder: "Message pour #{@user.first_name} : niveau, envies particulières, etc." } %>
       <%= f.button :submit, "Envoyer la demande de réservation", class: "btn-basic-bleu-large mt-4"%>
     <% end %>
       <div class="mt-3">
