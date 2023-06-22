@@ -24,9 +24,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .link-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .whatsapp-card {
     background-color: $light-gray;
@@ -34,10 +40,16 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
       font-size: 1.1em;
     }
+  }
+  .whatsapp-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .mail-card {
     background-color: $light-gray;
@@ -45,9 +57,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .mail-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .sms-card {
     background-color: $light-gray;
@@ -55,9 +73,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .sms-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .instagram-card {
     background-color: $light-gray;
@@ -65,9 +89,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .instagram-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .messenger-card {
     background-color: $light-gray;
@@ -75,9 +105,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .messenger-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .twitter-card {
     background-color: $light-gray;
@@ -85,9 +121,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .twitter-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   .facebook-card {
     background-color: $light-gray;
@@ -95,9 +137,15 @@
     padding-top: 0.35em;
     padding-bottom: 0.35em;
     width: 19%;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
     i {
       text-decoration: none;
     }
+  }
+  .facebook-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: $d-blue-sp;
   }
   &.opacity {
     opacity: 100%;
