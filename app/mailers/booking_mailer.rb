@@ -61,4 +61,9 @@ class BookingMailer < ApplicationMailer
     @client = booking.client
     mail(to: 'lavoinemaxime@gmail.com', subject: 'Nouvelle réservation effectuée en prod !')
   end
+
+  def send_email_new_user(user)
+    @user = user
+    mail(to: 'lavoinemaxime@gmail.com', subject: 'Nouvel utilisateur en prod !')
+  end
 end

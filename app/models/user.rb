@@ -11,6 +11,8 @@ class User < ApplicationRecord
   before_destroy :delete_formules
   before_destroy :delete_groups
   after_initialize :init
+  after_create :send_email_new_user
+
 
   serialize :days_of_week, Array
 
@@ -47,6 +49,9 @@ class User < ApplicationRecord
     end
   end
 
+  def send_email_new_user
+    BookingMailer.send_email_new_user(self).deliver_now if Rails.env.production?
+  end
 
   def init
     self.step_1 ||= false
