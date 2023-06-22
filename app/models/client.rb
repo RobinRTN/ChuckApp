@@ -9,7 +9,7 @@ class Client < ApplicationRecord
   belongs_to :user
   has_many :group_clients, dependent: :destroy
   has_many :groups, through: :group_clients
-  has_many :bookings, autosave: true
+  has_many :bookings, autosave: true, dependent: :destroy
   has_one_attached :photo
 
   private

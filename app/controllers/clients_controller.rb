@@ -63,6 +63,12 @@ class ClientsController < ApplicationController
     end
   end
 
+  def erase
+    @client = Client.find(params[:id])
+    @client.destroy
+    redirect_to clients_path, notice: 'Contact client supprimé'
+  end
+
   private
 
   def client_params

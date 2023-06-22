@@ -994,3 +994,11 @@
   border-left: 3px solid $blue-sp;
 
 }
+
+.booking-detail-card {
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.booking-detail-card:hover {
+  color: $blue-sp;
+  cursor: pointer;
+}

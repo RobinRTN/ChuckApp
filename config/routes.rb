@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   patch 'onboarding/:step', to: 'onboarding#update'
 
   put '/clients/:id/update_note', to: 'clients#update_note', as: :update_note
+  delete 'clients/:id/erase', to: 'clients#erase', as: 'erase_client'
 
   resources :users, only: [] do
     collection do
