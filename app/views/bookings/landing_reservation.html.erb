@@ -25,8 +25,10 @@
         <div class="modal fade" id="landing-qrcode" tabindex="-1" aria-labelledby="landing-qrcode" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-              <div class="modal-body" style="margin: auto;">
+              <div class="modal-body" style="margin: auto; display: flex; justify-content: center; flex-direction: column;">
                 <%= image_tag(url_for(current_user.qrcode),  class: 'img-fluid') %>
+                <p class="text-center px-3">Scanne ce QR Code pour accéder directement à ta page de réservation Chuck 💪</p>
+                <a href="<%= url_for(current_user.qrcode) %>" download="QR_code" class="btn btn-primary mt-2">Télécharger mon QR Code</a>
               </div>
             </div>
           </div>

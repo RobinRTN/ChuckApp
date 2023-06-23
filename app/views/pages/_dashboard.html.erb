@@ -50,7 +50,7 @@
 
     <% unless @client_rankings.empty? %>
       <div class="client-block mb-4">
-        <em class="mb-3">Client du mois 👑</em>
+        <p><em class="mb-3">Client du mois </em>👑</p>
           <%= link_to client_path(@client_rankings.first[0].id), class: "text-decoration-none" do %>
             <div class="d-flex align-items-center card-horizontal-client justify-content-between">
               <div class="d-flex">
@@ -76,7 +76,7 @@
 
     <% unless @upcoming_bookings.empty? %>
       <div class="bookings-block">
-        <em class="mb-3">Tes prochaines réservations 👇</em>
+        <p><em class="mb-3">Tes prochaines réservations </em>👇</p>
           <% @upcoming_bookings.take(3).each do |booking| %>
             <%= render partial: 'bookings/cards', locals: { booking: booking, previous_page: "root_path" } %>
           <% end %>

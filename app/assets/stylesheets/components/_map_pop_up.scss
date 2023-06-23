@@ -20,14 +20,15 @@
   .button-map {
     button {
     text-decoration: none;
-    border-radius: 2px;
-    background: $l-blue-sp;
+    border-radius: 1px;
+    background: $blue-sp;
     color: $ll-blue-sp;
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
-    font-weight: 400;
+    font-weight: 500;
     border: none;
     font-size: 0.8em;
     font-family: $body-font;
+    width: 100%;
     }
   }
 }
