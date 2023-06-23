@@ -99,4 +99,10 @@ module ApplicationHelper
     image_path("Meta-Full-Logo.png")
   end
 
+  def any_future_slots?(weekly_datetimes)
+    weekly_datetimes.any? do |daily_datetimes|
+      daily_datetimes.any? { |datetime| datetime > Time.zone.now }
+    end
+  end
+
 end
