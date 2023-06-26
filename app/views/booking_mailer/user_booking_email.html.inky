@@ -33,11 +33,12 @@
           <td><strong>Adresse :</strong></td>
           <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
         </tr>
-        <tr>
-          <td><strong>Client :</strong></td>
-          <td><%= @client.full_name %></td>
-        </tr>
       </table>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <a href="http://www.chuckapp.fr/bookings/<%= @booking.id %>" class="button-email">Voir la réservation sur Chuck</a>
     </columns>
   </row>
   <row>

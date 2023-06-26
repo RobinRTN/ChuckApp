@@ -59,6 +59,9 @@ Rails.application.routes.draw do
       put :refuse
     end
   end
+
+  put '/cancel_booking/:cancellation_token', to: 'bookings#cancel', as: 'cancel_booking'
+
   resources :clients
   resources :formules
   resources :groups

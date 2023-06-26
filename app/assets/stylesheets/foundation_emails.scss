@@ -46,3 +46,24 @@ td {
   border-radius: 5px;
   margin-bottom: 15px;
 }
+
+.button-email {
+  background: #5761f2;
+  color: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  padding: 0.8em 1em;
+  font-family: Raleway, sans-serif;
+  font-size: 0.8em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  border-radius: 0.2em;
+  transition: all 0.2s;
+  font-weight: 400 !important;
+}
+
+
+.button-email:hover {
+  box-shadow: none !important;
+  color: white;
+  background-color: #414cec !important;
+}

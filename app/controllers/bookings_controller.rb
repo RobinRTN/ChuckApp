@@ -193,6 +193,8 @@ class BookingsController < ApplicationController
 
   def confirm
     @booking = Booking.find(params[:id])
+    @user = @booking.user
+    @client = @booking.client
     @booking.update(status: "Accepted")
     flash[:notice] = "Demande de réservation acceptée !"
     redirect_to bookings_path
@@ -202,9 +204,20 @@ class BookingsController < ApplicationController
 
   def refuse
     @booking = Booking.find(params[:id])
+    @user = @booking.user
+    @client = @booking.client
     @booking.update(status: "Refused")
     flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
+    BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later
+    BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later
+  end
+
+  def cancel
+    @booking = Booking.find_by!(cancellation_token: params[:cancellation_token])
+    @user = @booking.user
+    @client = @booking.client
+    @booking.update(status: 'Refused')
     BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later
     BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later
   end
@@ -434,7 +447,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, :status, client: [:email, :first_name, :last_name, :phone_number, :photo, :id], back: [:datetime, :formule])
+    params.require(:booking).permit(:start_time, :end_time, :payment_status, :price, :user_id, :booking_type, :message, :formule_id, :status, :cancellation_token, client: [:email, :first_name, :last_name, :phone_number, :photo, :id], back: [:datetime, :formule])
   end
 
   def client_booking_params

@@ -2,6 +2,8 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :client, optional: true
   belongs_to :formule, optional: true
+  before_create :generate_cancellation_token
+
 
   after_create :send_email_announce, if: :client_type?
 
@@ -42,6 +44,12 @@ class Booking < ApplicationRecord
 
   def duration_in_minutes
     ((end_time - start_time) / 60).round
+  end
+
+  private
+
+  def generate_cancellation_token
+    self.cancellation_token = SecureRandom.uuid
   end
 
 

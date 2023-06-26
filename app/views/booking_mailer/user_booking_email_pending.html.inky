@@ -40,6 +40,11 @@
       </table>
     </columns>
   </row>
+   <row>
+    <columns>
+      <a href="http://www.chuckapp.fr/bookings/<%= @booking.id %>" class="button-email">Voir la réservation sur Chuck</a>
+    </columns>
+  </row>
   <row>
     <columns>
       <p>Veuillez confirmer ou refuser la réservation dans votre espace client.</p>
