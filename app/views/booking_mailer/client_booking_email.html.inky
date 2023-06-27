@@ -42,6 +42,11 @@
   </row>
   <row>
     <columns>
+      <a href="<%= @url %>" class="button-email">Annuler la réservation</a>
+    </columns>
+  </row>
+  <row>
+    <columns>
       <p>Nous vous souhaitons une excellente expérience !</p>
     </columns>
   </row>

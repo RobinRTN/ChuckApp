@@ -1,0 +1,39 @@
+<div class="container wrapper">
+  <div class="mx-3">
+
+   <p class="mx-3 mb-4 text-center"><strong>Récapitulatif de la réservation</strong></p>
+    <div class="recap-card mx-3">
+      <div class="d-flex align-items-center justify-content-start finish-card">
+        <div class="d-flex justify-content-center">
+          <% if @user.profile_picture.attached? %>
+            <%= cl_image_tag @user.profile_picture.key, crop: :fill, class: "avatar-bigger" %>
+          <% elsif @user.avatar_url.present? %>
+            <%= image_tag @user.avatar_url, class: 'avatar-bigger' %>
+          <% else %>
+            <%= image_tag "user.png", class: 'avatar-bigger' %>
+          <% end %>
+        </div>
+        <div class="d-flex flex-column">
+          <h4><%= @user.full_name %></h4>
+          <p><%= @user.title %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex mt-3 mx-4 border-bottom pb-3">
+      <div class="finish-details-card flex-column align-items-start justify-content-start">
+        <p><i class="fa-solid fa-fire me-2"></i> <%= @formule.name %></p>
+        <p><i class="fa-solid fa-clock me-2"></i> <%= @formule.duration %> minutes</p>
+        <p class="btn-disponibilites"><i class="fa-solid fa-coins me-2"></i> <%= @formule.price.to_i %> €</p>
+        <p><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column mt-3">
+      <p class="my-2 text-start">Si vous souhaitez modifier votre réservation, veuillez contacter directement <%= @user.first_name %>.</p>
+      <%= form_with url: cancel_booking_path(@booking.cancellation_token), method: :put do %>
+        <input type="submit" value="Annuler la réservation" class="btn-minimal-red" />
+      <% end %>
+    </div>
+
+
+  </div>
+</div>

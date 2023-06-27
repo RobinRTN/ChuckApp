@@ -61,6 +61,8 @@ Rails.application.routes.draw do
   end
 
   put '/cancel_booking/:cancellation_token', to: 'bookings#cancel', as: 'cancel_booking'
+  get '/confirm_cancel/:cancellation_token', to: 'bookings#confirm_cancel', as: 'confirm_cancel_booking'
+
 
   resources :clients
   resources :formules

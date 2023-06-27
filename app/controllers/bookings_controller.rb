@@ -218,8 +218,18 @@ class BookingsController < ApplicationController
     @user = @booking.user
     @client = @booking.client
     @booking.update(status: 'Refused')
-    BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later if Rails.env.production?
+    BookingMailer.user_booking_email_refuse_client(@user, @booking).deliver_later if Rails.env.production?
+    BookingMailer.client_booking_email_refuse_client(@client, @booking).deliver_later if Rails.env.production?
+  end
+
+  def confirm_cancel
+    @booking = Booking.find_by(cancellation_token: params[:cancellation_token])
+    @user = @booking.user
+    @formule = @booking.formule
+    unless @booking
+      flash[:alert] = 'Mauvais identifiant veuillez réessayer ultérieurement'
+      redirect_to root_path
+    end
   end
 
   def create

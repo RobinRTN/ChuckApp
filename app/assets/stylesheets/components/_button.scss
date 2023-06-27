@@ -20,6 +20,7 @@
   text-decoration: none;
   border-radius: 0.2em;
   transition: all 0.2s;
+  border: none;
 }
 
 .btn-basic-bleu:hover {
@@ -41,6 +42,7 @@
   transition: all 0.2s;
   width: 100% !important;
   max-width: 250px;
+  border: none;
 }
 
 .btn-basic-bleu-large-form:hover {
@@ -88,6 +90,8 @@
   font-size: 0.9em;
   text-decoration: none;
   transition: all 0.2s;
+  background-color: none !important;
+  border: none;
 
 }
 .btn-minimal-red:hover {

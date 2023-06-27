@@ -48,4 +48,20 @@ class BookingMailerPreview < ActionMailer::Preview
     booking = Booking.first # Replace this with a suitable Booking object
     BookingMailer.client_booking_email_cancel(client, booking)
   end
+
+  def send_email_announce
+    BookingMailer.send_email_announce(Booking.first)
+  end
+
+  def send_email_new_user
+    BookingMailer.send_email_new_user(User.first)
+  end
+
+  def user_booking_email_refuse_client
+    BookingMailer.user_booking_email_refuse_client(User.first, Booking.first)
+  end
+
+  def client_booking_email_refuse_client
+    BookingMailer.client_booking_email_refuse_client(Client.first, Booking.first)
+  end
 end
