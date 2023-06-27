@@ -4,9 +4,9 @@ require 'active_support/time'
 require 'json'
 
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
+  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel]
 
-  before_action :check_onboarding_status, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create]
+  before_action :check_onboarding_status, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel]
 
   def check_onboarding_status
     if current_user && !current_user.step_1
