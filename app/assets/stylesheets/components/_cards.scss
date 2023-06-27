@@ -1003,7 +1003,7 @@
   cursor: pointer;
 }
 
-.mail-card {
+.mail-card-cancel {
   background-color: $white;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   border-radius: 4px;
@@ -1019,7 +1019,7 @@
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.sms-card {
+.sms-card-cancel {
   background-color: $white;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   border-radius: 4px;
@@ -1034,12 +1034,12 @@
   margin-right: 10px;
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.mail-card:hover {
+.mail-card-cancel:hover {
   cursor: pointer;
   transform: scale(1.06);
   box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
 }
-.sms-card:hover {
+.sms-card-cancel:hover {
   cursor: pointer;
   transform: scale(1.06);
   box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
