@@ -29,7 +29,7 @@
       <p class="mt-2 mb-5 title-onboarding">1 - Informations personnelles</p>
     </div>
 
-    <div class="form-onboarding">
+    <div class="form-onboarding" data-controller="onboarding-loader" data-action="submit->onboarding-loader#submit">
       <%= simple_form_for(@user, url: onboarding_path) do |f| %>
           <p class="onboarding-form-description">Dis en plus sur toi et ton activité 🕺</p>
           <div class="row">
@@ -73,6 +73,13 @@
           <%= f.button :submit, "Etape suivante", class: "btn-basic-bleu-large-onboard mt-4", value: "Etape suivante   👉" %>
 
         <% end %>
+
+        <div data-onboarding-loader-target="loader" class="d-none big-spinner" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
+          <div class="spinner-grow text-primary my-4" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <p class="mx-4 text-center">Nous commençons à contruire ta <strong>page Chuck</strong> avec tes <strong>informations et photos</strong> 🛠</p>
+        </div>
       </div>
 
 

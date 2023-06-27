@@ -152,3 +152,8 @@
   font-size: 0.8em;
   margin-bottom: 0.3em;
 }
+
+.big-spinner .spinner-grow {
+  width: 8rem;  /* Default spinner size is 2rem, 4 times larger would be 8rem */
+  height: 8rem;
+}

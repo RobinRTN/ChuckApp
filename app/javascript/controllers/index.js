@@ -55,6 +55,9 @@ application.register("map", MapController)
 import NotesController from "./notes_controller"
 application.register("notes", NotesController)
 
+import OnboardingLoaderController from "./onboarding_loader_controller"
+application.register("onboarding-loader", OnboardingLoaderController)
+
 import ReservationController from "./reservation_controller"
 application.register("reservation", ReservationController)
 
