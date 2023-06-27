@@ -29,9 +29,24 @@
     </div>
     <div class="d-flex justify-content-center flex-column mt-3">
       <p class="my-2 text-start">Si vous souhaitez modifier votre réservation, veuillez contacter directement <%= @user.first_name %>.</p>
-      <%= form_with url: cancel_booking_path(@booking.cancellation_token), method: :put do %>
-        <input type="submit" value="Annuler la réservation" class="btn-minimal-red" />
-      <% end %>
+
+      <div class="d-flex justify-content-center">
+        <!-- Share link via email -->
+        <a href="mailto:<%= @user.email %>?subject=Modifier%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%d %B') %>&amp;body=Bonjour,%20je%20souhaiterais%20modifier%20la%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %>" class="d-flex flex-column align-items-center justify-content-center mail-card me-4" target="_blank">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+
+        <!-- Share link via text message -->
+        <a href="sms:<%=@user.phone_number%>?&body=Bonjour,%20je%20souhaiterais%20modifier%20la%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %>" class="d-flex flex-column align-items-center justify-content-center sms-card ">
+          <i class="fa-regular fa-message"></i>
+        </a>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <%= form_with url: cancel_booking_path(@booking.cancellation_token), method: :put do %>
+          <input type="submit" value="Annuler la réservation" class="btn-minimal-red" />
+        <% end %>
+      </div>
     </div>
 
 

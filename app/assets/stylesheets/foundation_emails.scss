@@ -67,3 +67,25 @@ td {
   color: white;
   background-color: #414cec !important;
 }
+
+.button-cancel {
+  color: #EF5B5B;
+  font-size: 0.9em;
+  text-decoration: none;
+  transition: all 0.2s;
+  background-color: none !important;
+  border: none;
+  font-family: Raleway, sans-serif;
+  font-size: 0.8em;
+  text-decoration: none;
+  border-radius: 0.2em;
+  transition: all 0.2s;
+  font-weight: 400 !important;
+}
+
+
+.button-cancel:hover {
+  box-shadow: none !important;
+  color:#050b54 ;
+  text-decoration: none;
+}
