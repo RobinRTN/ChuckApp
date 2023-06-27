@@ -2,7 +2,7 @@
   <row>
     <columns>
       <h5>Bonjour <%= @user.first_name %>,</h5>
-      <p>La demande de réservation suivante a été <strong>refusée</strong> par <%= @client.first_name %> :</p>
+      <p>La demande de réservation suivante a été <strong>refusée</strong> par <%= @client.first_name %>.</p>
       <p>Informations sur la réservation :</p>
     </columns>
   </row>
