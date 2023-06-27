@@ -214,7 +214,6 @@ class BookingsController < ApplicationController
   end
 
   def cancel
-    raise
     @booking = Booking.find_by!(cancellation_token: params[:cancellation_token])
     @user = @booking.user
     @client = @booking.client

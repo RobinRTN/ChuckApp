@@ -64,6 +64,7 @@
 
   <row>
     <columns>
+      <p>Un email a également été envoyé à <%= @user.first_name %>. </p>
       <p>Nous espérons vous revoir bientôt. Nous vous invitons à entrer en contact avec <%= @user.first_name %> si besoin.</p>
     </columns>
   </row>

@@ -33,6 +33,10 @@
           <td><strong>Adresse :</strong></td>
           <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
         </tr>
+        <tr>
+          <td><strong>Client :</strong></td>
+          <td><%= @client.full_name %></td>
+        </tr>
       </table>
     </columns>
   </row>
@@ -43,6 +47,7 @@
   </row>
   <row>
     <columns>
+      <p>Un email a également été envoyé à <%= @client.first_name %>. </p>
       <p>Nous vous souhaitons une excellente expérience !</p>
     </columns>
   </row>

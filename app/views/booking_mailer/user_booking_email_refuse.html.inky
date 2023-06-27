@@ -42,7 +42,13 @@
   </row>
   <row>
     <columns>
+      <p>Un email a également été envoyé à <%= @client.first_name %>. </p>
       <p>Nous espérons vous revoir bientôt.</p>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <a href="http://www.chuckapp.fr/" class="button-email">Mon espace Chuck</a>
     </columns>
   </row>
 </container>

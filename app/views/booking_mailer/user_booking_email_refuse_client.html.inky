@@ -42,7 +42,13 @@
   </row>
   <row>
     <columns>
-      <p> Nous vous invitons à entrer en contact avec <%= @client.first_name %> pour plus d'informations.</p>
+      <p>Un email a également été envoyé à <%= @client.first_name %>. </p>
+      <p> Nous vous invitons à entrer en contact avec <%= @client.first_name %> pour plus d'informations - informations pour le contacter sur votre espace chuck.</p>
+    </columns>
+  </row>
+   <row>
+    <columns>
+      <a href="http://www.chuckapp.fr/" class="button-email">Mon espace Chuck</a>
     </columns>
   </row>
 </container>

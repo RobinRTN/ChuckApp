@@ -69,6 +69,7 @@
   </row>
   <row>
     <columns>
+      <p>Un email a également été envoyé à <%= @user.first_name %>. </p>
       <p>Vous serez informé par email dès que la réservation sera confirmée ou refusée.</p>
     </columns>
   </row>
