@@ -3,7 +3,7 @@
     <columns>
       <h5>Bonjour <%= @client.first_name %>,</h5>
       <p>La demande de réservation suivante a été <strong>refusée</strong> par l'utilisateur :</p>
-      <p>Informations sur la réservation :</p>
+      <p><strong>Informations sur la réservation :</strong></p>
     </columns>
   </row>
   <row>
@@ -33,16 +33,43 @@
           <td><strong>Adresse :</strong></td>
           <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
         </tr>
-        <tr>
-          <td><strong>Utilisateur :</strong></td>
-          <td><%= @user.full_name %></td>
-        </tr>
+
       </table>
     </columns>
   </row>
   <row>
     <columns>
+      <p><strong>Informations sur l'utilisateur :</strong></p>
+    </columns>
+  </row>
+
+  <row>
+    <columns small="12" large="6">
+      <table>
+        <tr>
+          <td><strong>Nom :</strong></td>
+          <td><%= @user.full_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Email :</strong></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Téléphone :</strong></td>
+          <td><%= @user.phone_number %></td>
+        </tr>
+      </table>
+    </columns>
+  </row>
+
+  <row>
+    <columns>
       <p>Nous espérons vous revoir bientôt. Nous vous invitons à entrer en contact avec <%= @user.first_name %> pour plus d'informations.</p>
+    </columns>
+  </row>
+  <row>
+    <columns>
+      <%= link_to "Effectuer une autre réservation", landing_reservation_url(@user.token), class: "button-email" %>
     </columns>
   </row>
 </container>

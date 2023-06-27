@@ -3,7 +3,7 @@
     <columns>
       <h5>Bonjour <%= @client.first_name %>,</h5>
       <p>Une nouvelle réservation a été effectuée et est <strong>en attente de confirmation</strong> de <%= @user.first_name %>.</p>
-      <p>Informations sur la réservation :</p>
+      <p><strong>Informations sur la réservation :</strong></p>
     </columns>
   </row>
   <row>
@@ -33,16 +33,38 @@
           <td><strong>Adresse :</strong></td>
           <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
         </tr>
-        <tr>
-          <td><strong>Utilisateur :</strong></td>
-          <td><%= @user.full_name %></td>
-        </tr>
+
       </table>
     </columns>
   </row>
   <row>
     <columns>
-      <a href="<%= @url %>" class="button-email">Annuler la réservation</a>
+      <p><strong>Informations sur l'utilisateur :</strong></p>
+    </columns>
+  </row>
+
+  <row>
+    <columns small="12" large="6">
+      <table>
+        <tr>
+          <td><strong>Nom :</strong></td>
+          <td><%= @user.full_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Email :</strong></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Téléphone :</strong></td>
+          <td><%= @user.phone_number %></td>
+        </tr>
+      </table>
+    </columns>
+  </row>
+
+  <row>
+    <columns>
+      <a href="<%= @url %>" class="button-cancel">Annuler ou modifier la réservation</a>
     </columns>
   </row>
   <row>
