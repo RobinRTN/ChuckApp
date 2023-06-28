@@ -77,8 +77,8 @@ class User < ApplicationRecord
   end
 
   def set_default_times
-    self.start_time ||= '9:00'
-    self.end_time ||= '18:00'
+    self.daily_start_time ||= '9:00'
+    self.daily_end_time ||= '18:00'
   end
 
   def generate_qr_code
