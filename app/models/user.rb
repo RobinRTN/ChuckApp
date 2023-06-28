@@ -10,6 +10,7 @@ class User < ApplicationRecord
   before_save :check_excluded_fixed_weekly_slots
   before_destroy :delete_formules
   before_destroy :delete_groups
+  before_save :set_default_times
   after_initialize :init
   after_create :send_email_new_user
 
@@ -66,12 +67,18 @@ class User < ApplicationRecord
   def onboarding_process?
     onboarding_process == true
   end
+
   def set_token
     if self.token.nil? || full_name_changed?
       self.token = unique_token(full_name)
       # Call generate_qr_code method when a new token is generated
       generate_qr_code
     end
+  end
+
+  def set_default_times
+    self.start_time ||= '9:00'
+    self.end_time ||= '18:00'
   end
 
   def generate_qr_code
