@@ -77,9 +77,10 @@ class User < ApplicationRecord
   end
 
   def set_default_times
-    self.daily_start_time ||= '9:00'
-    self.daily_end_time ||= '18:00'
+    self.daily_start_time = '9:00' if self.daily_start_time.blank?
+    self.daily_end_time = '18:00' if self.daily_end_time.blank?
   end
+  
 
   def generate_qr_code
     qrcode = RQRCode::QRCode.new(reservation_link(self.token))
