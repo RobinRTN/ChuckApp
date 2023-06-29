@@ -4,8 +4,12 @@ export default class extends Controller {
   static targets = ["slot"];
 
   connect() {
-    const parsedValue = JSON.parse(this.hiddenInput.value);
-    this.excludedFixedWeeklySlots = Array.isArray(parsedValue) ? parsedValue : [];
+    let value = this.hiddenInput.value;
+     if (value) {
+      this.excludedFixedWeeklySlots = JSON.parse(value);
+    } else {
+      this.excludedFixedWeeklySlots = [];
+    }
     this.refreshSlots();
   }
 
