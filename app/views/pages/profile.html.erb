@@ -22,7 +22,7 @@
 
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
-    <div class="my-3">
+    <div class="my-2">
       <p class="title-profile">Gallerie photos 📸</p>
     </div>
     <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { add_gallery_pictures_target: "form" }  } do |form| %>
@@ -77,7 +77,7 @@
       <% end %>
 
       <div class="block-info-profile">
-        <p class="title-profile text-align-center">Informations réservations 👇</p>
+        <%# <p class="title-profile text-align-center">Informations réservations 👇</p> %>
 
         <%= link_to edit_info_users_path, class: "text-decoration-none" do %>
           <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
@@ -103,6 +103,13 @@
         <%= link_to edit_indispo_users_path, class: "text-decoration-none" do %>
           <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
             <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i>Indisponibilités hebdomadaires</p>
+            <div><i class="fa-solid fa-angle-right"></i></div>
+          </div>
+        <% end %>
+
+        <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
+          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <p class="mb-0"><i class="fa-sharp fa-solid fa-gear me-2"></i></i>Compte et mot de passe</p>
             <div><i class="fa-solid fa-angle-right"></i></div>
           </div>
         <% end %>

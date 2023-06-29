@@ -1,54 +1,60 @@
 <div class="container wrapper">
-  <div class="px-3 pb-4 d-flex align-items-center">
-    <%= link_to profile_path, class: "text-decoration-none" do %>
-      <div class="back-btn me-3">
-        <i class="fa-solid fa-arrow-left"></i>
-      </div>
-    <% end %>
-    <h2 class="m-0">Email et mot de passe</h2>
-  </div>
+  <div class="mx-3">
 
-
-
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs px-3">
-      <p>Adresse email</p>
-      <%= f.input :email, required: true, autofocus: true, label: false %>
-
-      <p>Mot de passe</p>
-      <%= f.input :current_password,
-                  hint: "Pas touche ! Nous avons besoin de ton mot de passe actuel pour confirmer les modifications",
-                  required: true,
-                  label: false,
-                  input_html: { autocomplete: "current-password" } %>
-      <div class="d-flex justify-content-center mb-3">
-        <button class="navbar-toggler btn-modifier-dropdown d-flex justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          Modifier mot de passe 👇
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <div class="d-flex justify-content-between align-items-center">
+        <%= link_to profile_path, class: "text-decoration-none" do %>
+          <div class="back-btn mt-2 mb-5">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
         <% end %>
-        <p>Nouveau mot de passe</p>
-        <%= f.input :password,
-                    required: false,
-                    label: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <p>Confirmation nouveau mot de passe</p>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    label: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <div class="form-actions d-flex justify-content-center">
-          <%= f.button :submit, "Confirmer modification", class: "btn-modifier-confirmer mt-3" %>
-        </div>
-      <% end %>
+        <p class="mt-2 mb-5 title-onboarding m-auto">Email et mot de passe</p>
       </div>
 
 
 
-    </div>
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs px-3">
+        <p>Adresse email</p>
+        <%= f.input :email, required: true, autofocus: true, label: false %>
+
+        <p>Mot de passe</p>
+        <%= f.input :current_password,
+                    hint: "Pas touche ! Nous avons besoin de ton mot de passe actuel pour confirmer les modifications",
+                    required: true,
+                    label: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <div class="d-flex justify-content-center mb-3">
+          <button class="navbar-toggler btn-basic-bleu-large-onboard d-flex justify-content-center" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            Modifier mot de passe 👇
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <p>Nouveau mot de passe</p>
+          <%= f.input :password,
+                      required: false,
+                      label: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <p>Confirmation nouveau mot de passe</p>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      label: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <div class="form-actions d-flex justify-content-center">
+            <%= f.button :submit, "Confirmer modification", class: "btn-basic-bleu-large-onboard mt-3" %>
+          </div>
+        <% end %>
+        </div>
+
+
+
+
+
+      </div>
+  </div>
 </div>
