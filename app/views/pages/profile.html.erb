@@ -78,32 +78,37 @@
 
       <div class="block-info-profile">
         <p class="title-profile text-align-center">Informations réservations 👇</p>
-        <%= link_to edit_info_users_path, class: "btn-profile" do %>
-          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+
+        <%= link_to edit_info_users_path, class: "text-decoration-none" do %>
+          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
             <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Informations personnelles</p>
             <div><i class="fa-solid fa-angle-right"></i></div>
           </div>
         <% end %>
-        <%= link_to edit_formules_users_path, class: "btn-profile" do %>
-          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+
+        <%= link_to edit_formules_users_path, class: "text-decoration-none" do %>
+          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
             <p class="mb-0"><i class="fa-solid fa-fire-flame-curved me-2"></i>Prestations proposées</p>
             <div><i class="fa-solid fa-angle-right"></i></div>
           </div>
         <% end %>
-        <%= link_to edit_dispo_users_path, class: "btn-profile" do %>
-          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
-            <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2"></i>Disponibilités hebdomadaires</p>
+
+        <%= link_to edit_dispo_users_path, class: "text-decoration-none" do %>
+          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2 text-decoration-none"></i>Disponibilités hebdomadaires</p>
             <div><i class="fa-solid fa-angle-right"></i></div>
           </div>
         <% end %>
-        <%= link_to edit_indispo_users_path, class: "btn-profile" do %>
-          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between block-info-profile">
+
+        <%= link_to edit_indispo_users_path, class: "text-decoration-none" do %>
+          <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
             <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i>Indisponibilités hebdomadaires</p>
             <div><i class="fa-solid fa-angle-right"></i></div>
           </div>
         <% end %>
-        <%= link_to reservation_link(current_user.token) do %>
-          <div class= "d-flex mt-5 d-flex align-items-center justify-content-center block-link-profile">
+
+        <%= link_to reservation_link(current_user.token), class: "text-decoration-none" do %>
+          <div class= "d-flex mt-5 mt-2 justify-content-center btn-link-profile">
               <p class="p-0"></i>Lien de partage</p>
           </div>
         <% end %>
