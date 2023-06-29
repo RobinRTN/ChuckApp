@@ -1,14 +1,21 @@
-<% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
-    <%= notice %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
-<% end %>
-<% if alert %>
-  <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
-    <%= alert %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  </div>
+<% if flash.any? %>
+	<div class="flashes-container">
+		<% flash.each do |type, msg| %>
+		<div class="flash flash-<%= type %>"
+				data-controller="flash"
+				data-flash-duration-value="4000"
+				data-action="mouseover->flash#stopTimeout mouseleave->flash#startTimeOut"
+			>
+				<div class="flash-content">
+					<span class="flash-close" data-action="click->flash#remove">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /> </svg>
+						</span>
+						<p class="flash-message">
+							<%= msg %>
+						</p>
+					</div>
+				</div>
+			<% end %>
+		</div>
 <% end %>

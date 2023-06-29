@@ -34,6 +34,9 @@ application.register("dispo", DispoController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import FlashController from "./flash_controller"
+application.register("flash", FlashController)
+
 import FormToggleController from "./form_toggle_controller"
 application.register("form-toggle", FormToggleController)
 
