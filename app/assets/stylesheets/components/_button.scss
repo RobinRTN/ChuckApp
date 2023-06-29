@@ -348,7 +348,6 @@
 
 .btn-share-link {
   margin-right: 1em;
-  background-color: $white;
   color: $l-blue-sp;
   background-color: $light-gray;
   padding: 6px;
@@ -358,6 +357,22 @@
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .btn-share-link:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  color: $blue-sp;
+}
+
+.btn-share-link-big {
+  margin-right: 1em;
+  color: $l-blue-sp;
+  background-color: $light-gray;
+  padding: 16px;
+  font-size: 1.2em;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-share-link-big:hover {
   transform: scale(1.08);
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $blue-sp;

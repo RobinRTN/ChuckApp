@@ -27,12 +27,24 @@
 
 
       <div class="date-details-revenu-card" data-revenu-target="content">
-        <% @user_bookings_passed.each do |booking| %>
-          <p class="first-block-details"><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
-        <%end%>
-      <% @user_bookings_rest.each do |booking| %>
-          <p class="second-block-details"><%=l(booking.start_time, format: '%d/%m') %> - <%= booking.price.to_i %>€ - <%= booking.client.full_name%></p>
-        <%end%>
+        <% if @user_bookings_passed.empty? && @user_bookings_rest.empty? %>
+            <p>Le détail de tes revenus mensuels s'affiche ici.<br> Partage ton lien pour obtenir des réservations 🙂</p>
+          <% else %>
+            <% @user_bookings_passed.each do |booking| %>
+              <p class="first-block-details">
+                <%= l(booking.start_time, format: '%d/%m') %> -
+                <%= booking.price.to_i %>€ -
+                <%= booking.client.full_name %>
+              </p>
+            <% end %>
+            <% @user_bookings_rest.each do |booking| %>
+              <p class="second-block-details">
+                <%= l(booking.start_time, format: '%d/%m') %> -
+                <%= booking.price.to_i %>€ -
+                <%= booking.client.full_name %>
+              </p>
+            <% end %>
+          <% end %>
       </div>
 
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>

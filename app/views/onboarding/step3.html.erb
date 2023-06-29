@@ -51,21 +51,23 @@
       <div class="row">
         <div class="col-6">
           <%= f.input :daily_start_time, as: :select,
-                        include_blank: "A partir de",
-                        collection: time_selection,
-                        required: true,
-                        autofocus: true,
-                        label: false,
-                        input_html: { placeholder: "A partir de", value: @user.daily_start_time || "09:00" } %>
+                      include_blank: "A partir de",
+                      collection: time_selection,
+                      required: true,
+                      autofocus: true,
+                      label: false,
+                      selected: @user.daily_start_time || "09:00",
+                      input_html: { placeholder: "A partir de" } %>
         </div>
         <div class="col-6">
           <%= f.input :daily_end_time, as: :select,
-                        include_blank: "Jusqu'à",
-                        collection: time_selection,
-                        required: true,
-                        autofocus: true,
-                        label: false,
-                        input_html: { placeholder: "Jusqu'à", value: @user.daily_end_time || "18:00" } %>
+                      include_blank: "Jusqu'à",
+                      collection: time_selection,
+                      required: true,
+                      autofocus: true,
+                      label: false,
+                      selected: @user.daily_end_time || "18:00",
+                      input_html: { placeholder: "Jusqu'à" } %>
         </div>
       </div>
       <p class="onboarding-form-description-small"><em>Tu indiqueras tes pauses et tes indisponibilités hebdomadaires à la prochaine étape </em></p>

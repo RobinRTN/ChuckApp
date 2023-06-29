@@ -8,9 +8,9 @@ class User < ApplicationRecord
   before_save :set_token
   before_save :extract_billing_city
   before_save :check_excluded_fixed_weekly_slots
+  before_save :set_default_times
   before_destroy :delete_formules
   before_destroy :delete_groups
-  before_save :set_default_times
   after_initialize :init
   after_create :send_email_new_user
 
@@ -80,7 +80,7 @@ class User < ApplicationRecord
     self.daily_start_time = '9:00' if self.daily_start_time.blank?
     self.daily_end_time = '18:00' if self.daily_end_time.blank?
   end
-  
+
 
   def generate_qr_code
     qrcode = RQRCode::QRCode.new(reservation_link(self.token))
