@@ -476,6 +476,7 @@ class BookingsController < ApplicationController
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
+    puts "Parsed in GENERATE: #{excluded_fixed_weekly_slots.inspect}"
 
     user ||= current_user
     given_days_of_week = user.days_of_week
