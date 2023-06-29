@@ -541,7 +541,7 @@
 .revenue-card {
   &:hover {
     cursor: pointer;
-    transform: scale(1.03);
+    // transform: scale(1.03);
   }
 
   @media screen and (max-width: 390px) {
@@ -578,7 +578,8 @@
 .revenue-card-projeté {
   &:hover {
     cursor: pointer;
-    transform: scale(1.03);
+    
+    // transform: scale(1.03);
   }
 
   @media screen and (max-width: 390px) {
