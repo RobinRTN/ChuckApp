@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="add-gallery-pictures"
 export default class extends Controller {
-  static targets = ["fileInput", "form"];
+  static targets = ["fileInput", "form", "loader"];
 
   connect() {
     console.log("fully connected")
@@ -10,6 +10,8 @@ export default class extends Controller {
     this.fileInputTarget.addEventListener('change', (event) => {
       if (event.target.files.length > 0) {
         this.formTarget.submit()
+        this.loaderTarget.classList.remove("d-none"); // Show the loading animation on form submit
+
       }
     });  }
 

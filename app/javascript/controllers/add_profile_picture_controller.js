@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "fileInputProfile", "formProfile" ]
+  static targets = [ "fileInputProfile", "formProfile", "loader" ]
 
   addImages() {
     this.fileInputProfileTarget.click()
@@ -12,6 +12,7 @@ export default class extends Controller {
       if (event.target.files.length > 0) {
         this.formProfileTarget.submit()
       }
+      this.loaderTarget.classList.remove("d-none"); // Show the loading animation on form submit
     })
   }
 }
