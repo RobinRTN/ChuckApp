@@ -1,0 +1,108 @@
+
+// success colors
+$green-flash: rgba(96, 211, 148, 1);
+$lightgreen-flash: rgba(175, 233, 201, 1);
+$darkgreen-flash: rgba(44, 160, 96, 1);
+// alert colors
+$red-flash: #EF5B5B;
+$lightred-flash: #f58787;
+$darkred-flash: #331010;
+// notice colors
+$blue-flash: #5761f2;
+$lightblue-flash: #b1b6f9;
+$darkblue-flash: #050b54;
+// warning colors
+$yellow-flash: rgba(250, 192, 94, 1);
+$lightyellow-flash: rgba(252, 217, 156, 1);
+$darkyellow-flash: rgba(218, 140, 7, 1);
+
+.flashes-container {
+	position: fixed;
+	z-index: 9998; bottom: 5.2rem;
+	right: 1.5rem;
+	max-width: 450px;
+
+  @media (max-width: 768px) {
+    max-width: 55vw;
+  }
+	.flash {
+		transition-duration: all cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+	  .flash-content {
+			position: relative;
+      opacity: 0.93;
+			border-radius: 4px;
+		  margin-top: 0.5rem;
+			padding: 0.7em 1.5em;
+      box-shadow: 0 0 20px -2px rgba(0,0,0,0.3);
+    }
+		 .flash-close {
+				position: absolute;
+			  transition: all ease 0.35s;
+			  transform: translateY(-50%);
+			  top: 50%;
+			  left: 0.5rem;
+			  right: auto;
+			  cursor: pointer;
+			  opacity: 0.7;
+			  border-radius: 0.25rem;
+			  &:hover {
+					opacity: 1;
+				}
+				svg {
+					height: 1.5rem;
+					width: 1.5rem;
+				}
+			}
+		 .flash-message {
+        margin-left: 1.5em ;
+				display: block;
+				width: 100%;
+				text-align: start;
+				font-size: 0.85rem;
+				line-height: 1.5rem;
+				pointer-events: none;
+        margin-bottom: 0 !important;
+			}
+			&.flash-success {
+				.flash-content {
+					 border-color: $darkgreen-flash;
+					 background-color: $lightgreen-flash;
+					 color: $darkgreen-flash;
+				}
+				.flash-close:hover { background-color: $green-flash; }
+				}
+				&.flash-notice {
+					.flash-content {
+						 border-color: $darkblue-flash;
+						 background-color: $lightblue-flash;
+						 color: $darkblue-flash;
+					 }
+				.flash-close:hover {	background-color: $blue-flash; }
+				}
+				&.flash-warning {
+					.flash-content {
+						border-color: $darkyellow-flash;
+						background-color: $lightyellow-flash;
+						color: $darkyellow-flash;
+					}
+				.flash-close:hover { background-color: $yellow-flash; }
+				}
+				&.flash-alert {
+					.flash-content {
+						 border-color: $darkred-flash;
+						 background-color: $lightred-flash;
+						 color: $darkred-flash;
+					 }
+				.flash-close:hover { background-color: $red-flash; }
+				}
+			}
+		}
+		.slide-right {
+			 animation: slide-right .75s ease forwards;
+		}
+
+@keyframes slide-right {
+	0% { transform: translateX(0%); }
+	25% { transform: translateX(-10%); }
+	100% { transform: translateX(200%) rotate(0deg); }
+}
