@@ -19,7 +19,6 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
-      current_user.update(needs_onboarding: true)
       if current_user&.needs_onboarding
         @show_onboarding = true
       end
