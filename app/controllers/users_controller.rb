@@ -109,6 +109,11 @@ class UsersController < ApplicationController
     redirect_to profile_path
   end
 
+  def finish_onboarding
+    current_user.update(needs_onboarding: false)
+    head :ok # This sends an empty response with a 200 OK status
+  end
+
   private
 
   def user_info_params

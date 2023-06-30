@@ -1,7 +1,7 @@
 
 
 <div class="container wrapper">
-  <div class="mx-3">
+  <div class="mx-3" id="mois-demo">
     <h4 class="my-3"></h4>
     <div class="revenue-block mb-5"  data-controller="revenu">
       <p class="my-4 round-button-grey"><%= l(Date.today, format: '%A %e %B').capitalize %></p>
@@ -28,7 +28,7 @@
 
       <div class="date-details-revenu-card" data-revenu-target="content">
         <% if @user_bookings_passed.empty? && @user_bookings_rest.empty? %>
-            <p>Le détail de tes revenus mensuels s'affiche ici.<br> Partage ton lien pour obtenir des réservations 🙂</p>
+          <p>Ici, tu peux suivre tes revenus mensuels en détail.<br> N'oublie pas de partager ton lien pour booster tes réservations ! 😉</p>
           <% else %>
             <% @user_bookings_passed.each do |booking| %>
               <p class="first-block-details">
@@ -59,6 +59,12 @@
         <p class="ms-2"><span class="dot-big me-1"></span>Grosse journée 🤩</p>
       </div>
 
+
+    <% if @show_onboarding %>
+      <div data-controller="demo">
+        <div class="btn-basic-bleu text-center" data-action="click->demo#start">Commencer une démo répide</div>
+      </div>
+    <% end %>
 
     <% unless @client_rankings.empty? %>
       <div class="client-block mb-4">

@@ -27,6 +27,7 @@
   box-shadow: none !important;
   color: $ll-blue-sp;
   background-color: $darker-blue-sp !important;
+  cursor: pointer;
 }
 
 .btn-basic-bleu-large-form {
@@ -63,6 +64,12 @@
   border-radius: 0.2em;
   transition: all 0.2s;
   width: 100% !important;
+  border: none !important;
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(0.95);
+  }
 }
 
 .btn-basic-bleu-large-onboard:hover {

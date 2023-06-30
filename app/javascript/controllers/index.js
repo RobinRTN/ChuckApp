@@ -28,6 +28,9 @@ application.register("copy-to-clipboard", CopyToClipboardController)
 import DatetimeController from "./datetime_controller"
 application.register("datetime", DatetimeController)
 
+import DemoController from "./demo_controller"
+application.register("demo", DemoController)
+
 import DispoController from "./dispo_controller"
 application.register("dispo", DispoController)
 

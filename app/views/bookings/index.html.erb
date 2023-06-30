@@ -12,8 +12,8 @@
 
   <% if @today_bookings.empty? && @tomorrow_bookings.empty? && @this_week_bookings.empty? && @next_week_bookings.empty? && @next_bookings.empty? && @today_pending_bookings.empty? && @tomorrow_pending_bookings.empty? && @this_week_pending_bookings.empty? && @next_week_pending_bookings.empty? && @after_pending_bookings.empty? && @passed_bookings.empty? %>
     <div class="mx-3 mt-3 text-center">
-      <strong>Aucune réservation à date</strong>
-      <p class="my-3">Ajoute tes premières réservations manuellement ou partage ta page perso à tes (futurs) clients !</p>
+      <strong>Pas encore de réservation ?</strong>
+      <p class="my-3">Lance-toi et ajoute tes premières réservations manuellement ou partage ta page perso pour attirer tes (futurs) clients !</p>
     </div>
     <div class="d-flex justify-content-center">
       <%= link_to reservation_link(current_user.token), class: "btn-share-link-big" do %>

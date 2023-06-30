@@ -10,11 +10,11 @@
 
       <div class="d-flex align-items-center justify-content-between ">
         <div>
-          <%= link_to reservation_link(current_user.token), class: "btn-share-link" do %>
+          <%= link_to reservation_link(current_user.token), class: "btn-share-link", id: "share-link-demo" do %>
             <i class="fa-solid fa-link"></i>
           <% end %>
         </div>
-        <%= link_to profile_path do %>
+        <%= link_to profile_path, id: "profile-link-demo" do %>
           <div class="profile-picture d-flex justify-content-center">
             <% if current_user.profile_picture.attached? %>
               <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small profile-btn" %>

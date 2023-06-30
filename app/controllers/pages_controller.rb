@@ -19,18 +19,21 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
-    @user_bookings_calendar
-    @user_bookings_passed = current_user.bookings.passed_current_month
-    @user_bookings_projected = current_user.bookings.current_month_projected
-    @user_bookings_rest = current_user.bookings.current_month_rest
-    @user_bookings_number = @user_bookings_passed.count
-    @user_bookings_number_proj = @user_bookings_projected.count - @user_bookings_passed.count
-    @passed_month_revenues = @user_bookings_passed.sum(&:price)
-    @projected_month_revenues = @user_bookings_projected.sum(&:price)
-    @client_rankings = rank_clients_by_revenue()
-    @upcoming_bookings = current_user.bookings.upcoming
+      if current_user&.needs_onboarding
+        @show_onboarding = true
+      end
+      @user_bookings_calendar
+      @user_bookings_passed = current_user.bookings.passed_current_month
+      @user_bookings_projected = current_user.bookings.current_month_projected
+      @user_bookings_rest = current_user.bookings.current_month_rest
+      @user_bookings_number = @user_bookings_passed.count
+      @user_bookings_number_proj = @user_bookings_projected.count - @user_bookings_passed.count
+      @passed_month_revenues = @user_bookings_passed.sum(&:price)
+      @projected_month_revenues = @user_bookings_projected.sum(&:price)
+      @client_rankings = rank_clients_by_revenue()
+      @upcoming_bookings = current_user.bookings.upcoming
 
-    @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", 3.months.ago, 3.months.from_now)
+      @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", 3.months.ago, 3.months.from_now)
     end
   end
 
