@@ -1,0 +1,28 @@
+/* Style the "Next" button */
+.introjs-disabled {
+  box-shadow: none !important;
+}
+
+.introjs-nextbutton {
+  color: $dd-blue-sp !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  font-family: Raleway, sans-serif !important;
+  text-decoration: none !important;
+  border-radius: 0.2em !important;
+  transition: all 0.2s !important;
+  border: none !important;
+  font-size: 0.9em !important;
+}
+
+/* Style the "Back" button */
+.introjs-prevbutton {
+  color: $dd-blue-sp !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  font-family: Raleway, sans-serif !important;
+  text-decoration: none !important;
+  border-radius: 0.2em !important;
+  transition: all 0.2s !important;
+  border: none !important;
+  font-size: 0.8em !important;
+
+}
