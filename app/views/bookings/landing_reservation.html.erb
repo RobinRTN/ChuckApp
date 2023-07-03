@@ -72,7 +72,16 @@
 
       </div>
     </div>
+    <div class="d-flex justify-content-center">
+      <p><i class="fa-solid fa-eye me-2"></i><%= pluralize(Ahoy::Event.where(name: "Viewed coach", properties: {coach_id: @user.id}).count, "vue") %> sur profil</p>
+    </div>
+    <%# Ahoy::Event.where(name: "Viewed coach", properties: {coach_id: @user.id}).select('DISTINCT visit_id').count %>
+
+
+
   <% end %>
+
+
 
   <div class="mx-3">
     <div class="profile-picture d-flex justify-content-center pt-3 pb-3">

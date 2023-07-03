@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
     @user = User.find_by(token: reservation_params[:token])
     @formules = @user.formules
     @tags = @user.tags
+    ahoy.track "Viewed coach", {coach_id: @user.id} unless current_user == @user
   end
 
   def choose_reservation

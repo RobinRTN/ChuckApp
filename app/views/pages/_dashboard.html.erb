@@ -50,6 +50,12 @@
       <p class="réservations-ligne"><%=@user_bookings_number%> réservations effectuées, <%=@user_bookings_number_proj%> à venir</p>
     </div>
 
+      <% if @show_onboarding %>
+        <div data-controller="demo" class="mb-3">
+          <div class="btn-basic-bleu text-center" data-action="click->demo#start">Commencer une démo répide</div>
+        </div>
+      <% end %>
+
       <div class="calendar mt-5 mb-2" id="events_calendar">
         <%= render partial: 'calendar', locals: { events: @calendar_bookings }  %>
       </div>
@@ -59,12 +65,6 @@
         <p class="ms-2"><span class="dot-big me-1"></span>Grosse journée 🤩</p>
       </div>
 
-
-    <% if @show_onboarding %>
-      <div data-controller="demo" class="mb-3">
-        <div class="btn-basic-bleu text-center" data-action="click->demo#start">Commencer une démo répide</div>
-      </div>
-    <% end %>
 
     <% unless @client_rankings.empty? %>
       <div class="client-block mb-4">

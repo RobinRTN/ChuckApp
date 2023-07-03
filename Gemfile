@@ -99,3 +99,4 @@ gem 'rails_12factor'
 gem "rails_admin", "3.0"
 gem "sassc-rails"
 gem "blazer"
+gem 'ahoy_matey'
