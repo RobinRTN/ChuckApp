@@ -165,3 +165,18 @@
 .top-navbar-background.navbar-white {
   background-color: white;
 }
+
+
+.fixed-left {
+  width: 240px; /* Adjust width to your preference */
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto; /* Allows scrolling if the content is too long */
+  align-items: flex-start;
+  padding: 1.3em 1.3em;
+  .nav-item {
+
+  }
+}

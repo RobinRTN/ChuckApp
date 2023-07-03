@@ -4,6 +4,11 @@
   padding-top: 1em;
   max-width: 560px;
 }
+@media (min-width: 992px) {
+  .container {
+    margin-top: 0;
+  }
+}
 
 html, body {
   // background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);

@@ -1,21 +1,75 @@
+
 <% if user_signed_in? %>
-  <div class="top-navbar-background" data-controller="scroll-nav" data-scroll-nav-target="navbar">
-    <nav id="top-navbar" class="d-flex justify-content-between align-items-center">
+  <div class="d-lg-none">
+    <div class="top-navbar-background" data-controller="scroll-nav" data-scroll-nav-target="navbar">
+      <nav id="top-navbar" class="d-flex justify-content-between align-items-center">
 
-      <div class="logo logo-btn">
-        <%= link_to root_path, class: "logo-landing" do %>
-          <%= image_tag "chuck__1_-removebg-preview.png", class: "mt-1" %>
-        <% end %>
-      </div>
-
-      <div class="d-flex align-items-center justify-content-between ">
-        <div>
-          <%= link_to reservation_link(current_user.token), class: "btn-share-link", id: "share-link-demo" do %>
-            <i class="fa-solid fa-link"></i>
+        <div class="logo logo-btn">
+          <%= link_to root_path, class: "logo-landing" do %>
+            <%= image_tag "chuck__1_-removebg-preview.png", class: "mt-1" %>
           <% end %>
         </div>
-        <%= link_to profile_path, id: "profile-link-demo" do %>
-          <div class="profile-picture d-flex justify-content-center">
+
+        <div class="d-flex align-items-center justify-content-between ">
+          <div>
+            <%= link_to reservation_link(current_user.token), class: "btn-share-link", id: "share-link-demo" do %>
+              <i class="fa-solid fa-link"></i>
+            <% end %>
+          </div>
+          <%= link_to profile_path, id: "profile-link-demo" do %>
+            <div class="profile-picture d-flex justify-content-center">
+              <% if current_user.profile_picture.attached? %>
+                <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small profile-btn" %>
+              <% elsif current_user.avatar_url.present? %>
+                <%= image_tag current_user.avatar_url, class: 'avatar-small profile-btn' %>
+              <% else %>
+                <%= image_tag "user.png", class: 'avatar-small profile-btn' %>
+              <% end %>
+            </div>
+          <%end%>
+        </div>
+
+      </nav>
+    </div>
+    <%= render "shared/navigation", locals: { pending_booking: @pending_booking } %>
+  </div>
+
+  <div class="d-none d-lg-block">
+    <nav class="navbar fixed-left navbar-light bg-light">
+      <!-- Same links as in your mobile bottom navbar -->
+      <ul class="navbar-nav flex-column">
+        <li class="logo logo-btn mb-3">
+          <%= link_to root_path, class: 'nav-link' do %>
+            <%= image_tag "chuck__1_-removebg-preview.png", class: "mt-1" %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to root_path, class: 'nav-link' do %>
+            <i class="fa-solid fa-house me-2"></i> Tableau de bord
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to clients_path, class: 'nav-link' do %>
+            <i class="fa-solid fa-address-book me-2"></i> Contacts
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to bookings_path, class: 'nav-link' do %>
+            <i class="fa-regular fa-calendar me-2"></i> Réservations
+          <% end %>
+        </li>
+        <li class="nav-item mb-3">
+          <%= link_to disponibilites_path, class: 'nav-link' do %>
+            <i class="fa-regular fa-calendar-check me-2"></i> Disponibilités
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to reservation_link(current_user.token), class: 'nav-link', id: "share-link-demo" do %>
+            <i class="fa-solid fa-link me-2"></i> Lien de réservation
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to profile_path, class: 'nav-link', id: "profile-link-demo" do %>
             <% if current_user.profile_picture.attached? %>
               <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small profile-btn" %>
             <% elsif current_user.avatar_url.present? %>
@@ -23,13 +77,10 @@
             <% else %>
               <%= image_tag "user.png", class: 'avatar-small profile-btn' %>
             <% end %>
-          </div>
-        <%end%>
-      </div>
-
+            Mon profil
+          <%end%>
+        </li>
+      </ul>
     </nav>
   </div>
-
-  <%= render "shared/navigation", locals: { pending_booking: @pending_booking } %>
-
-  <% end %>
+<% end %>
