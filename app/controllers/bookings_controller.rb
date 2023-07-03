@@ -44,6 +44,9 @@ class BookingsController < ApplicationController
     else
       excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
     end
+    puts "HERE IN CHOOSE THE EXCLUDED IS THE FOLLOWING"
+    puts "================="
+    p excluded_fixed_weekly_slots
     @user_bookings = @user.bookings.upcoming_all
     # Generate the available datetimes using the generate_datetimes function
     full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
@@ -477,8 +480,6 @@ class BookingsController < ApplicationController
     weekly_datetimes = []
     daily_datetimes = []
     current_time = Time.zone.now
-    puts "Parsed in GENERATE: #{excluded_fixed_weekly_slots.inspect}"
-
     user ||= current_user
     given_days_of_week = user.days_of_week
     converted_available_slots = convert_available_slots(user.availables)
@@ -512,7 +513,9 @@ class BookingsController < ApplicationController
               fw_day_of_week = fw_slot[0]
               fw_start_time = Time.zone.parse(fw_slot[1])
               fw_end_time = Time.zone.parse(fw_slot[2])
-              if slot.strftime("%A") == fw_day_of_week && slot >= Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0) && slot + slot_duration.minutes <= Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
+              fw_start_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0)
+              fw_end_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
+              if slot.strftime("%A") == fw_day_of_week && (slot...slot + slot_duration.minutes).overlaps?(fw_start_time_on_slot_day...fw_end_time_on_slot_day)
                 excluded = true
                 break
               end
@@ -524,15 +527,12 @@ class BookingsController < ApplicationController
           # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
           converted_available_slots.each do |available_slot|
             # target_day = Date.parse(day) + (7 * week_num)
-            puts "Checking available_slot: #{available_slot.to_date}, target_day: #{target_day.to_date}, current_time: #{current_time.to_date}"
             if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
-              puts "Adding #{available_slot} to daily_datetimes"
               daily_datetimes << available_slot
             end
           end
 
           daily_datetimes.sort!
-          puts "daily_datetimes after sorting: #{daily_datetimes}"
 
           # Call sort_bookings after adding converted_available_slots
           sort_bookings(daily_datetimes, slot_duration, user)

@@ -144,7 +144,7 @@ class User < ApplicationRecord
   end
 
   def check_excluded_fixed_weekly_slots
-    self.excluded_fixed_weekly_slots = [] if self.excluded_fixed_weekly_slots == "\"[]\""
+    self.excluded_fixed_weekly_slots = [] if self.excluded_fixed_weekly_slots.blank? || self.excluded_fixed_weekly_slots == "\"[]\""
   end
 
   def extract_billing_city
