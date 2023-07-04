@@ -39,7 +39,7 @@
             <p class="text-center"><%= english_to_french_day(day) %></p>
             <% time_slots = generate_time_slots(@user.daily_start_time, @user.daily_end_time) %>
             <% time_slots.each_with_index do |time_slot, index| %>
-              <div data-action="mousedown->slot-selector#startDrag mouseenter->slot-selector#continueDrag mouseup->slot-selector#stopDrag" data-slot-selector-target="slot" data-day="<%= day %>" data-start-time="<%= time_slot.strftime("%H:%M") %>" data-end-time="<%= (time_slot + 30.minutes).strftime("%H:%M") %>" class="time-slot-break">
+              <div data-action="mousedown->slot-selector#startDrag mouseenter->slot-selector#continueDrag mouseup->slot-selector#stopDrag touchstart->slot-selector#startDrag touchmove->slot-selector#continueDrag touchend->slot-selector#stopDrag" data-slot-selector-target="slot" data-day="<%= day %>" data-start-time="<%= time_slot.strftime("%H:%M") %>" data-end-time="<%= (time_slot + 30.minutes).strftime("%H:%M") %>" class="time-slot-break">
                 <%= time_slot.strftime("%H:%M") %>
               </div>
             <% end %>
