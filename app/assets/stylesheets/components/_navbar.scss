@@ -176,7 +176,54 @@
   overflow-y: auto; /* Allows scrolling if the content is too long */
   align-items: flex-start;
   padding: 1.3em 1.3em;
-  .nav-item {
+  background-color: #ffffffa0 !important;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 6px;
+  z-index: 9998;
 
+  .link-left-chuck {
+    background-color: $blue-sp;
+    box-shadow: 0 0 18px -4px $blue-sp;
+    border-radius: 4px;
+    margin-right: 0.5em;
+    margin-bottom: 2em;
+    a {
+      p {
+        margin-bottom: none !important;
+        color: $white !important;
+      }
+      i {
+        margin-bottom: none !important;
+        color: $white !important;
+
+      }
+    }
+  }
+  .link-left-chuck:hover {
+    box-shadow: 0 0 3px -1px $blue-sp;
+    transform: scale(1.04);
+
+  }
+
+  .nav-item {
+    position: relative;
+    padding: 0em 0.4em;
+    border-radius: 4px;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    &.active {
+      background-color: white;
+      box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+      transform: scale(1.05);
+      color: $d-blue-sp !important;
+    }
+  }
+  .red-dot {
+    position: absolute; /* Position it absolute to its relative parent */
+    top: 50%; /* Align it vertically in the middle of the list item */
+    right: -5px; /* Place it to the right of the list item. Adjust this value as needed */
+    width: 7px; /* Adjust these values as needed */
+    height: 7px;
+    background-color: $red-sp;
+    border-radius: 50%; /* Makes the dot circular */
+    transform: translateY(-50%);
   }
 }

@@ -55,6 +55,9 @@ application.register("hello", HelloController)
 import ImageAppearController from "./image_appear_controller"
 application.register("image-appear", ImageAppearController)
 
+import LeftNavbarController from "./left_navbar_controller"
+application.register("left-navbar", LeftNavbarController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 

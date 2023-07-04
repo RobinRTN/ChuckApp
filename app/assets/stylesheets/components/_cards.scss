@@ -219,9 +219,10 @@
 
   }
 }
-.card-horizontal-pending:hover {
+.card-horizontal-booking-pending:hover {
   box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
   border-left: 8px solid $blue-sp;
+  cursor: pointer;
 }
 
 .card-horizontal-booking-passed {

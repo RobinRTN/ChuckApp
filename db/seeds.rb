@@ -4,11 +4,7 @@
 # Examples:
 require 'open-uri'
 require 'active_support/time'
-Time.zone = 'Europe/Paris'
 
-
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 puts "Deleting Bookings"
 Booking.destroy_all
 
@@ -38,26 +34,17 @@ User.destroy_all
 puts "Starting to generate the users and activities..."
 puts "_________________"
 
-u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Thomas", last_name: "Courtois", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris", daily_start_time: "9:00", daily_end_time: "18:00" })
+u1 = User.create!({ full_name: "Thomas Courtois", title: "Professeur de Tennis", hourly_rate: 70, email: 'robinrettien@test.com', password: 'password', first_name: "Thomas", last_name: "Courtois", payment_BIC: "BFBKFRP1", payment_IBAN: "FR3330002005500000157841Z25", billing_address_line1: "43 avenue de Saxe", billing_zip_code: 75007, billing_city: "Paris", daily_start_time: "9:00", daily_end_time: "18:00", address:"43 Avenue De Saxe, 75007 Paris, France", phone_number: "0607539063", step_1: true, step_2: true, step_3: true, step_4: true })
 
-u2 = User.create!({ full_name: "Maxime Lavoine", title: "Professeur de Yoga Indien", hourly_rate: 90, email: 'maximelavoine@test.com', password: 'password', first_name: "Maxime", last_name: "Lavoine", payment_BIC: "BFBKFKP1", payment_IBAN: "FR3330002105500000157841Z25", billing_address_line1: "15 avenue de Kelber", billing_zip_code: 75011, billing_city: "Paris", daily_start_time: "9:00", daily_end_time: "18:00" })
-
-u3 = User.create!({ email: 'robin@gmail.com', password: 'password'})
-u3.confirm
-u3.save!
-
-u4 = User.create!({ email: 'maxime@gmail.com', password: 'password'})
-u4.confirm
-u4.save!
 
 puts "Just created the two founders' accounts successfully"
 puts "_________________"
 
-u1.profile_picture.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683284933/Screenshot_2023-05-05_at_13.08.46_fsikhe.png'),
-  filename: 'thomas.png',
-  content_type: 'image/png'
-)
+# u1.profile_picture.attach(
+#   io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683284933/Screenshot_2023-05-05_at_13.08.46_fsikhe.png'),
+#   filename: 'thomas.png',
+#   content_type: 'image/png'
+# )
 u1.confirm
 u1.save!
 
@@ -73,42 +60,33 @@ u1.gallery_pictures.attach(
 )
 u1.save!
 
-u2.profile_picture.attach(
-  io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1676381101/Maxime_v3rukm.jpg'),
-  filename: 'maxime.jpg',
-  content_type: 'image/jpg'
-)
-u2.confirm
-u2.save!
-puts "Just created the two founders' pictures successfully"
-puts "_________________"
 
 
-f1 = Formule.create!({  name: "Tennis découverte", field: 'Tennis', duration: 60, price: 80, description: "Pour les jeunes et moins jeune, ressentez les premières sensations du tennis et des joie de frapper la petite balle jaune" })
-f2 = Formule.create!({  name: "Tennis perfectionnement", field: 'Tennis', duration: 120, price: 150, description: "Tu maitrises les bases du tennis ? Viens perfectionner ta technique pour être plus tranchant sur chaque point" })
-f3 = Formule.create!({  name: "Tennis expert", field: 'Tennis', duration: 60, price: 100, description: "Réservé aux joueurs expérimentés et en forme. On travaille les petits détails pour passer le prochain pallier !" })
+f1 = Formule.create!({ user: u1, name: "Tennis découverte", field: 'Tennis', duration: 60, price: 80, description: "Pour les jeunes et moins jeune, ressentez les premières sensations du tennis et des joie de frapper la petite balle jaune"})
+f2 = Formule.create!({ user: u1, name: "Tennis perfectionnement", field: 'Tennis', duration: 120, price: 150, description: "Tu maitrises les bases du tennis ? Viens perfectionner ta technique pour être plus tranchant sur chaque point" })
+f3 = Formule.create!({ user: u1, name: "Tennis expert", field: 'Tennis', duration: 60, price: 100, description: "Réservé aux joueurs expérimentés et en forme. On travaille les petits détails pour passer le prochain pallier !" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
-f4 = Formule.create!({  name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
-f5 = Formule.create!({  name: "Préparation physique G 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
-f6 = Formule.create!({  name: "Préparation physique G 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
+f4 = Formule.create!({ user: u1, name: "Stretching Américain", field: 'Fitness', duration: 60, price: 80, description: "Très célèbre stretching de la côte californienne, idéal pour les ischios" })
+f5 = Formule.create!({ user: u1, name: "Préparation physique G 1", field: 'Fitness', duration: 60, price: 100, description: "Niveau 1, améliore tes capacités physiques et ta VMA" })
+f6 = Formule.create!({ user: u1, name: "Préparation physique G 2", field: 'Fitness', duration: 60, price: 100, description: "Niveau 2, améliore tes capacités physiques et ta VMA" })
 puts "Just created the 3 formula successfully"
 puts "_________________"
 
-tags = [
-  "remise en forme",
-  "tennis",
-  "service",
-  "perfectionnement",
-  "fitness",
-  "souplesse",
-  "gainage"
-]
+# tags = [
+#   "remise en forme",
+#   "tennis",
+#   "service",
+#   "perfectionnement",
+#   "fitness",
+#   "souplesse",
+#   "gainage"
+# ]
 
-tags.each do |tag_name|
-  u1.tags.create!(name: tag_name)
-end
+# tags.each do |tag_name|
+#   u1.tags.create!(name: tag_name)
+# end
 
 puts "Just created tags successfully"
 puts "_________________"
@@ -210,17 +188,17 @@ puts "_________________"
 puts "Just uploaded the pictures for clients successfully"
 puts "_________________"
 
-g1 = Group.create!(name: 'Tennis débutants', user_id: User.first.id)
-g2 = Group.create!(name: 'Super clients', user_id: User.first.id)
-g3 = Group.create!(name: 'Tennis experts', user_id: User.first.id)
+# g1 = Group.create!(name: 'Tennis débutants', user_id: User.first.id)
+# g2 = Group.create!(name: 'Super clients', user_id: User.first.id)
+# g3 = Group.create!(name: 'Tennis experts', user_id: User.first.id)
 
 # Add clients to groups
-g1.clients << [c1, c2, c3, c4, c5]
-g2.clients << [c6, c7, c8, c9]
-g3.clients << [c10, c11, c12, c13]
+# g1.clients << [c1, c2, c3, c4, c5]
+# g2.clients << [c6, c7, c8, c9]
+# g3.clients << [c10, c11, c12, c13]
 
-puts "Just created 3 groups with clients successfully"
-puts "_________________"
+# puts "Just created 3 groups with clients successfully"
+# puts "_________________"
 # set the current month as a range of dates
 current_month_range = Date.current.all_month
 
