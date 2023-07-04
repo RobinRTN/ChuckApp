@@ -2,6 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["slot"];
+  dragging = false;
+
 
   connect() {
     let value = this.hiddenInput.value;
@@ -11,6 +13,14 @@ export default class extends Controller {
       this.excludedFixedWeeklySlots = [];
     }
     this.refreshSlots();
+
+    window.addEventListener('mouseup', this.stopDrag.bind(this));
+
+  }
+
+  disconnect() {
+    // Remove global mouseup event listener
+    window.removeEventListener('mouseup', this.stopDrag.bind(this));
   }
 
   refreshSlots() {
@@ -45,6 +55,21 @@ export default class extends Controller {
     }
 
     this.updateHiddenInput();
+  }
+
+  startDrag(event) {
+    this.dragging = true;
+    this.toggle(event);
+  }
+
+  continueDrag(event) {
+    if (this.dragging) {
+      this.toggle(event);
+    }
+  }
+
+  stopDrag() {
+    this.dragging = false;
   }
 
   get hiddenInput() {
