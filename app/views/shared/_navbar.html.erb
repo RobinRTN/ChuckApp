@@ -49,7 +49,7 @@
           <% end %>
         </li>
         <li class="nav-item mb-2" data-left-navbar-target="navItem" >
-          <%= link_to profile_path, class: 'nav-link', id: "profile-link-demo" do %>
+          <%= link_to profile_path, class: 'nav-link d-flex align-items-center', id: "profile-link-demo" do %>
             <% if current_user.profile_picture.attached? %>
               <%= cl_image_tag current_user.profile_picture.key, crop: :fill, class: "avatar-small profile-btn me-2" %>
             <% elsif current_user.avatar_url.present? %>
@@ -57,28 +57,28 @@
             <% else %>
               <%= image_tag "user.png", class: 'avatar-small profile-btn me-2' %>
             <% end %>
-            Mon profil
+            <p class="mb-0">Mon profil</p>
           <%end%>
         </li>
         <div class="py-1 mb-2 border-bottom"></div>
         <li class="nav-item" data-left-navbar-target="navItem">
           <%= link_to root_path, class: 'nav-link' do %>
-            <i class="fa-solid fa-house me-2"></i> Tableau de bord
+            <p class="mb-0"><i class="fa-solid fa-house me-2"></i> Tableau de bord</p>
           <% end %>
         </li>
         <li class="nav-item" data-left-navbar-target="navItem" id="contacts-demo">
           <%= link_to clients_path, class: 'nav-link' do %>
-            <i class="fa-solid fa-address-book me-2"></i> Contacts
+            <p class="mb-0"><i class="fa-solid fa-address-book me-2"></i> Contacts</p>
           <% end %>
         </li>
         <li class="nav-item" data-left-navbar-target="navItem reservation" id="resa-demo">
           <%= link_to bookings_path, class: 'nav-link' do %>
-            <i class="fa-regular fa-calendar me-2"></i> Réservations
+            <p class="mb-0"><i class="fa-regular fa-calendar me-2"></i> Réservations</p>
           <% end %>
         </li>
         <li class="nav-item" data-left-navbar-target="navItem" id="dispo-demo">
           <%= link_to disponibilites_path, class: 'nav-link' do %>
-            <i class="fa-regular fa-calendar-check me-2"></i> Disponibilités
+            <p class="mb-0"><i class="fa-regular fa-calendar-check me-2"></i> Disponibilités</p>
           <% end %>
         </li>
       </ul>
