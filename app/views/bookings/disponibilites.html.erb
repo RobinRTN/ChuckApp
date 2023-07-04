@@ -8,12 +8,12 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dispoMenuButton">
         <li>
-          <%= link_to edit_dispo_users_path, class: "dropdown-item" do %>
+          <%= link_to edit_dispo_users_path(previous_page: "dispo"), class: "dropdown-item" do %>
             <i class="fa-sharp fa-solid fa-clock me-2"></i>Disponibilités hebdomadaires
           <% end %>
         </li>
         <li>
-          <%= link_to edit_indispo_users_path, class: "dropdown-item" do %>
+          <%= link_to edit_indispo_users_path(previous_page: "dispo"), class: "dropdown-item" do %>
             <i class="fa-solid fa-xmark me-2"></i>Indisponibilités hebdomadaires
           <% end %>
         </li>

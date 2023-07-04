@@ -30,13 +30,14 @@ class UsersController < ApplicationController
 
   def edit_dispo
     @user = current_user
+    @previous_page = params[:previous_page]
   end
 
   def update_dispo
     @user = current_user
+    @previous_page = params[:user][:previous_page] # get previous_page value from parameters
     if @user.update(user_dispo_params)
-      redirect_to edit_dispo_users_path, notice: 'Vos disponibilités ont bien été mises à jour !'
-
+      redirect_to edit_dispo_users_path(previous_page: @previous_page), notice: 'Vos disponibilités ont bien été mises à jour !'
     else
       render :edit_dispo
     end
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
 
   def edit_indispo
     @user = current_user
+    @previous_page = params[:previous_page]
   end
 
   def edit_formules
@@ -62,8 +64,9 @@ class UsersController < ApplicationController
 
   def update_indispo
     @user = current_user
+    @previous_page = params[:user][:previous_page] # get previous_page value from parameters
     if @user.update(user_indispo_params)
-      redirect_to edit_indispo_users_path, notice: 'Vos indisponibilités ont bien été mises à jour !'
+      redirect_to edit_indispo_users_path(previous_page: @previous_page), notice: 'Vos indisponibilités ont bien été mises à jour !'
     else
       render :edit_indispo
     end
