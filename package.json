@@ -8,6 +8,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "clipboard": "^2.0.11",
+    "interactjs": "^1.10.17",
     "intro.js": "^7.0.1",
     "sweetalert2": "^11.7.3",
     "webpack": "^5.75.0",

@@ -64,7 +64,6 @@ export default class extends Controller {
 
   continueDrag(event) {
     if (this.dragging) {
-      event.preventDefault(); // Prevent the default touch behavior
       this.toggle(event);
     }
   }
