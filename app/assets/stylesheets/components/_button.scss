@@ -144,6 +144,26 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
 }
 
+.dispo-fixes-btn {
+  p {
+    margin-bottom: 0px;
+    margin-right: 0.6em;
+  }
+  padding: 0.2em 0.55em 0.2em 0.85em;
+  background-color: $white;
+  border-radius: 3em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  color: $dd-blue-sp;
+  text-decoration: none;
+  border: none !important;
+  font-size: 0.9em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.dispo-fixes-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+}
+
 .back-btn {
   color: $blue-sp;
   font-size: 1.2em;

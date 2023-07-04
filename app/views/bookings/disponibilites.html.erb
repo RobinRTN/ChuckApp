@@ -2,6 +2,23 @@
 
   <div class="mx-3 mt-4 mb-3 d-flex justify-content-between align-items-center">
     <h4 class="mb-3">Mes disponibilités</h4>
+    <div class="dropdown">
+      <button class="dispo-fixes-btn dropdown-toggle" type="button" id="dispoMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        ⏱
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dispoMenuButton">
+        <li>
+          <%= link_to edit_dispo_users_path, class: "dropdown-item" do %>
+            <i class="fa-sharp fa-solid fa-clock me-2"></i>Disponibilités hebdomadaires
+          <% end %>
+        </li>
+        <li>
+          <%= link_to edit_indispo_users_path, class: "dropdown-item" do %>
+            <i class="fa-solid fa-xmark me-2"></i>Indisponibilités hebdomadaires
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 
 
@@ -14,6 +31,7 @@
         <button class="btn-client" data-action="click->dispo#selectDispo" id="dispo-week" data-dispo-target="buttonWeek" data-block="week">Semaines</button>
       </li>
     </ul>
+
 
 
     <div class="block-groupes" data-dispo-target="day" style="display: block;">
