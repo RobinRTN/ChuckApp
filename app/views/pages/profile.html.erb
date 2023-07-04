@@ -23,7 +23,7 @@
     <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
 
     <div class="my-2">
-      <p class="title-profile">Gallerie photos 📸</p>
+      <p class="title-profile">Galerie photos 📸</p>
     </div>
     <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { add_gallery_pictures_target: "form" }  } do |form| %>
       <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { add_gallery_pictures_target: "fileInput" } %>
