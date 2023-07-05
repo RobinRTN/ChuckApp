@@ -13,9 +13,7 @@
   transform: translate(-50%, -50%);
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.square-image:hover {
-  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-}
+
 
 .image-container {
   width: 100px;
@@ -23,6 +21,13 @@
   overflow: hidden;
   position: relative;
   border-radius: 4px; // mo
+  box-shadow: 0 0 20px -2px rgba(0,0,0,0.3);
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.image-container:hover {
+  box-shadow: none;
+  transform: scale(1.03);
+
 }
 
 .delete-link {
