@@ -56,7 +56,10 @@
               controller_name =="onboarding" %>
               <%= render "shared/navbar" %>
     <% end %>
-    <div data-controller="scroll-top" data-action="click->scroll-top#goTop" class="back-to-top">👆</div>
+    <% unless controller_name == 'pages' && !user_signed_in? %>
+      <div data-controller="scroll-top" data-action="click->scroll-top#goTop" class="back-to-top">👆</div>
+    <% end %>
+
     <%= render "shared/flashes" %>
     <%= yield %>
   </body>
