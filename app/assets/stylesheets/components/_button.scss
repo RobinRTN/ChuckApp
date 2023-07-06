@@ -564,3 +564,20 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $white;
 }
+
+.back-to-top {
+  position: fixed;
+  bottom: 85px;
+  right: 30px;
+  z-index: 9997;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.6em 0.75em;
+  border-radius: 50%;
+  background-color: $blue-sp;
+  font-size: 1.2em;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.5s;  /* New line */
+}

@@ -85,6 +85,9 @@ application.register("scroll-to-element", ScrollToElementController)
 import ScrollToElementUpController from "./scroll_to_element_up_controller"
 application.register("scroll-to-element-up", ScrollToElementUpController)
 
+import ScrollTopController from "./scroll_top_controller"
+application.register("scroll-top", ScrollTopController)
+
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
 
