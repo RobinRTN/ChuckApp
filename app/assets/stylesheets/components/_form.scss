@@ -48,3 +48,60 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
 
 }
+
+//* Change border color for valid form fields */
+.form-control.is-valid,
+.custom-select.is-valid,
+.was-validated .form-control:valid,
+.was-validated .custom-select:valid {
+  border-color: $l-blue-sp;
+}
+
+/* Change tick color for valid form fields */
+.form-control.is-valid::after,
+.custom-select.is-valid::after,
+.was-validated .form-control:valid::after,
+.was-validated .custom-select:valid::after {
+  color: $l-blue-sp;
+}
+
+/* Change border color for focused valid form fields */
+.form-control.is-valid:focus,
+.custom-select.is-valid:focus,
+.was-validated .form-control:valid:focus,
+.was-validated .custom-select:valid:focus {
+  border-color: $l-blue-sp;
+  box-shadow: 0 0 0 0.2rem transparentize($l-blue-sp, 0.75);
+}
+
+
+/* Change border color for valid form fields */
+.form-control.is-valid,
+.custom-select.is-valid,
+.was-validated .form-control:valid,
+.was-validated .custom-select:valid,
+.was-validated .form-select:valid,
+.form-select.is-valid {
+  border-color: $l-blue-sp;
+}
+
+/* Change tick color for valid form fields */
+.form-control.is-valid::after,
+.custom-select.is-valid::after,
+.was-validated .form-control:valid::after,
+.was-validated .custom-select:valid::after,
+.was-validated .form-select:valid::after,
+.form-select.is-valid::after {
+  color: $l-blue-sp;
+}
+
+/* Change border color for focused valid form fields */
+.form-control.is-valid:focus,
+.custom-select.is-valid:focus,
+.was-validated .form-control:valid:focus,
+.was-validated .custom-select:valid:focus,
+.was-validated .form-select:valid:focus,
+.form-select.is-valid:focus {
+  border-color: $l-blue-sp;
+  box-shadow: 0 0 0 0.2rem transparentize($l-blue-sp, 0.75);
+}
