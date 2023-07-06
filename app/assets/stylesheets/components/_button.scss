@@ -443,12 +443,18 @@
   padding: 0.2em 0.55em;
   background-color: $red-sp;
   border-radius: 3em;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $ll-blue-sp;
   text-decoration: none;
   text-align: center;
   font-size: 1em;
   width: 20%;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-show-refuse:hover {
+  box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+  transform: scale(1.03);
+  color: white;
 }
 
 .btn-show-accept {
@@ -458,12 +464,18 @@
   padding: 0.2em 0.55em;
   background-color: $green-sp;
   border-radius: 3em;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $ll-blue-sp;
   text-decoration: none;
   text-align: center;
   font-size: 1em;
   width: 20%;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-show-accept:hover {
+  box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+  transform: scale(1.03);
+  color: white;
 }
 
 .round-square-grey {

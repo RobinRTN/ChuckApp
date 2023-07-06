@@ -19,7 +19,7 @@
       <%= simple_form_for @user, url: update_formules_users_path, method: :patch do |f| %>
         <%= f.error_notification %>
         <div class="d-flex justify-content-between align-items-center my-4">
-          <%= link_to_add_row('➕  Ajouter une prestation', f, :formules, class:"add_fields btn-minimal" , data: { action: "click->add-formule-package#addFields" }) %>
+          <%= link_to_add_row('Ajouter une prestation  ➕', f, :formules, class:"add_fields btn-minimal" , data: { action: "click->add-formule-package#addFields" }) %>
           <div class="form-actions">
             <%= f.button :submit, "Mettre à jour", class: "valider-presta-btn", value: "👍   Valider" %>
           </div>
