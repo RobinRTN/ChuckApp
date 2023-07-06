@@ -57,6 +57,17 @@
     </div>
   </div>
 
+  <% if @booking.status == "Pending" && @booking.start_time > Time.now %>
+    <div class="d-flex justify-content-center align-items-center mt-4">
+      <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-3 btn-show-accept text-decoration-none" do %>
+        <p>Accepter</p>
+      <% end %>
+      <%= link_to refuse_booking_path(@booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir refuser cette demande ?');", class:"btn-show-refuse ms-3 text-decoration-none" do %>
+        <p>Refuser</p>
+      <% end %>
+    </div>
+  <% end %>
+
 
 
   <% unless @booking.message.nil? %>
@@ -80,16 +91,7 @@
     </div>
   </div>
 
-  <% if @booking.status == "Pending" && @booking.start_time > Time.now %>
-    <div class="d-flex justify-content-center align-items-center mt-4">
-      <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-3 btn-show-accept text-decoration-none" do %>
-        <p>Accepter</p>
-      <% end %>
-      <%= link_to refuse_booking_path(@booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir refuser cette demande ?');", class:"btn-show-refuse ms-3 text-decoration-none" do %>
-        <p>Refuser</p>
-      <% end %>
-    </div>
-  <% elsif @booking.status == "Accepted"%>
+  <% if @booking.status == "Accepted"%>
     <div class="d-flex justify-content-center mt-4">
       <%= link_to refuse_booking_path(@booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir annuler cette demande ?');", class:"text-decoration-none" do %>
         <p>Annuler cette réservation</p>
