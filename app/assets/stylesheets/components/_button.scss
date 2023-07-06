@@ -375,18 +375,20 @@
 
 .btn-share-link {
   margin-right: 1em;
-  color: $l-blue-sp;
-  background-color: $light-gray;
+  color: $ll-blue-sp;
+  background-color: $blue-sp;
   padding: 6px;
   font-size: 0.85em;
   border-radius: 50%;
   text-decoration: none;
+  box-shadow: 0 0 18px -4px $blue-sp;
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .btn-share-link:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-  color: $blue-sp;
+  box-shadow: 0 0 3px -2px $blue-sp;
+  background-color: $d-blue-sp;
+  color: white;
 }
 
 .btn-share-link-big {
@@ -540,4 +542,25 @@
 }
 .logo-btn:hover {
   transform: scale(1.04);
+}
+
+.valider-presta-btn {
+  p {
+    margin-bottom: 0px;
+    margin-right: 0.6em;
+  }
+  padding: 0.2em 0.55em 0.2em 0.85em;
+  background-color: $blue-sp;
+  border-radius: 3em;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  color: $ll-blue-sp;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.valider-presta-btn:hover {
+  transform: scale(1.05);
+  background-color: $d-blue-sp;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  color: $white;
 }

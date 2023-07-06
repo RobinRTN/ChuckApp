@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
   def edit_formules
     @user = current_user
+    @previous_page = params[:previous_page]
   end
 
   def update_formules

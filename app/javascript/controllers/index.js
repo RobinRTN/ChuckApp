@@ -46,6 +46,9 @@ application.register("form-toggle", FormToggleController)
 import FormuleController from "./formule_controller"
 application.register("formule", FormuleController)
 
+import FormuleMenuController from "./formule_menu_controller"
+application.register("formule-menu", FormuleMenuController)
+
 import FullScreenGalleryController from "./full_screen_gallery_controller"
 application.register("full-screen-gallery", FullScreenGalleryController)
 

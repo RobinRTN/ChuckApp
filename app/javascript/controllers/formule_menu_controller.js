@@ -3,23 +3,21 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
 
   connect() {
-    console.log("COOONNNNEEECCTTTEDD")
+    console.log("Formule Menu Controller Connected")
   }
   removeRecord(event) {
-    console.log("SSUPPPRRR")
     event.preventDefault();
+    console.log("Remove Record Triggered")
     event.target.previousElementSibling.value = '1';
-    console.log(event.target.previousElementSibling)
     event.target.closest('.formule-fields').style.display = 'none';
   }
 
   addFields(event) {
-    console.log("Add Fields Triggered")
     event.preventDefault();
+    console.log(event)
+    console.log("Add Fields Triggered")
     let time = new Date().getTime();
     let regexp = new RegExp(event.target.dataset.id, 'g');
-    let newFields = event.target.dataset.fields.replace(regexp, time);
-    let insertionPosition = (window.location.pathname === "/users/edit_formules") ? 'afterbegin' : 'beforeend';
-    this.element.querySelector('.fields').insertAdjacentHTML(insertionPosition, newFields);
+    document.querySelector('.fields').insertAdjacentHTML('afterbegin', event.target.dataset.fields.replace(regexp, time));
   }
 }

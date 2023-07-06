@@ -1,36 +1,37 @@
 <div class="container wrapper">
   <div class="mx-3">
-
-    <div class="d-flex justify-content-between align-items-center">
-      <%= link_to profile_path, class: "text-decoration-none" do %>
-        <div class="back-btn mt-2 mb-5">
-          <i class="fa-solid fa-arrow-left"></i>
-        </div>
-      <% end %>
-      <p class="mt-2 mb-5 title-onboarding m-auto">Prestations proposées</p>
-    </div>
-
-    <div class="d-flex justify-content-center my-2 text-center px-4">
-      <p>N'oublie pas de valider les modifications en cliquant sur "Valider" en bas de la page 👇</p>
-    </div>
+    <% if @previous_page == "profile" %>
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to profile_path, class: "text-decoration-none" do %>
+          <div class="back-btn mt-2 mb-5">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+        <% end %>
+        <p class="mt-2 mb-5 title-onboarding m-auto">Prestations proposées</p>
+      </div>
+    <% else %>
+      <div class="mt-4 mb-4">
+        <h4 class="mb-0">Mes prestations</h4>
+      </div>
+    <% end %>
 
     <div class="step2-survey" data-controller="add-formule-package">
       <%= simple_form_for @user, url: update_formules_users_path, method: :patch do |f| %>
         <%= f.error_notification %>
+        <div class="d-flex justify-content-between align-items-center my-4">
+          <%= link_to_add_row('➕  Ajouter une prestation', f, :formules, class:"add_fields btn-minimal" , data: { action: "click->add-formule-package#addFields" }) %>
+          <div class="form-actions">
+            <%= f.button :submit, "Mettre à jour", class: "valider-presta-btn", value: "👍   Valider" %>
+          </div>
+        </div>
 
         <div class="fields">
           <%= f.simple_fields_for :formules do |formule_fields| %>
             <%= render 'formule', f: formule_fields %>
           <% end %>
         </div>
-        <div class="d-flex justify-content-center mt-2">
-          <%= link_to_add_row('Ajouter une prestation', f, :formules, class:"add_fields add-formule btn-minimal" , data: { action: "click->add-formule-package#addFields" }) %>
-        </div>
 
         <%# <p class="add-formule btn-minimal" data-action="click->add-formule-package#addFormule"><i class="fa-solid fa-circle-plus me-1"></i>Ajouter une autre prestation</p> %>
-        <div class="form-actions">
-          <%= f.button :submit, "Mettre à jour", class: "btn-basic-bleu-large-onboard mt-4", value: "Valider" %>
-        </div>
       <% end %>
     </div>
 

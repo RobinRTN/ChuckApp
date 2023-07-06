@@ -969,10 +969,15 @@
   margin-bottom: 1em;
   display: flex;
   flex-direction: column;
+  border-left: 3px solid $blue-sp;
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
   p {
     margin-bottom: 0;
     font-weight: 600;
   }
+}
+.formule-fields:hover {
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
 }
 
 .card-text-area {
