@@ -385,7 +385,7 @@
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .btn-share-link:hover {
-  transform: scale(1.08);
+  transform: scale(1.08) !important;
   box-shadow: 0 0 3px -2px $blue-sp;
   background-color: $d-blue-sp;
   color: white;

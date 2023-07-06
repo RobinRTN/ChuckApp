@@ -180,6 +180,18 @@
     font-size: 0.85em;
     border-radius: 50%;
     text-decoration: none;
+    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+  }
+  & .accept:hover {
+    background-color: $green-sp;
+    transform: scale(1.03);
+    color: $ll-blue-sp;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    font-size: 0.85em;
+    border-radius: 50%;
+    text-decoration: none;
   }
 
 
