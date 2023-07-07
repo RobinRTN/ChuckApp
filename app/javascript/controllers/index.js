@@ -19,9 +19,6 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
-import CalendarCountController from "./calendar_count_controller"
-application.register("calendar-count", CalendarCountController)
-
 import ClientController from "./client_controller"
 application.register("client", ClientController)
 
