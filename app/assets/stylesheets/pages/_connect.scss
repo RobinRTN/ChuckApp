@@ -8,7 +8,7 @@
 }
 
 .container-connect-nav {
-  max-width: 500px;
+  max-width: 992px;
   width: 80%;
   .logo-landing img {
     height: 2em;
@@ -19,9 +19,21 @@
 .container-connect {
   padding-top: 5em;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 992px;
   width: 80%;
   height: 100vh;
+}
+
+.block-connect {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background: white;
+  max-width: 285px;
+  border-radius: 4px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  flex: 1;
+  max-height: 380px;
 }
 
 .form-inputs-connect {
@@ -44,4 +56,13 @@
 .no-bg {
   background-color: white;
   height: 1000vh;
+}
+
+.connect-image {
+  img {
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+
+  }
 }

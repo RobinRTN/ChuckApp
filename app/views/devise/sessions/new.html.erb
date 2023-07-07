@@ -9,28 +9,30 @@
 </div>
 
 <div class="container-connect">
-  <div class="form-connect">
-    <h5 class="my-4">Se connecter</h5>
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-      <div class="form-inputs-connect">
-        <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    label: false,
-                    input_html: { autocomplete: "email", placeholder: "Adresse email" } %>
-        <%= f.input :password,
-                    required: false,
-                    label: false,
-                    input_html: { autocomplete: "current-password", placeholder: "Mot de passe" } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-      </div>
+  <div class="block-connect mt-5 me-2">
+    <div class="form-connect">
+      <h5 class="mb-3 mt-1 text-center">Se connecter</h5>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="form-inputs-connect">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      label: false,
+                      input_html: { autocomplete: "email", placeholder: "Adresse email" } %>
+          <%= f.input :password,
+                      required: false,
+                      label: false,
+                      input_html: { autocomplete: "current-password", placeholder: "Mot de passe" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Se connecter", class: "btn-basic-bleu-large-form", value: "Se connecter" %>
-      </div>
-    <% end %>
-  </div>
-  <div class="links-connect">
-    <%= render "devise/shared/links" %>
+        <div class="form-actions">
+          <%= f.button :submit, "Se connecter", class: "btn-basic-bleu-large-form", value: "Se connecter" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="links-connect">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

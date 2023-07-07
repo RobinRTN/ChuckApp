@@ -9,34 +9,38 @@
 </div>
 
 <div class="container-connect">
-  <div class="form-connect">
-    <h5 class="my-4">S'inscrire</h5>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-      <%= f.error_notification %>
 
-      <div class="form-inputs-connect">
-        <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    label: false,
-                    input_html: { autocomplete: "email", placeholder: "Adresse email" }%>
-        <%= f.input :password,
-                    required: true,
-                    label: false,
-                    hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password", placeholder: "Mot de passe" } %>
-        <%= f.input :password_confirmation,
-                    required: true,
-                    label: false,
-                    input_html: { autocomplete: "new-password", placeholder: "Confirmation mot de passe" } %>
-      </div>
+  <div class="block-connect mt-5">
 
-        <div class="form-actions">
-          <%= f.button :submit, "S'inscrire", class: "btn-basic-bleu-large-form", value: "S'inscrire" %>
+    <div class="form-connect">
+      <h5 class="mb-3 mt-1 text-center">S'inscrire</h5>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs-connect">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      label: false,
+                      input_html: { autocomplete: "email", placeholder: "Adresse email" }%>
+          <%= f.input :password,
+                      required: true,
+                      label: false,
+                      hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password", placeholder: "Mot de passe" } %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      label: false,
+                      input_html: { autocomplete: "new-password", placeholder: "Confirmation mot de passe" } %>
         </div>
-    <% end %>
-  </div>
-  <div class="links-connect">
-    <%= render "devise/shared/links" %>
+
+          <div class="form-actions">
+            <%= f.button :submit, "S'inscrire", class: "btn-basic-bleu-large-form", value: "S'inscrire" %>
+          </div>
+      <% end %>
+    </div>
+    <div class="links-connect">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>
