@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+      @show_onboarding = true
       if current_user&.needs_onboarding
         @show_onboarding = true
       end

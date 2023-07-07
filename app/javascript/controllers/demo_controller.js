@@ -63,6 +63,10 @@ export default class extends Controller {
         intro: "Un rendez-vous chez le coiffeur à 17h ? Des vacances dans deux semaines ? Ajuste tes disponibilités en un clic. 🗓️"
       },
       {
+        element: document.querySelector(`#presta-demo${appendId}`),
+        intro: "Modifie tes prestations ici. Personnalise ton offre pour répondre parfaitement aux besoins de tes clients ! 👍"
+      },
+      {
         intro: "Si tu as le moindre souci, n'hésite pas à nous contacter. Bonne route vers le succès avec ChuckApp ! 🚀"
       },
     ];
