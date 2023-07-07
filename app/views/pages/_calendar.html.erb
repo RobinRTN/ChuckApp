@@ -2,7 +2,7 @@
   <%= month_calendar(events: events) do |date, bookings| %>
     <div class="nav-item dropdown">
       <div class="day dropdown-toggle" id="dropdownMenuCalendar" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= date.day %>
+        <div><%= date.day %></div>
         <% if bookings.length == 1 %>
           <span class="dot-small"></span>
         <% elsif bookings.length > 1 && bookings.length <= 3  %>
