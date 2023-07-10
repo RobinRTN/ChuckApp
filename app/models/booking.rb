@@ -3,6 +3,8 @@ class Booking < ApplicationRecord
   belongs_to :client, optional: true
   belongs_to :formule, optional: true
   before_create :generate_cancellation_token
+  validate :start_time_before_end_time, on: :update
+
 
 
   after_create :send_email_announce, if: :client_type?
@@ -13,6 +15,12 @@ class Booking < ApplicationRecord
 
   def send_email_announce
     BookingMailer.send_email_announce(self).deliver_now if Rails.env.production?
+  end
+
+  def start_time_before_end_time
+    if start_time >= end_time
+      errors.add(:start_time, "Heure de début doit être avant l'heure de fin")
+    end
   end
 
   # scope to print out incoming accepted bookings

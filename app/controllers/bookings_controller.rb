@@ -236,6 +236,19 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update_time
+    @booking = Booking.find(params[:id])
+    @user = @booking.user
+    @client = @booking.client
+    if @booking.update(booking_time_params)
+      redirect_to booking_path(@booking), notice: 'Réservation modifée avec succès, ton client est informé par e-mail'
+      BookingMailer.user_booking_email_modif_time(@user, @booking).deliver_later if Rails.env.production?
+      BookingMailer.client_booking_email_modif_time(@client, @booking).deliver_later if Rails.env.production?
+    else
+      render :edit
+    end
+  end
+
   def create
     if params[:booking][:status] == "Accepted"
 
@@ -470,6 +483,10 @@ class BookingsController < ApplicationController
 
   def availability_week_params
     params.require(:availability_week).permit(:week_enabled, :available_monday, :available_tuesday, :available_wednesday, :available_thursday, :available_friday, :available_saturday, :available_sunday)
+  end
+
+  def booking_time_params
+    params.require(:booking).permit(:start_time, :end_time)
   end
 
 

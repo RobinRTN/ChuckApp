@@ -64,4 +64,12 @@ class BookingMailerPreview < ActionMailer::Preview
   def client_booking_email_refuse_client
     BookingMailer.client_booking_email_refuse_client(Client.first, Booking.first)
   end
+
+  def user_booking_email_modif_time
+    BookingMailer.user_booking_email_modif_time(User.first, Booking.first)
+  end
+
+  def client_booking_email_modif_time
+    BookingMailer.client_booking_email_modif_time(Client.first, Booking.first)
+  end
 end

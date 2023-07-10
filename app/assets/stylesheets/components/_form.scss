@@ -49,6 +49,56 @@
 
 }
 
+.form-control-modif {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0E0000;
+  background-color: #F4F4F4;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+}
+#booking_start_time_2i {
+  min-width: 60px;
+}
+#booking_start_time_1i {
+  min-width: 50px;
+}
+#booking_end_time_2i {
+  min-width: 60px;
+}
+#booking_end_time_1i {
+  min-width: 50px;
+}
+
+#booking_start_time_3i {
+  max-width: 40px;
+}
+#booking_start_time_4i {
+  max-width: 40px;
+}
+#booking_start_time_5i {
+  max-width: 40px;
+}
+#booking_end_time_3i {
+  max-width: 40px;
+}
+#booking_end_time_4i {
+  max-width: 40px;
+}
+#booking_end_time_5i {
+  max-width: 40px;
+}
+
 //* Change border color for valid form fields */
 .form-control.is-valid,
 .custom-select.is-valid,

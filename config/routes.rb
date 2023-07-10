@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get 'client_new_reservation', to: 'bookings#client_new_reservation', as: 'client_new_reservation'
   get 'client_new_finish_reservation', to: 'bookings#client_new_finish_reservation', as: 'client_new_finish_reservation'
   get 'client_confirm_reservation', to: 'bookings#client_confirm_reservation', as: 'client_confirm_reservation'
+  patch 'update_time/:id', to: 'bookings#update_time', as: 'update_time'
+
 
   get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
   patch 'onboarding/:step', to: 'onboarding#update'

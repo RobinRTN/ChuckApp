@@ -71,6 +71,25 @@ class BookingMailer < ApplicationMailer
     mail(to: @client.email, subject: 'Réservation annulée')
   end
 
+
+
+  def user_booking_email_modif_time(user, booking)
+    @user = user
+    @booking = booking
+    @client = booking.client
+    mail(to: @user.email, subject: 'Réservation modifiée')
+  end
+
+  def client_booking_email_modif_time(client, booking)
+    @client = client
+    @booking = booking
+    @user = booking.user
+    mail(to: @client.email, subject: 'Réservation modifiée')
+  end
+
+
+
+
   def send_email_announce(booking)
     @booking = booking
     @user = booking.user
