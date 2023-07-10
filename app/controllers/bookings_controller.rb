@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
 
   def landing_reservation
     @user = User.find_by(token: reservation_params[:token])
-    @formules = @user.formules
+    @formules = @user.formules.active
     @tags = @user.tags
     ahoy.track "Viewed coach", {coach_id: @user.id} unless current_user == @user
   end
@@ -63,7 +63,7 @@ class BookingsController < ApplicationController
 
   def new
     @user = current_user
-    @formules = @user.formules
+    @formules = @user.formules.active
   end
 
   def new_choose_reservation
@@ -97,7 +97,7 @@ class BookingsController < ApplicationController
 
   def date_new_reservation
     @user = current_user
-    @formules = @user.formules
+    @formules = @user.formules.active
     @datetime = params[:datetime]
     @jour = params[:jour]
     if @jour
@@ -131,7 +131,7 @@ class BookingsController < ApplicationController
 
   def client_new_reservation
     @user = current_user
-    @formules = @user.formules
+    @formules = @user.formules.active
     @client = Client.find(params[:client_id])
   end
 

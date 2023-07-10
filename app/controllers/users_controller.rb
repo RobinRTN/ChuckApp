@@ -54,7 +54,21 @@ class UsersController < ApplicationController
   end
 
   def update_formules
+    # @user = current_user
+    # if @user.update(user_formule_params)
+    #   redirect_to edit_formules_users_path, notice: 'Vos prestations ont bien été mises à jour !'
+    # else
+    #   redirect_to edit_formules_users_path
+    #   logger.error "Error updating formules: #{@user.errors.full_messages.join(', ')}"
+    # end
     @user = current_user
+    params[:user][:formules_attributes].each do |id, formule_attributes|
+      if formule_attributes[:_destroy] == '1'
+        formule = Formule.find(formule_attributes[:id])
+        formule.update(deleted_at: Time.current, archived: true)  # Soft delete the formule and mark it as archived
+        formule_attributes[:_destroy] = '0'  # Prevent Rails from automatically deleting the record
+      end
+    end
     if @user.update(user_formule_params)
       redirect_to edit_formules_users_path, notice: 'Vos prestations ont bien été mises à jour !'
     else
@@ -131,7 +145,9 @@ class UsersController < ApplicationController
   end
 
   def user_formule_params
-    params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :_destroy])
+    # params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :_destroy])
+    params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :deleted_at, :archived])
+
   end
 
 

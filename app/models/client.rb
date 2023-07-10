@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+
   validates :first_name, :last_name, presence: true
   validates :phone_number, presence: true, format: { with: /\A(\+33|0)[67]\d{8}\z/, message: "Merci d'entrer un numéro de téléphone au bon format" }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -11,6 +12,11 @@ class Client < ApplicationRecord
   has_many :groups, through: :group_clients
   has_many :bookings, autosave: true, dependent: :destroy
   has_one_attached :photo
+
+  def soft_delete
+    update_columns(deleted_at: Time.current)
+  end
+
 
   private
 

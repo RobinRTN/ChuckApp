@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
   end
 
   def index
-    clients = current_user.clients
+    clients = current_user.clients.where(deleted_at: nil)
     @clients = clients.order(:full_name)
     groups = current_user.groups
     @groups = groups.order(:name)
@@ -65,7 +65,7 @@ class ClientsController < ApplicationController
 
   def erase
     @client = Client.find(params[:id])
-    @client.destroy
+    @client.soft_delete
     redirect_to clients_path, notice: 'Contact client supprimé'
   end
 

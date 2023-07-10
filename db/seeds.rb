@@ -14,7 +14,6 @@ Client.destroy_all
 puts "Deleting Formules"
 Formule.destroy_all
 
-
 puts "Deleting Groups"
 Group.destroy_all
 
@@ -51,14 +50,14 @@ u1.save!
 u1.description = "Je suis un professeur de tennis avec plus de 10 ans d'expérience dans l'enseignement du tennis. J'ai aidé des étudiants à découvrir les joies et les bienfaits de ce sport passionnant. Je suis déterminé à aider mes étudiants à développer leur plein potentiel tout en cultivant le plaisir du jeu."
 u1.save!
 
-u1.gallery_pictures.attach(
-  [
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285018/pexels-anna-shvets-5067824_gvnyfu.jpg'), filename: 'gallery_picture1.jpg', content_type: 'image/jpeg' },
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285017/pexels-florian-doppler-3207473_lnkoh5.jpg'), filename: 'gallery_picture2.jpg', content_type: 'image/jpeg' },
-    { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285003/pexels-lebih-dari-ini-5908430_vjgypa.jpg'), filename: 'gallery_picture3.jpg', content_type: 'image/jpeg' }
-  ]
-)
-u1.save!
+# u1.gallery_pictures.attach(
+#   [
+#     { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285018/pexels-anna-shvets-5067824_gvnyfu.jpg'), filename: 'gallery_picture1.jpg', content_type: 'image/jpeg' },
+#     { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285017/pexels-florian-doppler-3207473_lnkoh5.jpg'), filename: 'gallery_picture2.jpg', content_type: 'image/jpeg' },
+#     { io: URI.open('https://res.cloudinary.com/dk8a13iyc/image/upload/v1683285003/pexels-lebih-dari-ini-5908430_vjgypa.jpg'), filename: 'gallery_picture3.jpg', content_type: 'image/jpeg' }
+#   ]
+# )
+# u1.save!
 
 
 

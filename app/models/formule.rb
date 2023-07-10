@@ -8,6 +8,10 @@ class Formule < ApplicationRecord
   validates :name, :price, :duration, :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.1 }
 
+  scope :active, -> { where(archived: false) }
+  scope :inactive, -> { where(archived: true) }
+
+
   private
 
   def set_default_address

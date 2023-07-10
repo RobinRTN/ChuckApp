@@ -27,7 +27,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :groups
-  has_many :clients
+  has_many :clients, dependent: :delete_all
   has_many :bookings
   has_many :availables
   has_many :availability_weeks
@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
   has_one_attached :qrcode
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
