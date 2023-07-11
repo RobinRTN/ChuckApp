@@ -11,7 +11,7 @@
     <p class="mx-3 mb-4 text-center"><strong>Choisis ton créneau 👇</strong></p>
     <% pattern = "%H:%M"  %>
     <div class="mx-3 available">
-    <% @full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
+      <% @full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
         <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
         <% if any_future_slots?(weekly_datetimes) && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
           <p><%= "Cette semaine" %></p>
