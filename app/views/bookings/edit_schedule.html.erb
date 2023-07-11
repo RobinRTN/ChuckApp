@@ -1,0 +1,69 @@
+
+<div class="container wrapper">
+
+  <div class="d-flex align-items-center mx-3 mt-4 mb-4 ">
+    <%= link_to booking_path(@booking), class: "text-decoration-none" do %>
+      <div class="back-btn me-3">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+    <h5 class="mb-0 text-center">Choisis un autre créneau</h5>
+  </div>
+  <div class="mx-3 available">
+
+    <div class="d-flex justify-content-center align-items-center">
+      <p class="round-square-grey me-2 text-center" ><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
+    </div>
+
+    <% @full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
+      <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
+      <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
+        <p><%= "Cette semaine" %></p>
+      <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
+        <p><%= "Semaine prochaine" %></p>
+      <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
+        <p><%= "Dans 2 semaines" %></p>
+      <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
+        <p><%= "Dans 3 semaines" %></p>
+      <% elsif date.present? %>
+        <p><%= "#{l(date.beginning_of_week, format: '%-d %b')} au #{l(date.end_of_week, format: '%-d %b')}" %></p>
+      <% end %>
+      <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
+         <% pattern = "%H:%M"  %>
+        <% unless daily_datetimes.nil? %>
+          <div class="daily-dispo-card-user mb-3">
+            <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
+            <div class="available-block">
+              <div class="dispo-slots">
+                <% daily_datetimes.each do |datetime| %>
+                  <% if datetime > Time.zone.now %>
+                    <div class="dispo-slot-container" id="dispo-slot-container-<%= daily_index %>-<%= datetime.to_i %>">
+                      <%= link_to datetime.strftime(pattern), date_new_reservation_path(datetime: datetime), class: "disponibilites-btn" %>
+                      <% localized_datetime = l(DateTime.parse(datetime.strftime('%A %d %B à %H:%M'))) %>
+                    </div>
+                  <%end%>
+                <%end%>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <% end %>
+  </div>
+
+  <%= form_for @booking, url: update_time_path(@booking), method: :patch do |f| %>
+    <p class="mb-1"><strong>Début réservation</strong></p>
+    <div class="form-group d-flex mb-3">
+      <%= f.datetime_select :start_time, {minute_step: 15}, class: 'form-control-modif' %>
+    </div>
+
+    <p class="mb-1"><strong>Fin réservation</strong></p>
+    <div class="form-group d-flex mb-3">
+      <%= f.datetime_select :end_time, {minute_step: 15}, class: 'form-control-modif' %>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <%= f.submit "Modifier", class: 'btn-basic-bleu-large-onboard mt-3 w-100' %>
+    </div>
+  <% end %>
+</div>

@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     member do
       put :confirm
       put :refuse
+      get 'edit_schedule'
     end
   end
 

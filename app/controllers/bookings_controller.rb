@@ -176,21 +176,7 @@ class BookingsController < ApplicationController
     @previous_page = params[:format]
     @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted'", 2.months.ago, 2.months.from_now)
 
-    @formule = @booking.formule
-    interval = @formule.duration
-    slot_duration = @formule.duration
-    start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
-    days_of_week = @user.days_of_week
-    num_weeks = 2
-    if @user.excluded_fixed_weekly_slots.is_a?(String)
-      excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
-    else
-      excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
-    end
-    # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user, @booking.start_time)
-    @full_datetimes = full_datetimes
+
   end
 
   def index
@@ -252,7 +238,27 @@ class BookingsController < ApplicationController
     end
   end
 
-  def update_time
+  def edit_schedule
+    @user = current_user
+    @booking = Booking.find(params[:id])
+    @formule = @booking.formule
+    interval = @formule.duration
+    slot_duration = @formule.duration
+    start_time = Time.zone.parse(@user.daily_start_time)
+    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    days_of_week = @user.days_of_week
+    num_weeks = 2
+    if @user.excluded_fixed_weekly_slots.is_a?(String)
+      excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
+    else
+      excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
+    end
+    # Generate the available datetimes using the generate_datetimes function
+    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user, @booking.start_time)
+    @full_datetimes = full_datetimes
+  end
+
+  def update_schedule
     @booking = Booking.find(params[:id])
     @user = @booking.user
     @client = @booking.client
