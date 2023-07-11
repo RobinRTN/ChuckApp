@@ -247,14 +247,14 @@ class BookingsController < ApplicationController
     start_time = Time.zone.parse(@user.daily_start_time)
     end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
     days_of_week = @user.days_of_week
-    num_weeks = 2
+    num_weeks = 4
     if @user.excluded_fixed_weekly_slots.is_a?(String)
       excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
     else
       excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
     end
     # Generate the available datetimes using the generate_datetimes function
-    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user, @booking.start_time)
+    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
     @full_datetimes = full_datetimes
   end
 
