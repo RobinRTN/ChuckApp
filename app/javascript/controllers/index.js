@@ -91,6 +91,9 @@ application.register("scroll-top", ScrollTopController)
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)
 
+import SlotScheduleController from "./slot_schedule_controller"
+application.register("slot-schedule", SlotScheduleController)
+
 import SlotSelectorController from "./slot_selector_controller"
 application.register("slot-selector", SlotSelectorController)
 

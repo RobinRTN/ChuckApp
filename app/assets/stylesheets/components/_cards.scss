@@ -358,6 +358,8 @@
     transform: scale(1.05);
     cursor: pointer;
   }
+
+
   & .btn-disponibilites {
     margin-top: 1em;
     margin-left: 0.1em;
@@ -420,6 +422,17 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
     font-weight: 400;
     text-align: center;
+  }
+  & .disponibilites-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  & .schedule-style {
+    background: $l-blue-sp;
+  }
+  & .selected-schedule {
+    background: $blue-sp;
+    transform: scale(1.05);
   }
   & .add-slot {
     text-decoration: none;
