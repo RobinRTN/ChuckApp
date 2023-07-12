@@ -20,7 +20,7 @@
     </div>
 
     <div class="d-none d-flex justify-content-center mt-3" data-show-free-date-target="freeForm">
-      <%= form_for @booking, url: update_schedule_path(@booking), method: :patch do |f| %>
+      <%= form_for @booking, url: update_suggest_path(@booking), method: :patch do |f| %>
         <p class="mb-1"><strong>Début réservation</strong></p>
         <div class="form-group d-flex mb-3">
           <%= f.datetime_select :start_time, {minute_step: 15}, class: 'form-control-modif' %>
@@ -39,7 +39,7 @@
 
 
     <div data-controller="slot-schedule" data-show-free-date-target="default">
-       <%= form_for @booking, url: update_schedule_path(@booking), method: :patch do |f| %>
+       <%= form_for @booking, url: update_suggest_path(@booking), method: :patch do |f| %>
         <%= f.hidden_field :start_time, id: "start_time", data: { slot_schedule_target: "start" } %>
         <%= f.hidden_field :end_time, id: "end_time", data: { slot_schedule_target: "end" } %>
         <div class="rotate-schedule-pending" data-slot-schedule-target="rotateSchedulePending">

@@ -69,7 +69,7 @@
   </row>
   <row>
     <columns>
-      <%= link_to 'Confirmer le nouveau créneau', @url_confirm %>
+      <%= link_to 'Confirmer le nouveau créneau', @url_confirm, class: "button-email" %>
     </columns>
   </row>
 </container>

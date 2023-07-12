@@ -25,7 +25,7 @@ class BookingMailer < ApplicationMailer
     @client = client
     @booking = booking
     @user = booking.user
-    @url_confirm = confirm_cancel_booking_url(cancellation_token: @booking.cancellation_token)
+    @url_confirm = confirm_suggestion_url(cancellation_token: @booking.cancellation_token)
     mail(to: @client.email, subject: 'Proposition de créneau reçue')
   end
 

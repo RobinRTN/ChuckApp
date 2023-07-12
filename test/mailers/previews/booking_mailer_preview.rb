@@ -72,4 +72,12 @@ class BookingMailerPreview < ActionMailer::Preview
   def client_booking_email_modif_time
     BookingMailer.client_booking_email_modif_time(Client.first, Booking.first)
   end
+
+  def user_booking_email_modif_time_confirm
+    BookingMailer.user_booking_email_modif_time_confirm(User.first, Booking.first)
+  end
+
+  def client_booking_email_modif_time_confirm
+    BookingMailer.client_booking_email_modif_time_confirm(User.first, Booking.first)
+  end
 end

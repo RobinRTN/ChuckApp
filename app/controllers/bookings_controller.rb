@@ -4,9 +4,9 @@ require 'active_support/time'
 require 'json'
 
 class BookingsController < ApplicationController
-  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel]
+  before_action :authenticate_user!, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel, :confirm_suggestion, :confirm_suggestion_update]
 
-  before_action :check_onboarding_status, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel]
+  before_action :check_onboarding_status, except: [:choose_reservation, :landing_reservation, :finish_reservation, :create, :confirm_cancel, :cancel, :confirm_suggestion, :confirm_suggestion_update]
 
   def check_onboarding_status
     if current_user && !current_user.step_1
@@ -219,15 +219,6 @@ class BookingsController < ApplicationController
     BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later if Rails.env.production?
   end
 
-  def cancel
-    @booking = Booking.find_by!(cancellation_token: params[:cancellation_token])
-    @user = @booking.user
-    @client = @booking.client
-    @booking.update(status: 'Refused')
-    BookingMailer.user_booking_email_refuse_client(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email_refuse_client(@client, @booking).deliver_later if Rails.env.production?
-  end
-
   def confirm_cancel
     @booking = Booking.find_by(cancellation_token: params[:cancellation_token])
     @user = @booking.user
@@ -237,6 +228,35 @@ class BookingsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def cancel
+    @booking = Booking.find_by!(cancellation_token: params[:cancellation_token])
+    @user = @booking.user
+    @client = @booking.client
+    @booking.update(status: 'Refused')
+    BookingMailer.user_booking_email_refuse_client(@user, @booking).deliver_later if Rails.env.production?
+    BookingMailer.client_booking_email_refuse_client(@client, @booking).deliver_later if Rails.env.production?
+  end
+
+  def confirm_suggestion
+    @booking = Booking.find_by(cancellation_token: params[:cancellation_token])
+    @user = @booking.user
+    @formule = @booking.formule
+    unless @booking
+      flash[:alert] = 'Mauvais identifiant veuillez réessayer ultérieurement'
+      redirect_to root_path
+    end
+  end
+
+  def confirm_suggestion_update
+    @booking = Booking.find_by!(cancellation_token: params[:cancellation_token])
+    @user = @booking.user
+    @client = @booking.client
+    @booking.update(status: 'Accepted')
+    BookingMailer.user_booking_email(@user, @booking).deliver_later if Rails.env.production?
+    BookingMailer.client_booking_email(@client, @booking).deliver_later if Rails.env.production?
+  end
+
 
   def edit_schedule
     @user = current_user

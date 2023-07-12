@@ -1,0 +1,59 @@
+<div class="container wrapper">
+  <div class="mx-3">
+
+   <p class="mx-3 mb-4 text-center"><strong>Voici la proposition de créneau de <%= @user.first_name %></strong></p>
+    <div class="recap-card mx-3">
+      <div class="d-flex align-items-center justify-content-start finish-card">
+        <div class="d-flex justify-content-center">
+          <% if @user.profile_picture.attached? %>
+            <%= cl_image_tag @user.profile_picture.key, crop: :fill, class: "avatar-bigger" %>
+          <% elsif @user.avatar_url.present? %>
+            <%= image_tag @user.avatar_url, class: 'avatar-bigger' %>
+          <% else %>
+            <%= image_tag "user.png", class: 'avatar-bigger' %>
+          <% end %>
+        </div>
+        <div class="d-flex flex-column">
+          <h4><%= @user.full_name %></h4>
+          <p><%= @user.title %></p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex mt-3 mx-4 border-bottom pb-3">
+      <div class="finish-details-card flex-column align-items-start justify-content-start">
+        <p><i class="fa-solid fa-fire me-2"></i> <%= @formule.name %></p>
+        <p><i class="fa-solid fa-clock me-2"></i> <%= @formule.duration %> minutes</p>
+        <p class="btn-disponibilites"><i class="fa-solid fa-coins me-2"></i> <%= @formule.price.to_i %> €</p>
+        <p><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %></p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center flex-column mt-3">
+      <p class="my-2 text-start">Vous pouvez contacter directement <%= @user.first_name %>.</p>
+
+      <div class="d-flex justify-content-center mt-3">
+        <!-- Share link via email -->
+        <a href="mailto:<%= @user.email %>?subject=Modifier%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%d %B') %>&amp;body=Bonjour,%20je%20souhaiterais%20modifier%20la%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %>" class="d-flex flex-column align-items-center justify-content-center mail-card-cancel me-4" target="_blank">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+
+        <!-- Share link via text message -->
+        <a href="sms:<%=@user.phone_number%>?&body=Bonjour,%20je%20souhaiterais%20modifier%20la%20r%C3%A9servation%20du%20<%= l(@booking.start_time, format: '%A %d %B de %Hh%M').capitalize %> à <%= l(@booking.end_time, format: '%Hh%M') %>" class="d-flex flex-column align-items-center justify-content-center sms-card-cancel ">
+          <i class="fa-regular fa-message"></i>
+        </a>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4 flex-column">
+        <%= form_with url: confirm_suggestion_update_path(@booking), method: :put do %>
+          <input type="submit" value="Confirmer" class="btn-basic-bleu-large-onboard mb-4" />
+        <% end %>
+        <div class="d-flex justify-content-center">
+          <%= form_with url: cancel_booking_path(@booking.cancellation_token), method: :put do %>
+            <input type="submit" value="Annuler" class="btn-minimal-red text-center" />
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
