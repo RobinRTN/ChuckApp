@@ -142,6 +142,7 @@
 .ajouter-client-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
 .dispo-fixes-btn {
@@ -491,7 +492,7 @@
   text-align: center;
   border: none;
   font-size: 1em;
-  width: 20%;
+  // width: 20%;
   transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .btn-show-round-blue:hover {

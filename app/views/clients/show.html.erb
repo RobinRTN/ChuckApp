@@ -129,18 +129,4 @@
 
 
 
-  <%= form_for @booking, url: update_schedule_path(@booking), method: :patch do |f| %>
-    <p class="mb-1"><strong>Début réservation</strong></p>
-    <div class="form-group d-flex mb-3">
-      <%= f.datetime_select :start_time, {minute_step: 15}, class: 'form-control-modif' %>
-    </div>
-
-    <p class="mb-1"><strong>Fin réservation</strong></p>
-    <div class="form-group d-flex mb-3">
-      <%= f.datetime_select :end_time, {minute_step: 15}, class: 'form-control-modif' %>
-    </div>
-
-    <div class="d-flex justify-content-center">
-      <%= f.submit "Modifier", class: 'btn-basic-bleu-large-onboard mt-3 w-100' %>
-    </div>
-  <% end %>
+  
