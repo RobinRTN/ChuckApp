@@ -1,42 +1,63 @@
 import { Controller } from "@hotwired/stimulus"
-import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "slot", "start", "end", "displayStartTime", "displayEndTime", "rotateSchedulePending", "rotateScheduleUpdated", "submit" ]
-
-  weekdays = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-  months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+  static targets = [ "slot", "start", "end", "rotateSchedulePending", "rotateScheduleUpdated", "submit", "displayStartTime", "displayEndTime" ]
 
   select(event) {
-    const element = event.currentTarget;
-    this.slotTargets.forEach((el) => {
-      el.classList.remove("selected-schedule");
-    });
-    element.classList.add("selected-schedule");
-    const start_time = element.dataset.startTime;
-    const end_time = element.dataset.endTime;
-    this.startTarget.value = start_time;
-    this.endTarget.value = end_time;
-    this.displayStartTimeTarget.textContent = this.formatTime(start_time);
-    this.displayEndTimeTarget.textContent = this.formatTime(end_time, false);
-    this.rotateSchedulePendingTarget.classList.add('d-none');
-    this.rotateScheduleUpdatedTarget.classList.remove('d-none');
-    this.submitTarget.style.display = 'block';
+    event.preventDefault()
+
+    let selectedElement = event.currentTarget
+    let startTime = selectedElement.dataset.startTime
+    let endTime = selectedElement.dataset.endTime
+    console.log(startTime)
+    console.log(endTime)
+
+    if (selectedElement.classList.contains('selected-schedule')) {
+      selectedElement.classList.remove('selected-schedule')
+      this.startTarget.value = ''
+      this.endTarget.value = ''
+
+      this.rotateSchedulePendingTarget.classList.remove('d-none')
+      this.rotateScheduleUpdatedTarget.classList.add('d-none')
+      this.submitTarget.style.display = "none"
+
+      this.displayStartTimeTarget.textContent = ''
+      this.displayEndTimeTarget.textContent = ''
+    } else {
+      this.resetAllSlots()
+      selectedElement.classList.add('selected-schedule')
+
+      this.startTarget.value = startTime
+      this.endTarget.value = endTime
+
+      this.rotateSchedulePendingTarget.classList.add('d-none')
+      this.rotateScheduleUpdatedTarget.classList.remove('d-none')
+      this.submitTarget.style.display = "block"
+
+      this.displayStartTimeTarget.textContent = this.formatDate(startTime)
+      this.displayEndTimeTarget.textContent = this.formatDate(endTime, false)
+    }
   }
 
-  formatTime(timeString, includeDate = true) {
-    let now = new Date();
-    let [hours, minutes] = timeString.split(":");
-    let date = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
-    let formattedTime = `${hours}h${minutes}`;
+  resetAllSlots() {
+    this.slotTargets.forEach(element => {
+      element.classList.remove('selected-schedule')
+    })
+  }
 
-    if (includeDate) {
-      let dayName = this.weekdays[date.getDay()];
-      let day = date.getDate();
-      let monthName = this.months[date.getMonth()];
-      return `${dayName} ${day} ${monthName} ${formattedTime}`;
+  formatDate(date, includeDate = true) {
+    let formattedDate = new Date(date)
+
+    const options = { weekday: 'long', day: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', hour12: false };
+    let formattedTime = formattedDate.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }).replace(':', 'h');
+
+    if(includeDate) {
+      let formattedDayMonth = formattedDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+      formattedDayMonth = formattedDayMonth.charAt(0).toUpperCase() + formattedDayMonth.slice(1);
+      return `${formattedDayMonth} ${formattedTime}`;
     } else {
       return formattedTime;
     }
   }
+
 }

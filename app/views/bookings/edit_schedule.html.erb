@@ -1,5 +1,5 @@
 
-<div class="container wrapper">
+<div class="container wrapper" data-controller="">
 
   <div class="d-flex align-items-center mx-3 mt-4 mb-4">
     <%= link_to booking_path(@booking), class: "text-decoration-none" do %>
@@ -23,14 +23,20 @@
           <p class="text-center" >Selectionne le créneau de disponibilité qui te convient.<br> Ton client recevra un mail une fois la modification validée 📧</p>
         </div>
         <div class="rotate-schedule-updated d-none" data-slot-schedule-target="rotateScheduleUpdated">
-          <i class="fa-solid fa-rotate"></i>
-          <p class="round-square-grey me-2 text-center">
-            <i class="fa-solid fa-calendar me-2"></i>
-            <span data-slot-schedule-target="displayStartTime"><%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %></span>
-            -
-            <span data-slot-schedule-target="displayEndTime"><%= l(@booking.end_time, format: '%Hh%M') %></span>
-          </p>
-          <%= f.submit "Modifier", class: 'btn-basic-bleu-large-onboard my-3 w-100 submit-button', style: "display: none;", data: { slot_schedule_target: "submit" } %>
+          <div class="d-flex justify-content-center mb-2">
+            <i class="fa-solid fa-rotate"></i>
+          </div>
+          <div class="d-flex justify-content-center">
+            <p class="round-square-grey me-2 text-center">
+              <i class="fa-solid fa-calendar me-2"></i>
+              <span data-slot-schedule-target="displayStartTime"><%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %></span>
+              -
+              <span data-slot-schedule-target="displayEndTime"><%= l(@booking.end_time, format: "%H:%M") %></span>
+            </p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <%= f.submit "Modifier  👍", class: 'btn-show-round-blue my-3 submit-button', style: "display: none;", data: { slot_schedule_target: "submit" } %>
+          </div>
         </div>
        <% end %>
 
@@ -51,7 +57,7 @@
           <p><%= "#{l(date.beginning_of_week, format: '%-d %b')} au #{l(date.end_of_week, format: '%-d %b')}" %></p>
         <% end %>
         <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
-          <% pattern = "%H:%M"  %>
+          <% pattern = "%A %d %B %H:%M"  %>
           <% unless daily_datetimes.nil? %>
             <div class="daily-dispo-card-user mb-3">
               <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
@@ -60,8 +66,8 @@
                   <% daily_datetimes.each do |datetime| %>
                     <% if datetime > Time.zone.now %>
                       <div class="dispo-slot-container" id="dispo-slot-container-<%= daily_index %>-<%= datetime.to_i %>">
-                        <div data-action="click->slot-schedule#select" data-slot-schedule-target="slot" data-start-time="<%= datetime.strftime(pattern) %>" data-end-time="<%= (datetime + @booking.formule.duration.minutes).strftime(pattern) %>" class="disponibilites-btn schedule-style">
-                          <%= datetime.strftime(pattern) %>
+                        <div data-action="click->slot-schedule#select" data-slot-schedule-target="slot" data-start-time="<%= datetime.iso8601 %>" data-end-time="<%= (datetime + @booking.formule.duration.minutes).iso8601 %>" class="disponibilites-btn schedule-style">
+                          <%= datetime.strftime("%H:%M") %>
                         </div>
                       </div>
                     <%end%>
