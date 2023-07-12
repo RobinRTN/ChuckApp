@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'client_new_finish_reservation', to: 'bookings#client_new_finish_reservation', as: 'client_new_finish_reservation'
   get 'client_confirm_reservation', to: 'bookings#client_confirm_reservation', as: 'client_confirm_reservation'
   patch 'update_schedule/:id', to: 'bookings#update_schedule', as: 'update_schedule'
+  patch 'update_suggest/:id', to: 'bookings#update_suggest', as: 'update_suggest'
 
 
   get 'onboarding/:step', to: 'onboarding#show', as: :onboarding
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
       put :confirm
       put :refuse
       get 'edit_schedule'
+      get 'suggest_schedule'
     end
   end
 

@@ -212,7 +212,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @user = @booking.user
     @client = @booking.client
-    @booking.update(status: "Refused")
+    @booking.update(status: "Refused", refusal_message: params[:booking][:refusal_message])
     flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
     BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later if Rails.env.production?
@@ -270,6 +270,40 @@ class BookingsController < ApplicationController
       render :edit
     end
   end
+
+  def suggest_schedule
+    @user = current_user
+    @booking = Booking.find(params[:id])
+    @formule = @booking.formule
+    interval = @formule.duration
+    slot_duration = @formule.duration
+    start_time = Time.zone.parse(@user.daily_start_time)
+    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    days_of_week = @user.days_of_week
+    num_weeks = 4
+    if @user.excluded_fixed_weekly_slots.is_a?(String)
+      excluded_fixed_weekly_slots = JSON.parse(@user.excluded_fixed_weekly_slots)
+    else
+      excluded_fixed_weekly_slots = @user.excluded_fixed_weekly_slots
+    end
+    # Generate the available datetimes using the generate_datetimes function
+    full_datetimes = generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, @user)
+    @full_datetimes = full_datetimes
+  end
+
+  def update_suggest
+    @booking = Booking.find(params[:id])
+    @user = @booking.user
+    @client = @booking.client
+    if @booking.update(booking_time_params)
+      redirect_to booking_path(@booking), notice: 'La proposition de créneau a été envoyée à ton client par e-mail'
+      BookingMailer.user_booking_email_modif_time_confirm(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
+      BookingMailer.client_booking_email_modif_time_confirm(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+    else
+      render :edit
+    end
+  end
+
 
   def create
     if params[:booking][:status] == "Accepted"

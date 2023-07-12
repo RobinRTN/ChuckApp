@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_085527) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_12_132315) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -182,6 +182,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_085527) do
     t.bigint "formule_id"
     t.string "cancel_type", default: "Client"
     t.string "cancellation_token"
+    t.text "refusal_message"
+    t.text "cancel_message"
     t.index ["client_id"], name: "index_bookings_on_client_id"
     t.index ["formule_id"], name: "index_bookings_on_formule_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"

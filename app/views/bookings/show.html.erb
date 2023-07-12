@@ -67,11 +67,42 @@
 
   <% if @booking.status == "Pending" && @booking.start_time > Time.now %>
     <div class="d-flex justify-content-center align-items-center mt-4">
-      <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-3 btn-show-accept text-decoration-none" do %>
-        <p>Accepter</p>
+      <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-2 text-decoration-none d-flex justify-content-center align-items-center btn-pending green-pending" do %>
+        <i class="fa-solid fa-check me-2"></i>
+        <p class="mb-0">Accepter</p>
       <% end %>
-      <%= link_to refuse_booking_path(@booking), data: { "turbo-method": :put }, onclick: "return confirm('Êtes vous sûr de vouloir refuser cette demande ?');", class:"btn-show-refuse ms-3 text-decoration-none" do %>
-        <p>Refuser</p>
+
+        <div>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#refuse-pending" class=" text-decoration-none d-flex justify-content-center align-items-center btn-pending red-pending">
+            <i class="fa-solid fa-xmark me-2"></i>
+            <p class="mb-0">Refuser</p>
+          </a>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="refuse-pending" tabindex="-1" aria-labelledby="refuse-pending" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body" style="margin: auto; display: flex; justify-content: center; flex-direction: column;">
+
+                <%= form_for @booking, url: refuse_booking_path(@booking), method: :put do |f| %>
+                  <div class="form-group">
+                    <p class="text-center"><strong>Explique les raisons de ce refus à <%= @booking.client.first_name %></strong> </p>
+                    <p class="text-center"><em>Il recevera un e-mail l'informer de ce refus avec ces explications</em> </p>
+                    <%= f.text_area :refusal_message, class: 'form-control' %>
+                  </div>
+                  <div class="form-group text-center mt-3">
+                    <%= f.submit "Refuser la demande", class: 'btn-basic-bleu-large-onboard' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%= link_to suggest_schedule_booking_path(@booking), class: " ms-2 text-decoration-none d-flex justify-content-center align-items-center btn-pending" do %>
+        <i class="fa-regular fa-calendar me-2"></i>
+        <p class="mb-0">Autre</p>
       <% end %>
     </div>
   <% end %>

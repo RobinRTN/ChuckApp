@@ -1,0 +1,112 @@
+
+<div class="container wrapper" data-controller="show-free-date">
+  <div class="d-flex justify-content-between mx-3 mt-4 mb-4">
+    <div class="d-flex align-items-center">
+      <%= link_to booking_path(@booking), class: "text-decoration-none" do %>
+        <div class="back-btn me-3">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+      <h5 class="mb-0 text-center">Autre créneau</h5>
+    </div>
+    <div class="ajouter-client-btn d-flex align-items-center" data-action="click->show-free-date#toggle" data-show-free-date-target="button">
+      <p>Autre</p>
+    </div>
+  </div>
+  <div class="mx-3 available">
+
+    <div class="d-flex justify-content-center align-items-center flex-column">
+      <p class="round-square-grey me-2 text-center" ><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
+    </div>
+
+    <div class="d-none d-flex justify-content-center mt-3" data-show-free-date-target="freeForm">
+      <%= form_for @booking, url: update_schedule_path(@booking), method: :patch do |f| %>
+        <p class="mb-1"><strong>Début réservation</strong></p>
+        <div class="form-group d-flex mb-3">
+          <%= f.datetime_select :start_time, {minute_step: 15}, class: 'form-control-modif' %>
+        </div>
+
+        <p class="mb-1"><strong>Fin réservation</strong></p>
+        <div class="form-group d-flex mb-3">
+          <%= f.datetime_select :end_time, {minute_step: 15}, class: 'form-control-modif' %>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <%= f.submit "Envoyer proposition  👍", class: 'btn-show-round-blue mt-3' %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div data-controller="slot-schedule" data-show-free-date-target="default">
+       <%= form_for @booking, url: update_schedule_path(@booking), method: :patch do |f| %>
+        <%= f.hidden_field :start_time, id: "start_time", data: { slot_schedule_target: "start" } %>
+        <%= f.hidden_field :end_time, id: "end_time", data: { slot_schedule_target: "end" } %>
+        <div class="rotate-schedule-pending" data-slot-schedule-target="rotateSchedulePending">
+          <p class="text-center" >Selectionne le créneau de disponibilité qui te convient. Ton client pourra confirmer ce nouveau créneau via l'email qu'il recevera 📧</p>
+        </div>
+        <div class="rotate-schedule-updated d-none" data-slot-schedule-target="rotateScheduleUpdated">
+          <div class="d-flex justify-content-center mb-2">
+            <i class="fa-solid fa-rotate"></i>
+          </div>
+          <div class="d-flex justify-content-center">
+            <p class="round-square-grey me-2 text-center">
+              <i class="fa-solid fa-calendar me-2"></i>
+              <span data-slot-schedule-target="displayStartTime"><%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %></span>
+              -
+              <span data-slot-schedule-target="displayEndTime"><%= l(@booking.end_time, format: "%H:%M") %></span>
+            </p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <%= f.submit "Envoyer proposition  👍", class: 'btn-show-round-blue my-3 submit-button', style: "display: none;", data: { slot_schedule_target: "submit" } %>
+          </div>
+        </div>
+       <% end %>
+
+      <% total_days = 0 %>
+      <% @full_datetimes.each_with_index do |weekly_datetimes, weekly_index| %>
+        <% next if weekly_index == 1 && total_days >= 3 %>
+
+        <% date = weekly_datetimes.first.first unless weekly_datetimes.empty? %>
+        <% if weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week, Date.today.end_of_week)  %>
+          <p><%= "Cette semaine" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 1.week, Date.today.end_of_week + 1.week) %>
+          <p><%= "Semaine prochaine" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 2.week, Date.today.end_of_week + 2.week) %>
+          <p><%= "Dans 2 semaines" %></p>
+        <% elsif weekly_datetimes.count > 0 && date.between?(Date.today.beginning_of_week + 3.week, Date.today.end_of_week + 3.week) %>
+          <p><%= "Dans 3 semaines" %></p>
+        <% elsif date.present? %>
+          <p><%= "#{l(date.beginning_of_week, format: '%-d %b')} au #{l(date.end_of_week, format: '%-d %b')}" %></p>
+        <% end %>
+        <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
+          <% pattern = "%A %d %B %H:%M"  %>
+          <% unless daily_datetimes.nil? %>
+            <div class="daily-dispo-card-user mb-3">
+              <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
+              <div class="available-block">
+                <div class="dispo-slots">
+                  <% daily_datetimes.each do |datetime| %>
+                    <% if datetime > Time.zone.now %>
+                      <div class="dispo-slot-container" id="dispo-slot-container-<%= daily_index %>-<%= datetime.to_i %>">
+                        <div data-action="click->slot-schedule#select" data-slot-schedule-target="slot" data-start-time="<%= datetime.iso8601 %>" data-end-time="<%= (datetime + @booking.formule.duration.minutes).iso8601 %>" class="disponibilites-btn schedule-style">
+                          <%= datetime.strftime("%H:%M") %>
+                        </div>
+                      </div>
+                    <%end%>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+            <% total_days += 1 if weekly_index == 0 %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+  </div>
+
+
+</div>

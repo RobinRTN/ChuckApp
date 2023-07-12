@@ -3,6 +3,9 @@
     <columns>
       <h5>Bonjour <%= @user.first_name %>,</h5>
       <p>Vous avez <strong>refusé</strong> la demande de réservation suivante.</p>
+      <% unless @booking.refusal_message.blank? %>
+        <p><strong>Explications de ce refus :</strong> <%= @booking.refusal_message %></p>
+      <% end %>
       <p>Informations sur la réservation :</p>
     </columns>
   </row>

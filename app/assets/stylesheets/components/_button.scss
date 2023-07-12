@@ -617,3 +617,23 @@
   opacity: 0;
   transition: opacity 0.5s;  /* New line */
 }
+
+
+.btn-pending {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 0.5em 1em;
+  &.red-pending {
+    color: $red-sp;
+  }
+  &.green-pending {
+    color: $green-sp;
+  }
+}
+.btn-pending:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+}
