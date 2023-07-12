@@ -45,7 +45,7 @@
     </div>
   <% end %>
   <div class="d-flex justify-content-center align-items-center my-3">
-    <p class="round-square-grey me-2"><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
+    <p class="round-square-grey me-2 text-center"><i class="fa-solid fa-calendar me-2"></i> <%= l(@booking.start_time, format: '%A %d %B %Hh%M').capitalize %> - <%= l(@booking.end_time, format: '%Hh%M') %></p>
     <% if @booking.status == "Accepted" && @booking.start_time > Time.now %>
       <div class="mb-3 ms-3">
         <%= link_to edit_schedule_booking_path(@booking), class: "btn-gris-rond" do %>
