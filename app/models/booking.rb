@@ -35,6 +35,8 @@ class Booking < ApplicationRecord
   scope :passed_confirmed, -> { where("start_time < ? AND status = 'Accepted'  AND cancel_type != 'Cancelled'", Time.now).order(:start_time) }
   scope :upcoming, -> { where("start_time >= ? AND cancel_type != 'Cancelled'  AND cancel_type != 'Cancelled'", Time.now).order(:start_time) }
   scope :upcoming_all, -> { where("start_time >= ?", Time.now).order(:start_time) }
+  scope :upcoming_accepted, -> { where("start_time >= ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", Time.now).order(:start_time) }
+
 
   # scope to print out incoming pending bookings
   scope :today_pending, -> { where("start_time >= ? AND start_time < ? AND status = 'Pending'  AND cancel_type != 'Cancelled'", Time.now, Date.today.end_of_day).order(:start_time) }

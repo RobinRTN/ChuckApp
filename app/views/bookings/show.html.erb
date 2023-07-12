@@ -107,6 +107,12 @@
     </div>
   <% end %>
 
+  <% if @booking.pending_slot_suggestion %>
+    <div class="mx-4 text-center mt-2 pending-slot-card">
+      La proposition de créneau a été envoyée à <%= @booking.client.first_name %> pour le créneau indiqué ci-dessus. Nous attendons sa confirmation.
+    </div>
+  <% end %>
+
 
   <% unless @booking.message.nil? %>
     <div class="mt-5 pb-3 mx-4">

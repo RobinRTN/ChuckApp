@@ -316,6 +316,7 @@ class BookingsController < ApplicationController
     @user = @booking.user
     @client = @booking.client
     if @booking.update(booking_time_params)
+      @booking.update_column(:pending_slot_suggestion, true)
       redirect_to booking_path(@booking), notice: 'La proposition de créneau a été envoyée à ton client par e-mail'
       BookingMailer.user_booking_email_modif_time_confirm(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
       BookingMailer.client_booking_email_modif_time_confirm(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?

@@ -22,6 +22,7 @@ class PagesController < ApplicationController
       if current_user&.needs_onboarding
         @show_onboarding = true
       end
+      @bookings_accepted_upcoming = Booking.upcoming_accepted
       @user_bookings_calendar
       @user_bookings_passed = current_user.bookings.passed_current_month
       @user_bookings_projected = current_user.bookings.current_month_projected

@@ -17,7 +17,12 @@
         <div class="card-infos d-flex align-items-start flex-column">
             <p> <h4><%= Client.find(booking.client_id).full_name %></h4></p>
             <p class="date-card"><%= l(booking.start_time, format: '%A %e %B').capitalize %></p>
-            <p class="time-card"><%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %> </p>
+            <p class="time-card">
+              <%= l(booking.start_time, format: '%H') %>h<%= l(booking.start_time, format: '%M') %> à <%= l(booking.end_time, format: '%H') %>h<%= l(booking.end_time, format: '%M') %>
+              <% if booking.pending_slot_suggestion %>
+                <i class="fa-sharp fa-solid fa-hourglass-start ms-1"></i>
+              <% end %>
+            </p>
             <p><i class="fa-solid fa-fire me-1"></i> <%= booking.formule.name %> </p>
         </div>
       </div>
