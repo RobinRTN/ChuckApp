@@ -14,6 +14,21 @@ class BookingMailer < ApplicationMailer
     mail(to: @client.email, subject: 'Demande de réservation envoyée')
   end
 
+  def user_booking_email_modif_time_confirm(user, booking)
+    @user = user
+    @booking = booking
+    @client = booking.client
+    mail(to: @user.email, subject: 'Proposition de créneau envoyée')
+  end
+
+  def client_booking_email_modif_time_confirm(client, booking)
+    @client = client
+    @booking = booking
+    @user = booking.user
+    @url_confirm = confirm_cancel_booking_url(cancellation_token: @booking.cancellation_token)
+    mail(to: @client.email, subject: 'Proposition de créneau reçue')
+  end
+
   def user_booking_email(user, booking)
     @user = user
     @booking = booking
@@ -71,8 +86,6 @@ class BookingMailer < ApplicationMailer
     mail(to: @client.email, subject: 'Réservation annulée')
   end
 
-
-
   def user_booking_email_modif_time(user, booking)
     @user = user
     @booking = booking
@@ -86,9 +99,6 @@ class BookingMailer < ApplicationMailer
     @user = booking.user
     mail(to: @client.email, subject: 'Réservation modifiée')
   end
-
-
-
 
   def send_email_announce(booking)
     @booking = booking

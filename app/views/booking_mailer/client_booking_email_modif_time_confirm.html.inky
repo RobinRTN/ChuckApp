@@ -1,9 +1,8 @@
 <container>
   <row>
     <columns>
-      <h5>Bonjour <%= @user.first_name %>,</h5>
-      <p>Tu as <strong>modifé</strong> l'horaire de la réservation suivante.</p>
-      <p>Informations sur la réservation :</p>
+      <h3>Bonjour <%= @client.first_name %>,</h3>
+      <p><%= @user.first_name %> a proposé un nouveau créneau pour votre réservation. Voici les détails :
     </columns>
   </row>
   <row>
@@ -33,21 +32,44 @@
           <td><strong>Adresse :</strong></td>
           <td><%= @booking.formule.address_line %>, <%= @booking.formule.address_city %></td>
         </tr>
-        <tr>
-          <td><strong>Client :</strong></td>
-          <td><%= @client.full_name %></td>
-        </tr>
+
       </table>
     </columns>
   </row>
   <row>
     <columns>
-      <p>Un email a également été envoyé à <%= @client.first_name %>. </p>
+      <p><strong>Informations sur l'utilisateur :</strong></p>
+    </columns>
+  </row>
+
+  <row>
+    <columns small="12" large="6">
+      <table>
+        <tr>
+          <td><strong>Nom :</strong></td>
+          <td><%= @user.full_name %></td>
+        </tr>
+        <tr>
+          <td><strong>Email :</strong></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><strong>Téléphone :</strong></td>
+          <td><%= @user.phone_number %></td>
+        </tr>
+      </table>
+    </columns>
+  </row>
+
+  <row>
+    <columns>
+      <p>Si ce créneau vous convient, veuillez confirmer en cliquant sur le lien ci-dessous:</p>
+      <p>Si ce créneau ne vous convient pas, veuillez contacter votre coach pour discuter d'autres options.</p>
     </columns>
   </row>
   <row>
     <columns>
-      <a href="http://www.chuckapp.fr/" class="button-email">Mon espace Chuck</a>
+      <%= link_to 'Confirmer le nouveau créneau', @url_confirm %>
     </columns>
   </row>
 </container>
