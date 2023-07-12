@@ -81,7 +81,8 @@
         <% end %>
         <% weekly_datetimes.each_with_index do |daily_datetimes, daily_index| %>
           <% pattern = "%A %d %B %H:%M"  %>
-          <% unless daily_datetimes.nil? %>
+          <% future_datetimes = daily_datetimes.select { |datetime| datetime > Time.zone.now } %>
+          <% if future_datetimes.any? %>
             <div class="daily-dispo-card-user mb-3">
               <p class="date-text"><%= l(daily_datetimes.first, format: "%A %e %B").capitalize %></p>
               <div class="available-block">
