@@ -6,7 +6,7 @@
   padding: 0.55em 1em;
   margin: 0.6em;
   border-left: 3px solid $blue-sp;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   & h4 {
     color: $dd-blue-sp;
     font-size: 1em;
@@ -48,7 +48,7 @@
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   padding: 0.5em 1em;
   margin: 0.6em;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   & h4 {
     font-size: 0.95em;
@@ -128,7 +128,7 @@
   border-left: 3px solid $blue-sp;
   padding: 0.5em 1em;
   margin: 0.6em;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   & h4 {
     font-size: 0.95em;
     margin-bottom: 0;
@@ -185,7 +185,7 @@
     font-size: 0.85em;
     border-radius: 50%;
     text-decoration: none;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
   }
   & .accept:hover {
@@ -251,7 +251,7 @@
   padding: 0.5em 1em;
   margin: 0.6em;
   border-left: 1px solid $blue-sp;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   & h4 {
     font-size: 0.95em;
     margin-bottom: 0;
@@ -352,7 +352,7 @@
     text-decoration: none;
     padding: 0.5em 0.8em;
     border-radius: 4px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     background: $blue-sp;
     color: $ll-blue-sp;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -371,7 +371,7 @@
     text-decoration: none;
     padding: 0.2em 0.8em;
     border-radius: 3em;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     color: $blue-sp;
     font-size: 0.9em;
     font-weight: 400;
@@ -406,7 +406,7 @@
   padding: 0.5em 1em;
   width: 100%;
   height: auto;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   & .date-text {
     font-weight: 600;
     font-size: 1em;
@@ -449,7 +449,7 @@
     font-weight: 600;
     text-align: center;
     margin: 0.34em 0.4em;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     i {
       color: $l-blue-sp;
     }
@@ -482,7 +482,7 @@
   .dispo-slot-container {
     position: relative;
     margin: 0.7em 0.4em;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .dispo-slot-container:hover {
     transform: scale(1.05);
@@ -504,7 +504,7 @@
 .add-slot-profile {
   text-decoration: none;
   border-radius: 4px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background: $ll-blue-sp;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   font-weight: 600;
@@ -834,7 +834,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
   }
   .mail-card {
@@ -849,7 +849,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .call-card {
     background-color: $white;
@@ -863,7 +863,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .sms-card {
     background-color: $white;
@@ -877,7 +877,7 @@
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
 }
@@ -940,7 +940,7 @@
     box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
     border-radius: 4px;
     background-color: $white;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     h4 {
       color: $dd-blue-sp;
     }
@@ -949,12 +949,12 @@
       // padding: 0.2em 0.55em;
       border-radius: 4px;
       margin-bottom: 0.7em;
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
       p {
         margin-bottom: 0 !important;
       }
       .form-check-input {
-        transition: all 0.5s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
       .form-check-input:checked  {
         background-color: $l-blue-sp !important;
@@ -1000,7 +1000,7 @@
   display: flex;
   flex-direction: column;
   border-left: 3px solid $blue-sp;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   p {
     margin-bottom: 0;
     font-weight: 600;
@@ -1034,7 +1034,7 @@
 }
 
 .booking-detail-card {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .booking-detail-card:hover {
   color: $blue-sp;
@@ -1054,7 +1054,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .sms-card-cancel {
@@ -1070,7 +1070,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .mail-card-cancel:hover {
   cursor: pointer;
