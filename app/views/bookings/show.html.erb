@@ -67,9 +67,11 @@
 
   <% if @booking.status == "Pending" && @booking.start_time > Time.now %>
     <div class="d-flex justify-content-center align-items-center mt-4">
-      <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-2 text-decoration-none d-flex justify-content-center align-items-center btn-pending green-pending" do %>
-        <i class="fa-solid fa-check me-2"></i>
-        <p class="mb-0">Accepter</p>
+      <% unless @booking.pending_slot_suggestion %>
+        <%= link_to confirm_booking_path(@booking), data: { "turbo-method": :put }, class:"me-2 text-decoration-none d-flex justify-content-center align-items-center btn-pending green-pending" do %>
+          <i class="fa-solid fa-check me-2"></i>
+          <p class="mb-0">Accepter</p>
+        <% end %>
       <% end %>
 
         <div>

@@ -27,12 +27,13 @@
         </div>
       </div>
       <div class="confirmation d-flex align-items-center flex-column justify-content-between">
-        <%= link_to confirm_booking_path(booking), data: { "turbo-method": :put } do %>
-          <p><i class="fa-solid fa-check mb-1 mt-1 accept"></i></p>
+        <% unless booking.pending_slot_suggestion %>
+          <%= link_to confirm_booking_path(booking), data: { "turbo-method": :put } do %>
+            <p><i class="fa-solid fa-check mb-1 mt-1 accept"></i></p>
+          <% end %>
         <% end %>
         <p class="price-tag-paid mt-2"><%= booking.price.to_i %>€</p>
       </div>
-
     </div>
   </div>
 <% end %>
