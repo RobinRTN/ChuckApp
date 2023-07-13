@@ -26,7 +26,7 @@
         </div>
 
         <div class="fields">
-          <%= f.simple_fields_for :formules, @user.formules.where(deleted_at: nil) do |formule_fields| %>
+          <%= f.simple_fields_for :formules, @user.formules.where(deleted_at: nil).order(created_at: :desc) do |formule_fields| %>
             <%= render 'formule', f: formule_fields %>
           <% end %>
         </div>
