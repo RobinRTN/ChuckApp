@@ -6,6 +6,11 @@ export default class extends Controller {
   }
   removeRecord(event) {
     event.preventDefault();
+    if (event.currentTarget.dataset.persisted === "true") {
+      if (!confirm("Veux-tu supprimer cette formule ? N'oublie pas de valider après tes modifications réalisées.")) {
+        return;
+      }
+    }
     event.target.previousElementSibling.value = '1';
     // console.log(event.target.previousElementSibling)
     event.target.closest('.formule-fields').style.display = 'none';

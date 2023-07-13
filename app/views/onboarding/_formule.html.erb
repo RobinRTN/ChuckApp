@@ -3,7 +3,7 @@
   <div class="d-flex align-items-center justify-content-between mb-3">
     <p class="formule-number"><i class="fa-solid fa-fire me-2 text-primary"></i>Prestation proposée </p>
     <%= f.input_field :_destroy, as: :hidden %>
-    <%= link_to "Supprimer", '#', class:"text-end delete-formule btn-minimal mb-0", data: { action: "click->add-formule-package#removeRecord" } %>
+    <%= link_to "Supprimer", '#', class:"text-end delete-formule btn-minimal mb-0", data: { action: "click->add-formule-package#removeRecord", persisted: f.object.persisted? } %>
   </div>
 
   <%# <p class="delete-formule btn-minimal"><i class="fa-solid fa-minus-circle me-1"></i>Supprimer</p> %>

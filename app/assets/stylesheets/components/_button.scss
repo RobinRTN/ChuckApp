@@ -138,7 +138,7 @@
   color: $dd-blue-sp;
   text-decoration: none;
   font-size: 0.9em;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .ajouter-client-btn:hover {
   transform: scale(1.05);
@@ -159,7 +159,7 @@
   text-decoration: none;
   border: none !important;
   font-size: 0.9em;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .dispo-fixes-btn:hover {
   transform: scale(1.05);
@@ -169,7 +169,7 @@
 .back-btn {
   color: $blue-sp;
   font-size: 1.2em;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .back-btn:hover {
   cursor: pointer;
@@ -213,7 +213,7 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
-    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 1s ease-in-out;
   }
   .btn-reservation:hover {
     transform: scale(1.02);
@@ -245,7 +245,7 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
-    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 1s ease-in-out;
   }
   .btn-client:hover {
     transform: scale(1.02);
@@ -384,7 +384,7 @@
   border-radius: 50%;
   text-decoration: none;
   box-shadow: 0 0 18px -4px $blue-sp;
-  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s ease-in-out;
 }
 .btn-share-link:hover {
   transform: scale(1.08) !important;
@@ -401,7 +401,7 @@
   font-size: 1.2em;
   border-radius: 50%;
   text-decoration: none;
-  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s ease-in-out;
 }
 .btn-share-link-big:hover {
   transform: scale(1.08);
@@ -425,7 +425,7 @@
   color: $d-blue-sp;
   font-size: 1em;
   font-weight: 400;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
   // box-shadow: 0 0 4px $l-blue-sp;
   border: none;
   &.active {
@@ -451,7 +451,7 @@
   text-align: center;
   font-size: 1em;
   width: 20%;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .btn-show-refuse:hover {
   box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
@@ -472,7 +472,7 @@
   text-align: center;
   font-size: 1em;
   width: 20%;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .btn-show-accept:hover {
   box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
@@ -494,7 +494,7 @@
   border: none;
   font-size: 1em;
   // width: 20%;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .btn-show-round-blue:hover {
   box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
@@ -504,7 +504,7 @@
 
 .round-square-grey {
   background-color: $light-gray;
-  padding: 0.2em 0.7em;
+  padding: 0.2em 0.5em;
   border-radius: 4px;
   min-width: 270px;
   i {
@@ -525,7 +525,7 @@
   font-weight: 500;
   width: 45%;
   text-align: center;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 
   p {
     margin-bottom: none;
@@ -558,7 +558,7 @@
   position: relative;
   right: 15px;
   color: $blue-sp;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .change-button:hover {
   cursor: pointer;
@@ -567,7 +567,7 @@
 }
 
 .profile-btn {
-  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s ease-in-out;
 }
 .profile-btn:hover {
   transform: scale(1.05);
@@ -575,7 +575,7 @@
 }
 
 .logo-btn {
-  transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 1s ease-in-out;
 }
 .logo-btn:hover {
   transform: scale(1.04);
@@ -593,7 +593,7 @@
   color: $ll-blue-sp;
   text-decoration: none;
   font-size: 0.9em;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 }
 .valider-presta-btn:hover {
   transform: scale(1.05);
@@ -624,7 +624,7 @@
   background: white;
   border-radius: 4px;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
   padding: 0.5em 1em;
   &.red-pending {
     color: $red-sp;

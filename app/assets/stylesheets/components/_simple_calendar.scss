@@ -7,7 +7,7 @@
   border-radius: 8px;
   background-color: white;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 
   .dropdown-toggle::after {
     display: none; // hide the pseudo-element
@@ -193,7 +193,7 @@
     margin-bottom: 0.3em;
     border-radius: 3px;
     box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-    transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.5s ease-in-out;
   }
   .btn-time-slot-calendar:hover {
     transform: scale(1.02);

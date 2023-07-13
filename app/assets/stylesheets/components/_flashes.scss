@@ -26,7 +26,7 @@ $darkyellow-flash: rgba(218, 140, 7, 1);
     max-width: 55vw;
   }
 	.flash {
-		transition-duration: all cubic-bezier(0.165, 0.84, 0.44, 1) 1s;
+		transition-duration: all ease-in-out 1s;
 	  .flash-content {
 			position: relative;
       opacity: 0.93;

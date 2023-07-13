@@ -19,7 +19,7 @@
   text-decoration: none;
   color: $d-blue-sp;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
 
   p {
     text-decoration: none;
@@ -42,7 +42,7 @@
   border-radius: 0.2em;
   box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
   text-decoration: none;
-  transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.5s ease-in-out;
   p {
     text-align: center;
     color: white;
@@ -69,7 +69,7 @@
 //     transition: all 0.2s;
 //     padding-bottom: 0.5em;
 //     box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
-//     transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+//     transition: all 0.5s ease-in-out;
 
 // }
 // .btn-profile:hover {
