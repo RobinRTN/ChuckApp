@@ -40,7 +40,7 @@
   background-color: $blue-sp;
   padding: 0.8em 1em;
   border-radius: 0.2em;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
   p {
@@ -53,6 +53,7 @@
   }
 
   &:hover {
+    background-color: $darker-blue-sp  !important;
     box-shadow: none !important;
     transform: scale(1.01);
     cursor: pointer;

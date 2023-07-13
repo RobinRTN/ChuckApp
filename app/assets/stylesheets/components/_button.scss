@@ -213,7 +213,7 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
-    transition: all 1s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .btn-reservation:hover {
     transform: scale(1.02);
@@ -245,7 +245,7 @@
     font-size: 1em;
     font-weight: 400;
     border: none;
-    transition: all 1s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
   .btn-client:hover {
     transform: scale(1.02);
@@ -384,7 +384,7 @@
   border-radius: 50%;
   text-decoration: none;
   box-shadow: 0 0 18px -4px $blue-sp;
-  transition: all 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .btn-share-link:hover {
   transform: scale(1.08) !important;
@@ -401,7 +401,7 @@
   font-size: 1.2em;
   border-radius: 50%;
   text-decoration: none;
-  transition: all 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .btn-share-link-big:hover {
   transform: scale(1.08);
@@ -516,7 +516,7 @@
   text-decoration: none;
   padding: 0.5em 0.8em;
   border-radius: 4px;
-  transition: all 0.1s ease;
+  transition: all 0.0.3s ease;
   background: $white;
   color: $blue-sp;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
@@ -567,7 +567,7 @@
 }
 
 .profile-btn {
-  transition: all 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .profile-btn:hover {
   transform: scale(1.05);
@@ -575,7 +575,7 @@
 }
 
 .logo-btn {
-  transition: all 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .logo-btn:hover {
   transform: scale(1.04);
@@ -594,6 +594,7 @@
   text-decoration: none;
   font-size: 0.9em;
   transition: all 0.3s ease-in-out;
+  border: none !important;
 }
 .valider-presta-btn:hover {
   transform: scale(1.05);
@@ -616,7 +617,12 @@
   font-size: 1.2em;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   opacity: 0;
-  transition: opacity 0.3s;  /* New line */
+  transition: all 0.3s ease-in-out;
+}
+.back-to-top:hover {
+  background-color: $darker-blue-sp;
+  transform: scale(1.02);
+  cursor: pointer;
 }
 
 
