@@ -29,27 +29,32 @@
   flex-direction: column;
   padding: 1em;
   background: white;
-  max-width: 285px;
+  max-width: 350px;
   border-radius: 4px;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   flex: 1;
-  max-height: 380px;
+  // max-height: 380px;
 }
 
 .form-inputs-connect {
-  max-width: 250px;
+  // max-width: 250px;
 }
 
 .links-connect {
   font-size: 0.8em;
-  margin-top: 1.5em;
+  // margin-top: 1.5em;
   a {
     text-decoration: none;
     color: $d-blue-sp;
     margin-bottom: 2em;
+    transition: all 0.4s ease-in-out;
   }
   .google-auth {
     margin-top: 1em;
+  }
+  a:hover {
+    color: $blue-sp;
+    transform: scale(1.03);
   }
 }
 

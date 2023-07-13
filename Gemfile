@@ -101,3 +101,5 @@ gem "sassc-rails"
 gem "blazer"
 gem 'ahoy_matey'
 gem "stripe"
+gem 'inline_svg'
+

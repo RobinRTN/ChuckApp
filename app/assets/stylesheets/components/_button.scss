@@ -55,7 +55,7 @@
 .btn-basic-bleu-large-onboard {
   background: $blue-sp;
   color: $ll-blue-sp;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
+  // box-shadow: 0 0 5px rgba(0,0,0,0.2) !important;
   padding: 0.8em 1em;
   font-family: Raleway, sans-serif;
   font-size: 0.9em;
@@ -637,4 +637,35 @@
   cursor: pointer;
   transform: scale(1.05);
   box-shadow: 0 0 3px -1px rgba(0,0,0,0.2);
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: $d-blue-sp;
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  padding: 0.8em 1em;
+  transition: all 0.5s ease-in-out;
+  font-size: 1.1em;
+  border: 1px solid #d9d9d9;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.google-btn:hover {
+  cursor: pointer;
+  border: 1px solid $blue-sp;
+  color: $blue-sp;
+  background-color: $light-gray;
+
+}
+
+.google-btn svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 1em;
 }

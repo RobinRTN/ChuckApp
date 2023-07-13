@@ -8,12 +8,15 @@
   </div>
 </div>
 
-<div class="container-connect">
-  <div class="block-connect mt-5 me-2">
+<div class="container-connect d-flex justify-content-center align-items-start">
+  <div class="block-connect me-2 mt-5">
     <div class="form-connect">
-      <h5 class="mb-3 mt-1 text-center">Se connecter</h5>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= image_tag "Chuck-rounded.png", class: "my-1 logo-connect" %>
+      </div>
+      <h5 class="mb-4 text-center">Bienvenue !</h5>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-        <div class="form-inputs-connect">
+        <div class="form-inputs-connect me-0">
           <%= f.input :email,
                       required: false,
                       autofocus: true,
@@ -27,7 +30,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Se connecter", class: "btn-basic-bleu-large-form", value: "Se connecter" %>
+          <%= f.button :submit, "Se connecter", class: "btn-basic-bleu-large-onboard", value: "Se connecter" %>
         </div>
       <% end %>
     </div>
