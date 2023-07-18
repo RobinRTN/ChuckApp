@@ -99,6 +99,46 @@
     <div class="w-100 d-flex justify-content-center">
       <p class="mb-2"><em><%= @user.title %></em></p>
     </div>
+
+    <% if any_social_username_present?(@user) %>
+
+      <div class="mt-2 mb-2 d-flex justify-content-center gap-2">
+
+          <% if @user.instagram_username.present? %>
+            <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.tiktok_username.present? %>
+            <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-tiktok"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.facebook_username.present? %>
+            <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-facebook"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.twitter_username.present? %>
+            <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-twitter"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
+      <% end %>
+
     <div class="w-100 d-flex justify-content-center">
       <a href="#reserve-now" class="mt-3 mb-3 round-button-blue">Réserver une prestation</a>
     </div>
@@ -155,47 +195,6 @@
         </div>
       </div>
     <% end %>
-
-    <% if any_social_username_present?(@user) %>
-
-      <div class="mt-2 mb-5 d-flex justify-content-center gap-2">
-
-          <% if @user.instagram_username.present? %>
-            <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-            <% end %>
-          <% end %>
-
-          <% if @user.tiktok_username.present? %>
-            <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-tiktok"></i>
-              </div>
-            <% end %>
-          <% end %>
-
-          <% if @user.facebook_username.present? %>
-            <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-facebook"></i>
-              </div>
-            <% end %>
-          <% end %>
-
-          <% if @user.twitter_username.present? %>
-            <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-twitter"></i>
-              </div>
-            <% end %>
-          <% end %>
-
-        </div>
-      <% end %>
-
-
 
     <%# <p class= "p-2 text-center w-93"><strong>Réserve dès maintenant 👇</strong></p> %>
     <div class="d-flex justify-content-center flex-column align-items-center mb-4">
