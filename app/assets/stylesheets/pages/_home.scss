@@ -10,6 +10,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   // background: linear-gradient(to top, $ll-blue-sp 0%, white 100%);
   // background: white;
@@ -75,4 +79,3 @@ h1, h2, h3, h4, h5, h6 {
 .logo-connect {
   width: 3.5em;
 }
-

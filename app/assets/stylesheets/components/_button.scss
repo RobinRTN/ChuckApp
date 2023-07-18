@@ -326,6 +326,13 @@
   margin: auto;
   padding: 0.1em 0.5em;
   box-shadow: 0 0 18px -4px $blue-sp;
+  transition: all 0.3s ease-in-out;
+}
+.round-button-blue:hover {
+  transform: scale(1.04) !important;
+  box-shadow: 0 0 3px -2px $blue-sp;
+  background-color: $d-blue-sp;
+  color: white;
 }
 
 .round-button-l-blue {
@@ -609,7 +616,7 @@
     margin-right: 0.6em;
   }
   padding: 0.2em 0.55em;
-  background-color: $l-blue-sp;
+  background-color: $blue-sp;
   border-radius: 3em;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   color: $ll-blue-sp;
@@ -620,7 +627,7 @@
 }
 .social-media-btn:hover {
   transform: scale(1.05);
-  background-color: $blue-sp;
+  background-color: $d-blue-sp;
   box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
   color: $white;
 }
