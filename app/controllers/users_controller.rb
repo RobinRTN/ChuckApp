@@ -132,6 +132,14 @@ class UsersController < ApplicationController
     head :ok # This sends an empty response with a 200 OK status
   end
 
+  def update_social
+    if current_user.update(user_social_params)
+      redirect_to profile_path, notice: 'Liens réseaux sociaux mis à jour'
+    else
+      redirect_to profile_path, alert: "Erreur lors de l'enregistrement des liens réseaux sociaux"
+    end
+  end
+
   private
 
   def user_info_params
@@ -147,12 +155,15 @@ class UsersController < ApplicationController
   def user_formule_params
     # params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :_destroy])
     params.require(:user).permit(formules_attributes: [:id, :name, :price, :duration, :description, :deleted_at, :archived])
-
   end
 
 
   def user_indispo_params
     params.require(:user).permit(:excluded_fixed_weekly_slots)
+  end
+
+  def user_social_params
+    params.require(:user).permit(:twitter_username, :instagram_username, :facebook_username, :tiktok_username)
   end
 
 end

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get 'edit_formules'
       patch 'update_formules'
       post 'update_profile_picture'
+      patch 'update_social'
     end
   end
 

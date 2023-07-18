@@ -116,40 +116,81 @@
     </div>
 
 
-    <div class="d-flex justify-content-center flex-column align-items-center">
+    <% if @user.gallery_pictures.present? %>
+      <div class="d-flex justify-content-center flex-column align-items-center">
 
-        <!-- Image gallery -->
+          <!-- Image gallery -->
 
-      <div class="image-gallery mb-5" data-controller="full-screen-gallery">
-        <% @user.gallery_pictures.each_with_index do |image, index| %>
-          <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
-            <div class="image-wrapper image-container">
-              <%= cl_image_tag(image.key, class: 'img-fluid square-image', data: { full_screen_gallery_target: 'galleryImage', src: cl_image_path(image.key, width: 800, height: 600, crop: :fill) }) %>
-              <div class="spinner-wrapper spinner-small" data-full-screen-gallery-target="smallSpinner">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="sr-only">Loading...</span>
+        <div class="image-gallery d-flex justify-content-center gap-2 mb-5" data-controller="full-screen-gallery">
+          <% @user.gallery_pictures.each_with_index do |image, index| %>
+            <a href="#" data-action="click->full-screen-gallery#showImage" data-index="<%= index %>">
+              <div class="image-wrapper image-container">
+                <%= cl_image_tag(image.key, class: 'img-fluid square-image', data: { full_screen_gallery_target: 'galleryImage', src: cl_image_path(image.key, width: 800, height: 600, crop: :fill) }) %>
+                <div class="spinner-wrapper spinner-small" data-full-screen-gallery-target="smallSpinner">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        <% end %>
+            </a>
+          <% end %>
 
-        <!-- Full-screen gallery -->
-        <div class="full-screen-gallery">
-          <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
-          <div class="spinner-wrapper" data-full-screen-gallery-target="spinner">
-            <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
+          <!-- Full-screen gallery -->
+          <div class="full-screen-gallery">
+            <img src="" class="full-screen-gallery-image" data-full-screen-gallery-target="image">
+            <div class="spinner-wrapper" data-full-screen-gallery-target="spinner">
+              <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div data-full-screen-gallery-target="icons" class="d-none">
-          <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
-          <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
-          <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+          <div data-full-screen-gallery-target="icons" class="d-none">
+            <button class="full-screen-gallery-prev" data-action="click->full-screen-gallery#prevImage"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="full-screen-gallery-next" data-action="click->full-screen-gallery#nextImage"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="full-screen-gallery-close" data-action="click->full-screen-gallery#hideGallery"><i class="fa-solid fa-xmark"></i></button>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+
+    <% if any_social_username_present?(@user) %>
+
+      <div class="mt-2 mb-5 d-flex justify-content-center gap-2">
+
+          <% if @user.instagram_username.present? %>
+            <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.tiktok_username.present? %>
+            <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-tiktok"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.facebook_username.present? %>
+            <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-facebook"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if @user.twitter_username.present? %>
+            <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
+              <div class="social-card-landing d-flex justify-content-center align-items-center">
+                <i class="fa-brands fa-twitter"></i>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
+      <% end %>
 
 
 

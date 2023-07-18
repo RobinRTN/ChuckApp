@@ -105,4 +105,8 @@ module ApplicationHelper
     end
   end
 
+  def any_social_username_present?(user)
+    user.instagram_username.present? || user.tiktok_username.present? || user.facebook_username.present? || user.twitter_username.present?
+  end
+
 end

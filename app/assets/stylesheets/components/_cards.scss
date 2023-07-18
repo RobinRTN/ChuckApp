@@ -1089,3 +1089,38 @@
   border-radius: 4px;
   border: solid $l-blue-sp 0.5px;
 }
+
+
+.social-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 50px;
+  border-right: none !important;
+  margin-bottom: 1em;
+  background-color: white;
+  color: $darker-blue-sp;
+  border: 1px solid #ced4da;
+}
+
+.social-card-landing {
+  height: 2em;
+  width: 2em;
+  font-size: 1.5em;
+  color: $l-blue-sp;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+  a {
+    text-decoration: none !important;
+  }
+}
+
+.social-card-landing:hover {
+  color: $blue-sp;
+  cursor: pointer;
+  transform: scale(1.06);
+  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+}

@@ -31,7 +31,7 @@
 
       <% if current_user.gallery_pictures.attached? %>
         <div class="d-flex justify-content-center mt-4">
-          <div class="image-gallery d-flex flex-wrap align-items-center mb-4">
+          <div class="image-gallery gap-2 d-flex flex-wrap align-items-center mb-4">
             <% current_user.gallery_pictures.each_with_index do |image, index| %>
               <div class="d-flex flex-column justify-content-center">
                 <%= link_to(delete_gallery_users_path(user_id: current_user.id, image_key: image.key), method: :delete, onclick: "return confirm('Êtes vous sûr de vouloir supprimer cette photo ?');", class: "delete-link") do %>
@@ -76,7 +76,100 @@
         </div>
       <% end %>
 
-      <div class="block-info-profile">
+      </div>
+
+
+
+
+      <div class="mt-4 d-flex justify-content-center gap-2">
+
+        <% if @user.instagram_username.present? %>
+          <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if @user.tiktok_username.present? %>
+          <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if @user.facebook_username.present? %>
+          <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-facebook"></i>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if @user.twitter_username.present? %>
+          <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-twitter"></i>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+
+
+      <div class="mt-4 d-flex justify-content-center">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#lien-reseaux" class="valider-presta-btn">
+          Liens réseaux sociaux  🚀
+        </a>
+      </div>
+
+      <div class="modal fade" id="lien-reseaux" tabindex="-1" aria-labelledby="lien-reseaux" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <%= simple_form_for(current_user, url: update_social_users_path, method: :patch) do |f| %>
+                <div class="form-group d-flex justify-content-start align-items-center">
+                  <div class="social-card">
+                    <i class="fa-brands fa-instagram"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <%= f.input :instagram_username, label: false, placeholder: "@nom d'utilisateur", class:"flex-grow-1" %>
+                  </div>
+                </div>
+                <div class="form-group d-flex justify-content-start align-items-center">
+                  <div class="social-card">
+                    <i class="fa-brands fa-tiktok"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <%= f.input :tiktok_username, label: false, placeholder: "@nom d'utilisateur" %>
+                  </div>
+                </div>
+                <div class="form-group d-flex justify-content-start align-items-center">
+                  <div class="social-card">
+                    <i class="fa-brands fa-facebook"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <%= f.input :facebook_username, label: false, placeholder: "@nom d'utilisateur - prénom.nom" %>
+                  </div>
+                </div>
+                <div class="form-group d-flex justify-content-start align-items-center">
+                  <div class="social-card">
+                    <i class="fa-brands fa-twitter"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <%= f.input :twitter_username, label: false, placeholder: "@nom d'utilisateur" %>
+                  </div>
+                </div>
+                <p class="text-center"><em>Pas la peine d'inclure le <strong>@</strong>, <strong>on s'en charge</strong> pour toi</em> 😉</p>
+                <%= f.button :submit, "Valider", class: "btn-basic-bleu-large-onboard mt-2" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block-info-profile mx-3">
         <%# <p class="title-profile text-align-center">Informations réservations 👇</p> %>
 
         <%= link_to edit_info_users_path, class: "text-decoration-none" do %>
