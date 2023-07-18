@@ -2,7 +2,7 @@
   <row>
     <columns>
       <h5>Bonjour <%= @user.first_name %>,</h5>
-      <p>Tu as proposé un nouveau créneau pour la réservation suivante :</p>
+      <p>Tu as proposé un autre créneau pour la réservation suivante :</p>
     </columns>
   </row>
   <row>

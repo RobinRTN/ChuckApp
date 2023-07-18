@@ -2,7 +2,7 @@
   <row>
     <columns>
       <h3>Bonjour <%= @client.first_name %>,</h3>
-      <p><%= @user.first_name %> a proposé un nouveau créneau pour votre réservation. Voici les détails :
+      <p><%= @user.first_name %> a proposé un autre créneau pour votre réservation. Voici les détails :
     </columns>
   </row>
   <row>
@@ -63,7 +63,7 @@
 
   <row>
     <columns>
-      <p>Si ce créneau vous convient, veuillez confirmer en cliquant sur le lien ci-dessous:</p>
+      <p>Si ce créneau vous convient, veuillez confirmer en cliquant sur le lien ci-dessous.</p>
       <p>Si ce créneau ne vous convient pas, veuillez contacter votre coach pour discuter d'autres options.</p>
     </columns>
   </row>
