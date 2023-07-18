@@ -32,9 +32,12 @@
       <p class="mb-2"><em><%= @user.title %></em></p>
     </div>
 
-    <div class="my-1">
-      <p class="title-profile">Galerie photos 📸</p>
-    </div>
+    <% unless current_user.gallery_pictures.attached?%>
+      <div class="my-1">
+        <p class="title-profile">Ajouter des photos 📸</p>
+      </div>
+    <% end %>
+
     <%= form_with url: add_gallery_users_path(user_id: current_user.id), method: :post, local: true, html: { multipart: true, data: { add_gallery_pictures_target: "form" }  } do |form| %>
       <%= form.file_field :gallery_pictures, multiple: true, hidden: true, data: { add_gallery_pictures_target: "fileInput" } %>
     <% end %>
