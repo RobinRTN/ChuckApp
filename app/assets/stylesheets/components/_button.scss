@@ -596,7 +596,7 @@
   padding: 0.2em 0.55em 0.2em 0.85em;
   background-color: $blue-sp;
   border-radius: 3em;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.4);
   color: $ll-blue-sp;
   text-decoration: none;
   font-size: 0.9em;
@@ -606,7 +606,7 @@
 .valider-presta-btn:hover {
   transform: scale(1.05);
   background-color: $d-blue-sp;
-  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px -2px rgba(0,0,0,0.2);
   color: $white;
 }
 
@@ -618,7 +618,7 @@
   padding: 0.2em 0.55em;
   background-color: $blue-sp;
   border-radius: 3em;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.4);
   color: $ll-blue-sp;
   text-decoration: none;
   font-size: 0.9em;
@@ -628,7 +628,7 @@
 .social-media-btn:hover {
   transform: scale(1.05);
   background-color: $d-blue-sp;
-  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  box-shadow: 0 0 4px -2px rgba(0,0,0,0.2);
   color: $white;
 }
 
