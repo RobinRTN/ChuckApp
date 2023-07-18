@@ -20,7 +20,10 @@
 
 
 
-    <h4 class= "d-flex justify-content-center pb-3"><%= current_user.full_name %></h4>
+    <h4 class= "d-flex justify-content-center"><%= current_user.full_name %></h4>
+    <div class="w-100 d-flex justify-content-center pb-3">
+      <p class="mb-2"><em><%= @user.title %></em></p>
+    </div>
 
     <div class="my-1">
       <p class="title-profile">Galerie photos 📸</p>
