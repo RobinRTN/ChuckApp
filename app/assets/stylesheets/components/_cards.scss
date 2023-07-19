@@ -36,7 +36,7 @@
 }
 .card-horizontal-client:hover {
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
-  transform: scale(1.02);
+  transform: scale(1.01);
   border-left: 8px solid $blue-sp;
 }
 
@@ -117,7 +117,7 @@
 }
 .card-horizontal-booking:hover {
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
-  transform: scale(1.02);
+  transform: scale(1.01);
   border-left: 8px solid $blue-sp;
 }
 
@@ -240,7 +240,7 @@
 }
 .card-horizontal-booking-pending:hover {
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
-  transform: scale(1.02);
+  transform: scale(1.01);
   border-left: 8px solid $blue-sp;
   cursor: pointer;
 }
@@ -322,7 +322,7 @@
 }
 .card-horizontal-booking-passed:hover {
   box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
-  transform: scale(1.02);
+  transform: scale(1.01);
   border-left: 4px solid $blue-sp;
 }
 
@@ -981,7 +981,7 @@
 
   }
   .week-card:hover {
-    box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
     cursor: pointer;
   }
 
