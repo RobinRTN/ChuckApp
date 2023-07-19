@@ -32,7 +32,8 @@
 
   &:hover {
     border-left: 8px solid $blue-sp;
-    box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+    transform: scale(1.02);
   }
 }
 

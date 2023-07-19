@@ -35,7 +35,8 @@
 
 }
 .card-horizontal-client:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.02);
   border-left: 8px solid $blue-sp;
 }
 
@@ -115,7 +116,8 @@
   }
 }
 .card-horizontal-booking:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.02);
   border-left: 8px solid $blue-sp;
 }
 
@@ -237,7 +239,8 @@
   }
 }
 .card-horizontal-booking-pending:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.02);
   border-left: 8px solid $blue-sp;
   cursor: pointer;
 }
@@ -318,7 +321,8 @@
   }
 }
 .card-horizontal-booking-passed:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.02);
   border-left: 4px solid $blue-sp;
 }
 
@@ -498,7 +502,8 @@
 
 }
 .daily-dispo-card-user:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.01);
 }
 
 .add-slot-profile {
@@ -885,22 +890,26 @@
 .whatsapp-card:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 .call-card:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 .mail-card:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 .sms-card:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 
 
@@ -1007,7 +1016,9 @@
   }
 }
 .formule-fields:hover {
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+  transform: scale(1.01);
+
 }
 
 .card-text-area {
@@ -1075,12 +1086,14 @@
 .mail-card-cancel:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 .sms-card-cancel:hover {
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
 
 .pending-slot-card {
@@ -1122,5 +1135,6 @@
   color: $blue-sp;
   cursor: pointer;
   transform: scale(1.06);
-  box-shadow: 0 0 2px -1px rgba(0,0,0,0.2);
+  box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+
 }
