@@ -29,6 +29,11 @@ class ClientsController < ApplicationController
     @groups = groups.order(:name)
   end
 
+  def search
+    @clients = current_user.clients.search(params[:query])
+    render partial: 'client_list', locals: { clients: @clients }, layout: false
+  end
+
   def show
     @client = Client.find(params[:id])
     @all_bookings = @client.bookings.order(start_time: :desc)

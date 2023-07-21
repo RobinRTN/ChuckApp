@@ -16,6 +16,9 @@ application.register("add-profile-picture", AddProfilePictureController)
 import AddressAutocompleteController from "./address_autocomplete_controller"
 application.register("address-autocomplete", AddressAutocompleteController)
 
+import AlgoliaSearchClientController from "./algolia_search_client_controller"
+application.register("algolia-search-client", AlgoliaSearchClientController)
+
 import BottomController from "./bottom_controller"
 application.register("bottom", BottomController)
 
@@ -93,6 +96,9 @@ application.register("share-link", ShareLinkController)
 
 import ShowFreeDateController from "./show_free_date_controller"
 application.register("show-free-date", ShowFreeDateController)
+
+import ShowSearchController from "./show_search_controller"
+application.register("show-search", ShowSearchController)
 
 import SlotScheduleController from "./slot_schedule_controller"
 application.register("slot-schedule", SlotScheduleController)

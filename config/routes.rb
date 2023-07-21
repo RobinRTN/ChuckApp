@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   put '/clients/:id/update_note', to: 'clients#update_note', as: :update_note
   delete 'clients/:id/erase', to: 'clients#erase', as: 'erase_client'
+  get 'clients/search', to: 'clients#search'
+
 
   resources :users, only: [] do
     collection do

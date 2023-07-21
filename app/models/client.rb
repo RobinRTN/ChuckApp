@@ -1,5 +1,14 @@
 class Client < ApplicationRecord
 
+  include AlgoliaSearch
+
+  algoliasearch do
+    # Define the list of attributes you want to index
+    attributes :first_name, :last_name, :email
+
+  end
+
+
   validates :first_name, :last_name, presence: true
   validates :phone_number, presence: true, format: { with: /\A(\+33|0)[67]\d{8}\z/, message: "Merci d'entrer un numéro de téléphone au bon format" }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
