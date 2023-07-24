@@ -30,7 +30,11 @@ class ClientsController < ApplicationController
   end
 
   def search
-    @clients = current_user.clients.search(params[:query])
+    if params[:query].blank?
+      @clients = current_user.clients.all
+    else
+      @clients = current_user.clients.search(params[:query])
+    end
     render partial: 'client_list', locals: { clients: @clients }, layout: false
   end
 
