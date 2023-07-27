@@ -31,12 +31,19 @@ class ClientsController < ApplicationController
 
   def search
     if params[:query].blank?
-      @clients = current_user.clients.all
+      @clients = current_user.clients.all.order(:full_name)
     else
       @clients = current_user.clients.search(params[:query])
     end
     render partial: 'client_list', locals: { clients: @clients }, layout: false
   end
+
+  def sort
+    direction = params[:direction] == 'asc' ? :asc : :desc
+    @clients = current_user.clients.all.order(full_name: direction)
+    render partial: 'client_list', locals: { clients: @clients }, layout: false
+  end
+
 
   def show
     @client = Client.find(params[:id])

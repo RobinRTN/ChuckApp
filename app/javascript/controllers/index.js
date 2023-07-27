@@ -106,6 +106,9 @@ application.register("slot-schedule", SlotScheduleController)
 import SlotSelectorController from "./slot_selector_controller"
 application.register("slot-selector", SlotSelectorController)
 
+import SortClientController from "./sort_client_controller"
+application.register("sort-client", SortClientController)
+
 import Step2Controller from "./step2_controller"
 application.register("step2", Step2Controller)
 

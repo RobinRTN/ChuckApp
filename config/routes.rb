@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   put '/clients/:id/update_note', to: 'clients#update_note', as: :update_note
   delete 'clients/:id/erase', to: 'clients#erase', as: 'erase_client'
   get 'clients/search', to: 'clients#search'
+  get 'clients/sort', to: 'clients#sort', as: 'sort_clients'
 
 
   resources :users, only: [] do

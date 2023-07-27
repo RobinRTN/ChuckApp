@@ -1,5 +1,5 @@
-//= link_tree ../images
-//= link application.css
-//= link_tree ../builds
-//= link_directory ../json .json
-//= link foundation_emails.css
+// = link_tree ../images
+// = link application.css
+// = link_tree ../builds
+// = link manifest.json
+// = link foundation_emails.css

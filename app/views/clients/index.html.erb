@@ -1,4 +1,4 @@
-  <div class="container wrapper" data-controller="algolia-search-client">
+  <div class="container wrapper" data-controller="sort-client algolia-search-client">
     <div class="mx-3 mt-4 mb-3 d-flex justify-content-between align-items-center">
       <h4 class="mb-3">Mes clients</h4>
       <%= link_to new_client_path, class: "text-decoration-none" do %>
@@ -13,11 +13,14 @@
       <div class="d-flex justify-content-start align-items-center mx-06 my-2">
         <i class="fa fa-search me-2 text-success"></i>
         <input data-algolia-search-client-target="search" class="flex-grow-1 form-control" data-action="input->algolia-search-client#search" type="search" placeholder="Rechercher" autocomplete="off" />
+        <div data-action="click->sort-client#sort" data-sort-client-target="sortButton" class="sort-client-btn">
+          <i class="fa fa-arrow-down"></i>
+        </div>
       </div>
     <% end %>
 
 
-    <div class="block-clients" data-algolia-search-client-target="list">
+    <div class="block-clients" data-sort-client-target="clientList" data-algolia-search-client-target="list">
       <%= render partial: 'client_list', locals: { clients: @clients } %>
     </div>
 
