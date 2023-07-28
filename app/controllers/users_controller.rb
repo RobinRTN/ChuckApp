@@ -147,7 +147,7 @@ class UsersController < ApplicationController
   end
 
   def user_dispo_params
-    params.require(:user).permit(:daily_start_time, :daily_end_time).tap do |whitelisted|
+    params.require(:user).permit(:daily_start_time, :daily_end_time, :break_time).tap do |whitelisted|
       whitelisted[:days_of_week] = params[:user][:days_of_week].split(',')
     end
   end

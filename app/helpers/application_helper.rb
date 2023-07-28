@@ -57,6 +57,24 @@ module ApplicationHelper
     (4..23).flat_map { |h| ["%02d:00" % h, "%02d:30" % h] } + ["00:00"]
   end
 
+  def time_selection_break
+    [
+      ["0min", 0],
+      ["5min", 5],
+      ["10min", 10],
+      ["15min", 15],
+      ["20min", 20],
+      ["25min", 25],
+      ["30min", 30],
+      ["35min", 35],
+      ["40min", 40],
+      ["45min", 45],
+      ["50min", 50],
+      ["55min", 55],
+      ["1h", 60]
+    ]
+  end
+
   def generate_time_slots(start_time, end_time)
     start_time = Time.parse(start_time) if start_time.is_a?(String)
     end_time = Time.parse(end_time) if end_time.is_a?(String)

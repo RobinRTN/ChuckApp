@@ -49,8 +49,17 @@
                         input_html: { placeholder: "Jusqu'à", value: @user.daily_end_time || "18:00" } %>
         </div>
       </div>
-      <p class="onboarding-form-description-small"><em>Tu indiqueras tes pauses et tes indisponibilités hebdomadaires à la prochaine étape </em></p>
-
+      <p class="onboarding-form-description">Une pause entre chaque prestation ?</p>
+        <div class="row">
+          <div class="col-6">
+            <%= f.input :break_time, as: :select,
+                          collection: time_selection_break,
+                          required: true,
+                          autofocus: true,
+                          label: false,
+                          input_html: { placeholder: "Temps de pause", value: @user.break_time || "0" } %>
+        </div>
+      </div>
       <%= f.button :submit, "Mettre à jour", class: "btn-basic-bleu-large-onboard mt-5", value: "Valider" %>
     <% end %>
 

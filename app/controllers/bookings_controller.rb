@@ -706,7 +706,7 @@ class BookingsController < ApplicationController
     @user_bookings = user.bookings.upcoming_all
     overlapping_slots = []
     daily_datetimes.each do |slot|
-      slot_end = slot + slot_duration.minutes
+      slot_end = slot + (slot_duration + user.break_time).minutes
       @user_bookings.each do |booking|
         if (slot >= booking.start_time && slot < booking.end_time) ||
             (slot_end > booking.start_time && slot_end <= booking.end_time)
