@@ -478,7 +478,7 @@ class BookingsController < ApplicationController
     interval = current_user.formules.minimum(:duration)
     @slot_duration = current_user.formules.minimum(:duration)
     start_time = Time.zone.parse(current_user.daily_start_time)
-    end_time = Time.zone.parse(current_user.daily_end_time) - @slot_duration
+    end_time = Time.zone.parse(current_user.daily_end_time)
     @days_of_week = current_user.days_of_week
     num_weeks = 4
     if current_user.excluded_fixed_weekly_slots.is_a?(String)
@@ -584,25 +584,39 @@ class BookingsController < ApplicationController
       formatted_current_week_start = (current_time.beginning_of_week + week_num.weeks).strftime("%a, %d %b %Y")
       availability_week = availability_weeks.find { |aw| aw.week_start.strftime("%a, %d %b %Y") == formatted_current_week_start }
 
-      # Skip the week if it's not enabled
       if availability_week && !availability_week.week_enabled
-        # Add an empty weekly_datetimes array to full_datetimes when the week is disabled
         full_datetimes << []
       else
         given_days_of_week.each do |day|
-          # Calculate the first day of the week for the current iteration
           next if availability_week && !availability_week["available_#{day.downcase}"]
-          # Calculate the first day of the week for the current iteration
+
           first_day_of_week = current_time.beginning_of_week + week_num.weeks
-          # Calculate the target_day based on the first_day_of_week and the current day of the week
           day_offset = (Date.parse(day).wday - first_day_of_week.wday) % 7
           target_day = first_day_of_week + day_offset.days
-
-          # Skip the day if it's not available
 
           slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
           while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
             excluded = false
+            client_booking = user.bookings.upcoming_all.find { |b| b.start_time == slot && b.cancel_type == "Client" }
+
+            if client_booking
+              previous_end_time = client_booking.end_time
+            end
+
+            if previous_end_time && (slot < previous_end_time + user.break_time.minutes)
+              slot = previous_end_time + user.break_time.minutes
+            end
+
+            if slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+              puts "========"
+              puts slot + slot_duration.minutes
+              puts Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+              puts slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+              puts "========"
+              break
+            end
+
+
             excluded_fixed_weekly_slots.each do |fw_slot|
               fw_day_of_week = fw_slot[0]
               fw_start_time = Time.zone.parse(fw_slot[1])
@@ -614,37 +628,35 @@ class BookingsController < ApplicationController
                 break
               end
             end
+
             daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
+
             slot += interval.minutes
           end
 
-          # Add converted_available_slots to the daily_datetimes array before calling sort_bookings
           converted_available_slots.each do |available_slot|
-            # target_day = Date.parse(day) + (7 * week_num)
             if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
               daily_datetimes << available_slot
             end
           end
 
           daily_datetimes.sort!
-
-          # Call sort_bookings after adding converted_available_slots
           sort_bookings(daily_datetimes, slot_duration, user)
 
           weekly_datetimes << daily_datetimes unless daily_datetimes.empty?
           daily_datetimes = []
         end
       end
+
       full_datetimes << weekly_datetimes
-      if weekly_datetimes.empty?
-        num_weeks += 1
-      end
       weekly_datetimes = []
       week_num += 1
     end
 
     full_datetimes
   end
+
+
 
   def generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, user = nil, target_date)
     Time.zone = 'Europe/Paris'

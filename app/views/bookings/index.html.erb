@@ -41,6 +41,7 @@
         </li>
       </ul>
         <div class="reservation-future" data-reservation-target="future" style="display: block;">
+        
           <% unless @today_bookings.empty? %>
             <em>Aujourd'hui</em>
             <% @today_bookings.each do |booking| %>
