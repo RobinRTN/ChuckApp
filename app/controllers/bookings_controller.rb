@@ -33,10 +33,10 @@ class BookingsController < ApplicationController
   def choose_reservation
     @user = User.find_by(token: reservation_params[:token])
     @formule = Formule.find(reservation_params[:formule_id])
-    interval = @formule.duration
+    interval = @user.formules.minimum(:duration)
     slot_duration = @formule.duration
     start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    end_time = Time.zone.parse(@user.daily_end_time)
     days_of_week = @user.days_of_week
     num_weeks = 4
     if @user.excluded_fixed_weekly_slots.is_a?(String)
@@ -69,10 +69,10 @@ class BookingsController < ApplicationController
   def new_choose_reservation
     @user = current_user
     @formule = Formule.find(reservation_params[:formule_id])
-    interval = @formule.duration
+    interval = @user.formules.minimum(:duration)
     slot_duration = @formule.duration
     start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    end_time = Time.zone.parse(@user.daily_end_time)
     days_of_week = @user.days_of_week
     num_weeks = 4
     if current_user.excluded_fixed_weekly_slots.is_a?(String)
@@ -104,7 +104,7 @@ class BookingsController < ApplicationController
       interval = @user.formules.minimum(:duration)
       slot_duration = @user.formules.minimum(:duration)
       start_time = Time.zone.parse(@user.daily_start_time)
-      end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+      end_time = Time.zone.parse(@user.daily_end_time)
       days_of_week = @user.days_of_week
       num_weeks = 4
       if current_user.excluded_fixed_weekly_slots.is_a?(String)
@@ -139,10 +139,10 @@ class BookingsController < ApplicationController
     @user = current_user
     @formule = Formule.find(params[:formule_id])
     @client = Client.find(params[:client_id])
-    interval = @formule.duration
+    interval = @user.formules.minimum(:duration)
     slot_duration = @formule.duration
     start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    end_time = Time.zone.parse(@user.daily_end_time)
     days_of_week = @user.days_of_week
     num_weeks = 5
     if @user.excluded_fixed_weekly_slots.is_a?(String)
@@ -262,10 +262,10 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking = Booking.find(params[:id])
     @formule = @booking.formule
-    interval = @formule.duration
+    interval = @user.formules.minimum(:duration)
     slot_duration = @formule.duration
     start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    end_time = Time.zone.parse(@user.daily_end_time)
     days_of_week = @user.days_of_week
     num_weeks = 4
     if @user.excluded_fixed_weekly_slots.is_a?(String)
@@ -295,10 +295,10 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking = Booking.find(params[:id])
     @formule = @booking.formule
-    interval = @formule.duration
+    interval = @user.formules.minimum(:duration)
     slot_duration = @formule.duration
     start_time = Time.zone.parse(@user.daily_start_time)
-    end_time = Time.zone.parse(@user.daily_end_time) - slot_duration
+    end_time = Time.zone.parse(@user.daily_end_time)
     days_of_week = @user.days_of_week
     num_weeks = 4
     if @user.excluded_fixed_weekly_slots.is_a?(String)
@@ -608,11 +608,6 @@ class BookingsController < ApplicationController
             end
 
             if slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
-              puts "========"
-              puts slot + slot_duration.minutes
-              puts Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
-              puts slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
-              puts "========"
               break
             end
 
