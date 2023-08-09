@@ -643,9 +643,15 @@ class BookingsController < ApplicationController
         end
       end
 
-      full_datetimes << weekly_datetimes
+      # Only increment week_num if there are available slots
+      if weekly_datetimes.any?
+        full_datetimes << weekly_datetimes
+        week_num += 1
+      end
       weekly_datetimes = []
-      week_num += 1
+
+      # Always move to the next week to check availability
+      current_time = current_time + 1.week
     end
 
     full_datetimes
