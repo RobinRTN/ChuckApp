@@ -1,77 +1,14 @@
-<div class="container wrapper">
+<div class="container wrapper" data-controller="copy-to-clipboard share-link">
   <% if current_user %>
-    <div class="d-flex flex-column" data-controller="copy-to-clipboard share-link">
+    <div class="d-flex flex-column">
       <div class="px-3 d-flex align-items-center justify-content-between mb-3">
         <%= link_to root_path, class: "text-decoration-none" do %>
           <div class="back-btn me-3">
             <i class="fa-solid fa-arrow-left"></i>
           </div>
         <% end %>
-
-        <div class="copy-text">
-          <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
-          <button class="btn-gris-rond" data-action="click->share-link#slideOptions">Partager lien<i class="fa-solid fa-link ms-2"></i></button>
-        </div>
-
-      <!-- Button trigger modal -->
-        <div>
-          <a href="#" data-bs-toggle="modal" data-bs-target="#landing-qrcode" class="btn-gris-rond me-5 mt-1">
-            <i class="fa-solid fa-qrcode"></i>
-          </a>
-        </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="landing-qrcode" tabindex="-1" aria-labelledby="landing-qrcode" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-body" style="margin: auto; display: flex; justify-content: center; flex-direction: column;">
-                <%= image_tag(url_for(current_user.qrcode),  class: 'img-fluid') %>
-                <p class="text-center px-3">Scanne ce QR Code pour accéder directement à ta page de réservation Chuck 💪</p>
-                <a href="<%= url_for(current_user.qrcode) %>" download="QR_code" class="btn btn-primary mt-2">Télécharger mon QR Code</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
 
-      <div data-share-link-target="options" class="mx-2 d-flex flex-column justify-content-center slide-box">
-        <div class="d-flex align-items-center justify-content-evenly">
-        <!-- Copy link to clipboard -->
-          <div data-share-link-target="copyBtn" class="d-flex flex-column align-items-center justify-content-center link-card ">
-            <span class="text" data-text="<%=reservation_link(current_user.token) %>" data-copy-to-clipboard-target="input"></span>
-            <i class="fa-solid fa-link" data-action="click->copy-to-clipboard#copyText"></i>
-          </div>
-
-          <!-- Share link via email -->
-          <a href="mailto:?subject=Lien%20de%20r%C3%A9servation&amp;body=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center mail-card" target="_blank">
-            <i class="fa-regular fa-envelope"></i>
-          </a>
-
-          <a href="https://wa.me/?text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center whatsapp-card" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-
-          <!-- Share link via Messenger -->
-          <a href="fb-messenger://share?link=<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center messenger-card" target="_blank">
-            <i class="fa-brands fa-facebook-messenger"></i>
-          </a>
-
-          <!-- Share link on Twitter -->
-          <a href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&amp;text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(current_user.token) %>" class="d-flex flex-column align-items-center justify-content-center twitter-card" target="_blank">
-            <i class="fa-brands fa-twitter"></i>
-          </a>
-
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center">
-          <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
-        </div>
-
-      </div>
-    </div>
     <div class="d-flex justify-content-center">
       <p><i class="fa-solid fa-eye me-2"></i><%= pluralize(Ahoy::Event.where(name: "Viewed coach", properties: {coach_id: @user.id}).count, "vue") %> sur profil</p>
     </div>
@@ -104,44 +41,109 @@
 
       <div class="mt-2 mb-2 d-flex justify-content-center gap-2">
 
-          <% if @user.instagram_username.present? %>
-            <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-            <% end %>
+        <% if @user.instagram_username.present? %>
+          <%= link_to "https://instagram.com/#{@user.instagram_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
           <% end %>
+        <% end %>
 
-          <% if @user.tiktok_username.present? %>
-            <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-tiktok"></i>
-              </div>
-            <% end %>
+        <% if @user.tiktok_username.present? %>
+          <%= link_to "https://www.tiktok.com/@#{@user.tiktok_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
           <% end %>
+        <% end %>
 
-          <% if @user.facebook_username.present? %>
-            <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-facebook"></i>
-              </div>
-            <% end %>
+        <% if @user.facebook_username.present? %>
+          <%= link_to "https://www.facebook.com/@#{@user.facebook_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-facebook"></i>
+            </div>
           <% end %>
+        <% end %>
 
-          <% if @user.twitter_username.present? %>
-            <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
-              <div class="social-card-landing d-flex justify-content-center align-items-center">
-                <i class="fa-brands fa-twitter"></i>
-              </div>
-            <% end %>
+        <% if @user.twitter_username.present? %>
+          <%= link_to "https://twitter.com/#{@user.twitter_username}", target: "_blank", class:"text-decoration-none" do %>
+            <div class="social-card-landing d-flex justify-content-center align-items-center">
+              <i class="fa-brands fa-twitter"></i>
+            </div>
           <% end %>
+        <% end %>
 
-        </div>
-      <% end %>
+      </div>
+    <% end %>
 
     <div class="w-100 d-flex justify-content-center">
       <a href="#reserve-now" class="mt-3 mb-3 round-button-blue">Réserver une prestation</a>
     </div>
+
+    <div class="d-flex justify-content-center align-items-center mt-3 gap-4">
+
+      <div class="copy-text">
+        <span class="text" data-text="<%=reservation_link(@user.token) %>" data-copy-to-clipboard-target="input"></span>
+        <div class="btn-minimal" data-action="click->share-link#slideOptions"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+
+      <% if current_user %>
+        <div>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#landing-qrcode" class="btn-minimal">
+            <i class="fa-solid fa-qrcode"></i>
+          </a>
+        </div>
+      <% end %>
+
+    </div>
+
+    <div data-share-link-target="options" class="mx-2 d-flex flex-column justify-content-center slide-box">
+      <div class="d-flex align-items-center justify-content-evenly">
+      <!-- Copy link to clipboard -->
+        <div data-share-link-target="copyBtn" class="d-flex flex-column align-items-center justify-content-center link-card ">
+          <span class="text" data-text="<%=reservation_link(@user.token) %>" data-copy-to-clipboard-target="input"></span>
+          <i class="fa-solid fa-link" data-action="click->copy-to-clipboard#copyText"></i>
+        </div>
+
+
+        <a href="https://wa.me/?text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center whatsapp-card" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <!-- Share link via Messenger -->
+        <a href="fb-messenger://share?link=<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center messenger-card" target="_blank">
+          <i class="fa-brands fa-facebook-messenger"></i>
+        </a>
+
+        <!-- Share link on Twitter -->
+        <a href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&amp;text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center twitter-card" target="_blank">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
+      </div>
+
+    </div>
+
+    <% if current_user %>
+      <div class="modal fade" id="landing-qrcode" tabindex="-1" aria-labelledby="landing-qrcode" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body" style="margin: auto; display: flex; justify-content: center; flex-direction: column;">
+              <%= image_tag(url_for(current_user.qrcode),  class: 'img-fluid') %>
+              <p class="text-center px-3">Scanne ce QR Code pour accéder directement à ta page de réservation Chuck 💪</p>
+              <a href="<%= url_for(current_user.qrcode) %>" download="QR_code" class="btn btn-primary mt-2">Télécharger mon QR Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+
     <%# <% unless @tags.nil? %>
       <%# <div class="d-flex align-items-center justify-content-center flex-wrap my-3"> %>
         <%# <% @tags.each do | tag | %>
