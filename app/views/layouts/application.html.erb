@@ -41,8 +41,6 @@
     <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
-
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= turbo_include_tags %>
@@ -52,7 +50,8 @@
 
   </head>
 
-  <body class="exception-page">
+  <body class="exception-page" data-controller="serviceworker"
+        data-serviceworker-vapid-public-key-value="<%= Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes %>">
 
     <% unless (controller_name == 'bookings' && action_name == 'landing_reservation') ||
               (controller_name == 'bookings' && action_name == 'choose_reservation') ||

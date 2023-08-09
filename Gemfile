@@ -103,3 +103,6 @@ gem 'ahoy_matey'
 gem "stripe"
 gem 'inline_svg'
 gem 'algoliasearch-rails'
+
+gem 'web-push'
+

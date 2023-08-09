@@ -19,6 +19,10 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+
+      @subscriptions = current_user.subscriptions
+      @subscribed = @subscriptions.any? {  |subscription| subscription.device_id == cookies[:DeviceId] }
+
       if current_user&.needs_onboarding
         @show_onboarding = true
       end
@@ -36,6 +40,11 @@ class PagesController < ApplicationController
       @calendar_bookings = current_user.bookings.where("start_time BETWEEN ? AND ? AND status = 'Accepted' AND cancel_type != 'Cancelled'", 3.months.ago, 3.months.from_now)
       @user = current_user
     end
+  end
+
+  def send_test_push_notification
+    PushNotificationService.send(current_user, "PagesController::send_test_push_notification #{Time.zone.now}")
+    render json: { status: 'ok' }, status: :ok
   end
 
   def profile
