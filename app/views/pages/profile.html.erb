@@ -183,101 +183,55 @@
         </div>
       </div>
 
-      <div class="d-flex justify-content-center align-items-center mt-3 gap-4">
 
-        <div class="copy-text">
-          <span class="text" data-text="<%=reservation_link(@user.token) %>" data-copy-to-clipboard-target="input"></span>
-          <div class="btn-minimal" data-action="click->share-link#slideOptions"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
-        </div>
-
-        <div>
-          <a href="#" data-bs-toggle="modal" data-bs-target="#landing-qrcode" class="btn-minimal">
-            <i class="fa-solid fa-qrcode"></i>
-          </a>
-        </div>
-
-      </div>
-
-      <div data-share-link-target="options" class="mx-2 d-flex flex-column justify-content-center slide-box">
-
-        <div class="d-flex align-items-center justify-content-evenly">
-          <div data-share-link-target="copyBtn" class="d-flex flex-column align-items-center justify-content-center link-card ">
-            <span class="text" data-text="<%=reservation_link(@user.token) %>" data-copy-to-clipboard-target="input"></span>
-            <i class="fa-solid fa-link" data-action="click->copy-to-clipboard#copyText"></i>
-          </div>
-
-          <a href="https://wa.me/?text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center whatsapp-card" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-
-          <!-- Share link via Messenger -->
-          <a href="fb-messenger://share?link=<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center messenger-card" target="_blank">
-            <i class="fa-brands fa-facebook-messenger"></i>
-          </a>
-
-          <!-- Share link on Twitter -->
-          <a href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&amp;text=Bonjour,%20voici%20mon%20lien%20de%20r%C3%A9servation%20:%20<%= reservation_link(@user.token) %>" class="d-flex flex-column align-items-center justify-content-center twitter-card" target="_blank">
-            <i class="fa-brands fa-twitter"></i>
-          </a>
-
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center">
-          <em class="disclaimer-copy" data-copy-to-clipboard-target="disclaimer">Lien copié dans presse-papier</em>
-        </div>
-
-      </div>
-
-      <div class="modal fade" id="landing-qrcode" tabindex="-1" aria-labelledby="landing-qrcode" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body" style="margin: auto; display: flex; justify-content: center; flex-direction: column;">
-              <%= image_tag(url_for(current_user.qrcode),  class: 'img-fluid') %>
-              <p class="text-center px-3">Scanne ce QR Code pour accéder directement à ta page de réservation Chuck 💪</p>
-              <a href="<%= url_for(current_user.qrcode) %>" download="QR_code" class="btn btn-primary mt-2">Télécharger mon QR Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="d-flex justify-content-center flex-column mx-3">
         <div class="block-info-profile">
-          <%# <p class="title-profile text-align-center">Informations réservations 👇</p> %>
+
 
           <%= link_to edit_info_users_path, class: "text-decoration-none" do %>
-            <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <div class= "d-flex mt-2 align-items-center justify-content-between btn-profile">
               <p class="mb-0"><i class="fa-solid fa-user me-2"></i>Informations personnelles</p>
               <div><i class="fa-solid fa-angle-right"></i></div>
             </div>
           <% end %>
 
           <%= link_to edit_formules_users_path(previous_page: "profile"), class: "text-decoration-none" do %>
-            <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <div class= "d-flex mt-2 align-items-center justify-content-between btn-profile">
               <p class="mb-0"><i class="fa-solid fa-fire-flame-curved me-2"></i>Prestations proposées</p>
               <div><i class="fa-solid fa-angle-right"></i></div>
             </div>
           <% end %>
 
           <%= link_to edit_dispo_users_path, class: "text-decoration-none" do %>
-            <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <div class= "d-flex mt-2 align-items-center justify-content-between btn-profile">
               <p class="mb-0"><i class="fa-sharp fa-solid fa-clock me-2 text-decoration-none"></i>Disponibilités hebdomadaires</p>
               <div><i class="fa-solid fa-angle-right"></i></div>
             </div>
           <% end %>
 
           <%= link_to edit_indispo_users_path, class: "text-decoration-none" do %>
-            <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <div class= "d-flex mt-2 align-items-center justify-content-between btn-profile">
               <p class="mb-0"><i class="fa-solid fa-xmark me-2"></i>Indisponibilités hebdomadaires</p>
               <div><i class="fa-solid fa-angle-right"></i></div>
             </div>
           <% end %>
 
           <%= link_to edit_user_registration_path, class: "text-decoration-none" do %>
-            <div class= "d-flex mt-2 d-flex align-items-center justify-content-between btn-profile">
+            <div class= "d-flex mt-2 align-items-center justify-content-between btn-profile">
               <p class="mb-0"><i class="fa-sharp fa-solid fa-gear me-2"></i></i>Compte et mot de passe</p>
               <div><i class="fa-solid fa-angle-right"></i></div>
             </div>
           <% end %>
+
+          <div class="d-flex mt-2 align-items-center justify-content-between btn-profile-plain">
+            <p class="mb-0"><i class="fa-solid fa-bell me-2"></i></i>Notifications sur cet appareil</p>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="notifs"
+                    data-action="change->serviceworker#toggleSubscription"
+                    <%= @subscribed ? "checked" : "" %>>
+            </div>
+          </div>
 
           <%= link_to reservation_link(current_user.token), class: "text-decoration-none" do %>
             <div class= "d-flex mt-5 mt-2 justify-content-center btn-link-profile">

@@ -20,9 +20,6 @@ class PagesController < ApplicationController
   def home
     if user_signed_in?
 
-      @subscriptions = current_user.subscriptions
-      @subscribed = @subscriptions.any? {  |subscription| subscription.device_id == cookies[:DeviceId] }
-
       if current_user&.needs_onboarding
         @show_onboarding = true
       end
@@ -49,6 +46,8 @@ class PagesController < ApplicationController
 
   def profile
     @user = current_user
+    @subscriptions = current_user.subscriptions
+    @subscribed = @subscriptions.any? {  |subscription| subscription.device_id == cookies[:DeviceId] }
   end
 
   def conditions

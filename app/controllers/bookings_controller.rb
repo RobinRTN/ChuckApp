@@ -203,6 +203,8 @@ class BookingsController < ApplicationController
     @client = @booking.client
     @booking.update(status: "Accepted")
     flash[:notice] = "Demande de réservation acceptée !"
+    push_message = "Demande de réservation acceptée !"
+    PushNotificationService.send(@user, push_message)
     redirect_to bookings_path
     BookingMailer.user_booking_email(@user, @booking).deliver_later if Rails.env.production?
     BookingMailer.client_booking_email(@client, @booking).deliver_later if Rails.env.production?
