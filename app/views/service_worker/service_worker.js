@@ -13,8 +13,8 @@ const onPush = (event) => {
   // var payload = event.data.json();
 
   const img = "https://cdn-icons-png.flaticon.com/512/3119/3119338.png";
-  const text = "New notification";
-  const title = "You have received a new notification";
+  const text = "ChuckApp";
+  const title = "ChuckApp";
   const options = {
     body: text,
     icon: img,
