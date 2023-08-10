@@ -241,17 +241,17 @@
         </div>
 
 
-        <%# <%= link_to send_test_push_notification_path,
-                  class: "btn-minimal text-center w-100 my-4",
+      <%= link_to send_test_push_notification_path,
+                  class: "btn-minimal text-center w-100 mb-4",
                   data: {
                     turbo: false,
                     controller: 'serviceworker',
                     action: 'click->serviceworker#sendTestNotification',
-                  <%# } do %>
-        <%# <span class="custom-button__top"> %>
-          <%# <i class="fa-regular fa-paper-plane me-2"></i> Notify me %>
-        <%# </span> %>
-      <%# <% end %>
+                  } do %>
+        <span class="custom-button__top">
+          <i class="fa-regular fa-paper-plane me-2"></i> Notify me
+        </span>
+      <% end %>
 
 
 
