@@ -79,7 +79,7 @@ export default class extends Controller {
   async updateDaySwitches(weekEnabled, weekIndex) {
     this.days_of_week = JSON.parse(this.data.get("days-of-week"));
     const daysOfWeek = this.days_of_week.map(day => `available_${day.toLowerCase()}`);
-    console.log(daysOfWeek);
+    // console.log(daysOfWeek);
 
     const daySwitches = this.daySwitchTargets.filter(
       (daySwitch) => daySwitch.dataset.weekIndex == weekIndex

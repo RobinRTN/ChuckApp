@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "buttonDay", "buttonWeek", "day", "week", "refreshNeeded" ]
 
   connect() {
-    console.log("connected")
+    // console.log("connected")
     // Restore the last selection from localStorage, if available
     const lastBlock = localStorage.getItem("dispoLastBlock")
     if (lastBlock === "day") {

@@ -9,7 +9,7 @@ export default class extends Controller {
 
 
   connect() {
-    console.log("connected")
+    // console.log("connected")
 
     this.element.querySelectorAll('.mapboxgl-ctrl-geocoder').forEach(geocoder => geocoder.remove());
 

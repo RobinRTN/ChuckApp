@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
 
   connect() {
-    console.log("Formule Menu Controller Connected")
+    // console.log("Formule Menu Controller Connected")
   }
   removeRecord(event) {
     event.preventDefault();
@@ -14,8 +14,8 @@ export default class extends Controller {
 
   addFields(event) {
     event.preventDefault();
-    console.log(event)
-    console.log("Add Fields Triggered")
+    // console.log(event)
+    // console.log("Add Fields Triggered")
     let time = new Date().getTime();
     let regexp = new RegExp(event.target.dataset.id, 'g');
     document.querySelector('.fields').insertAdjacentHTML('afterbegin', event.target.dataset.fields.replace(regexp, time));

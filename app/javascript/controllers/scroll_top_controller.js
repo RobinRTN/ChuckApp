@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   goTop() {
-    console.log("scroll top")
+    // console.log("scroll top")
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }

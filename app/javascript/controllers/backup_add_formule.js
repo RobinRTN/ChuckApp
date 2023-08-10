@@ -4,25 +4,25 @@ export default class extends Controller {
   static targets = ["formule", "formuleCount", "package"];
 
   connect() {
-    console.log('connecté au JS de Add Formule')
-    console.log('packages:')
-    console.log(this.packageTargets)
-    console.log('formules:')
-    console.log(this.formuleTargets)
+    // console.log('connecté au JS de Add Formule')
+    // console.log('packages:')
+    // console.log(this.packageTargets)
+    // console.log('formules:')
+    // console.log(this.formuleTargets)
   }
 
   newFormule(event) {
-    console.log("newFormule action well activated")
+    // console.log("newFormule action well activated")
     event.preventDefault();
 
     const newFormule = this.formuleTargets[this.formuleTargets.length - 1].cloneNode(true);
 
     newFormule.querySelectorAll("input, select, textarea").forEach(input => {
-      console.log(input)
+      // console.log(input)
       const name = input.getAttribute('name');
-      console.log(name)
+      // console.log(name)
       const id = input.getAttribute('id');
-      console.log(id)
+      // console.log(id)
       if (name && id) { // Check if name and id are not null
         const matches = name.match(/\[([^\]]+)\]/g);
         const key = matches[matches.length - 1].replace(/[\[\]']+/g, '');
@@ -51,7 +51,7 @@ export default class extends Controller {
   }
 
   newPackage(event) {
-    console.log("starting to create a new package")
+    // console.log("starting to create a new package")
     event.preventDefault();
 
     const newPackage = this.packageTargets[this.packageTargets.length - 1].cloneNode(true);

@@ -10,7 +10,7 @@ export default class extends Controller {
 
   connect() {
     this.#clearBadge()
-    console.log('connected Subcription Controller')
+    // console.log('connected Subcription Controller')
     this.vapidPublicKey = new Uint8Array(this.vapidPublicKeyValue)
   }
 
@@ -37,7 +37,7 @@ export default class extends Controller {
   sendTestNotification(e) {
     e.preventDefault()
     this.#sendTestNotification(e.currentTarget.href)
-    console.log(e.currentTarget.href)
+    // console.log(e.currentTarget.href)
   }
 
   #sendTestNotification(url) {

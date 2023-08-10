@@ -9,7 +9,7 @@ export default class extends Controller {
   connect() {
     this.client = algoliasearch('99BKTJUI5I', '6f6449c50a4656e0c8d45b7e5fa92359');
     this.index = this.client.initIndex('Client');
-    console.log(this.listTarget)
+    // console.log(this.listTarget)
   }
 
 

@@ -13,7 +13,7 @@ export default class extends Controller {
     });
 
     const hiddenUpElements = document.querySelectorAll(".hidden-up");
-    console.log(hiddenUpElements)
+    // console.log(hiddenUpElements)
     hiddenUpElements.forEach((el) => observer.observe(el));
   }
 }

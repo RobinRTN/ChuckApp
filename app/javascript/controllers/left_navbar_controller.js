@@ -5,16 +5,16 @@ export default class extends Controller {
   static targets = ["navItem", "reservation"];
 
   connect() {
-    console.log("Connected !!!!!!!")
+    // console.log("Connected !!!!!!!")
     this.setActiveNavItem();
   }
 
   setActiveNavItem() {
-    console.log("Here")
+    // console.log("Here")
     const currentPath = window.location.pathname;
     const isBookingPage = !currentPath.startsWith("/bookings");
     this.navItemTargets.forEach((navItem) => {
-      console.log("Looping")
+      // console.log("Looping")
       const linkPath = navItem.querySelector("a").getAttribute("href");
       if (currentPath === linkPath) {
         navItem.classList.add("active");

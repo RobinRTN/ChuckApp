@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["image", "galleryImage", "icons", "spinner", "smallSpinner", "fileInput"];
 
   connect() {
-    console.log("full screen gallery connected")
+    // console.log("full screen gallery connected")
     this.currentIndex = 0;
     this.updateImage();
     this.loadSmallImages();
@@ -14,37 +14,37 @@ export default class extends Controller {
 
 
   showImage(event) {
-    console.log("showing");
+    // console.log("showing");
     event.preventDefault();
     this.currentIndex = parseInt(event.currentTarget.dataset.index);
-    console.log(this.currentIndex);
+    // console.log(this.currentIndex);
     this.updateImage();
     this.element.classList.add("full-screen-gallery-active");
     this.iconsTarget.classList.remove("d-none");
   }
 
   hideGallery() {
-    console.log("hide triggered");
+    // console.log("hide triggered");
     this.element.classList.remove("full-screen-gallery-active");
     this.iconsTarget.classList.add("d-none");
   }
 
   prevImage() {
-    console.log("previous triggered");
+    // console.log("previous triggered");
     this.currentIndex = (this.currentIndex - 1 + this.galleryImageTargets.length) % this.galleryImageTargets.length;
     this.updateImage();
   }
 
   nextImage() {
-    console.log("next triggered");
+    // console.log("next triggered");
     this.currentIndex = (this.currentIndex + 1) % this.galleryImageTargets.length;
     this.updateImage();
   }
 
   updateImage() {
     const imageUrl = this.galleryImageTargets[this.currentIndex].dataset.src;
-    console.log(imageUrl);
-    console.log(this.imageTarget);
+    // console.log(imageUrl);
+    // console.log(this.imageTarget);
 
     this.showSpinner();
 
@@ -75,6 +75,6 @@ export default class extends Controller {
   }
   addImages() {
     this.fileInputTarget.click()
-  } 
+  }
 
 }

@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = ["navbar"];
 
   connect() {
-    console.log('connected')
+    // console.log('connected')
     window.addEventListener('scroll', this.handleScroll.bind(this));
   }
 

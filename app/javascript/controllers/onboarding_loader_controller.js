@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "loader" ];
 
   connect() {
-    console.log("Coucou c'est moi");
+    // console.log("Coucou c'est moi");
   }
 
   submit() {

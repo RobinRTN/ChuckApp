@@ -10,7 +10,7 @@ export default class extends Controller {
   }
 
   showNote() {
-    console.log("show note")
+    // console.log("show note")
     if (this.noteTextTarget.textContent.trim() === '') {
       this.noteTextTarget.classList.add('d-none')
       this.editButtonTarget.classList.add('d-none')
@@ -25,7 +25,7 @@ export default class extends Controller {
   }
 
   editNote() {
-    console.log("edit note")
+    // console.log("edit note")
     this.noteTextTarget.classList.add('d-none')
     this.editButtonTarget.classList.add('d-none')
     this.noteFieldTarget.classList.remove('d-none')
@@ -37,9 +37,9 @@ export default class extends Controller {
 
     // Get the client ID and note content from the page
   const clientId = this.data.get('clientId')
-  console.log(clientId)
+  // console.log(clientId)
   const noteContent = this.noteFieldTarget.value;
-  console.log(noteContent)
+  // console.log(noteContent)
 
 
   // Define the URL for the request

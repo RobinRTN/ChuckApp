@@ -5,8 +5,8 @@ export default class extends Controller {
   static targets = ["fileInput", "form", "loader"];
 
   connect() {
-    console.log("fully connected")
-    console.log(this.fileInputTarget)
+    // console.log("fully connected")
+    // console.log(this.fileInputTarget)
     this.fileInputTarget.addEventListener('change', (event) => {
       if (event.target.files.length > 0) {
         this.formTarget.submit()
@@ -20,7 +20,7 @@ export default class extends Controller {
   }
 
   submitForm() {
-    console.log("submitting ....")
+    // console.log("submitting ....")
     this.element.querySelector('form').submit();
   }
 }

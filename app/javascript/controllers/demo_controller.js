@@ -18,7 +18,7 @@ export default class extends Controller {
   }
 
   finishOnboarding() {
-    console.log("FINISSHHIINNG")
+    // console.log("FINISSHHIINNG")
     fetch("/users/finish_onboarding", {
       method: "POST",
       headers: {

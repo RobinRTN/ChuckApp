@@ -39,6 +39,6 @@ export default class extends Controller {
     const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     this.currentDaysOfWeek.sort((a, b) => weekdays.indexOf(a) - weekdays.indexOf(b));
     this.hiddenInput.value = this.currentDaysOfWeek.join(',');
-    console.log(this.hiddenInput.value)
+    // console.log(this.hiddenInput.value)
   }
 }

@@ -9,8 +9,8 @@ export default class extends Controller {
     let selectedElement = event.currentTarget
     let startTime = selectedElement.dataset.startTime
     let endTime = selectedElement.dataset.endTime
-    console.log(startTime)
-    console.log(endTime)
+    // console.log(startTime)
+    // console.log(endTime)
 
     if (selectedElement.classList.contains('selected-schedule')) {
       selectedElement.classList.remove('selected-schedule')

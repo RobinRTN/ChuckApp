@@ -14,11 +14,11 @@ export default class extends Controller {
     });
 
     const hiddenLeftElements = document.querySelectorAll(".hidden-bottom-left");
-    console.log(hiddenLeftElements)
+    // console.log(hiddenLeftElements)
     hiddenLeftElements.forEach((el) => observer.observe(el));
 
     const hiddenRightElements = document.querySelectorAll(".hidden-bottom-right");
-    console.log(hiddenRightElements)
+    // console.log(hiddenRightElements)
     hiddenRightElements.forEach((el) => observer.observe(el));
 
   }

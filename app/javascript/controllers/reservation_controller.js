@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ['future', 'attente', 'passe', "buttonAttente", "buttonPasse", "buttonFuture"];
 
   connect() {
-    console.log("connecté");
+    // console.log("connecté");
     this.showSelectedBlock();
   }
 
@@ -21,7 +21,7 @@ export default class extends Controller {
 
     // Check if there is an active block stored in local storage
     const activeBlock = localStorage.getItem("activeBlock");
-    console.log(activeBlock)
+    // console.log(activeBlock)
 
     // Remove all blocks except the active one
     if (clickedButton.id !== "reservation-passe") {
@@ -68,7 +68,7 @@ export default class extends Controller {
 
     // save selected block in sessionStorage
     const selectedBlock = clickedButton.dataset.block;
-    console.log(selectedBlock)
+    // console.log(selectedBlock)
     sessionStorage.setItem('selectedBlock', selectedBlock);
   }
 

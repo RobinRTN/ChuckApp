@@ -2,4 +2,4 @@
 // = link application.css
 // = link_tree ../builds
 // = link manifest.json
-// = link foundation_emails.css
+// = link foundation_emails.scss

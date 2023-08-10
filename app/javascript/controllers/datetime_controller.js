@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["datetimeButton", "displayDatetime"];
 
   connect() {
-    console.log("well connected")
+    // console.log("well connected")
   }
 
   setActiveDateTime(event) {
