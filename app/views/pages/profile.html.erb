@@ -241,6 +241,19 @@
         </div>
 
 
+        <%= link_to send_test_push_notification_path,
+                  class: "btn-minimal text-center w-100 my-4",
+                  data: {
+                    turbo: false,
+                    controller: 'serviceworker',
+                    action: 'click->serviceworker#sendTestNotification',
+                  } do %>
+        <span class="custom-button__top">
+          <i class="fa-regular fa-paper-plane me-2"></i> Notify me
+        </span>
+      <% end %>
+
+
 
       </div>
       <%# <p class="my-5 text-center mx-3">Contacte nous si tu souhaites modifier ton profil, les changements arrivent vite 🚀 !</p> %>

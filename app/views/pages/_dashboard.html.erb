@@ -2,50 +2,6 @@
 
 <div class="container wrapper">
 
-
-  <div class="flex-fill d-flex flex-column align-items-center justify-content-center">
-    <% if user_signed_in? %>
-      <div class="d-flex align-items-center mb-4">
-        <span class="d-none custom-title custom-title-sm flex-fill" data-text="Notifications">Notifications</span>
-        <span class="custom-switch__label flex-fill" data-text="Notifications">Notifications</span>
-        <label class="custom-switch">
-          <input type="checkbox" id="notifs"
-                  data-action="change->serviceworker#toggleSubscription"
-                  <%= @subscribed ? "checked" : "" %>>
-          <span class="slider"></span>
-        </label>
-      </div>
-
-      <%= link_to send_test_push_notification_path,
-                  class: "custom-button w-100 mb-4",
-                  data: {
-                    turbo: false,
-                    controller: 'serviceworker',
-                    action: 'click->serviceworker#sendTestNotification',
-                  } do %>
-        <span class="custom-button__top">
-          <i class="fa-regular fa-paper-plane me-2"></i> Notify me
-        </span>
-      <% end %>
-
-      <%= link_to root_path,
-                  class: "custom-button w-100 mb-4 position-relative",
-                  data: {
-                    turbo: false,
-                    controller: 'reload-btn',
-                    action: 'click->reload-btn#reload',
-                  } do %>
-        <p class="position-absolute text-black top-100 translate-middle-x start-50 my-2 fs-6 d-none"
-          data-reload-btn-target="notice">
-          reloaded
-        </p>
-        <span class="custom-button__top">
-          <i class="fa-solid fa-rotate-right me-2"></i> Reload
-        </span>
-      <% end %>
-    <% end %>
-  </div>
-
   <div class="mx-3" id="mois-demo">
     <h4 class="my-3"></h4>
     <div class="revenue-block mb-5"  data-controller="revenu">
