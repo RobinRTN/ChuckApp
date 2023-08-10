@@ -33,7 +33,7 @@ const onPush = (event) => {
 const onPushSubscriptionChange = (event) => {
   console.log('[Serviceworker]', "Push Subscription Changing!", event);
   event.waitUntil(
-    fetch(`localhost:3000/subscriptions`, {
+    fetch(`/subscriptions`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
