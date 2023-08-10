@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_one_attached :profile_picture
   has_many_attached :gallery_pictures
   has_one_attached :qrcode
-
+  has_many :subscriptions, dependent: :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

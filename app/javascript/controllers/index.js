@@ -73,6 +73,12 @@ application.register("notes", NotesController)
 import OnboardingLoaderController from "./onboarding_loader_controller"
 application.register("onboarding-loader", OnboardingLoaderController)
 
+import PauseBlockController from "./pause_block_controller"
+application.register("pause-block", PauseBlockController)
+
+import ReloadBtnController from "./reload_btn_controller"
+application.register("reload-btn", ReloadBtnController)
+
 import ReservationController from "./reservation_controller"
 application.register("reservation", ReservationController)
 
@@ -90,6 +96,9 @@ application.register("scroll-to-element-up", ScrollToElementUpController)
 
 import ScrollTopController from "./scroll_top_controller"
 application.register("scroll-top", ScrollTopController)
+
+import ServiceworkerController from "./serviceworker_controller"
+application.register("serviceworker", ServiceworkerController)
 
 import ShareLinkController from "./share_link_controller"
 application.register("share-link", ShareLinkController)

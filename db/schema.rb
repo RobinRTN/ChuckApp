@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_28_121415) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_143853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -247,6 +247,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_121415) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "p256dh_key"
+    t.string "auth_key"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "device_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
@@ -322,5 +333,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_28_121415) do
   add_foreign_key "group_clients", "clients"
   add_foreign_key "group_clients", "groups"
   add_foreign_key "groups", "users"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "tags", "users"
 end

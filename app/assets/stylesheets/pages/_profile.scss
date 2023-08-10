@@ -37,6 +37,31 @@
   }
 }
 
+.btn-profile-plain {
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0.9em 0;
+  text-decoration: none;
+  color: $d-blue-sp;
+  box-shadow: 0 0 11px -4px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+
+  p {
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  i {
+    font-size: 0.9em;
+    color: $blue-sp;
+  }
+
+  &:hover {
+    box-shadow: 0 0 18px -5px rgba(0,0,0,0.2);
+    transform: scale(1.01);
+  }
+}
+
 .btn-link-profile {
   background-color: $blue-sp;
   padding: 0.8em 1em;
