@@ -239,7 +239,7 @@ class BookingsController < ApplicationController
     @client = @booking.client
     @booking.update(status: 'Refused')
     push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
-    push_url = "/bookings/#{@booking.id}.bookings_path"
+    push_url = "/"
     title = "Réservation annulée par ton client"
     PushNotificationJob.perform_later(@user, title, push_message, push_url)
     if Rails.env.production?
