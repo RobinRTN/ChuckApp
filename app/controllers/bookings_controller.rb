@@ -426,7 +426,7 @@ class BookingsController < ApplicationController
             # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
-            push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}}"
+            push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
             PushNotificationService.send(@user, push_message)
             BookingMailer.user_booking_email_pending(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
             BookingMailer.client_booking_email_pending(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
