@@ -204,8 +204,10 @@ class BookingsController < ApplicationController
     @booking.update(status: "Accepted")
     flash[:notice] = "Demande de réservation acceptée !"
     redirect_to bookings_path
-    BookingMailer.user_booking_email(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email(@client, @booking).deliver_later if Rails.env.production?
+    if Rails.env.production?
+      BookingMailerJob.perform_later("user_booking_email", @user.id, @booking.id)
+      BookingMailerJob.perform_later("client_booking_email", @client.id, @booking.id)
+    end
   end
 
   def refuse
@@ -215,8 +217,10 @@ class BookingsController < ApplicationController
     @booking.update(status: "Refused", refusal_message: params[:booking][:refusal_message])
     flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
-    BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email_refuse(@client, @booking).deliver_later if Rails.env.production?
+    if Rails.env.production?
+      BookingMailerJob.perform_later("user_booking_email_refuse", @user.id, @booking.id)
+      BookingMailerJob.perform_later("client_booking_email_refuse", @client.id, @booking.id)
+    end
   end
 
   def confirm_cancel
@@ -234,8 +238,10 @@ class BookingsController < ApplicationController
     @user = @booking.user
     @client = @booking.client
     @booking.update(status: 'Refused')
-    BookingMailer.user_booking_email_refuse_client(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email_refuse_client(@client, @booking).deliver_later if Rails.env.production?
+    if Rails.env.production?
+      BookingMailerJob.perform_later("user_booking_email_refuse_client", @user.id, @booking.id)
+      BookingMailerJob.perform_later("client_booking_email_refuse_client", @client.id, @booking.id)
+    end
   end
 
   def confirm_suggestion
@@ -253,10 +259,11 @@ class BookingsController < ApplicationController
     @user = @booking.user
     @client = @booking.client
     @booking.update(status: 'Accepted')
-    BookingMailer.user_booking_email(@user, @booking).deliver_later if Rails.env.production?
-    BookingMailer.client_booking_email(@client, @booking).deliver_later if Rails.env.production?
+    if Rails.env.production?
+      BookingMailerJob.perform_later("user_booking_email", @user.id, @booking.id)
+      BookingMailerJob.perform_later("client_booking_email", @client.id, @booking.id)
+    end
   end
-
 
   def edit_schedule
     @user = current_user
@@ -284,8 +291,10 @@ class BookingsController < ApplicationController
     @client = @booking.client
     if @booking.update(booking_time_params)
       redirect_to booking_path(@booking), notice: 'Réservation modifée avec succès, ton client est informé par e-mail'
-      BookingMailer.user_booking_email_modif_time(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
-      BookingMailer.client_booking_email_modif_time(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+      unless @user.admin? && Rails.env.production?
+        BookingMailerJob.perform_later("user_booking_email_modif_time", @user.id, @booking.id)
+        BookingMailerJob.perform_later("client_booking_email_modif_time", @client.id, @booking.id)
+      end
     else
       render :edit
     end
@@ -318,8 +327,10 @@ class BookingsController < ApplicationController
     if @booking.update(booking_time_params)
       @booking.update_column(:pending_slot_suggestion, true)
       redirect_to booking_path(@booking), notice: 'La proposition de créneau a été envoyée à ton client par e-mail'
-      BookingMailer.user_booking_email_modif_time_confirm(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
-      BookingMailer.client_booking_email_modif_time_confirm(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+      unless @user.admin? && Rails.env.production?
+        BookingMailerJob.perform_later("user_booking_email_modif_time_confirm", @user.id, @booking.id)
+        BookingMailerJob.perform_later("client_booking_email_modif_time_confirm", @client.id, @booking.id)
+      end
     else
       render :edit
     end
@@ -336,13 +347,16 @@ class BookingsController < ApplicationController
         @booking = Booking.new(client_booking_params)
         @booking.client_id = @client.id
         @booking.user_id = @user.id
+
         if @booking.save
           flash[:notice] = "Réservation ajoutée !"
           redirect_to root_path
-          BookingMailer.user_booking_email(@user, @booking).deliver_now if Rails.env.production? && !@user.admin?
-          BookingMailer.client_booking_email(@client, @booking).deliver_now if Rails.env.production? && !@user.admin?
+
+          if Rails.env.production? && !@user.admin?
+            BookingMailerJob.perform_later("user_booking_email", @user, @booking)
+            BookingMailerJob.perform_later("client_booking_email", @client, @booking)
+          end
         else
-          # Handle errors if the booking can't be saved
           flash[:alert] = "Erreur de création réservation"
           redirect_to client_confirm_reservation_path(client_id: params[:client_id], datetime: params[:start_time], formule: params[:formule_id])
         end
@@ -354,23 +368,25 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params.except(:client, :back))
         @booking.client_id = @client.id
         @booking.user_id = @user.id
+
         if @booking.save
-          # Handle successful booking creation
           flash[:notice] = "Réservation ajoutée !"
           redirect_to root_path
-          BookingMailer.user_booking_email(@user, @booking).deliver_now if Rails.env.production? && !@user.admin?
-          BookingMailer.client_booking_email(@client, @booking).deliver_now if Rails.env.production? && !@user.admin?
+
+          if Rails.env.production? && !@user.admin?
+            BookingMailerJob.perform_later("user_booking_email", @user, @booking)
+            BookingMailerJob.perform_later("client_booking_email", @client, @booking)
+          end
         else
           if params[:booking][:origin] == "date_new_finish"
-            # Handle errors if the booking can't be saved
             flash[:alert] = "Erreur de création réservation"
             redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           else
-             # Handle errors if the booking can't be saved
-             flash[:alert] = "Erreur de création réservation"
-             redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            flash[:alert] = "Erreur de création réservation"
+            redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           end
         end
+
       elsif params[:booking][:client].present? && params[:booking][:client].key?(:first_name)
         @user = current_user
         @booking = Booking.new(booking_params.except(:client, :back))
@@ -379,35 +395,35 @@ class BookingsController < ApplicationController
         if params[:booking][:client][:photo].present?
           @client.photo.attach(params[:booking][:client][:photo])
         end
+
         if @client.save
           @booking.client_id = @client.id
           @booking.user_id = @user.id
+
           if @booking.save!
-            # Handle successful booking creation
             flash[:notice] = "Réservation ajoutée !"
             redirect_to root_path
-            BookingMailer.user_booking_email(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
-            BookingMailer.client_booking_email(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+
+            if Rails.env.production? && !@user.admin?
+              BookingMailerJob.perform_later("user_booking_email", @user, @booking)
+              BookingMailerJob.perform_later("client_booking_email", @client, @booking)
+            end
           else
             if params[:booking][:origin] == "date_new_finish"
-              # Handle errors if the booking can't be saved
               flash[:alert] = "Erreur de création réservation"
               redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
             else
-               # Handle errors if the booking can't be saved
-               flash[:alert] = "Erreur de création réservation"
-               redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+              flash[:alert] = "Erreur de création réservation"
+              redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
             end
           end
         else
           if params[:booking][:origin] == "date_new_finish"
-            # Handle errors if the booking can't be saved
             flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
             redirect_to date_new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           else
-             # Handle errors if the booking can't be saved
-             flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
-             redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
+            redirect_to new_finish_reservation_path(datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
           end
         end
       end
@@ -422,24 +438,28 @@ class BookingsController < ApplicationController
           @booking = Booking.new(booking_params.except(:client, :back))
           @booking.client_id = @client.id
           @booking.user_id = @user.id
+
           if @booking.save
-            # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
+
             push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
             push_url = "/bookings/#{@booking.id}.bookings_path"
-            PushNotificationService.send(@user, push_message, push_url)
-            BookingMailer.user_booking_email_pending(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
-            BookingMailer.client_booking_email_pending(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+            PushNotificationJob.perform_later(@user, push_message, push_url)
+
+            if Rails.env.production? && !@user.admin?
+              BookingMailerJob.perform_later("user_booking_email_pending", @user, @booking)
+              BookingMailerJob.perform_later("client_booking_email_pending", @client, @booking)
+            end
           else
-            # Handle errors if the booking can't be saved
-            flash[:alert] = "Erreur de création réservation"
-            redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            flash[:alert] = "Erreur de demande réservation"
+            redirect_to new_landing_reservation_path(token: @user.token)
           end
         else
-          flash[:alert] = "Adresse email non répertoriée, veuillez effectuer l'inscription"
-          redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          flash[:alert] = "Erreur de demande réservation - Client introuvable"
+          redirect_to new_landing_reservation_path(token: @user.token)
         end
+
       elsif params[:booking][:client].present? && params[:booking][:client].key?(:first_name)
         @user = User.find(booking_params[:user_id])
         @booking = Booking.new(booking_params.except(:client, :back))
@@ -448,31 +468,36 @@ class BookingsController < ApplicationController
         if params[:booking][:client][:photo].present?
           @client.photo.attach(params[:booking][:client][:photo])
         end
+
         if @client.save
           @booking.client_id = @client.id
           @booking.user_id = @user.id
+
           if @booking.save!
-            # Handle successful booking creation
             flash[:notice] = "Demande de réservation envoyée !"
             redirect_to landing_reservation_path(@user.token)
+
             push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
             push_url = "/bookings/#{@booking.id}.bookings_path"
-            PushNotificationService.send(@user, push_message, push_url)
-            BookingMailer.user_booking_email_pending(@user, @booking).deliver_later if Rails.env.production? && !@user.admin?
-            BookingMailer.client_booking_email_pending(@client, @booking).deliver_later if Rails.env.production? && !@user.admin?
+            PushNotificationJob.perform_later(@user, push_message, push_url)
+
+            if Rails.env.production? && !@user.admin?
+              BookingMailerJob.perform_later("user_booking_email_pending", @user, @booking)
+              BookingMailerJob.perform_later("client_booking_email_pending", @client, @booking)
+            end
           else
-            # Handle errors if the booking can't be saved
-            flash[:alert] = "Erreur de création réservation"
-            redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+            flash[:alert] = "Erreur de demande réservation"
+            redirect_to new_landing_reservation_path(token: @user.token)
           end
         else
-          flash[:alert] = "Erreur de création contact client, renseigner tous les champs"
-          redirect_to finish_reservation_path(token: @user.token, datetime: params[:booking][:back][:datetime], formule: params[:booking][:back][:formule])
+          flash[:alert] = "Erreur de demande réservation - Création du client échouée"
+          redirect_to new_landing_reservation_path(token: @user.token)
         end
       end
 
     end
   end
+
 
   def disponibilites
 

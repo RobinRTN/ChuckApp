@@ -40,7 +40,7 @@ class PagesController < ApplicationController
   end
 
   def send_test_push_notification
-    PushNotificationService.send(current_user, "PagesController::send_test_push_notification #{Time.zone.now}")
+    PushNotificationService.send(current_user, "PagesController::send_test_push_notification #{Time.zone.now}", "/profile")
     render json: { status: 'ok' }, status: :ok
   end
 

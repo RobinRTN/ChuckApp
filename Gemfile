@@ -105,4 +105,6 @@ gem 'inline_svg'
 gem 'algoliasearch-rails'
 
 gem 'web-push'
+gem "sidekiq"
+gem "sidekiq-failures", "~> 1.0"
 

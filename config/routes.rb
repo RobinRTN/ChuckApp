@@ -10,6 +10,11 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
+
   root to: "pages#home"
 
   get "/service-worker.js" => "service_worker#service_worker"

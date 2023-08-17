@@ -356,6 +356,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redis (4.8.1)
+    redis-client (0.12.1)
+      connection_pool
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -395,6 +397,13 @@ GEM
       websocket (~> 1.0)
     sendgrid-ruby (6.6.2)
       ruby_http_client (~> 3.4)
+    sidekiq (7.0.3)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
+    sidekiq-failures (1.0.4)
+      sidekiq (>= 4.0.0)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -496,6 +505,8 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   sendgrid-ruby
+  sidekiq
+  sidekiq-failures (~> 1.0)
   simple_calendar (~> 2.4)
   simple_form!
   social-share-button
