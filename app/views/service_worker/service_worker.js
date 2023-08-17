@@ -6,7 +6,7 @@ const onActivate = (event) => {
   console.log('[Serviceworker]', "Activating!", event);
 }
 
-const onFetch = (event) => {}
+// const onFetch = (event) => {}
 
 const onPush = (event) => {
   console.log("==========")
@@ -30,6 +30,7 @@ const onPush = (event) => {
   const title = payload.title || "Default title";
   const options = {
     body: payload.body,
+    data: payload.data  // Passing the data attribute (which includes the URL) to the notification
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
@@ -57,11 +58,18 @@ const onPushSubscriptionChange = (event) => {
   );
 }
 
+function onNotificationClick(event) {
+  event.notification.close()
+  event.waitUntil(clients.openWindow(event.notification.data.url))
+}
+
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
-self.addEventListener('fetch', onFetch);
+// self.addEventListener('fetch', onFetch);
 self.addEventListener("push", onPush);
 self.addEventListener('pushsubscriptionchange', onPushSubscriptionChange);
+self.addEventListener('notificationclick', onNotificationClick);
+
 
 const getCookie = (cname) => {
   let name = cname + "=";
