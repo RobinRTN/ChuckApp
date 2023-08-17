@@ -9,26 +9,38 @@ const onActivate = (event) => {
 const onFetch = (event) => {}
 
 const onPush = (event) => {
+  console.log("==========")
   console.log('[Serviceworker]', "Push Received!", event);
-  // var payload = event.data.json();
 
-  const img = "https://cdn-icons-png.flaticon.com/512/3119/3119338.png";
-  const text = "ChuckApp";
-  const title = "ChuckApp";
+  if (!event.data) {
+    console.log("[Serviceworker] No data found in push event!");
+    return;
+  }
+
+  let payload;
+  try {
+    payload = event.data.json();
+    console.log("===========")
+    console.log("Parsed payload:", payload);
+  } catch (error) {
+    console.error("[Serviceworker] Error parsing payload:", error);
+    return;
+  }
+
+  const title = payload.title || "Default title";
   const options = {
-    body: text,
-    icon: img,
-    vibrate: [200, 100, 200],
-    image: img,
-    badge: 3,
+    body: payload.body,
   };
+
   event.waitUntil(self.registration.showNotification(title, options));
+
   event.waitUntil(
     navigator.setAppBadge().catch((error) => {
       console.log(error);
     })
   );
 }
+
 
 const onPushSubscriptionChange = (event) => {
   console.log('[Serviceworker]', "Push Subscription Changing!", event);

@@ -21,8 +21,8 @@ class PushNotificationService
 
   def send_push_notification(subscription)
     notif_data = {
-      title: "PushNotificationService title: Pouet pouet 🎺",
-      body: "PushNotificationService message: #{@message}",
+      title: "Nouvelle demande de réservation",
+      body: "#{@message}",
     }
     WebPushService.payload_send(JSON.generate(notif_data), subscription)
   end
