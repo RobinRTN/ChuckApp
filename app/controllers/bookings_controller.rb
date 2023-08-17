@@ -445,7 +445,8 @@ class BookingsController < ApplicationController
 
             push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
             push_url = "/bookings/#{@booking.id}.bookings_path"
-            PushNotificationJob.perform_later(@user, push_message, push_url)
+            title = "Nouvelle demande de réservation Chuck"
+            PushNotificationJob.perform_later(@user, title, push_message, push_url)
 
             if Rails.env.production? && !@user.admin?
               BookingMailerJob.perform_later("user_booking_email_pending", @user, @booking)
@@ -479,7 +480,8 @@ class BookingsController < ApplicationController
 
             push_message = "#{@client.full_name} - #{l(@booking.start_time, format: '%e %B')} #{l(@booking.start_time, format: '%H')}h#{l(@booking.start_time, format: '%M')} à #{l(@booking.end_time, format: '%H')}h#{l(@booking.end_time, format: '%M')}"
             push_url = "/bookings/#{@booking.id}.bookings_path"
-            PushNotificationJob.perform_later(@user, push_message, push_url)
+            title = "Nouvelle demande de réservation Chuck"
+            PushNotificationJob.perform_later(@user, title, push_message, push_url)
 
             if Rails.env.production? && !@user.admin?
               BookingMailerJob.perform_later("user_booking_email_pending", @user, @booking)

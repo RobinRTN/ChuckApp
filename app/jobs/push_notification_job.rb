@@ -1,7 +1,7 @@
 class PushNotificationJob < ApplicationJob
   queue_as :default
 
-  def perform(user, message, url)
-    PushNotificationService.send(user, message, url)
+  def perform(user, title, message, url)
+    PushNotificationService.send(user, title, message, url)
   end
 end
