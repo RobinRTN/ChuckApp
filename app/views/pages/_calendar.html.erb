@@ -24,13 +24,22 @@
                 <% initials = "#{booking.client.first_name[0]}#{booking.client.last_name[0]}" %>
                 <% color_variations = ['circle-pink-tiny', 'circle-green-tiny', 'circle-red-tiny', 'circle-orange-tiny'] %>
                 <% circle_class = color_variations[booking.client.id % color_variations.size] %>
-                <div class="btn-time-slot-calendar d-flex justify-content-between">
+
+                <% btn_class = booking.status == "Pending" ? "btn-time-slot-calendar-pending" : "btn-time-slot-calendar" %>
+
+                <div class="<%= btn_class %> d-flex justify-content-between">
                   <p class="mb-0"><%= booking.start_time.strftime('%H:%M') %> à <%= booking.end_time.strftime('%H:%M') %></p>
-                  <p class="mb-0 <%= circle_class %>"><%= initials %></p>
+                  <p class="mb-0 <%= circle_class %>">
+                    <%= initials %>
+                    <% if booking.status == "Pending" %>
+                      <strong>?</strong>
+                    <% end %>
+                  </p>
                 </div>
               <% end %>
             </div>
           <% end %>
+
           <%= link_to date_new_reservation_path(jour: date), class: 'dropdown-item ajouter-btn' do %>
             <p><i class="fa-solid fa-plus"></i> Ajouter une résa </p>
           <% end  %>
