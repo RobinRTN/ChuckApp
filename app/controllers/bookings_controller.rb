@@ -579,6 +579,8 @@ class BookingsController < ApplicationController
 
   def update_availability
     availability = AvailabilityWeek.find(params[:id])
+    puts availability
+    puts availability_week_params
     availability.update(availability_week_params)
   end
 
@@ -606,19 +608,110 @@ class BookingsController < ApplicationController
 
 
 
-  def generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil, booking_start_time = nil)
+  # def generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil, booking_start_time = nil)
+  #   Time.zone = 'Europe/Paris'
+  #   full_datetimes = []
+  #   weekly_datetimes = []
+  #   daily_datetimes = []
+  #   current_time = booking_start_time || Time.zone.now
+  #   user ||= current_user
+  #   given_days_of_week = user.days_of_week
+  #   converted_available_slots = convert_available_slots(user.availables)
+  #   availability_weeks = user.availability_weeks
+
+  #   week_num = 0
+  #   while week_num < num_weeks
+  #     formatted_current_week_start = (current_time.beginning_of_week + week_num.weeks).strftime("%a, %d %b %Y")
+  #     availability_week = availability_weeks.find { |aw| aw.week_start.strftime("%a, %d %b %Y") == formatted_current_week_start }
+
+  #     if availability_week && !availability_week.week_enabled
+  #       full_datetimes << []
+  #     else
+  #       given_days_of_week.each do |day|
+  #         next if availability_week && !availability_week["available_#{day.downcase}"]
+
+  #         first_day_of_week = current_time.beginning_of_week + week_num.weeks
+  #         day_offset = (Date.parse(day).wday - first_day_of_week.wday) % 7
+  #         target_day = first_day_of_week + day_offset.days
+
+  #         slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
+  #         while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+  #           excluded = false
+  #           client_booking = user.bookings.upcoming_all.find { |b| b.start_time == slot && b.cancel_type == "Client" }
+
+  #           if client_booking
+  #             previous_end_time = client_booking.end_time
+  #           end
+
+  #           if previous_end_time && (slot < previous_end_time + user.break_time.minutes)
+  #             slot = previous_end_time + user.break_time.minutes
+  #           end
+
+  #           if slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+  #             break
+  #           end
+
+
+  #           excluded_fixed_weekly_slots.each do |fw_slot|
+  #             fw_day_of_week = fw_slot[0]
+  #             fw_start_time = Time.zone.parse(fw_slot[1])
+  #             fw_end_time = Time.zone.parse(fw_slot[2])
+  #             fw_start_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0)
+  #             fw_end_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
+  #             if slot.strftime("%A") == fw_day_of_week && (slot...slot + slot_duration.minutes).overlaps?(fw_start_time_on_slot_day...fw_end_time_on_slot_day)
+  #               excluded = true
+  #               break
+  #             end
+  #           end
+
+  #           daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
+
+  #           slot += interval.minutes
+  #         end
+
+  #         converted_available_slots.each do |available_slot|
+  #           if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
+  #             daily_datetimes << available_slot
+  #           end
+  #         end
+
+  #         daily_datetimes.sort!
+  #         sort_bookings(daily_datetimes, slot_duration, user)
+
+  #         weekly_datetimes << daily_datetimes unless daily_datetimes.empty?
+  #         daily_datetimes = []
+  #       end
+  #     end
+
+  #     # Only increment week_num if there are available slots
+  #     if weekly_datetimes.any?
+  #       full_datetimes << weekly_datetimes
+  #       week_num += 1
+  #     end
+  #     weekly_datetimes = []
+
+  #     # Always move to the next week to check availability
+  #     current_time = current_time + 1.week
+  #   end
+
+  #   full_datetimes
+  # end
+
+  def generate_datetimes(start_time, end_time, interval, num_weeks, slot_duration, excluded_fixed_weekly_slots, user = nil)
     Time.zone = 'Europe/Paris'
     full_datetimes = []
     weekly_datetimes = []
     daily_datetimes = []
-    current_time = booking_start_time || Time.zone.now
+    current_time = Time.zone.now
+
     user ||= current_user
     given_days_of_week = user.days_of_week
     converted_available_slots = convert_available_slots(user.availables)
     availability_weeks = user.availability_weeks
 
     week_num = 0
-    while week_num < num_weeks
+    weeks_generated = 0
+    loop do
       formatted_current_week_start = (current_time.beginning_of_week + week_num.weeks).strftime("%a, %d %b %Y")
       availability_week = availability_weeks.find { |aw| aw.week_start.strftime("%a, %d %b %Y") == formatted_current_week_start }
 
@@ -635,35 +728,16 @@ class BookingsController < ApplicationController
           slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
           while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
             excluded = false
-            client_booking = user.bookings.upcoming_all.find { |b| b.start_time == slot && b.cancel_type == "Client" }
-
-            if client_booking
-              previous_end_time = client_booking.end_time
-            end
-
-            if previous_end_time && (slot < previous_end_time + user.break_time.minutes)
-              slot = previous_end_time + user.break_time.minutes
-            end
-
-            if slot + slot_duration.minutes > Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
-              break
-            end
-
-
             excluded_fixed_weekly_slots.each do |fw_slot|
               fw_day_of_week = fw_slot[0]
               fw_start_time = Time.zone.parse(fw_slot[1])
               fw_end_time = Time.zone.parse(fw_slot[2])
-              fw_start_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0)
-              fw_end_time_on_slot_day = Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
-              if slot.strftime("%A") == fw_day_of_week && (slot...slot + slot_duration.minutes).overlaps?(fw_start_time_on_slot_day...fw_end_time_on_slot_day)
+              if slot.strftime("%A") == fw_day_of_week && slot >= Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0) && slot + slot_duration.minutes <= Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
                 excluded = true
                 break
               end
             end
-
             daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
-
             slot += interval.minutes
           end
 
@@ -681,21 +755,58 @@ class BookingsController < ApplicationController
         end
       end
 
-      # Only increment week_num if there are available slots
-      if weekly_datetimes.any?
-        full_datetimes << weekly_datetimes
-        week_num += 1
-      end
-      weekly_datetimes = []
+      full_datetimes << weekly_datetimes
 
-      # Always move to the next week to check availability
-      current_time = current_time + 1.week
+      weeks_generated += 1 unless weekly_datetimes.empty?
+      break if weeks_generated == num_weeks
+
+      week_num += 1
+      weekly_datetimes = []
     end
 
     full_datetimes
   end
 
 
+
+
+  # def generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, user = nil, target_date)
+  #   Time.zone = 'Europe/Paris'
+  #   daily_datetimes = []
+  #   current_time = Time.zone.now
+
+  #   user ||= current_user
+  #   converted_available_slots = convert_available_slots(user.availables)
+
+  #   target_day = Date.parse(target_date)
+
+  #   slot = Time.zone.local(target_day.year, target_day.month, target_day.day, start_time.hour, start_time.min, start_time.sec)
+  #   while slot <= Time.zone.local(target_day.year, target_day.month, target_day.day, end_time.hour, end_time.min, end_time.sec)
+  #     excluded = false
+  #     excluded_fixed_weekly_slots.each do |fw_slot|
+  #       fw_day_of_week = fw_slot[0]
+  #       fw_start_time = Time.zone.parse(fw_slot[1])
+  #       fw_end_time = Time.zone.parse(fw_slot[2])
+  #       if slot.strftime("%A") == fw_day_of_week && slot >= Time.zone.local(slot.year, slot.month, slot.day, fw_start_time.hour, fw_start_time.min, 0) && slot + slot_duration.minutes <= Time.zone.local(slot.year, slot.month, slot.day, fw_end_time.hour, fw_end_time.min, 0)
+  #         excluded = true
+  #         break
+  #       end
+  #     end
+  #     daily_datetimes << slot unless excluded || slot.to_date < current_time.to_date
+  #     slot += interval.minutes
+  #   end
+
+  #   converted_available_slots.each do |available_slot|
+  #     if available_slot.to_date == target_day.to_date && available_slot.to_date >= current_time.to_date && !daily_datetimes.include?(available_slot)
+  #       daily_datetimes << available_slot
+  #     end
+  #   end
+
+  #   daily_datetimes.sort!
+  #   sort_bookings(daily_datetimes, slot_duration, user)
+
+  #   daily_datetimes
+  # end
 
   def generate_day_datetimes(start_time, end_time, interval, slot_duration, excluded_fixed_weekly_slots, user = nil, target_date)
     Time.zone = 'Europe/Paris'
