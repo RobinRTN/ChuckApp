@@ -212,7 +212,8 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @user = @booking.user
     @client = @booking.client
-    @booking.update(status: "Refused", refusal_message: params[:booking][:refusal_message])
+    refusal_message = params[:booking][:refusal_message].blank? ? "Réservation annulée" : params[:booking][:refusal_message]
+    @booking.update(status: "Refused", refusal_message: refusal_message)
     flash[:notice] = "Demande de réservation refusée !"
     redirect_to bookings_path
     BookingMailer.user_booking_email_refuse(@user, @booking).deliver_later if Rails.env.production?
