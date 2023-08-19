@@ -21,7 +21,6 @@ module MRProject
     config.i18n.exception_handler = ->(exception, locale, key, options) { key }
     config.time_zone = 'Paris'
 
-    config.active_job.queue_adapter = :sidekiq
 
     # Configuration for the application, engines, and railties goes here.
     #
