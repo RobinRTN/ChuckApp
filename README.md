@@ -29,7 +29,7 @@ This app offers an all-in-one software solution tailored for sport coaches. It s
 - **Ruby on Rails**: Full-stack
 - **PostgreSQL**
 - **Twilio**: Sending Text Messages and emails to users / clients when new booking or update
-- **Stimulus.js**: Probably ot the best choice but learned a lot about JS as quite close to vanilla logic
+- **Stimulus.js**: Probably not the best choice but learned a lot about JS as quite close to vanilla logic
 - **Progressive Web App (PWA)**: Ensuring a seamless and app-like user experience on mobile - managed to add the notifications aswell
 
 ### Reflections
