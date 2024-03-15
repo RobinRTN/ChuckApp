@@ -27,15 +27,15 @@ This app offers an all-in-one software solution tailored for sport coaches. It s
 
 ### Technical Stack
 
-- **Ruby on Rails**: Robust and reliable backend development.
-- **PostgreSQL**: Powerful database management.
-- **Twilio**: Integrated for efficient communication.
-- **Stimulus.js**: Enhanced front-end interactivity.
-- **Progressive Web App (PWA)**: Ensuring a seamless and app-like user experience.
+- **Ruby on Rails**: Full-stack
+- **PostgreSQL**
+- **Twilio**: Sending Text Messages and emails to users / clients when new booking or update
+- **Stimulus.js**: Probably ot the best choice but learned a lot about JS as quite close to vanilla logic
+- **Progressive Web App (PWA)**: Ensuring a seamless and app-like user experience on mobile - managed to add the notifications aswell
 
 ### Reflections
 
-The backend was a pleasure to work with, offering flexibility and power. However, the front-end complexity escalated due to our choice of tech stack. For future iterations, considering a React-based front-end seems a more efficient approach. This project adheres to the typical stack taught at Le Wagon, serving as a testament to the practical applications of the skills learned there.
+The backend was a pleasure to work with, offering flexibility and power. However, the front-end complexity escalated due to our choice of tech stack. For todays perspective, I would have definitly picked a React-based front-end to handle the complexity better. This project adheres to the typical stack taught at Le Wagon, serving as a testament to the practical applications of the skills learned there.
 
 ### Achievements
 
