@@ -3,10 +3,13 @@
 Welcome to our **Sport Coaching Management App**, a project born right after completing [Le Wagon](https://www.lewagon.com/) coding bootcamp. This application was co-created with a friend who managed the business aspects, while I focused on the development side.
 
 <p align="center">
-  <img src="https://github.com/RobinRTN/ChuckApp/blob/master/IMG_7567.jpg?raw=true" alt="First Image" width="100" height="100" style="margin-right: 10px;" />
-  <img src="path_to_your_second_image.jpg" alt="Second Image" width="100" height="100" style="margin-right: 10px;" />
-  <img src="path_to_your_third_image.jpg" alt="Third Image" width="100" height="100" style="margin-right: 10px;" />
-  <img src="path_to_your_fourth_image.jpg" alt="Fourth Image" width="100" height="100" />
+  <img src="https://github.com/RobinRTN/ChuckApp/blob/master/IMG_7567.jpg?raw=true" alt="First Image" width="400" height="400" style="margin-right: 10px;" />
+  <img src="https://github.com/RobinRTN/ChuckApp/blob/master/IMG_7568.jpg?raw=true" alt="Second Image" width="400" height="400" style="margin-right: 10px;" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/RobinRTN/ChuckApp/blob/master/IMG_7569.jpg?raw=true" alt="Second Image" width="400" height="400" style="margin-right: 10px;" />
+  <img src="https://github.com/RobinRTN/ChuckApp/blob/master/IMG_7570.jpg?raw=true" alt="Second Image" width="400" height="400" style="margin-right: 10px;" />
 </p>
 
 ## Project Overview
