@@ -43,4 +43,4 @@ The backend was a pleasure to work with, offering flexibility and power. However
 
 ## Contributions and Feedback
 
-Feel free to explore the code, contribute, and provide feedback. This project not only represents our technical journey but also our commitment to improving the sports coaching industry.
+Feel free to explore the code, and provide feedback. This project not only represents our technical journey but also our commitment to improving the sports coaching industry.
